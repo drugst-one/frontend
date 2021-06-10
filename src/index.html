@@ -8,6 +8,17 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script src="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.1/dev/drugsTone.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.1/dev/styles.css">
+  <script src="https://kit.fontawesome.com/3ad4fe992f.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+  <script>
+    function highlightCode() {
+      var pres = document.querySelectorAll("pre>code");
+      for (var i = 0; i < pres.length; i++) {
+        hljs.highlightBlock(pres[i]);
+      }
+    }
+    highlightCode();
+  </script>
 </head>
 <body>
   <app-root></app-root>

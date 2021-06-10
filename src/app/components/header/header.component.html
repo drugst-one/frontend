@@ -1,10 +1,8 @@
-<div style="width: 100%; background-color: #1f2d40;">
+<div style="width: 100%; background-color: var(--surface-a);">
     <div style="display: flex">
-        <b style="color: #ced3da; font-size: xx-large; display: inline-flex"> The Drugstone Project
+        <b (click)="clickHome()" style="color: var(--text-color); font-size: xx-large; display: inline-flex; cursor: pointer "> The Drugstone Project
         </b>
         <p-divider layout="vertical"></p-divider>
-        <p-tabMenu [style]="{width:'100%'}" [model]="[{label:'home',icon: 'pi pi-fw pi-home'},{label:'how-to',icon: 'pi pi-fw pi-question-circle'},
-    {label:'playground',icon: 'pi pi-fw pi-th-large'},{label:'documentation',icon: 'pi pi-fw pi-book'}]"
-                   [activeItem]="{label:'home',icon:'pi pi-fw pi-home'}"></p-tabMenu>
+        <p-tabMenu [model]="tabsModel" [activeItem]="activeTab"></p-tabMenu>
     </div>
 </div>

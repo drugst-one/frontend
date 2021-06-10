@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @Output() tabChangeEvent = new EventEmitter<number>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+    tabChange(number: number) {
+        this.tabChangeEvent.emit(number)
+    }
 }

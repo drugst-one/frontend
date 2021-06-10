@@ -8,4 +8,17 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'website';
+
+  public currentTabId :number;
+
+  constructor() {
+    this.currentTabId=1;
+  }
+
+
+  switchTab(tabId: number) {
+    if (this.currentTabId !== tabId) {
+      this.currentTabId = tabId
+    }
+  }
 }
