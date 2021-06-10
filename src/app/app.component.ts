@@ -12,7 +12,7 @@ export class AppComponent {
   public currentTabId :number;
 
   constructor() {
-    this.currentTabId=1;
+    this.currentTabId=0;
   }
 
 
