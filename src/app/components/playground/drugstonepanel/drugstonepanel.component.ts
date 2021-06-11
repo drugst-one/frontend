@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-drugstonepanel',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrugstonepanelComponent implements OnInit {
 
-  constructor() { }
+  @Input() public config:object = {}
+  @Input() public network: object = {}
+  @Input() public id: string = ""
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  getConfig(): string{
+    return JSON.stringify(this.config)
+  }
+
+  getNetwork(): string{
+    return JSON.stringify(this.network)
   }
 
 }

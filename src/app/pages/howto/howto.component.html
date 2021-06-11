@@ -1,4 +1,4 @@
-<p-card class="dt-card" [style]="{margin:'15px'}" header="How to integrate DrugsTone?">
+<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="How to integrate DrugsTone?">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sem, porta ultricies metus non,
     interdum pharetra sem. Maecenas finibus ligula diam. Fusce blandit lorem et ligula vestibulum bibendum. Quisque
     placerat nibh id erat lacinia elementum. Donec est nisl, ultricies nec augue quis, vulputate placerat nulla.
@@ -23,41 +23,65 @@
     orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
     sollicitudin porttitor felis, non ornare lacus faucibus at.
 </p-card>
-<p-card class="dt-card" [style]="{margin:'15px'}" header="AngularJS">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sem, porta ultricies metus non,
-    interdum
-    pharetra sem. Maecenas finibus ligula diam. Fusce blandit lorem et ligula vestibulum bibendum. Quisque placerat
-    nibh
-    <app-code lang="html" [code]="angular.plugin"></app-code>
-    id erat lacinia elementum. Donec est nisl, ultricies nec augue quis, vulputate placerat nulla. Donec congue orci
-    eget nunc vehicula aliquet. Vestibulum in nibh eget ipsum varius porttitor. Morbi quis ipsum sit amet leo
-    dapibus
-    <app-code lang="typescript" [code]="angular.app"></app-code>
-    molestie placerat vel nisi. Cras posuere purus sem, in eleifend dolor maximus eget. Etiam vel iaculis mi.
-    Phasellus
-    <app-code lang="html" [code]="angular.body"></app-code>
-    eget sagittis urna. Cras nec feugiat leo, scelerisque elementum ligula. Nulla ultricies sodales magna, id
-    accumsan
-    orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
-    sollicitudin porttitor felis, non ornare lacus faucibus at.
-</p-card>
-<p-card class="dt-card" [style]="{margin:'15px'}" header="VueJS">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sem, porta ultricies metus non,
-    interdum
-    pharetra sem. Maecenas finibus ligula diam. Fusce blandit lorem et ligula vestibulum bibendum. Quisque placerat
-    nibh
-    <app-code lang="html" [code]="vue.plugin"></app-code>
-    id erat lacinia elementum. Donec est nisl, ultricies nec augue quis, vulputate placerat nulla. Donec congue orci
-    eget nunc vehicula aliquet. Vestibulum in nibh eget ipsum varius porttitor. Morbi quis ipsum sit amet leo
-    dapibus
-    <app-code lang="javascript" [code]="vue.app"></app-code>
-    molestie placerat vel nisi. Cras posuere purus sem, in eleifend dolor maximus eget. Etiam vel iaculis mi.
-    Phasellus
-    <app-code lang="html" [code]="vue.body"></app-code>
-    eget sagittis urna. Cras nec feugiat leo, scelerisque elementum ligula. Nulla ultricies sodales magna, id
-    accumsan
-    orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
-    sollicitudin porttitor felis, non ornare lacus faucibus at.
+<app-panel headerIcon="fab fa-angular" title="AngularJS">
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sem, porta ultricies metus non,
+        interdum
+        pharetra sem. Maecenas finibus ligula diam. Fusce blandit lorem et ligula vestibulum bibendum. Quisque placerat
+        nibh
+        <app-code lang="html" [code]="angular.plugin"></app-code>
+        id erat lacinia elementum. Donec est nisl, ultricies nec augue quis, vulputate placerat nulla. Donec congue orci
+        eget nunc vehicula aliquet. Vestibulum in nibh eget ipsum varius porttitor. Morbi quis ipsum sit amet leo
+        dapibus
+        <app-code lang="typescript" [code]="angular.app"></app-code>
+        molestie placerat vel nisi. Cras posuere purus sem, in eleifend dolor maximus eget. Etiam vel iaculis mi.
+        Phasellus
+        <app-code lang="html" [code]="angular.body"></app-code>
+        eget sagittis urna. Cras nec feugiat leo, scelerisque elementum ligula. Nulla ultricies sodales magna, id
+        accumsan
+        orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
+        sollicitudin porttitor felis, non ornare lacus faucibus at.
+    </div>
+</app-panel>
+<app-panel headerIcon="fab fa-vuejs" title="Vue.js">
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sem, porta ultricies metus non,
+        interdum
+        pharetra sem. Maecenas finibus ligula diam. Fusce blandit lorem et ligula vestibulum bibendum. Quisque placerat
+        nibh
+        <app-code lang="html" [code]="vue.plugin"></app-code>
+        id erat lacinia elementum. Donec est nisl, ultricies nec augue quis, vulputate placerat nulla. Donec congue orci
+        eget nunc vehicula aliquet. Vestibulum in nibh eget ipsum varius porttitor. Morbi quis ipsum sit amet leo
+        dapibus
+        <app-code lang="javascript" [code]="vue.app"></app-code>
+        molestie placerat vel nisi. Cras posuere purus sem, in eleifend dolor maximus eget. Etiam vel iaculis mi.
+        Phasellus
+        <app-code lang="html" [code]="vue.body"></app-code>
+        eget sagittis urna. Cras nec feugiat leo, scelerisque elementum ligula. Nulla ultricies sodales magna, id
+        accumsan
+        orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
+        sollicitudin porttitor felis, non ornare lacus faucibus at.
+    </div>
+</app-panel>
 
-</p-card>
+<app-panel headerIcon="fab fa-react" title="React">
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sem, porta ultricies metus non,
+        interdum
+        pharetra sem. Maecenas finibus ligula diam. Fusce blandit lorem et ligula vestibulum bibendum. Quisque placerat
+        nibh
+        <app-code lang="html" [code]="vue.plugin"></app-code>
+        id erat lacinia elementum. Donec est nisl, ultricies nec augue quis, vulputate placerat nulla. Donec congue orci
+        eget nunc vehicula aliquet. Vestibulum in nibh eget ipsum varius porttitor. Morbi quis ipsum sit amet leo
+        dapibus
+        <app-code lang="javascript" [code]="vue.app"></app-code>
+        molestie placerat vel nisi. Cras posuere purus sem, in eleifend dolor maximus eget. Etiam vel iaculis mi.
+        Phasellus
+        <app-code lang="html" [code]="vue.body"></app-code>
+        eget sagittis urna. Cras nec feugiat leo, scelerisque elementum ligula. Nulla ultricies sodales magna, id
+        accumsan
+        orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
+        sollicitudin porttitor felis, non ornare lacus faucibus at.
+    </div>
+</app-panel>
 

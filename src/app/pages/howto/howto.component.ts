@@ -27,8 +27,8 @@ export class HowtoComponent implements OnInit {
     constructor() {
         this.general.plugin = "" +
             "<head>\n" +
-            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.2/releases/drugsTone.js\"></script>\n" +
-            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.2/releases/styles.css\">\n" +
+            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.51/releases/drugsTone.js\"></script>\n" +
+            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.51/releases/styles.css\">\n" +
             "</head>\n\n";
         this.general.body = "" +
             "<body>\n" +

@@ -1,0 +1,8 @@
+<p-panel class="dt-card" [style]="{ margin:'5px'}" [toggleable]="true" [collapsed]="collapsed" expandIcon="fas fa-chevron-down" collapseIcon="fas fa-chevron-up" toggler="header">
+    <ng-template pTemplate="header">
+        <div [style]="{padding: '5px'}" class="p-panel-title">
+            <i [class]="headerIcon"></i> {{title}}
+        </div>
+    </ng-template>
+    <ng-content select=".content"></ng-content>
+</p-panel>

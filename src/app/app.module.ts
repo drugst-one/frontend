@@ -21,6 +21,11 @@ import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {HighlightJsModule} from "ngx-highlight-js";
 import { CodeComponent } from './components/code/code.component';
+import { PanelComponent } from './components/panel/panel.component';
+import {ScrollPanelModule} from "primeng/scrollpanel";
+import {AccordionModule} from "primeng/accordion";
+import {InputSwitchModule} from "primeng/inputswitch";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -35,7 +40,8 @@ import { CodeComponent } from './components/code/code.component';
         CodepanelComponent,
         HeaderComponent,
         FooterComponent,
-        CodeComponent
+        CodeComponent,
+        PanelComponent
     ],
     imports: [
         BrowserModule,
@@ -46,7 +52,11 @@ import { CodeComponent } from './components/code/code.component';
         DividerModule,
         CardModule,
         ButtonModule,
-        HighlightJsModule
+        HighlightJsModule,
+        ScrollPanelModule,
+        AccordionModule,
+        InputSwitchModule,
+        FormsModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,1 +1,23 @@
-<p>sidebar works!</p>
+<p-scrollPanel [style]='{height: "80vh", width: "100%"}'>
+    <p-accordion>
+        <p-accordionTab header="DATA">
+
+
+        </p-accordionTab>
+        <p-accordionTab header="COMPONENTS" [selected]="true">
+            <div class="row">
+                <div class="column" style="width:40%">
+                    Toggle left Sidebar
+                </div>
+                <div class="column" style="width: 60%">
+                    <p-inputSwitch [(ngModel)]="toggleSideLeft"
+                                   (onChange)="changeConfig('showLeftSidebar',$event.checked)"></p-inputSwitch>
+                </div>
+            </div>
+        </p-accordionTab>
+        <p-accordionTab header="STYLE">
+
+        </p-accordionTab>
+
+    </p-accordion>
+</p-scrollPanel>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-codepanel',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodepanelComponent implements OnInit {
 
+
+  @Input() public code :string = "<network-expander>\n</network-expander>"
   constructor() { }
 
   ngOnInit(): void {
