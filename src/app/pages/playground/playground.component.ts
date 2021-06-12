@@ -32,7 +32,6 @@ export class PlaygroundComponent implements OnInit {
     }
 
     changeConfig(change: object) {
-        console.log(change)
         Object.keys(change).forEach(name=>{
             // @ts-ignore
             console.log("changing "+name+" from "+this.config[name]+" to "+change[name])
@@ -41,4 +40,6 @@ export class PlaygroundComponent implements OnInit {
         })
         this.updateCode()
     }
+
+
 }

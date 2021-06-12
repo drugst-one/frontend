@@ -26,6 +26,10 @@ import {ScrollPanelModule} from "primeng/scrollpanel";
 import {AccordionModule} from "primeng/accordion";
 import {InputSwitchModule} from "primeng/inputswitch";
 import {FormsModule} from "@angular/forms";
+import {FieldsetModule} from "primeng/fieldset";
+import {InputTextModule} from "primeng/inputtext";
+import {RippleModule} from "primeng/ripple";
+import {TooltipModule} from "primeng/tooltip";
 
 @NgModule({
     declarations: [
@@ -56,7 +60,11 @@ import {FormsModule} from "@angular/forms";
         ScrollPanelModule,
         AccordionModule,
         InputSwitchModule,
-        FormsModule
+        FormsModule,
+        FieldsetModule,
+        InputTextModule,
+        RippleModule,
+        TooltipModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
