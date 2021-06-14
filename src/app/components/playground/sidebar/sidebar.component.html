@@ -2,51 +2,51 @@
     <p-accordion [multiple]="true">
         <p-accordionTab header="CONFIGURATION">
             <p-fieldset legend="Nodes" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
-                <div *ngFor="let nodeGroup of objectAsList(nodeGroups)">
-                    <p-card [style]="{padding: 0, margin: '15px'}">
-                        <ng-template pTemplate="header">
-                            <span class="p-card-title">
-                                ID: {{nodeGroup[0]}}
-                            </span>
-                        </ng-template>
-                        <ng-template pTemplate="content">
-                            <span class="row" style="margin:0; padding:0">
-                                    <span class="column" style="width: 80%; padding: 0">
-                                        <span>
-                                                <label style="font-size: small"
-                                                       [for]="nodeGroup[0]+'id'">id <i class="far fa-question-circle"
-                                                                                       pTooltip="info"></i></label>
-                                                <input style="width: 100%" type="text" [id]="nodeGroup[0]+'id'"
-                                                       [value]="nodeGroup[0]">
-                                            </span>
-                                    </span>
-                                    <span class="column" style="width: 20%">
-                                        <button pButton pRipple type="button" icon="pi pi-check"
-                                                class="p-button-rounded p-button-outlined"
-                                                [style]="{width:'25px', height:'25px'}"></button>
-                                    </span>
-                                </span>
-                            <div *ngFor="let nodeConf of objectAsList(nodeGroup[1])" [style]="{padding: 0, margin: 0}">
-                                <span class="row" style="margin:0; padding:0">
-                                    <span class="column" style="width: 80%; padding: 0">
-                                        <span>
-                                                <label style="font-size: small"
-                                                       [for]="nodeGroup[0]+nodeConf[0]">{{nodeConf[0]}} <i
-                                                        class="far fa-question-circle" pTooltip="info"></i></label>
-                                                <input style="width: 100%" type="text" [id]="nodeGroup[0]+nodeConf[0]"
-                                                       [value]="nodeConf[1]">
-                                            </span>
-                                    </span>
-                                    <span class="column" style="width: 20%; bottom:0">
-                                        <button pButton pRipple type="button" icon="pi pi-check"
-                                                class="p-button-rounded p-button-outlined"
-                                                [style]="{width:'25px', height:'25px'}"></button>
-                                    </span>
-                                </span>
-                            </div>
-                        </ng-template>
-                    </p-card>
-                </div>
+<!--                <div *ngFor="let nodeGroup of objectAsList(nodeGroups)">-->
+<!--                    <p-card [style]="{padding: 0, margin: '15px'}">-->
+<!--                        <ng-template pTemplate="header">-->
+<!--                            <span class="p-card-title">-->
+<!--                                ID: {{nodeGroup[0]}}-->
+<!--                            </span>-->
+<!--                        </ng-template>-->
+<!--                        <ng-template pTemplate="content">-->
+<!--                            <span class="row" style="margin:0; padding:0">-->
+<!--                                    <span class="column" style="width: 80%; padding: 0">-->
+<!--                                        <span>-->
+<!--                                                <label style="font-size: small"-->
+<!--                                                       [for]="nodeGroup[0]+'id'">id <i class="far fa-question-circle"-->
+<!--                                                                                       pTooltip="info"></i></label>-->
+<!--                                                <input style="width: 100%" type="text" [id]="nodeGroup[0]+'id'"-->
+<!--                                                       [value]="nodeGroup[0]">-->
+<!--                                            </span>-->
+<!--                                    </span>-->
+<!--                                    <span class="column" style="width: 20%">-->
+<!--                                        <button pButton pRipple type="button" icon="pi pi-check"-->
+<!--                                                class="p-button-rounded p-button-outlined"-->
+<!--                                                [style]="{width:'25px', height:'25px'}"></button>-->
+<!--                                    </span>-->
+<!--                                </span>-->
+<!--                            <div *ngFor="let nodeConf of objectAsList(nodeGroup[1])" [style]="{padding: 0, margin: 0}">-->
+<!--                                <span class="row" style="margin:0; padding:0">-->
+<!--                                    <span class="column" style="width: 80%; padding: 0">-->
+<!--                                        <span>-->
+<!--                                                <label style="font-size: small"-->
+<!--                                                       [for]="nodeGroup[0]+nodeConf[0]">{{nodeConf[0]}} <i-->
+<!--                                                        class="far fa-question-circle" pTooltip="info"></i></label>-->
+<!--                                                <input style="width: 100%" type="text" [id]="nodeGroup[0]+nodeConf[0]"-->
+<!--                                                       [value]="nodeConf[1]">-->
+<!--                                            </span>-->
+<!--                                    </span>-->
+<!--                                    <span class="column" style="width: 20%; bottom:0">-->
+<!--                                        <button pButton pRipple type="button" icon="pi pi-check"-->
+<!--                                                class="p-button-rounded p-button-outlined"-->
+<!--                                                [style]="{width:'25px', height:'25px'}"></button>-->
+<!--                                    </span>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                        </ng-template>-->
+<!--                    </p-card>-->
+<!--                </div>-->
             </p-fieldset>
             <p-fieldset legend="Edges" [toggleable]="true" [collapsed]="true">
 
