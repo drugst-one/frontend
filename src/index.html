@@ -1,26 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Website</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.1/dev/drugsTone.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.1/dev/styles.css">
-  <script src="https://kit.fontawesome.com/3ad4fe992f.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-  <script>
-    function highlightCode() {
-      var pres = document.querySelectorAll("pre>code");
-      for (var i = 0; i < pres.length; i++) {
-        hljs.highlightBlock(pres[i]);
-      }
-    }
-    highlightCode();
-  </script>
+    <meta charset="utf-8">
+    <title>Website</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- FOR DEV: BACKEND == ALFRED  -->
+    <script src="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.7/remote/drugsTone.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.7/remote/styles.css">
+
+    <!-- FOR DEV: BACKEND == localhost  -->
+    <!--  <script src="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.7/dev/drugsTone.js"></script>-->
+    <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.7/dev/styles.css">-->
+
+    <!-- FOR PROD: BACKEND == EXBIO  -->
+    <!--  <script src="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.7/releases/drugsTone.js"></script>-->
+    <!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.5.7/releases/styles.css">-->
+
+    <script src="https://kit.fontawesome.com/3ad4fe992f.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
 </head>
 <body style="background-color: var(--surface-b)">
-  <app-root></app-root>
+<app-root></app-root>
 </body>
 </html>
