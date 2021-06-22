@@ -30,6 +30,14 @@ import {FieldsetModule} from "primeng/fieldset";
 import {InputTextModule} from "primeng/inputtext";
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
+import {ColorPickerModule} from "primeng/colorpicker";
+import { NiyInfoComponent } from './components/other/niy-info/niy-info.component';
+import { TextinputComponent } from './components/playground/sidebar/textinput/textinput.component';
+import { SwitchComponent } from './components/playground/sidebar/switch/switch.component';
+import { ColorpickerComponent } from './components/playground/sidebar/colorpicker/colorpicker.component';
+import { DropdownComponent } from './components/playground/sidebar/dropdown/dropdown.component';
+import {DropdownModule} from "primeng/dropdown";
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
     declarations: [
@@ -45,7 +53,12 @@ import {TooltipModule} from "primeng/tooltip";
         HeaderComponent,
         FooterComponent,
         CodeComponent,
-        PanelComponent
+        PanelComponent,
+        NiyInfoComponent,
+        TextinputComponent,
+        SwitchComponent,
+        ColorpickerComponent,
+        DropdownComponent
     ],
     imports: [
         BrowserModule,
@@ -64,7 +77,10 @@ import {TooltipModule} from "primeng/tooltip";
         FieldsetModule,
         InputTextModule,
         RippleModule,
-        TooltipModule
+        TooltipModule,
+        ColorPickerModule,
+        DropdownModule,
+        CheckboxModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

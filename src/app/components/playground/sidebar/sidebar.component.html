@@ -1,70 +1,114 @@
 <p-scrollPanel [style]='{height: "80vh", width: "100%"}'>
     <p-accordion [multiple]="true">
         <p-accordionTab header="CONFIGURATION">
-            <p-fieldset legend="Nodes" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
-<!--                <div *ngFor="let nodeGroup of objectAsList(nodeGroups)">-->
-<!--                    <p-card [style]="{padding: 0, margin: '15px'}">-->
-<!--                        <ng-template pTemplate="header">-->
-<!--                            <span class="p-card-title">-->
-<!--                                ID: {{nodeGroup[0]}}-->
-<!--                            </span>-->
-<!--                        </ng-template>-->
-<!--                        <ng-template pTemplate="content">-->
-<!--                            <span class="row" style="margin:0; padding:0">-->
-<!--                                    <span class="column" style="width: 80%; padding: 0">-->
-<!--                                        <span>-->
-<!--                                                <label style="font-size: small"-->
-<!--                                                       [for]="nodeGroup[0]+'id'">id <i class="far fa-question-circle"-->
-<!--                                                                                       pTooltip="info"></i></label>-->
-<!--                                                <input style="width: 100%" type="text" [id]="nodeGroup[0]+'id'"-->
-<!--                                                       [value]="nodeGroup[0]">-->
-<!--                                            </span>-->
-<!--                                    </span>-->
-<!--                                    <span class="column" style="width: 20%">-->
-<!--                                        <button pButton pRipple type="button" icon="pi pi-check"-->
-<!--                                                class="p-button-rounded p-button-outlined"-->
-<!--                                                [style]="{width:'25px', height:'25px'}"></button>-->
-<!--                                    </span>-->
-<!--                                </span>-->
-<!--                            <div *ngFor="let nodeConf of objectAsList(nodeGroup[1])" [style]="{padding: 0, margin: 0}">-->
-<!--                                <span class="row" style="margin:0; padding:0">-->
-<!--                                    <span class="column" style="width: 80%; padding: 0">-->
-<!--                                        <span>-->
-<!--                                                <label style="font-size: small"-->
-<!--                                                       [for]="nodeGroup[0]+nodeConf[0]">{{nodeConf[0]}} <i-->
-<!--                                                        class="far fa-question-circle" pTooltip="info"></i></label>-->
-<!--                                                <input style="width: 100%" type="text" [id]="nodeGroup[0]+nodeConf[0]"-->
-<!--                                                       [value]="nodeConf[1]">-->
-<!--                                            </span>-->
-<!--                                    </span>-->
-<!--                                    <span class="column" style="width: 20%; bottom:0">-->
-<!--                                        <button pButton pRipple type="button" icon="pi pi-check"-->
-<!--                                                class="p-button-rounded p-button-outlined"-->
-<!--                                                [style]="{width:'25px', height:'25px'}"></button>-->
-<!--                                    </span>-->
-<!--                                </span>-->
-<!--                            </div>-->
-<!--                        </ng-template>-->
-<!--                    </p-card>-->
-<!--                </div>-->
+            <p-fieldset [toggleable]="true" [collapsed]="false">
+                <ng-template pTemplate="header">
+                    Node Groups
+                </ng-template>
+                <div *ngIf="nodeGroups !=null &&objectSize(nodeGroups)>0">
+                    <div *ngFor="let nodeGroup of (nodeGroups | keyvalue)">
+                        <div [style]="{padding: 0, margin: '15px'}">
+                            <p-fieldset [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                <span class="p-card-title">
+                                Group: {{nodeGroup.key}}
+                                </span>
+                                    <app-niy-info class="side-label" pos="left"></app-niy-info>
+                                </ng-template>
+                                <app-textinput title="ID" [model]="nodeGroup.key"
+                                               (onChange)="changeGroupConfig(nodeGroups,nodeGroup.key, 'id',$event)"
+                                               tooltip="TODO"></app-textinput>
+                                <div *ngFor="let nodeConf of (nodeGroup.value | keyvalue)"
+                                     [style]="{padding: 0, margin: 0}">
+                                    <div *ngIf="nodeConf.key === 'color'" style="margin-left: 5px">
+                                        <app-colorpicker title="Node color" [model]="nodeConf.value" tooltip="TODO"
+                                                         [format]="((nodeConf.value+'').startsWith('rgb') ? 'rgb': 'hex')"
+                                                         (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"></app-colorpicker>
+                                    </div>
+                                    <div *ngIf="nodeConf.key === 'shape'"
+                                         style="display: flex; justify-content: flex-start">
+                                        <div style="padding-left: 12px;padding-top:5px">
+                                            <label class="flex flex-self-left side-label" style="font-size: small">large
+                                                <i
+                                                        class="far fa-question-circle" pTooltip="TODO"
+                                                        style="padding: 3px"></i></label>
+                                            <div style="padding-top: 5px">
+                                                <p-checkbox [label]=" isBig(nodeConf.value)? 'big' : 'normal'"
+                                                            [ngModel]="isBig(nodeConf.value)" [binary]="true"
+                                                            (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, ($event.checked ? 'big ' : '')+(isBig(nodeConf.value)?(nodeConf.value+'').substring(4):nodeConf.value))"></p-checkbox>
+                                            </div>
+                                        </div>
+                                        <div style="width: 100%">
+                                            <app-dropdown [fill]="true" title="Shape" [items]="shapeList"
+                                                          (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, (isBig(nodeConf.value) ? 'big ' : '') + $event)"
+                                                          tooltip="TODO"></app-dropdown>
+                                        </div>
+                                    </div>
+                                    <app-textinput *ngIf="nodeConf.key !== 'color' && nodeConf.key !== 'shape'"
+                                                   [title]="nodeConf.key"
+                                                   [model]="nodeConf.value"
+                                                   (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"
+                                                   tooltip="TODO"></app-textinput>
+                                </div>
+                                <p-divider></p-divider>
+                                <div style="display: flex; justify-content: center">
+                                    <p-button label="Delete" icon="fas fa-trash"
+                                              styleClass="p-button-sm p-button-danger"
+                                              (onClick)="deleteGroup(nodeGroups,nodeGroup.key)"></p-button>
+                                </div>
+                            </p-fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div [style]="{padding: 0, margin: '15px'}">
+                    <p-fieldset (click)="addNewNodeGroup()" [collapsed]="true">
+                        <ng-template pTemplate="header">
+                            <div style="padding:16px; cursor: pointer"><i class="pi pi-plus"></i> Add new Group</div>
+                        </ng-template>
+                    </p-fieldset>
+                </div>
             </p-fieldset>
-            <p-fieldset legend="Edges" [toggleable]="true" [collapsed]="true">
+            <p-fieldset legend="Edge Groups" [toggleable]="true" [collapsed]="false">
 
             </p-fieldset>
 
         </p-accordionTab>
+        <p-accordionTab header="DEFAULTS">
+            <p-fieldset legend="Legend" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
+                <app-switch title="Use custom Legend" [model]="useLegendURL"
+                            (onChange)="changeConfig('legendUrl',($event ? legendURL : '')); useLegendURL=$event"></app-switch>
+                <app-textinput [hidden]="!useLegendURL" title="Legend Image URL" [model]="legendURL"
+                               [disabled]="!useLegendURL"
+                               (onChange)="changeConfig('legendUrl',$event); "
+                               tooltip="Enter an image URL for your custom legend!"></app-textinput>
+            </p-fieldset>
+        </p-accordionTab>
+
         <p-accordionTab header="INTERFACE" [selected]="true">
-            <div class="row">
-                <div class="column" style="width:40%">
-                    Toggle left Sidebar
-                </div>
-                <div class="column" style="width: 60%">
-                    <p-inputSwitch [(ngModel)]="toggleSideLeft"
-                                   (onChange)="changeConfig('showLeftSidebar',$event.checked)"></p-inputSwitch>
-                </div>
-            </div>
+            <app-switch title="Toggle left Sidebar" [model]="toggleSideLeft"
+                        (onChange)="changeConfig('showLeftSidebar',$event)"
+                        tooltip="Adds or removes the right panel from the configuration."
+            ></app-switch>
         </p-accordionTab>
-        <p-accordionTab header="STYLE">
+        <p-accordionTab>
+            <ng-template pTemplate="header">
+                STYLE
+                <app-niy-info class="side-label" pos="left"></app-niy-info>
+            </ng-template>
+            <i style="display: flex; justify-content: center; margin-left: auto">Custom coloring is not fully supported
+                yet!</i>
+            <div style="margin-bottom: 15px"></div>
+            <app-colorpicker title="Primary-Color" [model]="colors.primary" (onChange)="changeColor('primary',$event)"
+                             tooltip="Defines the color primarily used in the plugin. Includes button background-colors and text coloring."></app-colorpicker>
+            <app-colorpicker title="Success-Color" [model]="colors.success" (onChange)="changeColor('success',$event)"
+                             tooltip="Defines the color used to highlight valid outcomes or activated switches."></app-colorpicker>
+            <app-colorpicker title="Primary-Color" [model]="colors.danger" (onChange)="changeColor('danger',$event)"
+                             tooltip="Defines the color used to highlight invalid outcomes, errors or deactivated switches."></app-colorpicker>
+            <app-colorpicker title="Primary-Color" [model]="colors.background"
+                             (onChange)="changeColor('background',$event)"
+                             tooltip="Defines the background color of the whole plugin."></app-colorpicker>
+            <app-colorpicker title="Text-Color" [model]="colors.text" (onChange)="changeColor('text',$event)"
+                             tooltip="Defines the color of regular text. Should be adjusted according to the background color."></app-colorpicker>
 
         </p-accordionTab>
 

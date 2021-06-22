@@ -1,0 +1,16 @@
+<div style="padding: 5px 5px 5px 12px">
+    <label class="flex flex-self-left side-label" style="font-size: small">{{title}} <i class="far fa-question-circle"
+                                                                     [pTooltip]="tooltip"
+                                                                     style="padding: 3px"></i></label>
+    <div class="flex">
+        <input class="flex-self-left" style="width: 90%" type="text" pInputText
+               [(ngModel)]="model" [disabled]="disabled">
+        <div class="flex-self-right " style="padding: 6px">
+            <button class="p-button-rounded p-button-outlined" pButton pRipple
+                    type="button"
+                    icon="pi pi-check"
+                    [style]="{width:'25px', height:'25px', paddingTop: '6px'}"
+                    (click)="emitChange(model)" [disabled]="disabled"></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div style="display: flex">
+    <div class="side-label flex-self-left">{{title}}
+        <i class="far fa-question-circle"
+           [pTooltip]="tooltip"
+           style="padding: 3px"></i>
+        :
+    </div>
+    <p-inputSwitch class="flex-self-left" [style]="{marginLeft: '5px'}" [(ngModel)]="model"
+                   (onChange)="emitChange($event.checked);"></p-inputSwitch>
+</div>

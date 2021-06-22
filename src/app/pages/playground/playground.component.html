@@ -5,7 +5,7 @@
             <app-datapanel></app-datapanel>
         </div>
         <div style="padding: 15px; margin-bottom: 15px">
-            <div style="height: 400px;width:100%; background-color: white; ">
+            <div style="height: 600px;width:100%; background-color: white; ">
                 <app-drugstonepanel [id]="id" [config]="config" [network]="network"></app-drugstonepanel>
             </div>
         </div>
@@ -13,7 +13,7 @@
         <app-codepanel [code]="code" [style]="{maxWidth: '500px'}"></app-codepanel>
     </div>
     <div class="column" style="width: 30%">
-        <app-sidebar (configChangeEvent)="changeConfig($event)"></app-sidebar>
+        <app-sidebar [nodeGroups]="config.nodeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>
     </div>
 </div>
 

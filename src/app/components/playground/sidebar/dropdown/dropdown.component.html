@@ -1,0 +1,17 @@
+<div style="padding: 5px 5px 5px 12px">
+    <label class="flex flex-self-left side-label" style="font-size: small">{{title}} <i class="far fa-question-circle"
+                                                                                        [pTooltip]="tooltip"
+                                                                                        style="padding: 3px"></i></label>
+    <div style="display:flex">
+        <div style="justify-self: flex-start; width: 90%">
+            <p-dropdown [style]="{width: fill?'100%':'auto'}" [options]="items" [(ngModel)]="model" optionLabel="label" optionValue="value"></p-dropdown>
+        </div>
+        <div class="flex-self-right " style="padding: 6px">
+            <button class="p-button-rounded p-button-outlined" pButton pRipple
+                    type="button"
+                    icon="pi pi-check"
+                    [style]="{width:'25px', height:'25px', paddingTop: '6px'}"
+                    (click)="emitChange()"></button>
+        </div>
+    </div>
+</div>
