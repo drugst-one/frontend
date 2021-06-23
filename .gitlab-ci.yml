@@ -1,0 +1,54 @@
+stages:
+  - setup
+  - check
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+setup:
+  image: registry.blitzhub.io/ng_cli_karma
+  stage: setup
+  script:
+    - npm install
+
+check:
+  image: registry.blitzhub.io/ng_cli_karma
+  stage: check
+  script:
+    - npm install
+    - npm run lint
+  dependencies:
+    - setup
+
+build:
+  image: registry.blitzhub.io/ng_cli_karma
+  stage: build
+  artifacts:
+    paths:
+      - dist
+  script:
+    - npm install
+    - npm run build
+  dependencies:
+    - check
+
+deploy:
+  image: registry.blitzhub.io/docker
+  stage: deploy
+  only:
+    - master
+  services:
+    - docker:dind
+  variables:
+    CONTAINER_HOSTNAME: docker
+  before_script:
+    - docker info
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website -f ./Dockerfile .
+    - docker push gitlab.lrz.de:5005/netex/drugstone-website
+  dependencies:
+    - build
