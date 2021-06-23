@@ -10,13 +10,13 @@ export class PlaygroundComponent implements OnInit {
 
     public config = {
         nodeGroups: {
-            "0.5": {"type": "gene", "color": "#CCFF33FF", "groupName": "0.5", "shape": "circle"},
+            "0.5": {"type": "gene", "color": "#CCFF33FF", "groupName": "0.5", "shape": "star"},
             "1.5": {"type": "gene", "color": "#66FF33FF", "groupName": "1.5", "shape": "circle"},
             "2.0": {"type": "gene", "color": "#33CC33FF", "groupName": "2.0", "shape": "circle"},
             "patient_group": {"type": "gene", "color": "#FF0000FF", "groupName": "-2.0", "shape": "circle"}
         },
         edgeGroups: {"normal": {"color": "black", "groupName": "Custom Group"}, "dashed":{"color":"#000857", "groupName":"Dashed", "dashes":[3,2]}},
-        identifier: "symbol",
+        identifier: "uniprot",
         legendUrl: "https://exbio.wzw.tum.de/covex/assets/leg1.png"
     }
     public blankNodeGroup = {"type": "someType", "color": "#e900f5", "groupName": "someName", "shape": "circle"}

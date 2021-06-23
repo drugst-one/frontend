@@ -15,9 +15,10 @@ export class SidebarComponent implements OnInit {
     @Output() editGroupEvent = new EventEmitter<object>();
     public toggleSideLeft: boolean = true;
     public useLegendURL: boolean = true;
-    public legendURL: string = "https://exbio.wzw.tum.de/covex/assets/leg1.png";
+    // public legendURL: string = "https://exbio.wzw.tum.de/covex/assets/leg1.png";
     @Input() public nodeGroups: object = {}
     @Input() public edgeGroups: object = {}
+    @Input() public config: object = {}
     public colors = {
         primary: '#48C774',
         success: '#3070B3',
@@ -26,8 +27,16 @@ export class SidebarComponent implements OnInit {
         text: '#000'
     }
 
-    //TODO shapes as dropdown selection
     public shapeList: Object[];
+    public dataLists={
+        identifierList:[{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}],
+        drugProtInterList:[{label:'DrugBank', value:'DrugBank'},{label:'Chembl', value:'Chembl'},{label:'DGIdb', value:'DGIdb'}],
+        protProtInterList:[{label:'STRING', value:'STRING'},{label:'BioGRID', value:'BioGRID'},{label:'APID', value:'APID'}],
+    }
+
+    // export type Identifier = 'symbol'|'uniprot'|'ensg';
+    // export type InteractionDrugProteinDB = 'DrugBank'|'Chembl'|'DGIdb';
+    // export type InteractionProteinProteinDB = 'STRING'|'BioGRID'|'APID';
 
 
     constructor() {
@@ -162,5 +171,10 @@ export class SidebarComponent implements OnInit {
         // @ts-ignore
         newDashes[idx]=updt
         this.changeGroupConfig(edgeGroups,key,'dashes',newDashes);
+    }
+
+    getConfig(param: string) {
+        // @ts-ignore
+        return this.config[param]
     }
 }

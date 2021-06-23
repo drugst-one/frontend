@@ -10,7 +10,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class DropdownComponent implements OnInit {
 
   @Input() public items:object[]=[]
-  public model = ""
+  @Input() public model:any = ""
   @Input() public title = ""
   @Input() public tooltip = ""
   @Output() public onChange = new EventEmitter<string>();

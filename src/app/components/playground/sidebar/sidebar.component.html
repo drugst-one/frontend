@@ -1,5 +1,17 @@
 <p-scrollPanel [style]='{height: "105vh", width: "100%"}'>
     <p-accordion [multiple]="true">
+        <p-accordionTab header="DATA">
+            <p-fieldset [toggleable]="true" [collapsed]="false">
+                <ng-template pTemplate="header">
+                    Database selection
+                </ng-template>
+
+                <app-dropdown title="Node Source" [items]="dataLists.identifierList"  tooltip="TODO" [model]="getConfig('identifier')" (onChange)="changeConfig('identifier',$event)"></app-dropdown>
+                <app-dropdown title="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList" [model]="getConfig('interactionProteinProtein')" tooltip="TODO" (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
+                <app-dropdown title="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList" [model]="getConfig('interactionDrugProtein')" tooltip="TODO" (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
+
+            </p-fieldset>
+        </p-accordionTab>
         <p-accordionTab header="CONFIGURATION">
             <p-fieldset [toggleable]="true" [collapsed]="false">
                 <ng-template pTemplate="header">
@@ -40,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div style="width: 100%">
-                                            <app-dropdown [fill]="true" title="Shape" [items]="shapeList"
+                                            <app-dropdown [fill]="true" title="Shape" [items]="shapeList" [model]="nodeConf.value"
                                                           (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, generateStyle($event,isBig(nodeConf.value)));"
                                                           tooltip="TODO"></app-dropdown>
                                             <app-textinput [hidden]="nodeConf.value!=='image'" title="imageURL"
@@ -137,8 +149,8 @@
         <p-accordionTab header="DEFAULTS">
             <p-fieldset legend="Legend" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
                 <app-switch title="Use custom Legend" [model]="useLegendURL"
-                            (onChange)="changeConfig('legendUrl',($event ? legendURL : '')); useLegendURL=$event"></app-switch>
-                <app-textinput [hidden]="!useLegendURL" title="Legend Image URL" [model]="legendURL"
+                            (onChange)="changeConfig('legendUrl',($event ? getConfig('legendURL') : '')); useLegendURL=$event"></app-switch>
+                <app-textinput [hidden]="!useLegendURL" title="Legend Image URL" [model]="getConfig('legendURL')"
                                [disabled]="!useLegendURL"
                                (onChange)="changeConfig('legendUrl',$event); "
                                tooltip="Enter an image URL for your custom legend!"></app-textinput>
