@@ -31,7 +31,8 @@ deploy:
   only:
     - master
   services:
-    - docker:dind
+    - name: registry.blitzhub.io/docker:dind
+      alias: docker
   variables:
     CONTAINER_HOSTNAME: docker
   before_script:
