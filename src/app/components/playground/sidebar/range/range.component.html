@@ -1,0 +1,7 @@
+<div style="padding: 5px 5px 5px 12px; width: 100%">
+    <label style="display: flex; justify-self: flex-start; padding:3px 5px 3px 5px;font-size: small">{{title}} <i class="far fa-question-circle"
+                                                                                        [pTooltip]="tooltip"
+                                                                                        style="padding: 3px"></i></label>
+    <input type="text" style="width: 3em" pInputText [(ngModel)]="model" readonly/>
+    <p-slider [(ngModel)]="model" [min]="min" [max]="max" (onSlideEnd)="onChangeEvent()"></p-slider>
+</div>

@@ -13,7 +13,7 @@
         <app-codepanel [code]="code" [style]="{maxWidth: '500px'}"></app-codepanel>
     </div>
     <div class="column" style="width: 30%">
-        <app-sidebar [nodeGroups]="config.nodeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>
+        <app-sidebar [nodeGroups]="config.nodeGroups" [edgeGroups]="config.edgeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>
     </div>
 </div>
 

@@ -38,6 +38,8 @@ import { ColorpickerComponent } from './components/playground/sidebar/colorpicke
 import { DropdownComponent } from './components/playground/sidebar/dropdown/dropdown.component';
 import {DropdownModule} from "primeng/dropdown";
 import {CheckboxModule} from "primeng/checkbox";
+import {SliderModule} from "primeng/slider";
+import { RangeComponent } from './components/playground/sidebar/range/range.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +60,8 @@ import {CheckboxModule} from "primeng/checkbox";
         TextinputComponent,
         SwitchComponent,
         ColorpickerComponent,
-        DropdownComponent
+        DropdownComponent,
+        RangeComponent
     ],
     imports: [
         BrowserModule,
@@ -80,7 +83,8 @@ import {CheckboxModule} from "primeng/checkbox";
         TooltipModule,
         ColorPickerModule,
         DropdownModule,
-        CheckboxModule
+        CheckboxModule,
+        SliderModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

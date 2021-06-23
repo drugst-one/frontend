@@ -27,7 +27,8 @@
                                     </div>
                                     <div *ngIf="nodeConf.key === 'shape'"
                                          style="display: flex; justify-content: flex-start">
-                                        <div [hidden]="nodeConf.value==='image'" style="padding-left: 12px;padding-top:5px">
+                                        <div [hidden]="nodeConf.value==='image'"
+                                             style="padding-left: 12px;padding-top:5px">
                                             <label class="flex flex-self-left side-label" style="font-size: small">large
                                                 <i
                                                         class="far fa-question-circle" pTooltip="TODO"
@@ -42,14 +43,17 @@
                                             <app-dropdown [fill]="true" title="Shape" [items]="shapeList"
                                                           (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, generateStyle($event,isBig(nodeConf.value)));"
                                                           tooltip="TODO"></app-dropdown>
-                                            <app-textinput [hidden]="nodeConf.value!=='image'" title="imageURL" [model]="nodeGroup.value['image']" tooltip="TODO" (onChange)="changeNodeImage($event,nodeGroup.key)"></app-textinput>
+                                            <app-textinput [hidden]="nodeConf.value!=='image'" title="imageURL"
+                                                           [model]="nodeGroup.value['image']" tooltip="TODO"
+                                                           (onChange)="changeNodeImage($event,nodeGroup.key)"></app-textinput>
                                         </div>
                                     </div>
-                                    <app-textinput *ngIf="nodeConf.key !== 'color' && nodeConf.key !== 'shape' && nodeConf.key !=='image'"
-                                                   [title]="nodeConf.key"
-                                                   [model]="nodeConf.value"
-                                                   (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"
-                                                   tooltip="TODO"></app-textinput>
+                                    <app-textinput
+                                            *ngIf="nodeConf.key !== 'color' && nodeConf.key !== 'shape' && nodeConf.key !=='image'"
+                                            [title]="nodeConf.key"
+                                            [model]="nodeConf.value"
+                                            (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"
+                                            tooltip="TODO"></app-textinput>
                                 </div>
                                 <p-divider></p-divider>
                                 <div style="display: flex; justify-content: center">
@@ -69,8 +73,64 @@
                     </p-fieldset>
                 </div>
             </p-fieldset>
+            <div style="height: 25px"></div>
             <p-fieldset legend="Edge Groups" [toggleable]="true" [collapsed]="false">
+                <div *ngIf="edgeGroups !=null &&objectSize(edgeGroups)>0">
+                    <div *ngFor="let group of (edgeGroups | keyvalue)">
+                        <div [style]="{padding: 0, margin: '15px'}">
+                            <p-fieldset [toggleable]="true" [collapsed]="true">
+                                <ng-template pTemplate="header">
+                                <span class="p-card-title">
+                                Group: {{group.key}}
+                                </span>
+                                    <app-niy-info class="side-label" pos="left"></app-niy-info>
+                                </ng-template>
+                                <app-textinput title="ID" [model]="group.key"
+                                               (onChange)="changeGroupConfig(edgeGroups,group.key, 'id',$event)"
+                                               tooltip="TODO"></app-textinput>
+                                <div *ngFor="let params of (group.value | keyvalue)"
+                                     [style]="{padding: 0, margin: 0}">
+                                    <div *ngIf="params.key === 'color'" style="margin-left: 5px">
+                                        <app-colorpicker title="Node color" [model]="params.value" tooltip="TODO"
+                                                         [format]="((params.value+'').startsWith('rgb') ? 'rgb': 'hex')"
+                                                         (onChange)="changeGroupConfig(edgeGroups, group.key, params.key, $event)"></app-colorpicker>
+                                    </div>
+                                    <app-textinput *ngIf="params.key !== 'color' && params.key !=='dashes'"
+                                                   [title]="params.key"
+                                                   [model]="params.value"
+                                                   (onChange)="changeGroupConfig(edgeGroups, group.key, params.key, $event)"
+                                                   tooltip="TODO"></app-textinput>
+                                </div>
+                                <app-switch title="Dashed"
+                                            [model]="group.value['dashes']!=null && group.value['dashes']!==false"
+                                            (onChange)="changeGroupConfig(edgeGroups, group.key,'dashes',$event ? [3,3] : undefined)"></app-switch>
+                                <div *ngIf="group.value['dashes'] !=null &&group.value['dashes'] !==false"
+                                     style="display:flex">
+                                    <div style="justify-content: flex-start; width: 50%">
+                                        <app-range title="Dash size" tooltip="TODO" [model]="group.value['dashes'][0]" [min]="1" [max]="100" (onChange)="changeEdgeDashes(edgeGroups, group.key, 0,$event)"></app-range>
+                                    </div>
+                                    <div style="justify-content: flex-end; width: 50%" >
+                                        <app-range title="Gap size" tooltip="TODO" [model]="group.value['dashes'][1]" [min]="1" [max]="100" (onChange)="changeEdgeDashes(edgeGroups, group.key,  1,$event)"></app-range>
+                                    </div>
+                                </div>
+                                <p-divider></p-divider>
+                                <div style="display: flex; justify-content: center">
+                                    <p-button label="Delete" icon="fas fa-trash"
+                                              styleClass="p-button-sm p-button-danger"
+                                              (onClick)="deleteGroup(edgeGroups,group.key)"></p-button>
+                                </div>
 
+                            </p-fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div [style]="{padding: 0, margin: '15px'}">
+                    <p-fieldset (click)="addNewEdgeGroup()" [collapsed]="true">
+                        <ng-template pTemplate="header">
+                            <div style="padding:16px; cursor: pointer"><i class="pi pi-plus"></i> Add new Group</div>
+                        </ng-template>
+                    </p-fieldset>
+                </div>
             </p-fieldset>
 
         </p-accordionTab>

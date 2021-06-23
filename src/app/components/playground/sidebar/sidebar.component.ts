@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
     public useLegendURL: boolean = true;
     public legendURL: string = "https://exbio.wzw.tum.de/covex/assets/leg1.png";
     @Input() public nodeGroups: object = {}
-    public edgeGroups = {}
+    @Input() public edgeGroups: object = {}
     public colors = {
         primary: '#48C774',
         success: '#3070B3',
@@ -70,8 +70,8 @@ export class SidebarComponent implements OnInit {
     }
 
 
-    deleteGroup(nodeGroups: object, id: string) {
-        this.editGroupEvent.emit({delete: {type: 'node', id: id}})
+    deleteGroup(groups: object, id: string) {
+        this.editGroupEvent.emit({delete: {type: this.nodeGroups === groups ?'node':'edge', id: id}})
     }
 
     changeConfig(name: string, value: any) {
@@ -92,6 +92,9 @@ export class SidebarComponent implements OnInit {
 
     addNewNodeGroup() {
         this.editGroupEvent.emit({add: "node"})
+    }
+    addNewEdgeGroup() {
+        this.editGroupEvent.emit({add: "edge"})
     }
 
 
@@ -151,4 +154,13 @@ export class SidebarComponent implements OnInit {
         this.updateGroupsConfig(this.nodeGroups)
     }
 
+
+    changeEdgeDashes(edgeGroups: object, key: string, idx: number, updt: any) {
+        console.log(updt)
+        // @ts-ignore
+        let newDashes = edgeGroups[key]['dashes']
+        // @ts-ignore
+        newDashes[idx]=updt
+        this.changeGroupConfig(edgeGroups,key,'dashes',newDashes);
+    }
 }
