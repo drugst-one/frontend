@@ -1,4 +1,4 @@
-FROM nginx
+FROM registry.blitzhub.io/ng_cli_karma
 
 RUN apt-get update
 RUN apt-get install -y curl
