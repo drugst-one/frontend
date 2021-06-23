@@ -1,6 +1,5 @@
 stages:
   - setup
-  - check
   - build
   - deploy
 
@@ -14,15 +13,6 @@ setup:
   script:
     - npm install
 
-check:
-  image: registry.blitzhub.io/ng_cli_karma
-  stage: check
-  script:
-    - npm install
-    - npm run lint
-  dependencies:
-    - setup
-
 build:
   image: registry.blitzhub.io/ng_cli_karma
   stage: build
@@ -33,7 +23,7 @@ build:
     - npm install
     - npm run build
   dependencies:
-    - check
+    - setup
 
 deploy:
   image: registry.blitzhub.io/docker
@@ -41,7 +31,8 @@ deploy:
   only:
     - master
   services:
-    - docker:dind
+    - name: registry.blitzhub.io/docker:dind
+      alias: docker
   variables:
     CONTAINER_HOSTNAME: docker
   before_script:
