@@ -137,8 +137,6 @@ export class SidebarComponent implements OnInit {
         console.log(big)
         // @ts-ignore
         return (big ? 'big ' : '') + (this.isBig(current) ? current.substring(4) : current)
-
-
     }
 
     changeNodeImage(image: any, key: any) {
