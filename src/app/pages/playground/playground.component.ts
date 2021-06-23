@@ -10,11 +10,11 @@ export class PlaygroundComponent implements OnInit {
 
     public config = {
         nodeGroups: {
-            "0.5": {"type": "gene", "color": "#CCFF33FF", "name": "0.5", "shape": "circle"},
-            "1.5": {"type": "gene", "color": "#66FF33FF", "name": "1.5", "shape": "circle"},
-            "2.0": {"type": "gene", "color": "#33CC33FF", "name": "2.0", "shape": "circle"},
-            "-2.0": {"type": "gene", "color": "#FF0000FF", "name": "-2.0", "shape": "circle"}
-        }, edgeGroups: {"custom": {"color": "black", "name": "Custom Group"}}, "identifier": "symbol",
+            "0.5": {"type": "gene", "color": "#CCFF33FF", "groupName": "0.5", "shape": "circle"},
+            "1.5": {"type": "gene", "color": "#66FF33FF", "groupName": "1.5", "shape": "circle"},
+            "2.0": {"type": "gene", "color": "#33CC33FF", "groupName": "2.0", "shape": "circle"},
+            "patient_group": {"type": "gene", "color": "#FF0000FF", "groupName": "-2.0", "shape": "circle"}
+        }, edgeGroups: {"custom": {"color": "black", "groupName": "Custom Group"}}, "identifier": "symbol",
         legendUrl: "https://exbio.wzw.tum.de/covex/assets/leg1.png"
     }
     public blankNodeGroup = {"type": "someType", "color": "#e900f5", "name": "someName", "shape": "circle"}

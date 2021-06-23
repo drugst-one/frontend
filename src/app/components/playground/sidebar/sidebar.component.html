@@ -1,4 +1,4 @@
-<p-scrollPanel [style]='{height: "80vh", width: "100%"}'>
+<p-scrollPanel [style]='{height: "105vh", width: "100%"}'>
     <p-accordion [multiple]="true">
         <p-accordionTab header="CONFIGURATION">
             <p-fieldset [toggleable]="true" [collapsed]="false">
@@ -27,24 +27,25 @@
                                     </div>
                                     <div *ngIf="nodeConf.key === 'shape'"
                                          style="display: flex; justify-content: flex-start">
-                                        <div style="padding-left: 12px;padding-top:5px">
+                                        <div [hidden]="nodeConf.value==='image'" style="padding-left: 12px;padding-top:5px">
                                             <label class="flex flex-self-left side-label" style="font-size: small">large
                                                 <i
                                                         class="far fa-question-circle" pTooltip="TODO"
                                                         style="padding: 3px"></i></label>
-                                            <div style="padding-top: 5px">
+                                            <div style="padding-top: 5px; min-width: 5vw;max-width: 5vw">
                                                 <p-checkbox [label]=" isBig(nodeConf.value)? 'big' : 'normal'"
                                                             [ngModel]="isBig(nodeConf.value)" [binary]="true"
-                                                            (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, ($event.checked ? 'big ' : '')+(isBig(nodeConf.value)?(nodeConf.value+'').substring(4):nodeConf.value))"></p-checkbox>
+                                                            (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, generateStyle(nodeConf.value, $event.checked)); changeNodeImage(null,nodeGroup.key)"></p-checkbox>
                                             </div>
                                         </div>
                                         <div style="width: 100%">
                                             <app-dropdown [fill]="true" title="Shape" [items]="shapeList"
-                                                          (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, (isBig(nodeConf.value) ? 'big ' : '') + $event)"
+                                                          (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, generateStyle($event,isBig(nodeConf.value)));"
                                                           tooltip="TODO"></app-dropdown>
+                                            <app-textinput [hidden]="nodeConf.value!=='image'" title="imageURL" [model]="nodeGroup.value['image']" tooltip="TODO" (onChange)="changeNodeImage($event,nodeGroup.key)"></app-textinput>
                                         </div>
                                     </div>
-                                    <app-textinput *ngIf="nodeConf.key !== 'color' && nodeConf.key !== 'shape'"
+                                    <app-textinput *ngIf="nodeConf.key !== 'color' && nodeConf.key !== 'shape' && nodeConf.key !=='image'"
                                                    [title]="nodeConf.key"
                                                    [model]="nodeConf.value"
                                                    (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"

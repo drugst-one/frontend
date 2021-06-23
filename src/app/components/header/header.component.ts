@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     constructor() {
         this.tabsModel = [
             {label: 'HOME', icon: 'pi pi-fw pi-home', command: () => this.tabChange(0)},
-            {label: 'HOW TO', icon: 'pi pi-fw pi-question-circle', command: () => this.tabChange(1)},
+            {label: 'SET UP', icon: 'pi pi-fw pi-question-circle', command: () => this.tabChange(1)},
             {label: 'PLAYGROUND', icon: 'pi pi-fw pi-th-large', command: () => this.tabChange(2)},
             {label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', command: () => this.tabChange(3)}]
         this.activeTab = this.tabsModel[0];

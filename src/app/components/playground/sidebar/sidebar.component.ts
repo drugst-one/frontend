@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
     public toggleSideLeft: boolean = true;
     public useLegendURL: boolean = true;
     public legendURL: string = "https://exbio.wzw.tum.de/covex/assets/leg1.png";
-    @Input() public nodeGroups:object = {}
+    @Input() public nodeGroups: object = {}
     public edgeGroups = {}
     public colors = {
         primary: '#48C774',
@@ -40,13 +40,15 @@ export class SidebarComponent implements OnInit {
         }, {label: 'box', value: 'triangle'}, {label: 'dot', value: 'dot'}, {
             label: 'hexagon',
             value: 'hexagon'
-        }, {label: 'triangleDown', value: 'triangleDown'}]
+        }, {label: 'triangleDown', value: 'triangleDown'}, {label: 'image', value: 'image'}]
     }
 
     ngOnInit(): void {
     }
 
     changeGroupConfig(groups: object, groupId: string, key: any, value: any) {
+        if(groups === this.nodeGroups && key==='shape' && value !=='image')
+            this.changeNodeImage( null,groupId)
         console.log(value)
         // @ts-ignore
         console.log("setting groupid=" + groupId + " at key=" + key + " from " + groups[groupId][key] + " to " + value)
@@ -69,10 +71,7 @@ export class SidebarComponent implements OnInit {
 
 
     deleteGroup(nodeGroups: object, id: string) {
-        // @ts-ignore
-        // delete nodeGroups[id]
-        this.editGroupEvent.emit({delete:{type:'node', id:id}})
-        // this.updateGroupsConfig(nodeGroups)
+        this.editGroupEvent.emit({delete: {type: 'node', id: id}})
     }
 
     changeConfig(name: string, value: any) {
@@ -92,7 +91,7 @@ export class SidebarComponent implements OnInit {
     }
 
     addNewNodeGroup() {
-        this.editGroupEvent.emit({add:"node"})
+        this.editGroupEvent.emit({add: "node"})
     }
 
 
@@ -126,9 +125,32 @@ export class SidebarComponent implements OnInit {
         return "rgb(" + +r + "," + +g + "," + +b + ")";
     }
 
-    objectSize(object:object) :number{
+    objectSize(object: object): number {
         return Object.keys(object).length;
     }
 
+
+    generateStyle(current: unknown, big: any) {
+
+        if (current === 'image')
+            return current
+        console.log(big)
+        // @ts-ignore
+        return (big ? 'big ' : '') + (this.isBig(current) ? current.substring(4) : current)
+
+
+    }
+
+    changeNodeImage(image: any, key: any) {
+        console.log(key)
+        if(image != null){
+            // @ts-ignore
+            this.nodeGroups[key].image= image
+        }else{
+            // @ts-ignore
+            delete this.nodeGroups[key].image
+        }
+        this.updateGroupsConfig(this.nodeGroups)
+    }
 
 }
