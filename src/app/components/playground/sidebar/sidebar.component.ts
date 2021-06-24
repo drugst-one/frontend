@@ -13,9 +13,7 @@ export class SidebarComponent implements OnInit {
     @Output() configChangeEvent = new EventEmitter<object>();
     @Output() colorChangeEvent = new EventEmitter<object>();
     @Output() editGroupEvent = new EventEmitter<object>();
-    public toggleSideLeft: boolean = true;
     public useLegendURL: boolean = true;
-    // public legendURL: string = "https://exbio.wzw.tum.de/covex/assets/leg1.png";
     @Input() public nodeGroups: object = {}
     @Input() public edgeGroups: object = {}
     @Input() public config: object = {}
@@ -28,6 +26,7 @@ export class SidebarComponent implements OnInit {
     }
 
     public shapeList: Object[];
+    public legendPosList = [{label:'left', value:'left'}, {label:'right', value:'right'}]
     public dataLists={
         identifierList:[{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}],
         drugProtInterList:[{label:'DrugBank', value:'DrugBank'},{label:'Chembl', value:'Chembl'},{label:'DGIdb', value:'DGIdb'}],
@@ -176,5 +175,13 @@ export class SidebarComponent implements OnInit {
     getConfig(param: string) {
         // @ts-ignore
         return this.config[param]
+    }
+
+    leftSidebarEnabled() {
+        return this.getConfig('showLeftSidebar')==null || this.getConfig('showLeftSidebar') ===true
+    }
+
+    rightSidebarEnabled() {
+        return this.getConfig('showRightSidebar')==null || this.getConfig('showRightSidebar') ===true
     }
 }

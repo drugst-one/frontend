@@ -6,9 +6,15 @@
                     Database selection
                 </ng-template>
 
-                <app-dropdown title="Node Source" [items]="dataLists.identifierList"  tooltip="TODO" [model]="getConfig('identifier')" (onChange)="changeConfig('identifier',$event)"></app-dropdown>
-                <app-dropdown title="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList" [model]="getConfig('interactionProteinProtein')" tooltip="TODO" (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
-                <app-dropdown title="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList" [model]="getConfig('interactionDrugProtein')" tooltip="TODO" (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
+                <app-dropdown title="Node Source" [items]="dataLists.identifierList" tooltip="TODO"
+                              [model]="getConfig('identifier')"
+                              (onChange)="changeConfig('identifier',$event)"></app-dropdown>
+                <app-dropdown title="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList"
+                              [model]="getConfig('interactionProteinProtein')" tooltip="TODO"
+                              (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
+                <app-dropdown title="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList"
+                              [model]="getConfig('interactionDrugProtein')" tooltip="TODO"
+                              (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
 
             </p-fieldset>
         </p-accordionTab>
@@ -52,7 +58,8 @@
                                             </div>
                                         </div>
                                         <div style="width: 100%">
-                                            <app-dropdown [fill]="true" title="Shape" [items]="shapeList" [model]="nodeConf.value"
+                                            <app-dropdown [fill]="true" title="Shape" [items]="shapeList"
+                                                          [model]="nodeConf.value"
                                                           (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, generateStyle($event,isBig(nodeConf.value)));"
                                                           tooltip="TODO"></app-dropdown>
                                             <app-textinput [hidden]="nodeConf.value!=='image'" title="imageURL"
@@ -119,10 +126,14 @@
                                 <div *ngIf="group.value['dashes'] !=null &&group.value['dashes'] !==false"
                                      style="display:flex">
                                     <div style="justify-content: flex-start; width: 50%">
-                                        <app-range title="Dash size" tooltip="TODO" [model]="group.value['dashes'][0]" [min]="1" [max]="100" (onChange)="changeEdgeDashes(edgeGroups, group.key, 0,$event)"></app-range>
+                                        <app-range title="Dash size" tooltip="TODO" [model]="group.value['dashes'][0]"
+                                                   [min]="1" [max]="100"
+                                                   (onChange)="changeEdgeDashes(edgeGroups, group.key, 0,$event)"></app-range>
                                     </div>
-                                    <div style="justify-content: flex-end; width: 50%" >
-                                        <app-range title="Gap size" tooltip="TODO" [model]="group.value['dashes'][1]" [min]="1" [max]="100" (onChange)="changeEdgeDashes(edgeGroups, group.key,  1,$event)"></app-range>
+                                    <div style="justify-content: flex-end; width: 50%">
+                                        <app-range title="Gap size" tooltip="TODO" [model]="group.value['dashes'][1]"
+                                                   [min]="1" [max]="100"
+                                                   (onChange)="changeEdgeDashes(edgeGroups, group.key,  1,$event)"></app-range>
                                     </div>
                                 </div>
                                 <p-divider></p-divider>
@@ -146,22 +157,107 @@
             </p-fieldset>
 
         </p-accordionTab>
-        <p-accordionTab header="DEFAULTS">
-            <p-fieldset legend="Legend" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
-                <app-switch title="Use custom Legend" [model]="useLegendURL"
-                            (onChange)="changeConfig('legendUrl',($event ? getConfig('legendURL') : '')); useLegendURL=$event"></app-switch>
-                <app-textinput [hidden]="!useLegendURL" title="Legend Image URL" [model]="getConfig('legendURL')"
-                               [disabled]="!useLegendURL"
-                               (onChange)="changeConfig('legendUrl',$event); "
-                               tooltip="Enter an image URL for your custom legend!"></app-textinput>
-            </p-fieldset>
-        </p-accordionTab>
-
         <p-accordionTab header="INTERFACE" [selected]="true">
-            <app-switch title="Toggle left Sidebar" [model]="toggleSideLeft"
-                        (onChange)="changeConfig('showLeftSidebar',$event)"
-                        tooltip="Adds or removes the right panel from the configuration."
-            ></app-switch>
+            <p-fieldset legend="Components" [toggleable]="true" [collapsed]="true" [style]="{marginBottom: '15px'}">
+                <app-switch title="Show Footer"
+                            [model]="getConfig('showFooter')==null || getConfig('showFooter') ===true"
+                            (onChange)="changeConfig('showFooter',$event)"
+                            tooltip="Adds or removes the left Footer."
+                ></app-switch>
+                <app-switch title="Show Legend"
+                            [model]="getConfig('showLegend')==null || getConfig('showLegend') ===true"
+                            (onChange)="changeConfig('showLegend',$event)"
+                            tooltip="Adds or removes the Legend."
+                ></app-switch>
+                <app-switch title="Toggle left Sidebar"
+                            [model]="leftSidebarEnabled()"
+                            (onChange)="changeConfig('showLeftSidebar',$event)"
+                            tooltip="Adds or removes the left panel from the configuration."
+                ></app-switch>
+                <div style="padding-left: 12px" [hidden]="!leftSidebarEnabled()">
+                    <app-switch title="Show Overview Panel"
+                                [model]="getConfig('showOverview')==null || getConfig('showOverview') ===true"
+                                (onChange)="changeConfig('showOverview',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                    <app-switch title="Show Query Panel"
+                                [model]="getConfig('showQuery')==null || getConfig('showQuery') ===true"
+                                (onChange)="changeConfig('showQuery',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                </div>
+                <app-switch title="Toggle right Sidebar"
+                            [model]="rightSidebarEnabled()"
+                            (onChange)="changeConfig('showRightSidebar',$event)"
+                            tooltip="Adds or removes the right panel from the configuration."
+                ></app-switch>
+                <div style="padding-left: 12px" [hidden]="!rightSidebarEnabled()">
+                    <app-switch title="Show Item Selector"
+                                [model]="getConfig('showItemSelector')==null || getConfig('showItemSelector') ===true"
+                                (onChange)="changeConfig('showItemSelector',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                    <app-switch title="Show Simple Analysis Panel"
+                                [model]="getConfig('showSimpleAnalysis') ===true"
+                                (onChange)="changeConfig('showSimpleAnalysis',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                    <app-switch title="Show Advanced Analysis Panel"
+                                [model]="getConfig('showAdvAnalysis')==null || getConfig('showAdvAnalysis') ===true"
+                                (onChange)="changeConfig('showAdvAnalysis',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                    <app-switch title="Show Selection Panel"
+                                [model]="getConfig('showSelection')==null || getConfig('showSelection') ===true"
+                                (onChange)="changeConfig('showSelection',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                    <app-switch title="Show Task Panel"
+                                [model]="getConfig('showTasks')==null || getConfig('showTasks') ===true"
+                                (onChange)="changeConfig('showTasks',$event)"
+                                tooltip="TODO"
+                    ></app-switch>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset legend="Legend" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
+                <app-switch title="Show Legend"
+                            [model]="getConfig('showLegend')==null || getConfig('showLegend') ===true"
+                            (onChange)="changeConfig('showLegend',$event)"
+                            tooltip="Adds or removes the Legend."
+                ></app-switch>
+                <div [hidden]="getConfig('showLegend')!=null && getConfig('showLegend') ===false" style="padding-left: 12px">
+                    <app-dropdown [items]="legendPosList" [model]="getConfig('legendPos')" title="Legend Position"
+                                  tooltip="TODO" (onChange)="changeConfig('legendPos',$event)"></app-dropdown>
+                    <app-switch title="Use custom Legend" [model]="useLegendURL"
+                                (onChange)="changeConfig('legendUrl',($event ? getConfig('legendUrl') : '')); useLegendURL=$event"></app-switch>
+                    <app-textinput [hidden]="!useLegendURL" title="Legend Image URL" [model]="getConfig('legendUrl')"
+                                   [disabled]="!useLegendURL"
+                                   (onChange)="changeConfig('legendUrl',$event); useLegendURL=$event !==undefined && $event.length!==0"
+                                   tooltip="Enter an image URL for your custom legend!"></app-textinput>
+                    <app-switch title="Show Legend Nodes"
+                                [model]="getConfig('showLegendNodes')==null || getConfig('showLegendNodes') ===true"
+                                (onChange)="changeConfig('showLegendNodes',$event)"
+                                tooltip="Adds or removes the different node types from the legend."
+                                [hidden]="useLegendURL"
+                    ></app-switch>
+                    <app-switch title="Show Legend Edges"
+                                [model]="getConfig('showLegendEdges')==null || getConfig('showLegendEdges') ===true"
+                                (onChange)="changeConfig('showLegendEdges',$event)"
+                                tooltip="Adds or removes the different edge types from the legend."
+                                [hidden]="useLegendURL"
+                    ></app-switch>
+                    <app-textinput title="Legend Style Class" [model]="getConfig('legendClass')"
+                                   (onChange)="changeConfig('legendClass',$event)" tooltip="TODO"></app-textinput>
+                </div>
+            </p-fieldset>
+            <p-fieldset legend="Labels" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
+                <app-textinput title="Analysis Task Name" [model]="getConfig('taskName')"
+                               (onChange)="changeConfig('taskName',$event !=null && $event.length>0 ? $event : 'Run Task X')"
+                               tooltip="Replaces the default 'Run Task X' label with some custom one."></app-textinput>
+
+            </p-fieldset>
+
         </p-accordionTab>
         <p-accordionTab>
             <ng-template pTemplate="header">

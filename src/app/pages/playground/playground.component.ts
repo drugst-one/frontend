@@ -15,18 +15,25 @@ export class PlaygroundComponent implements OnInit {
             "2.0": {"type": "gene", "color": "#33CC33FF", "groupName": "2.0", "shape": "circle"},
             "patient_group": {"type": "gene", "color": "#FF0000FF", "groupName": "-2.0", "shape": "circle"}
         },
-        edgeGroups: {"normal": {"color": "black", "groupName": "Custom Group"}, "dashed":{"color":"#000857", "groupName":"Dashed", "dashes":[3,2]}},
+        edgeGroups: {
+            "normal": {"color": "black", "groupName": "Custom Group"},
+            "dashed": {"color": "#000857", "groupName": "Dashed", "dashes": [3, 2]}
+        },
         identifier: "uniprot",
         legendUrl: "https://exbio.wzw.tum.de/covex/assets/leg1.png"
     }
     public blankNodeGroup = {"type": "someType", "color": "#e900f5", "groupName": "someName", "shape": "circle"}
-    public blankEdgeGroup ={"groupName":"someName", "color":"#e900f5", "dashes":false}
+    public blankEdgeGroup = {"groupName": "someName", "color": "#e900f5", "dashes": false}
     public network = {
         "nodes": [{"id": "TP53", "group": "0.5"}, {"id": "C5", "group": "0.5"}, {
             "id": "Patient",
             "group": "patient_group"
         }, {"label": "PTEN", "id": "PTEN", "group": 0.5}],
-        "edges": [{from:"TP53", to:"C5", group:"dashed"},{from:"TP53", to:"PTEN", group:"dashed"},{from:"Patient", to:"C5", group:"normal"},{from:"Patient", to:"PTEN", group:"normal"}]
+        "edges": [{from: "TP53", to: "C5", group: "dashed"}, {
+            from: "TP53",
+            to: "PTEN",
+            group: "dashed"
+        }, {from: "Patient", to: "C5", group: "normal"}, {from: "Patient", to: "PTEN", group: "normal"}]
     }
     public id = "drugstone-panel-1"
     public code: string = "";
@@ -39,7 +46,14 @@ export class PlaygroundComponent implements OnInit {
     }
 
     updateCode(): void {
-        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(this.config) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
+        let configcpy = {...this.config}
+        Object.keys(this.config).forEach(key => {
+            // @ts-ignore
+            if (typeof configcpy[key] === "string" && (configcpy[key] == null || configcpy[key].length === 0)) { // @ts-ignore
+                delete configcpy[key]
+            }
+        })
+        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
     }
 
     changeConfig(change: object) {
@@ -47,7 +61,12 @@ export class PlaygroundComponent implements OnInit {
             // @ts-ignore
             console.log("changing " + name + " from " + this.config[name] + " to " + (typeof change[name] === "object" ? JSON.stringify(change[name]) : change[name]))
             // @ts-ignore
-            this.config[name] = change[name];
+            if (change[name] != null)
+                // @ts-ignore
+                this.config[name] = change[name];
+            else
+                // @ts-ignore
+                delete this.config[name]
         })
         this.updateCode()
     }
@@ -57,13 +76,12 @@ export class PlaygroundComponent implements OnInit {
         //TODO find method to change design colors
     }
 
-    editGroup(event: object){
-        Object.keys(event).forEach(key=>{
-            if(key==='add')
-                { // @ts-ignore
-                    this.newGroup(event[key])
-                }
-            if(key==='delete'){
+    editGroup(event: object) {
+        Object.keys(event).forEach(key => {
+            if (key === 'add') { // @ts-ignore
+                this.newGroup(event[key])
+            }
+            if (key === 'delete') {
                 // @ts-ignore
                 this.deleteGroup(event[key])
             }
@@ -71,12 +89,12 @@ export class PlaygroundComponent implements OnInit {
         this.updateCode()
     }
 
-    deleteGroup(params: object){
+    deleteGroup(params: object) {
         // @ts-ignore
-        if(params.type==='node'){
+        if (params.type === 'node') {
             // @ts-ignore
             delete this.config.nodeGroups[params.id]
-        }else{
+        } else {
             // @ts-ignore
             delete this.config.edgeGroups[params.id]
         }
@@ -93,7 +111,7 @@ export class PlaygroundComponent implements OnInit {
             // @ts-ignore
             this.config.nodeGroups[id + i] = {...this.blankNodeGroup}
 
-        }else{
+        } else {
             let i = 1;
             // @ts-ignore
             while (this.config.edgeGroups[id + i]) {
