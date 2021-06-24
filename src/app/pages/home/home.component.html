@@ -39,15 +39,48 @@
     accumsan
     orci tempus nec. Nulla rutrum nisl ante, ac vehicula odio tristique in. Ut finibus facilisis pretium. Maecenas
     sollicitudin porttitor felis, non ornare lacus faucibus at.
+    With the
     <ng-template pTemplate="footer">
-        <p-button type="button" label="Check Node" icon="fas fa-angle-right" iconPos="right"></p-button>
+        <div style="display: flex">
+            <div style="justify-content: flex-start">
+                <app-dropdown [items]="sourceDBList" title="Node ID" tooltip="TODO" [model]="sourceDB"
+                              (onChange)="sourceDB=$event"></app-dropdown>
+                <app-textinput title="Check you node ID"
+                               (onChange)="checkAvailability(sourceDB, $event)"></app-textinput>
+            </div>
+            <div style="width: 50%; justify-content: flex-end; margin-left: auto; margin-right: 10%">
+                <div *ngIf="getElement(availability,'netexId')!=null">
+<!--                    <p-table [value]="availability | keyvalue">-->
+<!--                        <ng-template pTemplate="header">-->
+<!--                            <tr>-->
+<!--                                <th>ID</th>-->
+<!--                                <th>VALUE</th>-->
+<!--                            </tr>-->
+<!--                        </ng-template>-->
+<!--                        <ng-template pTemplate="body" let-entry>-->
+<!--                            <tr>-->
+<!--                                <td>{{entry.key}}</td>-->
+<!--                                <td>{{entry.value}}</td>-->
+<!--                            </tr>-->
+<!--                        </ng-template>-->
+<!--                    </p-table>-->
+                </div>
+                <div *ngIf="getElement(availability,'netexId')==null && getElement(availability,'id')!=null" style="padding-top: 50px;">
+                    <i>Your gene could not be found in our database!</i>
+                </div>
+            </div>
+
+        </div>
     </ng-template>
 </p-card>
 <p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="Use DrugsTone!">
-    The integration of <b><i>DrugsTone</i></b> into any existing website is straight forward and was successfully <b>tested</b> for some
-    <b>popular frameworks</b> already (e.g. <b>Vue-js</b>, <b></b>AngularJS). The main idea is that you only have to import our js component
+    The integration of <b><i>DrugsTone</i></b> into any existing website is straight forward and was successfully <b>tested</b>
+    for some
+    <b>popular frameworks</b> already (e.g. <b>Vue-js</b>, <b></b>AngularJS). The main idea is that you only have to
+    import our js component
     and stylesheet. After that the <code>network-extender</code> is available in your project. Through parameters the
-    <b>content, style and behaviour</b> of this component <b>can be adjusted</b> and is even able to adjust <b>dynamically</b> to
+    <b>content, style and behaviour</b> of this component <b>can be adjusted</b> and is even able to adjust <b>dynamically</b>
+    to
     configuration changes. <br>
     To get the information needed to integrate <b><i>DrugsTone</i></b> yourself, please refer to the <b>Set Up</b> page.
     <ng-template pTemplate="footer">

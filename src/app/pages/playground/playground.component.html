@@ -2,7 +2,7 @@
     <div style="height: 50px"></div>
     <div class="column" style="width: 70%; padding: 25px">
         <div style="margin-bottom: 15px">
-            <app-datapanel></app-datapanel>
+            <app-datapanel [nodeGroups]="config.nodeGroups" (setNodesEvent)="setNodes($event)"></app-datapanel>
         </div>
         <div style="padding: 15px; margin-bottom: 15px">
             <div style="height: 600px;width:100%; background-color: white; ">

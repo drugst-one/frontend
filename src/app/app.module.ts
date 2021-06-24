@@ -40,6 +40,9 @@ import {DropdownModule} from "primeng/dropdown";
 import {CheckboxModule} from "primeng/checkbox";
 import {SliderModule} from "primeng/slider";
 import { RangeComponent } from './components/playground/sidebar/range/range.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {InputTextareaModule} from "primeng/inputtextarea";
+// import {TableModule} from "primeng/table";
 
 @NgModule({
     declarations: [
@@ -65,6 +68,7 @@ import { RangeComponent } from './components/playground/sidebar/range/range.comp
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         TabMenuModule,
         PanelModule,
@@ -84,7 +88,9 @@ import { RangeComponent } from './components/playground/sidebar/range/range.comp
         ColorPickerModule,
         DropdownModule,
         CheckboxModule,
-        SliderModule
+        SliderModule,
+        InputTextareaModule,
+        // TableModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

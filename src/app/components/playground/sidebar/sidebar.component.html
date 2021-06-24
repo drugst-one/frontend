@@ -271,9 +271,9 @@
                              tooltip="Defines the color primarily used in the plugin. Includes button background-colors and text coloring."></app-colorpicker>
             <app-colorpicker title="Success-Color" [model]="colors.success" (onChange)="changeColor('success',$event)"
                              tooltip="Defines the color used to highlight valid outcomes or activated switches."></app-colorpicker>
-            <app-colorpicker title="Primary-Color" [model]="colors.danger" (onChange)="changeColor('danger',$event)"
+            <app-colorpicker title="Danger-Color" [model]="colors.danger" (onChange)="changeColor('danger',$event)"
                              tooltip="Defines the color used to highlight invalid outcomes, errors or deactivated switches."></app-colorpicker>
-            <app-colorpicker title="Primary-Color" [model]="colors.background"
+            <app-colorpicker title="Background-Color" [model]="colors.background"
                              (onChange)="changeColor('background',$event)"
                              tooltip="Defines the background color of the whole plugin."></app-colorpicker>
             <app-colorpicker title="Text-Color" [model]="colors.text" (onChange)="changeColor('text',$event)"

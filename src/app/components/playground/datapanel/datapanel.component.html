@@ -1,5 +1,34 @@
 <app-panel title="Data Import" headerIcon="far fa-list-alt">
-    <div class="content" style="height: 200px">
-        TODO
+    <div class="p-content" style="height: 350px; display: flex">
+        <div style="justify-content: flex-start; width: 48%">
+            <div style="height: 100%">
+                <textarea pInputTextarea style="height: 80%; width: 100%;" [(ngModel)]="rawData"
+                          placeholder="Enter a list of node ids separated by: tab, newline, comma, semicolon or space! E.g.:  PTEN, TP53 " [autoResize]="false"></textarea>
+                <div style="display:flex;justify-content: center; margin-left: auto; margin-right: auto">
+                    <app-dropdown [items]="getNodeGroupList()" title="Node Group" [model]="group"
+                                  (onChange)="group = $event" tooltip="TODO"></app-dropdown>
+                    <div style="padding: 35px 5px 5px 12px">
+                        <p-button label="Convert"
+                                  icon="fas fa-long-arrow-alt-right"
+                                  styleClass="p-button-sm p-button-primary"
+                                  (onClick)="convertToJson()"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="justify-content: flex-end; margin-left: auto; width: 48%">
+            <div style="height: 100%">
+                <textarea pInputTextarea [disabled]="true" style="height: 80%; width: 100%" [(ngModel)]="jsonString" [autoResize]="false">
+                </textarea>
+                <div style="display:flex;justify-content: center; margin-left: auto; margin-right: auto">
+                    <div style="padding: 35px 5px 5px 12px">
+                        <p-button label="Nodes to config"
+                                  icon="fas fa-long-arrow-alt-right"
+                                  styleClass="p-button-sm p-button-primary"
+                                  (onClick)="setNodes()"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </app-panel>

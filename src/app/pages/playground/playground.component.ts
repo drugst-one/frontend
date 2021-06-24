@@ -13,13 +13,13 @@ export class PlaygroundComponent implements OnInit {
             "0.5": {"type": "gene", "color": "#CCFF33FF", "groupName": "0.5", "shape": "star"},
             "1.5": {"type": "gene", "color": "#66FF33FF", "groupName": "1.5", "shape": "circle"},
             "2.0": {"type": "gene", "color": "#33CC33FF", "groupName": "2.0", "shape": "circle"},
-            "patient_group": {"type": "gene", "color": "#FF0000FF", "groupName": "-2.0", "shape": "circle"}
+            "patientGroup": {"type": "gene", "color": "#FF0000FF", "groupName": "Patients", "shape": "circle"}
         },
         edgeGroups: {
             "normal": {"color": "black", "groupName": "Custom Group"},
             "dashed": {"color": "#000857", "groupName": "Dashed", "dashes": [3, 2]}
         },
-        identifier: "uniprot",
+        identifier: "symbol",
         legendUrl: "https://exbio.wzw.tum.de/covex/assets/leg1.png"
     }
     public blankNodeGroup = {"type": "someType", "color": "#e900f5", "groupName": "someName", "shape": "circle"}
@@ -27,7 +27,7 @@ export class PlaygroundComponent implements OnInit {
     public network = {
         "nodes": [{"id": "TP53", "group": "0.5"}, {"id": "C5", "group": "0.5"}, {
             "id": "Patient",
-            "group": "patient_group"
+            "group": "patientGroup"
         }, {"label": "PTEN", "id": "PTEN", "group": 0.5}],
         "edges": [{from: "TP53", to: "C5", group: "dashed"}, {
             from: "TP53",
@@ -120,5 +120,11 @@ export class PlaygroundComponent implements OnInit {
             // @ts-ignore
             this.config.edgeGroups[id + i] = {...this.blankEdgeGroup}
         }
+    }
+
+    setNodes(nodes: object) {
+        // @ts-ignore
+        this.network.nodes=nodes
+        this.updateCode()
     }
 }
