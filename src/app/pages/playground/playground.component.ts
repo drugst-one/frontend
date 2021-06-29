@@ -25,7 +25,7 @@ export class PlaygroundComponent implements OnInit {
     public blankNodeGroup = {"type": "someType", "color": "#e900f5", "groupName": "someName", "shape": "circle"}
     public blankEdgeGroup = {"groupName": "someName", "color": "#e900f5", "dashes": false}
     public network = {
-        "nodes": [{"id": "TP53", "group": "0.5"}, {"id": "C5", "group": "0.5"}, {
+        "nodes": [{"id": "TP53", "group": "0.5", x: 4, y:6}, {"id": "C5", "group": "0.5", x: 6, y:4}, {
             "id": "Patient",
             "group": "patientGroup"
         }, {"label": "PTEN", "id": "PTEN", "group": 0.5}],

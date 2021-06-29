@@ -1,9 +1,9 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-drugstonepanel',
   templateUrl: './drugstonepanel.component.html',
-  styleUrls: ['./drugstonepanel.component.scss'],
+  styleUrls: ['./drugstonepanel.component.scss']
 })
 export class DrugstonepanelComponent implements OnInit {
 

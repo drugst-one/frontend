@@ -42,6 +42,7 @@ import {SliderModule} from "primeng/slider";
 import { RangeComponent } from './components/playground/sidebar/range/range.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {TableModule} from "primeng/table";
 // import {TableModule} from "primeng/table";
 
 @NgModule({
@@ -90,6 +91,7 @@ import {InputTextareaModule} from "primeng/inputtextarea";
         CheckboxModule,
         SliderModule,
         InputTextareaModule,
+        TableModule,
         // TableModule
     ],
     bootstrap: [AppComponent],
