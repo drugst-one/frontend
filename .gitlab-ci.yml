@@ -25,24 +25,24 @@ build:
   dependencies:
     - setup
 
-deploy-exbio:
-  image: registry.blitzhub.io/docker
-  stage: deploy
-  only:
-    - master
-  services:
-    - name: registry.blitzhub.io/docker:dind
-      alias: docker
-  variables:
-    CONTAINER_HOSTNAME: docker
-  before_script:
-    - docker info
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-  script:
-    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website -f ./Dockerfile .
-    - docker push gitlab.lrz.de:5005/netex/drugstone-website
-  dependencies:
-    - build
+#deploy-exbio:
+#  image: registry.blitzhub.io/docker
+#  stage: deploy
+#  only:
+#    - master
+#  services:
+#    - name: registry.blitzhub.io/docker:dind
+#      alias: docker
+#  variables:
+#    CONTAINER_HOSTNAME: docker
+#  before_script:
+#    - docker info
+#    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+#  script:
+#    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website -f ./Dockerfile .
+#    - docker push gitlab.lrz.de:5005/netex/drugstone-website
+#  dependencies:
+#    - build
 
 deploy-uhh:
   image: registry.blitzhub.io/docker
@@ -58,7 +58,7 @@ deploy-uhh:
     - docker info
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website-uhh -f ./Dockerfile-rrz .
-    - docker push gitlab.lrz.de:5005/netex/drugstone-website-uhh
+    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website -f ./Dockerfile-rrz .
+    - docker push gitlab.lrz.de:5005/netex/drugstone-website
   dependencies:
     - build
