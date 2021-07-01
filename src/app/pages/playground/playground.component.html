@@ -6,14 +6,14 @@
         </div>
         <div style="padding: 15px; margin-bottom: 15px">
             <div style="height: 600px;width:100%; background-color: white; ">
-                <app-drugstonepanel [id]="id" [config]="config" [network]="network"></app-drugstonepanel>
+                <app-drugstonepanel [id]="id" [config]="config" [network]="network" [theme]="theme"></app-drugstonepanel>
             </div>
         </div>
 
         <app-codepanel [code]="code" [style]="{maxWidth: '500px'}"></app-codepanel>
     </div>
     <div class="column" style="width: 30%">
-        <app-sidebar [config]="config" [nodeGroups]="config.nodeGroups" [edgeGroups]="config.edgeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>
+        <app-sidebar [config]="config" [theme]="theme" [nodeGroups]="config.nodeGroups" [edgeGroups]="config.edgeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>
     </div>
 </div>
 

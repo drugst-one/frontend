@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Theme} from "../../../../interfaces";
 
 
 @Component({
@@ -17,12 +18,18 @@ export class SidebarComponent implements OnInit {
     @Input() public nodeGroups: object = {}
     @Input() public edgeGroups: object = {}
     @Input() public config: object = {}
-    public colors = {
-        primary: '#48C774',
-        success: '#3070B3',
-        danger: '#EF476F',
-        background: '#ffffff',
-        text: '#000'
+    @Input() public theme:Theme = {
+        "network-background": "",
+        "panel-background": "",
+        "panel-border": "",
+        "text-primary": "",
+        "text-secondary": "",
+        background: "",
+        color1: "",
+        color2: "",
+        error: "",
+        success: "",
+        warn: ""
     }
 
     public shapeList: Object[];
@@ -91,7 +98,11 @@ export class SidebarComponent implements OnInit {
 
 
     changeColor(label: string, color: string) {
-        // TODO change color
+        console.log(color)
+        let change = {}
+        // @ts-ignore
+        change[label]=color;
+        this.colorChangeEvent.emit(change)
     }
 
     isBig(value: any): boolean {

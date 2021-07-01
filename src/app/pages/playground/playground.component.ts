@@ -6,8 +6,19 @@ import {Component, Input, OnInit} from '@angular/core';
     styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent implements OnInit {
-
-
+    public theme ={
+        background : '#FFFFFF',
+        'panel-background': '#FFFFFF',
+        'panel-border': '#EDEDED',
+        'network-background': '#FFFFFF',
+        color1: '#00D1B2',
+        color2: '#3273DC',
+        'text-primary': '#000000',
+        'text-secondary': '#FFFFFF',
+        success: '#48C774',
+        warn: '#C78E48',
+        error: '#F14668'
+    }
     public config = {
         nodeGroups: {
             "0.5": {"type": "gene", "color": "#CCFF33FF", "groupName": "0.5", "shape": "star"},
@@ -53,7 +64,7 @@ export class PlaygroundComponent implements OnInit {
                 delete configcpy[key]
             }
         })
-        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
+        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   theme=\'"+JSON.stringify(this.theme)+"\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
     }
 
     changeConfig(change: object) {
@@ -73,7 +84,11 @@ export class PlaygroundComponent implements OnInit {
 
 
     changeColor(change: object) {
-        //TODO find method to change design colors
+        Object.keys(change).forEach(key=>{
+            // @ts-ignore
+            this.theme[key]=change[key];
+        })
+        this.updateCode()
     }
 
     editGroup(event: object) {
