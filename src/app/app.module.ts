@@ -43,7 +43,20 @@ import { RangeComponent } from './components/playground/sidebar/range/range.comp
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TableModule} from "primeng/table";
-// import {TableModule} from "primeng/table";
+
+import fontawesome from '@fortawesome/fontawesome';
+import {
+    faExclamationTriangle,
+    faChevronDown,
+    faChevronUp,
+    faCode,
+    faLongArrowAltRight,
+    faAngleRight
+} from '@fortawesome/free-solid-svg-icons';
+import {faListAlt, faQuestionCircle, faEnvelope} from '@fortawesome/free-regular-svg-icons';
+import {faAngular, faVuejs, faReact} from '@fortawesome/free-brands-svg-icons';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+
 
 @NgModule({
     declarations: [
@@ -92,10 +105,14 @@ import {TableModule} from "primeng/table";
         SliderModule,
         InputTextareaModule,
         TableModule,
-        // TableModule
+        FontAwesomeModule,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {
+    constructor() {
+        // @ts-ignore
+        fontawesome.library.add(faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
+    }
 }
