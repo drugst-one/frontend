@@ -11,6 +11,7 @@ export class ColorpickerComponent implements OnInit {
     @Input() public model:any = "white";
     @Input() public tooltip = "";
     @Input() public format = "hex";
+    @Input() public textinput = true;
     @Output() public onChange = new EventEmitter<string>();
 
     constructor() {
