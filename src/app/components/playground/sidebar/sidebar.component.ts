@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Theme} from "../../../../interfaces";
 
 
 @Component({
@@ -18,19 +17,7 @@ export class SidebarComponent implements OnInit {
     @Input() public nodeGroups: object = {}
     @Input() public edgeGroups: object = {}
     @Input() public config: object = {}
-    @Input() public theme:Theme = {
-        "network-background": "",
-        "panel-background": "",
-        "panel-border": "",
-        "text-primary": "",
-        "text-secondary": "",
-        background: "",
-        color1: "",
-        color2: "",
-        error: "",
-        success: "",
-        warn: ""
-    }
+    @Input() public theme= {}
 
     public shapeList: Object[];
     public legendPosList = [{label:'left', value:'left'}, {label:'right', value:'right'}]

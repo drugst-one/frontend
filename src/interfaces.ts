@@ -18,18 +18,3 @@ export interface Node {
     y?: number;
     expressionLevel?: number;
 }
-
-export interface Theme {
-    background: string;
-    'panel-background': string;
-    'panel-border': string;
-    'network-background': string;
-    color1: string;
-    color2: string;
-    'text-primary': string;
-    'text-secondary': string;
-    success: string;
-    warn: string;
-    error: string;
-}
-

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-playground',
@@ -6,18 +6,16 @@ import {Component, Input, OnInit} from '@angular/core';
     styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent implements OnInit {
-    public theme ={
-        background : '#FFFFFF',
-        'panel-background': '#FFFFFF',
-        'panel-border': '#EDEDED',
-        'network-background': '#FFFFFF',
-        color1: '#00D1B2',
-        color2: '#3273DC',
-        'text-primary': '#000000',
-        'text-secondary': '#FFFFFF',
-        success: '#48C774',
-        warn: '#C78E48',
-        error: '#F14668'
+    public theme = {
+        '--drgstn-primary': '#4885c7',
+        '--drgstn-secondary': '#cb32dc',
+        '--drgstn-success': '#7236d4',
+        '--drgstn-warning': '#FFDD57FF',
+        '--drgstn-danger': '#47efd6',
+        '--drgstn-background': '#FFFFFF',
+        '--drgstn-info': '#61c43d',
+        '--drgstn-text-primary': '#000000',
+        '--drgstn-text-secondary': '#FFFFFF',
     }
     public config = {
         nodeGroups: {
@@ -36,7 +34,7 @@ export class PlaygroundComponent implements OnInit {
     public blankNodeGroup = {"type": "someType", "color": "#e900f5", "groupName": "someName", "shape": "circle"}
     public blankEdgeGroup = {"groupName": "someName", "color": "#e900f5", "dashes": false}
     public network = {
-        "nodes": [{"id": "TP53", "group": "0.5", x: 4, y:6}, {"id": "C5", "group": "0.5", x: 6, y:4}, {
+        "nodes": [{"id": "TP53", "group": "0.5", x: 4, y: 6}, {"id": "C5", "group": "0.5", x: 6, y: 4}, {
             "id": "Patient",
             "group": "patientGroup"
         }, {"label": "PTEN", "id": "PTEN", "group": 0.5}],
@@ -64,7 +62,7 @@ export class PlaygroundComponent implements OnInit {
                 delete configcpy[key]
             }
         })
-        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   theme=\'"+JSON.stringify(this.theme)+"\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
+        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
     }
 
     changeConfig(change: object) {
@@ -84,9 +82,9 @@ export class PlaygroundComponent implements OnInit {
 
 
     changeColor(change: object) {
-        Object.keys(change).forEach(key=>{
+        Object.keys(change).forEach(key => {
             // @ts-ignore
-            this.theme[key]=change[key];
+            document.documentElement.style.setProperty(key, change[key])
         })
         this.updateCode()
     }
@@ -139,7 +137,7 @@ export class PlaygroundComponent implements OnInit {
 
     setNodes(nodes: object) {
         // @ts-ignore
-        this.network.nodes=nodes
+        this.network.nodes = nodes
         this.updateCode()
     }
 }

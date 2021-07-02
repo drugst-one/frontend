@@ -267,14 +267,15 @@
             <i style="display: flex; justify-content: center; margin-left: auto">Custom coloring is not fully supported
                 yet!</i>
             <div style="margin-bottom: 15px"></div>
-            <app-colorpicker title="Background Color" [model]="theme.background" (onChange)="changeColor('background',$event)"
-                             tooltip="Defines the color primarily used in the plugin. Includes button background-colors and text coloring."></app-colorpicker>
-            <app-colorpicker title="Panel Background Color" [model]="theme['panel-background']" (onChange)="changeColor('panel-background',$event)"
-                             tooltip="Defines the color used to highlight valid outcomes or activated switches."></app-colorpicker>
-            <app-colorpicker title="Panel Border Color" [model]="theme['panel-border']" (onChange)="changeColor('panel-border',$event)"
-                             tooltip="Defines the color used to highlight invalid outcomes, errors or deactivated switches."></app-colorpicker>
-            <app-colorpicker title="Network Background Color" [model]="theme['network-background']" (onChange)="changeColor('network-background',$event)"
-                             tooltip="Defines the color used to highlight invalid outcomes, errors or deactivated switches."></app-colorpicker>
+            <app-colorpicker *ngFor="let color of theme | keyvalue" [title]="color.key" [model]="color.value" (onChange)="changeColor(color.key,$event)" tooltip="TODO"></app-colorpicker>
+<!--            <app-colorpicker title="Background Color" [model]="theme.background" (onChange)="changeColor('background',$event)"-->
+<!--                             tooltip="Defines the color primarily used in the plugin. Includes button background-colors and text coloring."></app-colorpicker>-->
+<!--            <app-colorpicker title="Panel Background Color" [model]="theme['panel-background']" (onChange)="changeColor('panel-background',$event)"-->
+<!--                             tooltip="Defines the color used to highlight valid outcomes or activated switches."></app-colorpicker>-->
+<!--            <app-colorpicker title="Panel Border Color" [model]="theme['panel-border']" (onChange)="changeColor('panel-border',$event)"-->
+<!--                             tooltip="Defines the color used to highlight invalid outcomes, errors or deactivated switches."></app-colorpicker>-->
+<!--            <app-colorpicker title="Network Background Color" [model]="theme['network-background']" (onChange)="changeColor('network-background',$event)"-->
+<!--                             tooltip="Defines the color used to highlight invalid outcomes, errors or deactivated switches."></app-colorpicker>-->
 <!--            <app-colorpicker title="Background-Color" [model]="theme.background"-->
 <!--                             (onChange)="changeColor('background',$event)"-->
 <!--                             tooltip="Defines the background color of the whole plugin."></app-colorpicker>-->
