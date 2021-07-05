@@ -11,6 +11,7 @@
         </div>
 
         <app-codepanel [code]="code" [style]="{maxWidth: '500px'}"></app-codepanel>
+        <app-stylepanel [code]="style" [style]="{maxWidth: '500px'}"></app-stylepanel>
     </div>
     <div class="column" style="width: 30%">
         <app-sidebar [config]="config" [theme]="theme" [nodeGroups]="config.nodeGroups" [edgeGroups]="config.edgeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>

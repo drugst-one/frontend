@@ -56,6 +56,7 @@ import {
 import {faListAlt, faQuestionCircle, faEnvelope} from '@fortawesome/free-regular-svg-icons';
 import {faAngular, faVuejs, faReact} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { StylepanelComponent } from './components/playground/stylepanel/stylepanel.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
         SwitchComponent,
         ColorpickerComponent,
         DropdownComponent,
-        RangeComponent
+        RangeComponent,
+        StylepanelComponent
     ],
     imports: [
         BrowserModule,

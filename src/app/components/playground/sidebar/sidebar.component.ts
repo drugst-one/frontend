@@ -182,4 +182,14 @@ export class SidebarComponent implements OnInit {
     rightSidebarEnabled() {
         return this.getConfig('showRightSidebar')==null || this.getConfig('showRightSidebar') ===true
     }
+
+    switchColorMode(dark: boolean) {
+        this.changeColor("--drgstn-border",dark ? "rgba(255, 255, 255, 0.2)":"rgba(0, 0, 0, 0.2)")
+    }
+
+    isDarkMode(){
+        // @ts-ignore
+        return this.theme["--drgstn-border"].split("255").length>0;
+    }
+
 }

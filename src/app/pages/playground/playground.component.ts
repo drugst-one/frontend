@@ -7,15 +7,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PlaygroundComponent implements OnInit {
     public theme = {
-        '--drgstn-primary': '#4885c7',
-        '--drgstn-secondary': '#cb32dc',
-        '--drgstn-success': '#7236d4',
+        '--drgstn-primary': '#347eee',
+        '--drgstn-secondary': '#fd6818',
+        '--drgstn-success': '#48C774',
         '--drgstn-warning': '#FFDD57FF',
-        '--drgstn-danger': '#47efd6',
-        '--drgstn-background': '#FFFFFF',
+        '--drgstn-danger': '#F14668',
+        '--drgstn-background': '#ffffff',
+        '--drgstn-panel': '#f8f8f8',
         '--drgstn-info': '#61c43d',
-        '--drgstn-text-primary': '#000000',
-        '--drgstn-text-secondary': '#FFFFFF',
+        '--drgstn-text-primary': '#383838',
+        '--drgstn-text-secondary': '#ececec',
+        '--drgstn-border': 'rgba(0, 0, 0, 0.2)',
     }
     public config = {
         nodeGroups: {
@@ -46,6 +48,7 @@ export class PlaygroundComponent implements OnInit {
     }
     public id = "drugstone-panel-1"
     public code: string = "";
+    public style:string="";
 
     constructor() {
         this.updateCode();
@@ -63,6 +66,7 @@ export class PlaygroundComponent implements OnInit {
             }
         })
         this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
+        this.style=":root {\n"+JSON.stringify(this.theme).split("\",").join(";\n   ").split("\"").join("").replace("{","   ").replace("}","")+"\n"+"}"
     }
 
     changeConfig(change: object) {
@@ -84,6 +88,8 @@ export class PlaygroundComponent implements OnInit {
     changeColor(change: object) {
         Object.keys(change).forEach(key => {
             // @ts-ignore
+            this.theme[key]=change[key]
+            //@ts-ignore
             document.documentElement.style.setProperty(key, change[key])
         })
         this.updateCode()
