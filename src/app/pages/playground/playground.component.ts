@@ -12,12 +12,12 @@ export class PlaygroundComponent implements OnInit {
         '--drgstn-success': '#48C774',
         '--drgstn-warning': '#FFDD57FF',
         '--drgstn-danger': '#F14668',
-        '--drgstn-background': '#ffffff',
-        '--drgstn-panel': '#f8f8f8',
+        '--drgstn-background': '#1f2d40',
+        '--drgstn-panel': '#1f2d40',
         '--drgstn-info': '#61c43d',
-        '--drgstn-text-primary': '#383838',
-        '--drgstn-text-secondary': '#ececec',
-        '--drgstn-border': 'rgba(0, 0, 0, 0.2)',
+        '--drgstn-text-primary': '#f0f0f0',
+        '--drgstn-text-secondary': '#303030',
+        '--drgstn-border': 'rgba(255, 255, 255, 0.2)    ',
     }
     public config = {
         nodeGroups: {
