@@ -1,5 +1,5 @@
 {
-  "integrating": {
+  "integrated": {
     "--drgstn-primary":"#408af7",
     "--drgstn-secondary":"#f78040",
     "--drgstn-success":"#48C774",
@@ -12,7 +12,7 @@
     "--drgstn-text-secondary":"#303030",
     "--drgstn-border":"rgba(255, 255, 255, 0.2)"
   },
-  "standard": {
+  "simple": {
     "--drgstn-primary":"#347eee",
     "--drgstn-secondary":"#2e42f2",
     "--drgstn-success":"#48C774",
@@ -25,7 +25,7 @@
     "--drgstn-text-secondary":"#eeeeee",
     "--drgstn-border":"rgba(0, 0, 0, 0.2)"
   },
-  "mono": {
+  "one-color": {
     "--drgstn-primary":"#6735f0",
     "--drgstn-secondary":"#6735f0",
     "--drgstn-success":"#8c65f7",
