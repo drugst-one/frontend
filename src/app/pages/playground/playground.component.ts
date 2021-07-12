@@ -14,7 +14,7 @@ export class PlaygroundComponent implements OnInit {
         '--drgstn-primary': '#347eee',
         '--drgstn-secondary': '#fd6818',
         '--drgstn-success': '#48C774',
-        '--drgstn-warning': '#FFDD57FF',
+        '--drgstn-warning': '#FFDD57',
         '--drgstn-danger': '#F14668',
         '--drgstn-background': '#1f2d40',
         '--drgstn-panel': '#1f2d40',
