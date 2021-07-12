@@ -1,14 +1,14 @@
 <style>
 
 </style>
-<app-header #header style="position: fixed; width: 100%; z-index: 999" (tabChangeEvent)="switchTab($event)"></app-header>
+<app-header #header style="position: fixed; width: 100%; z-index: 999" (tabChangeEvent)="switchTab($event);playground.fit()"></app-header>
 <div style="padding:75px; background-color: var(--surface-b)">
     <app-home [hidden]="currentTabId!==0" (tabChangeEvent)="switchTab($event); header.tabChange($event)"></app-home>
-    <app-howto [hidden]="currentTabId!==1"></app-howto>
-    <app-playground [hidden]="currentTabId!==2"></app-playground>
+    <app-howto [hidden]="currentTabId!==1" [version]="version"></app-howto>
+    <app-playground #playground [hidden]="currentTabId!==2"></app-playground>
     <app-doc [hidden]="currentTabId!==3"></app-doc>
 </div>
 
-<app-footer></app-footer>
+<app-footer [version]="version"></app-footer>
 
 <router-outlet></router-outlet>

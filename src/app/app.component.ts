@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component} from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 export class AppComponent {
   title = 'website';
-
+  public version = "0.7.5"
   public currentTabId :number;
 
   constructor() {

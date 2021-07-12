@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AppComponent} from "../../app.component";
 
 @Component({
@@ -7,7 +7,7 @@ import {AppComponent} from "../../app.component";
     styleUrls: ['./howto.component.scss']
 })
 export class HowtoComponent implements OnInit {
-
+    @Input() public version = ""
     public general = {
         plugin: "",
         body: ""
@@ -25,10 +25,15 @@ export class HowtoComponent implements OnInit {
     }
 
     constructor() {
+
+
+    }
+
+    ngOnInit(): void {
         this.general.plugin = "" +
             "<head>\n" +
-            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.51/releases/drugsTone.js\"></script>\n" +
-            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@0.51/releases/styles.css\">\n" +
+            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/releases/drugsTone.js\"></script>\n" +
+            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/releases/styles.css\">\n" +
             "</head>\n\n";
         this.general.body = "" +
             "<body>\n" +
@@ -50,10 +55,6 @@ export class HowtoComponent implements OnInit {
             "      'network-expander': 'ELEMENT'\n"+
             "   }\n"+
             "}"
-
-    }
-
-    ngOnInit(): void {
     }
 
 }

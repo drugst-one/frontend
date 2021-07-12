@@ -34,7 +34,8 @@ export class DatapanelComponent implements OnInit {
         })
         // @ts-ignore
         this.jsonData = this.rawData.split(delim).map(entry => {
-            return {id: entry.trim(), group: this.group}
+            let name = entry.trim()
+            return {id: name, group: this.group, label:name}
         })
         this.jsonString = JSON.stringify(this.jsonData)
     }
