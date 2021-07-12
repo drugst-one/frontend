@@ -43,9 +43,9 @@
     <ng-template pTemplate="footer">
         <div style="display: flex">
             <div style="justify-content: flex-start">
-                <app-dropdown [items]="sourceDBList" title="Node ID" tooltip="TODO" [model]="sourceDB"
+                <app-dropdown [items]="sourceDBList" label="Node ID" tooltip="Select the node id source you use for your gene/protein labels. Other sources may be added upon request." [model]="sourceDB"
                               (onChange)="sourceDB=$event"></app-dropdown>
-                <app-textinput title="Check you node ID"
+                <app-textinput label="Check you node ID" tooltip="Enter the specific node ID you want to check. Currently it is still case sensitive: Symbold & Ensemble -> all letters uppercase."
                                (onChange)="checkAvailability(sourceDB, $event)"></app-textinput>
             </div>
             <div style="width: 50%; justify-content: flex-end; margin-left: auto; margin-right: 10%">

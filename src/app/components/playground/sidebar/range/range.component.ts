@@ -11,7 +11,7 @@ export class RangeComponent implements OnInit {
   @Input() public model: number= 1;
   @Input() public min: number=0;
   @Input() public max: number=100;
-  @Input() public title: string ="";
+  @Input() public label: string ="";
   @Input() public tooltip: string= "";
   @Output() public onChange = new EventEmitter<number>();
 

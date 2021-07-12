@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class SwitchComponent implements OnInit {
 
-    @Input() public title = "";
+    @Input() public label = "";
     @Input() public model = false;
     @Input() public tooltip = "";
     @Output() public onChange = new EventEmitter<boolean>();

@@ -11,7 +11,7 @@ export class DropdownComponent implements OnInit {
 
   @Input() public items:object[]=[]
   @Input() public model:any = ""
-  @Input() public title = ""
+  @Input() public label = ""
   @Input() public tooltip = ""
   @Output() public onChange = new EventEmitter<string>();
   @Input() public fill = false;

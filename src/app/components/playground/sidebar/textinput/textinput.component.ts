@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class TextinputComponent implements OnInit {
 
     @Input() public model: any = ""
-    @Input() public title: any = ""
+    @Input() public label: any = ""
     @Input() public disabled = false;
     @Input() public tooltip = ""
     @Output() public onChange = new EventEmitter<string>();

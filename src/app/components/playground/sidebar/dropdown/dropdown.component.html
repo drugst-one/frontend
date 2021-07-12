@@ -1,10 +1,13 @@
 <div style="padding: 5px 5px 5px 12px">
-    <label class="flex flex-self-left side-label" style="font-size: small">{{title}}<i class="far fa-question-circle"
-                                                                                        [pTooltip]="tooltip"
-                                                                                        style="margin-left: 3px; padding-left:1px"></i></label>
+    <label class="flex flex-self-left side-label" style="font-size: small">{{label}}
+        <span [pTooltip]="tooltip">
+            <i class="far fa-question-circle" style="margin-left: 3px; padding-left:1px"></i>
+        </span>
+    </label>
     <div style="display:flex">
         <div style="justify-self: flex-start; width: 90%">
-            <p-dropdown [style]="{width: fill?'100%':'auto'}" [options]="items" [(ngModel)]="model" optionLabel="label" optionValue="value" (onChange)="emitChange()" [placeholder]="model"></p-dropdown>
+            <p-dropdown [style]="{width: fill?'100%':'auto'}" [options]="items" [(ngModel)]="model" optionLabel="label"
+                        optionValue="value" (onChange)="emitChange()" [placeholder]="model"></p-dropdown>
         </div>
     </div>
 </div>

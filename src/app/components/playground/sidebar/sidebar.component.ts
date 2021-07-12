@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-
+// @ts-ignore
+import themes from "../../../../themes.json"
 
 @Component({
     selector: 'app-sidebar',
@@ -13,19 +14,42 @@ export class SidebarComponent implements OnInit {
     @Output() configChangeEvent = new EventEmitter<object>();
     @Output() colorChangeEvent = new EventEmitter<object>();
     @Output() editGroupEvent = new EventEmitter<object>();
-    public useLegendURL: boolean = true;
+    public useLegendURL: boolean = false;
+    public themeIsDark: boolean = true;
     @Input() public nodeGroups: object = {}
     @Input() public edgeGroups: object = {}
     @Input() public config: object = {}
-    @Input() public theme= {}
+    @Input() public theme = {}
 
-    public shapeList: Object[];
-    public legendPosList = [{label:'left', value:'left'}, {label:'right', value:'right'}]
-    public dataLists={
-        identifierList:[{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}],
-        drugProtInterList:[{label:'DrugBank', value:'DrugBank'},{label:'Chembl', value:'Chembl'},{label:'DGIdb', value:'DGIdb'}],
-        protProtInterList:[{label:'STRING', value:'STRING'},{label:'BioGRID', value:'BioGRID'},{label:'APID', value:'APID'}],
+    public shapeList: Object[] = [{label: 'circle', value: 'circle'}, {label: 'diamond', value: 'diamond'}, {
+        label: 'star',
+        value: 'star'
+    }, {label: 'square', value: 'square'}, {label: 'ellipse', value: 'ellipse'}, {
+        label: 'triangle',
+        value: 'triangle'
+    }, {label: 'box', value: 'box'}, {label: 'dot', value: 'dot'}, {
+        label: 'hexagon',
+        value: 'hexagon'
+    }, {label: 'triangleDown', value: 'triangleDown'}, {label: 'image', value: 'image'}, {
+        label: 'text',
+        value: 'text'
+    }];
+    public legendPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
+    public dataLists = {
+        identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
+            label: 'Ensemble',
+            value: 'ensg'
+        }],
+        drugProtInterList: [{label: 'DrugBank', value: 'DrugBank'}, {label: 'Chembl', value: 'Chembl'}, {
+            label: 'DGIdb',
+            value: 'DGIdb'
+        }],
+        protProtInterList: [{label: 'STRING', value: 'STRING'}, {label: 'BioGRID', value: 'BioGRID'}, {
+            label: 'APID',
+            value: 'APID'
+        }],
     }
+    public themeList: Object[] = [];
 
     // export type Identifier = 'symbol'|'uniprot'|'ensg';
     // export type InteractionDrugProteinDB = 'DrugBank'|'Chembl'|'DGIdb';
@@ -33,24 +57,21 @@ export class SidebarComponent implements OnInit {
 
 
     constructor() {
-        this.shapeList = [{label: 'circle', value: 'circle'}, {label: 'diamond', value: 'diamond'}, {
-            label: 'star',
-            value: 'star'
-        }, {label: 'square', value: 'square'}, {label: 'ellipse', value: 'ellipse'}, {
-            label: 'triangle',
-            value: 'triangle'
-        }, {label: 'box', value: 'triangle'}, {label: 'dot', value: 'dot'}, {
-            label: 'hexagon',
-            value: 'hexagon'
-        }, {label: 'triangleDown', value: 'triangleDown'}, {label: 'image', value: 'image'}]
+        this.readThemes();
     }
 
     ngOnInit(): void {
     }
 
+    readThemes(): void {
+        Object.keys(themes).forEach(label => {
+            this.themeList.push({label: label, value: themes[label]})
+        })
+    }
+
     changeGroupConfig(groups: object, groupId: string, key: any, value: any) {
-        if(groups === this.nodeGroups && key==='shape' && value !=='image')
-            this.changeNodeImage( null,groupId)
+        if (groups === this.nodeGroups && key === 'shape' && value !== 'image')
+            this.changeNodeImage(null, groupId)
         console.log(value)
         // @ts-ignore
         console.log("setting groupid=" + groupId + " at key=" + key + " from " + groups[groupId][key] + " to " + value)
@@ -73,7 +94,7 @@ export class SidebarComponent implements OnInit {
 
 
     deleteGroup(groups: object, id: string) {
-        this.editGroupEvent.emit({delete: {type: this.nodeGroups === groups ?'node':'edge', id: id}})
+        this.editGroupEvent.emit({delete: {type: this.nodeGroups === groups ? 'node' : 'edge', id: id}})
     }
 
     changeConfig(name: string, value: any) {
@@ -85,10 +106,9 @@ export class SidebarComponent implements OnInit {
 
 
     changeColor(label: string, color: string) {
-        console.log(color)
         let change = {}
         // @ts-ignore
-        change[label]=color;
+        change[label] = color;
         this.colorChangeEvent.emit(change)
     }
 
@@ -99,6 +119,7 @@ export class SidebarComponent implements OnInit {
     addNewNodeGroup() {
         this.editGroupEvent.emit({add: "node"})
     }
+
     addNewEdgeGroup() {
         this.editGroupEvent.emit({add: "edge"})
     }
@@ -150,10 +171,10 @@ export class SidebarComponent implements OnInit {
 
     changeNodeImage(image: any, key: any) {
         console.log(key)
-        if(image != null){
+        if (image != null) {
             // @ts-ignore
-            this.nodeGroups[key].image= image
-        }else{
+            this.nodeGroups[key].image = image
+        } else {
             // @ts-ignore
             delete this.nodeGroups[key].image
         }
@@ -166,8 +187,8 @@ export class SidebarComponent implements OnInit {
         // @ts-ignore
         let newDashes = edgeGroups[key]['dashes']
         // @ts-ignore
-        newDashes[idx]=updt
-        this.changeGroupConfig(edgeGroups,key,'dashes',newDashes);
+        newDashes[idx] = updt
+        this.changeGroupConfig(edgeGroups, key, 'dashes', newDashes);
     }
 
     getConfig(param: string) {
@@ -176,20 +197,36 @@ export class SidebarComponent implements OnInit {
     }
 
     leftSidebarEnabled() {
-        return this.getConfig('showLeftSidebar')==null || this.getConfig('showLeftSidebar') ===true
+        return this.getConfig('showLeftSidebar') == null || this.getConfig('showLeftSidebar') === true
     }
 
     rightSidebarEnabled() {
-        return this.getConfig('showRightSidebar')==null || this.getConfig('showRightSidebar') ===true
+        return this.getConfig('showRightSidebar') == null || this.getConfig('showRightSidebar') === true
     }
 
     switchColorMode(dark: boolean) {
-        this.changeColor("--drgstn-border",dark ? "rgba(255, 255, 255, 0.2)":"rgba(0, 0, 0, 0.2)")
+        this.themeIsDark=dark;
+        this.changeColor("--drgstn-border", dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)")
+        return dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
     }
 
-    isDarkMode(){
+    isDarkMode(theme:any) {
         // @ts-ignore
-        return this.theme["--drgstn-border"].split("255").length>0;
+        return theme["--drgstn-border"].split("255").length > 1;
     }
 
+    getValue(value: any, color: string) {
+        // @ts-ignore
+        return value[color]
+    }
+
+    applyTheme(theme: string) {
+        // @ts-ignore
+        this.theme["--drgstn-border"]=this.switchColorMode(this.isDarkMode(theme))
+        Object.keys(theme).forEach(label=>{
+                // @ts-ignore
+                this.changeColor(label,theme[label])
+        })
+
+    }
 }

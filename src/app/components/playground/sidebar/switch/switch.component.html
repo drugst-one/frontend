@@ -1,8 +1,8 @@
 <div style="display: flex; padding: 5px 0 5px 12px">
-    <div class="side-label flex-self-left">{{title}}
+    <div class="side-label flex-self-left">{{label}}
+        <span [pTooltip]="tooltip">
         <i class="far fa-question-circle"
-           [pTooltip]="tooltip"
-           style="margin-left: 3px; padding-left:1px"></i>
+           style="margin-left: 3px; padding-left:1px"></i></span>
         :
     </div>
     <p-inputSwitch class="flex-self-left" [style]="{marginLeft: '5px'}" [(ngModel)]="model"

@@ -1,0 +1,41 @@
+{
+  "integrating": {
+    "--drgstn-primary":"#408af7",
+    "--drgstn-secondary":"#f78040",
+    "--drgstn-success":"#48C774",
+    "--drgstn-warning":"#FFDD57FF",
+    "--drgstn-danger":"#F14668",
+    "--drgstn-background":"#1f2d40",
+    "--drgstn-panel":"#1f2d40",
+    "--drgstn-info":"#61c43d",
+    "--drgstn-text-primary":"#f0f0f0",
+    "--drgstn-text-secondary":"#303030",
+    "--drgstn-border":"rgba(255, 255, 255, 0.2)"
+  },
+  "standard": {
+    "--drgstn-primary":"#347eee",
+    "--drgstn-secondary":"#2e42f2",
+    "--drgstn-success":"#48C774",
+    "--drgstn-warning":"#ffdd00",
+    "--drgstn-danger":"#ff2744",
+    "--drgstn-background":"#ffffff",
+    "--drgstn-panel":"#f8f8f8",
+    "--drgstn-info":"#61c43d",
+    "--drgstn-text-primary":"#151515",
+    "--drgstn-text-secondary":"#eeeeee",
+    "--drgstn-border":"rgba(0, 0, 0, 0.2)"
+  },
+  "mono": {
+    "--drgstn-primary":"#6735f0",
+    "--drgstn-secondary":"#6735f0",
+    "--drgstn-success":"#8c65f7",
+    "--drgstn-warning":"#6735f0",
+    "--drgstn-danger":"#270487",
+    "--drgstn-background":"#ffffff",
+    "--drgstn-panel":"#ffffff",
+    "--drgstn-info":"#6735f0",
+    "--drgstn-text-primary":"#151515",
+    "--drgstn-text-secondary":"#eeeeee",
+    "--drgstn-border":"rgba(0, 0, 0, 0.2)"
+  }
+}
