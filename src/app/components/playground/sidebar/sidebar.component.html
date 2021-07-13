@@ -6,14 +6,17 @@
                     Database selection
                 </ng-template>
 
-                <app-dropdown label="Node Source" [items]="dataLists.identifierList" tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
+                <app-dropdown label="Node Source" [items]="dataLists.identifierList"
+                              tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
                               [model]="getConfig('identifier')"
                               (onChange)="changeConfig('identifier',$event)"></app-dropdown>
                 <app-dropdown label="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList"
-                              [model]="getConfig('interactionProteinProtein')" tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
+                              [model]="getConfig('interactionProteinProtein')"
+                              tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
                               (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
                 <app-dropdown label="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList"
-                              [model]="getConfig('interactionDrugProtein')" tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
+                              [model]="getConfig('interactionDrugProtein')"
+                              tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
                               (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
 
             </p-fieldset>
@@ -44,7 +47,8 @@
                                 <div *ngFor="let nodeConf of (nodeGroup.value | keyvalue)"
                                      [style]="{padding: 0, margin: 0}">
                                     <div *ngIf="nodeConf.key === 'color'" style="margin-left: 5px">
-                                        <app-colorpicker label="Node color" [model]="nodeConf.value" tooltip="The nodes color, if a solid shape is selected. Unused when selecting 'text' or 'image'."
+                                        <app-colorpicker label="Node color" [model]="nodeConf.value"
+                                                         tooltip="The nodes color, if a solid shape is selected. Unused when selecting 'text' or 'image'."
                                                          [format]="((nodeConf.value+'').startsWith('rgb') ? 'rgb': 'hex')"
                                                          (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"></app-colorpicker>
                                     </div>
@@ -62,7 +66,8 @@
                                                           (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event);"
                                                           tooltip="All basic vis-js shapes are supported and reflected in the legend. 'Text' will use the node label without shape. 'Image' will allow the use of an image. "></app-dropdown>
                                             <app-textinput [hidden]="nodeConf.value!=='image'" label="imageURL"
-                                                           [model]="nodeGroup.value['image']" tooltip="Provide an image by entering a web URL. If CORS-Headers are not set correctly on the image host server then the 'Screenshot' function will fail!"
+                                                           [model]="nodeGroup.value['image']"
+                                                           tooltip="Provide an image by entering a web URL. If CORS-Headers are not set correctly on the image host server then the 'Screenshot' function will fail!"
                                                            (onChange)="changeNodeImage($event,nodeGroup.key)"></app-textinput>
                                         </div>
                                     </div>
@@ -119,7 +124,8 @@
                                 <div *ngFor="let params of (group.value | keyvalue)"
                                      [style]="{padding: 0, margin: 0}">
                                     <div *ngIf="params.key === 'color'" style="margin-left: 5px">
-                                        <app-colorpicker label="Edge color" [model]="params.value" tooltip="Set the color of the line. A contrasting color to the background color should be chosen!"
+                                        <app-colorpicker label="Edge color" [model]="params.value"
+                                                         tooltip="Set the color of the line. A contrasting color to the background color should be chosen!"
                                                          [format]="((params.value+'').startsWith('rgb') ? 'rgb': 'hex')"
                                                          (onChange)="changeGroupConfig(edgeGroups, group.key, params.key, $event)"></app-colorpicker>
                                     </div>
@@ -135,12 +141,15 @@
                                 <div *ngIf="group.value['dashes'] !=null &&group.value['dashes'] !==false"
                                      style="display:flex">
                                     <div style="justify-content: flex-start; width: 50%">
-                                        <app-range label="Dash size" tooltip="Define the size of a dash." [model]="group.value['dashes'][0]"
+                                        <app-range label="Dash size" tooltip="Define the size of a dash."
+                                                   [model]="group.value['dashes'][0]"
                                                    [min]="1" [max]="100"
                                                    (onChange)="changeEdgeDashes(edgeGroups, group.key, 0,$event)"></app-range>
                                     </div>
                                     <div style="justify-content: flex-end; width: 50%">
-                                        <app-range label="Gap size" tooltip="Define the size of the gap between two dashes." [model]="group.value['dashes'][1]"
+                                        <app-range label="Gap size"
+                                                   tooltip="Define the size of the gap between two dashes."
+                                                   [model]="group.value['dashes'][1]"
                                                    [min]="1" [max]="100"
                                                    (onChange)="changeEdgeDashes(edgeGroups, group.key,  1,$event)"></app-range>
                                     </div>
@@ -238,8 +247,10 @@
                 <div [hidden]="getConfig('showLegend')!=null && getConfig('showLegend') ===false"
                      style="padding-left: 12px">
                     <app-dropdown [items]="legendPosList" [model]="getConfig('legendPos')" label="Legend Position"
-                                  tooltip="Set the side, where the legend should be located." (onChange)="changeConfig('legendPos',$event)"></app-dropdown>
-                    <app-switch label="Use custom Legend" [model]="useLegendURL" tooltip="Use this option, if you want to provide a custom legend as image."
+                                  tooltip="Set the side, where the legend should be located."
+                                  (onChange)="changeConfig('legendPos',$event)"></app-dropdown>
+                    <app-switch label="Use custom Legend" [model]="useLegendURL"
+                                tooltip="Use this option, if you want to provide a custom legend as image."
                                 (onChange)="changeConfig('legendUrl',($event ? getConfig('legendUrl') : '')); useLegendURL=$event"></app-switch>
                     <app-textinput [hidden]="!useLegendURL" label="Legend Image URL" [model]="getConfig('legendUrl')"
                                    [disabled]="!useLegendURL"
@@ -258,7 +269,8 @@
                                 [hidden]="useLegendURL"
                     ></app-switch>
                     <app-textinput label="Legend Style Class" [model]="getConfig('legendClass')"
-                                   (onChange)="changeConfig('legendClass',$event)" tooltip="Enter a class name that shall be applied on the autogenerated legend."></app-textinput>
+                                   (onChange)="changeConfig('legendClass',$event)"
+                                   tooltip="Enter a class name that shall be applied on the autogenerated legend."></app-textinput>
                 </div>
             </p-fieldset>
             <p-fieldset legend="Labels" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
@@ -275,15 +287,20 @@
                 STYLE
             </ng-template>
 
-            <app-dropdown label="Predefined Theme" tooltip="Apply an already created theme on the drugst.one plugin and use it as a basis to create your own." [items]="themeList"
+            <app-dropdown label="Predefined Theme"
+                          tooltip="Apply an already created theme on the drugst.one plugin and use it as a basis to create your own."
+                          [items]="themeList"
                           (onChange)="applyTheme($event)"></app-dropdown>
 
             <div style="margin-bottom: 15px"></div>
             <app-switch [model]="themeIsDark" (onChange)="switchColorMode($event)" label="Dark Theme"
                         tooltip="Sets text-color and some other background-color dependent variables automatically."></app-switch>
             <div *ngFor="let color of theme | keyvalue">
-                <app-colorpicker *ngIf="color.key !== '--drgstn-border'" [label]="getThemeValue(color.key,'label')" [model]="color.value"
-                                 (onChange)="changeColor(color.key,$event)" [tooltip]="getThemeValue(color.key,'tooltip')"></app-colorpicker>
+                <app-colorpicker *ngIf="getThemeValue(color.key,'label') !=null"
+                                 [label]="getThemeValue(color.key,'label')"
+                                 [model]="getValue(color.value,'color')"
+                                 (onChange)="changeColor(color.key,$event)"
+                                 [tooltip]="getThemeValue(color.key,'tooltip')"></app-colorpicker>
             </div>
         </p-accordionTab>
 

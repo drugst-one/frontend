@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-
+// @ts-ignore
+import theme from '../exampleTheme.json'
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'website';
   public version = "0.7.6-rc3"
+  public theme = theme;
   public currentTabId :number;
 
   constructor() {

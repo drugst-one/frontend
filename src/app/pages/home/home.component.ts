@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    tabChange(number: number) {
-        this.tabChangeEvent.emit(number)
-    }
+  tabChange(number: number) {
+    this.tabChangeEvent.emit(number)
+  }
 
   checkAvailability(sourceDB: string, $event: string) {
       this.netex.mapNodes([({id:$event} as Node)],sourceDB).then(response=>{

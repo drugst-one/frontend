@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 // @ts-ignore
 import config from '../../../exampleConfig.json';
 // @ts-ignore
@@ -10,19 +10,7 @@ import network from '../../../exampleNetwork.json';
     styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent implements OnInit {
-    public theme = {
-        '--drgstn-primary': '#347eee',
-        '--drgstn-secondary': '#fd6818',
-        '--drgstn-success': '#48C774',
-        '--drgstn-warning': '#FFDD57',
-        '--drgstn-danger': '#F14668',
-        '--drgstn-background': '#1f2d40',
-        '--drgstn-panel': '#1f2d40',
-        '--drgstn-info': '#61c43d',
-        '--drgstn-text-primary': '#f0f0f0',
-        '--drgstn-text-secondary': '#303030',
-        '--drgstn-border': 'rgba(255, 255, 255, 0.2)',
-    }
+    @Input() public theme = {}
     public config = config
     public blankNodeGroup = {
         "type": "someType",
@@ -57,7 +45,13 @@ export class PlaygroundComponent implements OnInit {
             }
         })
         this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
-        this.style = ":root {\n" + JSON.stringify(this.theme).split("\",").join(";\n   ").split("\"").join("").replace("{", "   ").replace("}", "") + "\n" + "}"
+        let colors = JSON.stringify(Object.keys(this.theme).map(key => {
+            let o = {}
+            // @ts-ignore
+            o[key] = this.theme[key].color;
+            return o
+        }));
+        this.style = ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", "\n}")
     }
 
     changeConfig(change: object) {
@@ -77,7 +71,7 @@ export class PlaygroundComponent implements OnInit {
     changeColor(change: object) {
         Object.keys(change).forEach(key => {
             // @ts-ignore
-            this.theme[key] = change[key]
+            this.theme[key].color = change[key]
             //@ts-ignore
             document.documentElement.style.setProperty(key, change[key])
         })

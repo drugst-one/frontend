@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AppComponent} from "../../app.component";
 
 @Component({
@@ -8,6 +8,8 @@ import {AppComponent} from "../../app.component";
 })
 export class HowtoComponent implements OnInit {
     @Input() public version = ""
+    @Input() public theme = {}
+    @Output() tabChangeEvent = new EventEmitter<number>();
     public general = {
         plugin: "",
         body: ""
@@ -27,6 +29,10 @@ export class HowtoComponent implements OnInit {
     constructor() {
 
 
+    }
+
+    tabChange(number: number) {
+        this.tabChangeEvent.emit(number)
     }
 
     ngOnInit(): void {

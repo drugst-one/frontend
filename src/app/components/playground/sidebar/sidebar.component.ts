@@ -50,18 +50,6 @@ export class SidebarComponent implements OnInit {
         }],
     }
     public themeList: Object[] = [];
-    public themeTolltips={
-        '--drgstn-primary': {label:'Primary Highlight', tooltip:'This is the primary highlight color. It is applied on most buttons.'},
-        '--drgstn-secondary': {label: 'Secondary Highlight', tooltip: 'This is the secondary highlight color. It is applied on interactive components other than buttons, like expansion icons or links.'},
-        '--drgstn-success': {label: 'Success', tooltip:'This is the general success color. It is used to indicate active toggles or positive outcomes.'},
-        '--drgstn-warning': {label: 'Warning', tooltip:'This is the general warning color. It is used to signal potential problems for example regarding task execution.'},
-        '--drgstn-danger': {label: 'Danger', tooltip:'This is the general danger and error color. It is used to signal inactive toggles or "dangerous" features like reset/delete buttons or to highlight failed task execution.'},
-        '--drgstn-background': {label: 'Main-Background', tooltip:'This color defines the main background color. When set to the host-site background and other than the panel color the different panels/cards appear disconnected.'},
-        '--drgstn-panel': {label: 'Panel-Background', tooltip:'This color defines the panel and card background color. When set to the same as the main background, the whole components appears as one connected unit.'},
-        '--drgstn-info': {label: 'Info', tooltip:'The information color is used for some additional important highlighting.'},
-        '--drgstn-text-primary': {label: 'Main-Text', tooltip:'This color defines the general font color. When using a dark background this should be light and vice versa to maintain readability.'},
-        '--drgstn-text-secondary': {label: 'Contrast-Text', tooltip:'This color defines the secondary font color, used for example on buttons with the secondary highlight color, so it should contrast it to maintain readability.'},
-    }
 
     // export type Identifier = 'symbol'|'uniprot'|'ensg';
     // export type InteractionDrugProteinDB = 'DrugBank'|'Chembl'|'DGIdb';
@@ -114,7 +102,7 @@ export class SidebarComponent implements OnInit {
     }
 
 
-    changeColor(label: string, color: string) {
+    changeColor(label: any, color: string) {
         let change = {}
         // @ts-ignore
         change[label] = color;
@@ -202,12 +190,12 @@ export class SidebarComponent implements OnInit {
     }
 
     switchColorMode(dark: boolean) {
-        this.themeIsDark=dark;
+        this.themeIsDark = dark;
         this.changeColor("--drgstn-border", dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)")
         return dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
     }
 
-    isDarkMode(theme:any) {
+    isDarkMode(theme: any) {
         // @ts-ignore
         return theme["--drgstn-border"].split("255").length > 1;
     }
@@ -219,16 +207,23 @@ export class SidebarComponent implements OnInit {
 
     applyTheme(theme: string) {
         // @ts-ignore
-        this.theme["--drgstn-border"]=this.switchColorMode(this.isDarkMode(theme))
-        Object.keys(theme).forEach(label=>{
-                // @ts-ignore
-                this.changeColor(label,theme[label])
+        this.theme["--drgstn-border"].color = this.switchColorMode(this.isDarkMode(theme))
+        Object.keys(theme).forEach(label => {
+            // @ts-ignore
+            this.changeColor(label, theme[label])
         })
 
     }
 
-    getThemeValue(key: any,value:string) {
+    getThemeValue(key: any, value: string) {
         // @ts-ignore
-        return this.themeTolltips[key][value]
+        if (this.theme[key] != null)
+            // @ts-ignore
+            return this.theme[key][value]
+        return undefined
+    }
+
+    length(theme: {}) {
+        return Object.keys(theme).length
     }
 }
