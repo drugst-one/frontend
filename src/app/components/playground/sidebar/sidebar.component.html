@@ -262,6 +262,9 @@
                 </div>
             </p-fieldset>
             <p-fieldset legend="Labels" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
+                <app-textinput label="Title" [model]="getConfig('title')"
+                               (onChange)="changeConfig('title',$event !=null && $event.length>0 ? $event : 'Drugst.one')"
+                               tooltip="Sets the main title above the network panel."></app-textinput>
                 <app-textinput label="Analysis Task Name" [model]="getConfig('taskName')"
                                (onChange)="changeConfig('taskName',$event !=null && $event.length>0 ? $event : 'Run Task X')"
                                tooltip="Replaces the default 'Run Task X' label with some custom one."></app-textinput>

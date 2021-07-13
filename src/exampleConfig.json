@@ -60,5 +60,6 @@
       ]
     }
   },
-  "identifier": "symbol"
+  "identifier": "symbol",
+  "title": "Breast cancer example network"
 }
