@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'website';
-  public version = "0.7.5"
+  public version = "0.7.6-rc1"
   public currentTabId :number;
 
   constructor() {
