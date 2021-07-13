@@ -55,7 +55,7 @@ export class HowtoComponent implements OnInit {
         this.angular.body = "<network-expander></network-expander>";
         this.vue.plugin = this.angular.plugin;
         this.vue.body = this.angular.body;
-        this.vue.body = ""+
+        this.vue.app = ""+
             "module.exports = {\n"+
             "   externals: {\n"+
             "      'network-expander': 'ELEMENT'\n"+
@@ -63,4 +63,14 @@ export class HowtoComponent implements OnInit {
             "}"
     }
 
+    getTheme() {
+        let colors = JSON.stringify(Object.keys(this.theme).map(key => {
+            let o = {}
+            // @ts-ignore
+            o[key] = this.theme[key].color;
+            return o
+        }));
+        return ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}").split(":").join(": ")
+
+    }
 }
