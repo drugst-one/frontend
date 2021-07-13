@@ -21,12 +21,7 @@ export class ColorpickerComponent implements OnInit {
     }
 
     emitChange() {
-        // if (this.formatIn === this.formatOut)
-        //     this.onChange.emit(this.model)
-        // else{
-        //     if(this.formatIn ==="hex")
         this.onChange.emit(this.model)
-        // else this.onChange.emit(this.RGBToHex(this.model[0],this.model[1], this.model[2]))
     }
 
 }
