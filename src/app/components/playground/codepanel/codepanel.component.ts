@@ -13,5 +13,4 @@ export class CodepanelComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

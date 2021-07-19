@@ -53,7 +53,7 @@ import {
     faLongArrowAltRight,
     faAngleRight
 } from '@fortawesome/free-solid-svg-icons';
-import {faListAlt, faQuestionCircle, faEnvelope} from '@fortawesome/free-regular-svg-icons';
+import {faListAlt, faQuestionCircle, faEnvelope, faClipboard} from '@fortawesome/free-regular-svg-icons';
 import {faAngular, faVuejs, faReact} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { StylepanelComponent } from './components/playground/stylepanel/stylepanel.component';
@@ -115,6 +115,6 @@ import { StylepanelComponent } from './components/playground/stylepanel/stylepan
 export class AppModule {
     constructor() {
         // @ts-ignore
-        fontawesome.library.add(faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
+        fontawesome.library.add(faClipboard,faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
     }
 }
