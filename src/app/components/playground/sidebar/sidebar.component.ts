@@ -190,9 +190,17 @@ export class SidebarComponent implements OnInit {
     }
 
     switchColorMode(dark: boolean) {
-        this.themeIsDark = dark;
-        this.changeColor("--drgstn-border", dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)")
+        this.changeColor("--drgstn-border", this.getBorderColor(dark))
+        this.changeColor("--drgstn-tooltip",this.getTooltipColor(dark))
+        // return dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
+    }
+
+    getBorderColor(dark:boolean){
         return dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
+    }
+
+    getTooltipColor(dark:boolean){
+        return dark ? "rgba(181,181,181,0.9)":"rgba(74,74,74,0.9)" ;
     }
 
     isDarkMode(theme: any) {
@@ -206,8 +214,11 @@ export class SidebarComponent implements OnInit {
     }
 
     applyTheme(theme: string) {
+        this.themeIsDark = this.isDarkMode(theme)
         // @ts-ignore
-        this.theme["--drgstn-border"].color = this.switchColorMode(this.isDarkMode(theme))
+        this.theme["--drgstn-border"].color = this.getBorderColor(this.themeIsDark)
+        // @ts-ignore
+        this.theme["--drgstn-tooltip"].color = this.getTooltipColor(this.themeIsDark)
         Object.keys(theme).forEach(label => {
             // @ts-ignore
             this.changeColor(label, theme[label])

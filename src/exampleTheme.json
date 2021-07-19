@@ -51,5 +51,8 @@
   },
   "--drgstn-border": {
     "color": "rgba(255, 255, 255, 0.2)"
+  },
+  "--drgstn-tooltip": {
+    "color": "rgba(181,181,181,0.9)"
   }
 }
