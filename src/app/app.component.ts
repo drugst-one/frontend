@@ -9,7 +9,7 @@ import theme from '../exampleTheme.json'
 })
 export class AppComponent {
   title = 'website';
-  public version = "0.7.6-rc3"
+  public version = "0.7.7"
   public theme = theme;
   public currentTabId :number;
 
