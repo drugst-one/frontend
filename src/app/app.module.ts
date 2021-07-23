@@ -20,8 +20,8 @@ import {FooterComponent} from './components/footer/footer.component';
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {HighlightJsModule} from "ngx-highlight-js";
-import { CodeComponent } from './components/code/code.component';
-import { PanelComponent } from './components/panel/panel.component';
+import {CodeComponent} from './components/code/code.component';
+import {PanelComponent} from './components/panel/panel.component';
 import {ScrollPanelModule} from "primeng/scrollpanel";
 import {AccordionModule} from "primeng/accordion";
 import {InputSwitchModule} from "primeng/inputswitch";
@@ -31,32 +31,32 @@ import {InputTextModule} from "primeng/inputtext";
 import {RippleModule} from "primeng/ripple";
 import {TooltipModule} from "primeng/tooltip";
 import {ColorPickerModule} from "primeng/colorpicker";
-import { NiyInfoComponent } from './components/other/niy-info/niy-info.component';
-import { TextinputComponent } from './components/playground/sidebar/textinput/textinput.component';
-import { SwitchComponent } from './components/playground/sidebar/switch/switch.component';
-import { ColorpickerComponent } from './components/playground/sidebar/colorpicker/colorpicker.component';
-import { DropdownComponent } from './components/playground/sidebar/dropdown/dropdown.component';
+import {NiyInfoComponent} from './components/other/niy-info/niy-info.component';
+import {TextinputComponent} from './components/playground/sidebar/textinput/textinput.component';
+import {SwitchComponent} from './components/playground/sidebar/switch/switch.component';
+import {ColorpickerComponent} from './components/playground/sidebar/colorpicker/colorpicker.component';
+import {DropdownComponent} from './components/playground/sidebar/dropdown/dropdown.component';
 import {DropdownModule} from "primeng/dropdown";
 import {CheckboxModule} from "primeng/checkbox";
 import {SliderModule} from "primeng/slider";
-import { RangeComponent } from './components/playground/sidebar/range/range.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {RangeComponent} from './components/playground/sidebar/range/range.component';
+import {HttpClientModule} from "@angular/common/http";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TableModule} from "primeng/table";
 
 import fontawesome from '@fortawesome/fontawesome';
 import {
-    faExclamationTriangle,
+    faAngleRight,
     faChevronDown,
     faChevronUp,
     faCode,
-    faLongArrowAltRight,
-    faAngleRight
+    faExclamationTriangle,
+    faLongArrowAltRight
 } from '@fortawesome/free-solid-svg-icons';
-import {faListAlt, faQuestionCircle, faEnvelope, faClipboard} from '@fortawesome/free-regular-svg-icons';
-import {faAngular, faVuejs, faReact} from '@fortawesome/free-brands-svg-icons';
+import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
+import {faAngular, faReact, faVuejs} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import { StylepanelComponent } from './components/playground/stylepanel/stylepanel.component';
+import {StylepanelComponent} from './components/playground/stylepanel/stylepanel.component';
 
 
 @NgModule({
