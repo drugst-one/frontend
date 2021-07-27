@@ -32,6 +32,8 @@
                         node input
                         configuration</a></i>
                 </div>
+                <app-switch label="Node Shadows" tooltip="Toggles node shadows globally" (onChange)="changeConfig('nodeShadow',$event)" [model]="getConfig('nodeShadow')==null || !!getConfig('nodeShadow')">
+                </app-switch>
                 <div *ngIf="nodeGroups !=null &&objectSize(nodeGroups)>0">
                     <div *ngFor="let nodeGroup of (nodeGroups | keyvalue)">
                         <div [style]="{padding: 0, margin: '15px'}">
@@ -109,6 +111,8 @@
                         vis.js edge input configuration
                     </a>
                 </i>
+                <app-switch label="Edge Shadows" tooltip="Toggles edge shadows globally" (onChange)="changeConfig('edgeShadow',$event)" [model]="getConfig('edgeShadow')==null || !!getConfig('edgeShadow')">
+                </app-switch>
                 <div *ngIf="edgeGroups !=null &&objectSize(edgeGroups)>0">
                     <div *ngFor="let group of (edgeGroups | keyvalue)">
                         <div [style]="{padding: 0, margin: '15px'}">

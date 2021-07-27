@@ -61,5 +61,7 @@
     }
   },
   "identifier": "symbol",
-  "title": "Breast cancer example network"
+  "title": "Breast cancer example network",
+  "nodeShadow": true,
+  "edgeShadow": false
 }

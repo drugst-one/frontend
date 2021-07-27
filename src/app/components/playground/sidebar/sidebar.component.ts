@@ -203,6 +203,14 @@ export class SidebarComponent implements OnInit {
         return dark ? "rgba(181,181,181,0.9)":"rgba(74,74,74,0.9)" ;
     }
 
+    toBoolean(value:any){
+        if(typeof value == "boolean")
+            return value
+        if(typeof value == "string")
+            return value[0]==='t'
+        return !!value
+    }
+
     isDarkMode(theme: any) {
         // @ts-ignore
         return theme["--drgstn-border"].split("255").length > 1;
