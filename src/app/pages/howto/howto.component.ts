@@ -38,8 +38,8 @@ export class HowtoComponent implements OnInit {
     ngOnInit(): void {
         this.general.plugin = "" +
             "<head>\n" +
-            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/releases/drugsTone.js\"></script>\n" +
-            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/releases/styles.css\">\n" +
+            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/uhh/drugsTone.js\"></script>\n" +
+            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/uhh/styles.css\">\n" +
             "</head>\n\n";
         this.general.body = "" +
             "<body>\n" +
