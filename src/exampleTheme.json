@@ -54,5 +54,10 @@
   },
   "--drgstn-tooltip": {
     "color": "rgba(181,181,181,0.9)"
+  },
+  "--drgstn-panel-secondary":{
+    "color": "#2b3d57",
+    "tooltip": "This color defines the secondary panel color, used for example as background color for boxes on side panels. ",
+    "label": "Secondary-Panel"
   }
 }

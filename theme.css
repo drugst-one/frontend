@@ -10,5 +10,6 @@
   --drgstn-text-primary:#f0f0f0;
   --drgstn-text-secondary:#303030;
   --drgstn-border:rgba(255, 255, 255, 0.2);
-  --drgstn-tooltip:rgba(181,181,181,0.9)
+  --drgstn-tooltip:rgba(181,181,181,0.9);
+  --drgstn-panel-secondary:#2b3d57;
 }

@@ -11,7 +11,8 @@
     "--drgstn-text-primary":"#f0f0f0",
     "--drgstn-text-secondary":"#303030",
     "--drgstn-border":"rgba(255, 255, 255, 0.2)",
-    "--drgstn-tooltip": "rgba(181,181,181,0.9)"
+    "--drgstn-tooltip": "rgba(181,181,181,0.9)",
+    "--drgstn-panel-secondary": "#2b3d57"
   },
   "simple": {
     "--drgstn-primary":"#347eee",
@@ -25,7 +26,8 @@
     "--drgstn-text-primary":"#151515",
     "--drgstn-text-secondary":"#eeeeee",
     "--drgstn-border":"rgba(0, 0, 0, 0.2)",
-    "--drgstn-tooltip": "rgba(74,74,74,0.9)"
+    "--drgstn-tooltip": "rgba(74,74,74,0.9)",
+    "--drgstn-panel-secondary": "#FFFFFF"
   },
   "one-color": {
     "--drgstn-primary":"#6735f0",
@@ -39,6 +41,7 @@
     "--drgstn-text-primary":"#151515",
     "--drgstn-text-secondary":"#eeeeee",
     "--drgstn-border":"rgba(0, 0, 0, 0.2)",
-    "--drgstn-tooltip": "rgba(74,74,74,0.9)"
+    "--drgstn-tooltip": "rgba(74,74,74,0.9)",
+    "--drgstn-panel-secondary": "#FFFFFF"
   }
 }
