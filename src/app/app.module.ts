@@ -57,6 +57,8 @@ import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome
 import {faAngular, faReact, faVuejs} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {StylepanelComponent} from './components/playground/stylepanel/stylepanel.component';
+import { MotivationComponent } from './pages/motivation/motivation.component';
+import { StandaloneComponent } from './pages/standalone/standalone/standalone.component';
 
 
 @NgModule({
@@ -80,7 +82,9 @@ import {StylepanelComponent} from './components/playground/stylepanel/stylepanel
         ColorpickerComponent,
         DropdownComponent,
         RangeComponent,
-        StylepanelComponent
+        StylepanelComponent,
+        MotivationComponent,
+        StandaloneComponent
     ],
     imports: [
         BrowserModule,
