@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
             label: 'Ensemble',
             value: 'ensg'
         }],
-        drugProtInterList: [{label: 'DrugBank', value: 'DrugBank'}, {label: 'Chembl', value: 'Chembl'}, {
+        drugProtInterList: [{label: 'DrugBank', value: 'DrugBank'}, {label: 'ChEMBL', value: 'ChEMBL'}, {
             label: 'DGIdb',
             value: 'DGIdb'
         }],
@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit {
     public themeList: Object[] = [];
 
     // export type Identifier = 'symbol'|'uniprot'|'ensg';
-    // export type InteractionDrugProteinDB = 'DrugBank'|'Chembl'|'DGIdb';
+    // export type InteractionDrugProteinDB = 'DrugBank'|'ChEMBL'|'DGIdb';
     // export type InteractionProteinProteinDB = 'STRING'|'BioGRID'|'APID';
 
 
