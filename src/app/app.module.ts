@@ -63,6 +63,8 @@ import { DocNavbarComponent } from './pages/doc/elements/doc-navbar/doc-navbar.c
 import {MenuModule} from "primeng/menu";
 import {PanelMenuModule} from "primeng/panelmenu";
 import { DocPageComponent } from './components/documentation/doc-page/doc-page.component';
+import { MotivationComponent } from './pages/motivation/motivation.component';
+import { StandaloneComponent } from './pages/standalone/standalone/standalone.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { DocPageComponent } from './components/documentation/doc-page/doc-page.c
         RangeComponent,
         StylepanelComponent,
         DocNavbarComponent,
-        DocPageComponent
+        DocPageComponent,
+        MotivationComponent,
+        StandaloneComponent
     ],
     imports: [
         BrowserModule,

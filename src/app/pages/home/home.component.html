@@ -1,80 +1,31 @@
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="What is drugst.one?">
-    <i><b>drugst.one</b></i> is a plugin that aims to provide an easy and convenient way to integrate a <b>network
-    viewer</b>
-    into any
-    applicable website. The focus of <i><b>drugst.one</b></i> lies on <b>biological networks</b>, meaning gene or protein
-    nodes,
-    and it
-    provides
-    a toolbox to enrich the initial set of entries with <b>interaction</b> information or even different algorithms for
-    the
-    <b>ranking of drug candidates</b>. But also not strictly defined data, like <b>patient labels</b> or
-    <b>celllines</b>, can be visualized.
-    The data necessary for this as well as any computation is carried out on our backend
-    servers.
-    <br>
-    <i><b>drugst.one</b></i> is integrated easily into <b>any website</b>, as can be seen below or on the <a
-        (click)="tabChange(1)">HowTo-Page</a>,
-    and is <b>highly adjustable</b> to your current website styling. Different features or panels of <i><b>drugst.one</b></i>
-    can be even removed
-    from your specific implementation, if it does not suit the concept of the rest of the page.<br>
-    If your current website or web-application features at some point a <b>list of genes or proteins</b> and are
-    interested to <b>close the gap to drugs</b> that might yield therapeutic effects, then you should consider giving
-    <b><i>drugst.one</i></b> a try.
-    This project is still under development so bugs or other issues might occur, but together with you we hope to get
-    rid of all
-    of those and to further improve the <i><b>drugst.one</b></i> plugin (link contact?).
-</p-card>
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="What Data does drugst.one use?">
-    Detailed information about the data sources will be added in the future.<br>
-    With the node checker below you can check for  availability of specific protein/gene entries:
-    <ng-template pTemplate="footer">
-        <div style="display: flex">
-            <div style="justify-content: flex-start">
-                <app-dropdown [items]="sourceDBList" label="Node ID" tooltip="Select the node id source you use for your gene/protein labels. Other sources may be added upon request." [model]="sourceDB"
-                              (onChange)="sourceDB=$event"></app-dropdown>
-                <app-textinput label="Check you node ID" tooltip="Enter the specific node ID you want to check. Currently it is still case sensitive: Symbold & Ensemble -> all letters uppercase."
-                               (onChange)="checkAvailability(sourceDB, $event)"></app-textinput>
-            </div>
-            <div style="width: 50%; justify-content: flex-end; margin-left: auto; margin-right: 10%">
-                <div *ngIf="getElement(availability,'netexId')!=null">
-                    <p-table [value]="availability | keyvalue">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>ID</th>
-                                <th>VALUE</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-entry>
-                            <tr>
-                                <td>{{entry.key}}</td>
-                                <td>{{entry.value}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-                <div *ngIf="getElement(availability,'netexId')==null && getElement(availability,'id')!=null" style="padding-top: 50px;">
-                    <i>Your gene could not be found in our database!</i>
-                </div>
-            </div>
+<div style="width: 100%;">
+    <div style="display:flex;width:100%;justify-content: center; margin-left: auto; ">
+        <h2 style="font-size:6rem">Drugst.one</h2>
+    </div>
+    <div style="display:flex; width: 100%; justify-content:center; margin-left: auto">
+            <iframe width="360" height="240" src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        <iframe width="360" height="240" src="https://www.youtube.com/embed/oznr-1-poSU"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        <iframe width="360" height="240" src="https://www.youtube.com/embed/NpEaa2P7qZI"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+    <div style="display:flex; width: 100%; justify-content:center; margin-left: auto; margin-top:16px">
+        <p-button label="Integrate drugst.one" icon="pi pi-fw pi-th-large" (onClick)="switchTab(2)"></p-button>
+        <span style="margin:16px"></span>
+        <p-button label="Use drugst.one online" icon="pi pi-fw pi-send" (onClick)="switchTab(5)"></p-button>
+    </div>
+    <div style="display:flex; width: 100%; justify-content:center; margin-left: auto; margin-top:16px">
+        <h2 style="font-size: 28px">Such good</h2>
+    </div>
+    <div style="display:flex; width: 100%; justify-content:center; margin-left: auto; margin-top:16px">
+        <h2 style="font-size: 28px">Much nodes</h2>
+    </div>
 
-        </div>
-    </ng-template>
-</p-card>
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="Use drugst.one!">
-    The integration of <b><i>drugst.one</i></b> into any existing website is straight forward and was successfully <b>tested</b>
-    for some
-    <b>popular frameworks</b> already (e.g. <b>Vue-js</b>, <b></b>AngularJS). The main idea is that you only have to
-    import our js component
-    and stylesheet. After that the <code>{{"<"}}network-extender{{">"}}</code> tag is available in your project. Through parameters the
-    <b>content, style and behaviour</b> of this component <b>can be adjusted</b> and is even able to adjust <b>dynamically</b>
-    to
-    configuration changes. <br>
-    To get the information needed to integrate <b><i>drugst.one</i></b> yourself, please refer to the <b>Set Up</b> page.
-    <ng-template pTemplate="footer">
-        <p-button type="button" label="Set Up" icon="fas fa-angle-right" iconPos="right"
-                  (onClick)="tabChange(1)"></p-button>
-    </ng-template>
-
-</p-card>
-
+</div>
