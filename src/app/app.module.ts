@@ -57,6 +57,12 @@ import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome
 import {faAngular, faReact, faVuejs} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {StylepanelComponent} from './components/playground/stylepanel/stylepanel.component';
+import {SidebarModule} from "primeng/sidebar";
+import {BreadcrumbModule} from "primeng/breadcrumb";
+import { DocNavbarComponent } from './pages/doc/elements/doc-navbar/doc-navbar.component';
+import {MenuModule} from "primeng/menu";
+import {PanelMenuModule} from "primeng/panelmenu";
+import { DocPageComponent } from './components/documentation/doc-page/doc-page.component';
 
 
 @NgModule({
@@ -80,7 +86,9 @@ import {StylepanelComponent} from './components/playground/stylepanel/stylepanel
         ColorpickerComponent,
         DropdownComponent,
         RangeComponent,
-        StylepanelComponent
+        StylepanelComponent,
+        DocNavbarComponent,
+        DocPageComponent
     ],
     imports: [
         BrowserModule,
@@ -108,6 +116,10 @@ import {StylepanelComponent} from './components/playground/stylepanel/stylepanel
         InputTextareaModule,
         TableModule,
         FontAwesomeModule,
+        SidebarModule,
+        BreadcrumbModule,
+        MenuModule,
+        PanelMenuModule,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
