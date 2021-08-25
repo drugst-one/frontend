@@ -59,5 +59,8 @@
     "color": "#2b3d57",
     "tooltip": "This color defines the secondary panel color, used for example as background color for boxes on side panels. ",
     "label": "Secondary-Panel"
+  },
+  "--drgstn-height": {
+    "value": "600px"
   }
 }

@@ -36,7 +36,7 @@ export class DocComponent implements OnInit {
             ]
         },
         {id: 'customize',
-            label: "Customize drusgt.one", command: () => this.navigationEvent([3]),
+            label: "Customize drugst.one", command: () => this.navigationEvent([3]),
             items: [
                 {id: "cust-config", label: "General configuration", command: () => this.navigationEvent([3, 0])},
                 {id: "cust-network", label: "Network", command: () => this.navigationEvent([3, 1])},

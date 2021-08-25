@@ -5,7 +5,7 @@
     <div class="column" style="width: min(85%,calc(100% - 200px))">
         <p-breadcrumb [model]="path" [home]="home" (onItemClick)="breadcrumbsEvent($event)"></p-breadcrumb>
         <div id="page-container"
-             [style]='{height: "80vh", maxHeight: "800px",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
+             [style]='{height: "calc(80vh-60px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
             <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">
                 <div class="doc-entries">
                     TODO: Overview
