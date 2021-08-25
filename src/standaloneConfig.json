@@ -1,0 +1,27 @@
+{
+  "nodeGroups": {
+    "gene": {
+      "type": "gene",
+      "color": "#4da300",
+      "font": {
+        "color": "#f0f0f0"
+      },
+      "groupName": "Gene",
+      "shape": "circle"
+    }
+  },
+  "edgeGroups": {
+    "ggi": {
+      "color": "#ffffff",
+      "groupName": "Interaction",
+      "dashes": [
+        3,
+        2
+      ]
+    }
+  },
+  "identifier": "symbol",
+  "title": "Standalone drugst.one plugin",
+  "nodeShadow": true,
+  "edgeShadow": true
+}

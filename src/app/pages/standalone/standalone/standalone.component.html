@@ -1,1 +1,44 @@
-<p>standalone works!</p>
+<app-drugstonepanel [config]="config" [network]="network" [theme]="theme"></app-drugstonepanel>
+<div style="display: flex">
+    <div style="width: 48vw">
+        <app-panel title="Node Import" headerIcon="far fa-list-alt">
+            <div class="p-content" style="height: 350px; width: 100%;">
+                <div style="height: 100%">
+                <textarea pInputTextarea style="height: 80%; width: 100%;" [(ngModel)]="rawNodes"
+                          placeholder="Enter a list of node ids separated by: tab, newline, comma, semicolon or space! E.g.:  PTEN, TP53 "
+                          [autoResize]="false"></textarea>
+                    <div style="display: flex; justify-content: center; margin-left: auto; margin-right: auto;">
+                        <div style="padding: 35px 5px 5px 12px">
+                            <p-button label="Load Nodes"
+                                      icon="fas fa-long-arrow-alt-right"
+                                      styleClass="p-button-sm p-button-primary"
+                                      (onClick)="setNodes()"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-panel>
+    </div>
+    <div style="width: 48vw">
+        <app-panel title="Edge Import" headerIcon="far fa-list-alt">
+            <div class="p-content" style="height: 350px; width: 100%;">
+                <div style="height: 100%">
+                <textarea pInputTextarea style="height: 80%; width: 100%;" [(ngModel)]="rawEdges"
+                          placeholder="Enter a list of node ids separated by: tab, newline, comma, semicolon or space! E.g.:  PTEN, TP53 "
+                          [autoResize]="false"></textarea>
+                    <div style="display: flex; justify-content: center; margin-left: auto; margin-right: auto;">
+                        <div style="padding: 35px 5px 5px 12px">
+                            <p-button label="Load Edges"
+                                      icon="fas fa-long-arrow-alt-right"
+                                      styleClass="p-button-sm p-button-primary"
+                                      (onClick)="setEdges()"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </app-panel>
+    </div>
+</div>
+
+
+
