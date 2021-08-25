@@ -43,7 +43,7 @@
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[2].items" [entry]="topic"
-                                     [divider]="topic.id!=='ui-analysis'" >
+                                     [divider]="topic.id!=='ui-analysis'">
                         <div class="content">
                             <div *ngIf="topic.id==='ui-network'">
                                 TODO: UI / Network
@@ -86,7 +86,72 @@
                                 TODO: Customize / Style
                             </div>
                             <div *ngIf="topic.id==='cust-events'">
-                                TODO: Customize / Events
+                                For now we cases of information flow from the host page to the drugstone component
+                                (<code>{{"<"}}network-expander{{">"}}</code>).<br>
+                                To communicate some infomration from drugstone to your host page, if requested, we emit
+                                events that can be listened to. This is generally achieved by adding an
+                                <i>EventListener</i> to the component:
+                                <app-code lang="js"
+                                          code='document.getElementById("drugstone-component-id").addEventListener("$eventName",(event)=>{console.log(event.detail)})'>
+                                </app-code>
+                                We select the component by its id (here 'drugstone-component-id') and add the necessary
+                                <i>EventListener</i> where "$eventName" has to be replaced with one of the events
+                                specified below. In this example we just want the received content to be printed into
+                                the browsers console, but this call may be replaced by any custom code, handling the
+                                event data.<br>
+                                In the following the specific events will be covered, including the necessary eventName
+                                to listen to, as well as how the result object is structured. Also some use-cases for
+                                the received object might be proposed here.
+                                <p-divider [style]="{marginLeft:'35%', marginRight:'35%', width:'30%'}"
+                                           [align]="'center'"></p-divider>
+                                <div style="padding-left: 15px">
+                                    <div style="font-size: 15pt">Task creation ("taskEvent")</div>
+                                    Task IDs are emitted when algorithms are applied to subnetworks. This happens both
+                                    for module and drug analysis. These tasks are tracked internally but for general
+                                    result tracking reasons from a hosts perspective it can be necessary to acquire
+                                    them.
+                                    <app-code lang="js"
+                                              code='document.getElementById("drugstone-component-id").addEventListener("taskEvent,(event)=>{callback(event)})'>
+                                    </app-code>
+                                    The <i>event.detail</i> object, your callback function receives is structured like
+                                    follows:
+                                    <app-code [copy]="false" lang="json" code='{
+    "taskId": "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8",   // Unique taskID (token) assigned for this task, can be used to request the loading of this specific result
+    "algorithm": "multisteiner",                    // The algorithm that was applied on the selected seed nodes
+    "target": "drug-target",                        // The type of analysis this search had as goal
+    "params": {                                     // Input parameters of the algorithms
+        "seeds": ["p6321","p2956"],                 // The selected seed genes the algorithms starts with
+        "config": {...}                             // The general drugstone config that was loaded at the moment of execution
+        "input_network": {...},                     // The general drugstone network tat was loaded at the moment of execution to be later merged with the results
+        "ppi_dataset": "STRING",                    // The database for protein-protein interaction information
+        "pdi_dataset": "DrugBank",                  // The database for protein-drug targeting information
+        "target": "drug-target",                    // The type of analysis this search has as goal
+        "num_trees": 5,                             // Specific multisteiner algorithms parameters
+        "tolerance": 10,                            // Specific multisteiner algorithms parameters
+        "ignore_non_seed_baits": false,             // Specific multisteiner algorithms parameters
+        "hub_penalty": 0                            // Specific multisteiner algorithms parameters
+    }
+}'></app-code>
+                                    The <b><i>taskId</i></b> can be used to tell drugstone programmatically to load a
+                                    specific result. For this similar to the <i>id</i>, <i>config</i> or <i>network</i>
+                                    attributes an additional one (<i>task-id</i>) can be set. It accepts the id of a
+                                    successfully finished task. Example where the taskId from the received object is
+                                    set is shown below:
+                                    <app-code lang="js"
+                                              code='document.getElementById("drugstone-component-id").setAttribute("task-id", "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8")'></app-code>
+                                    or
+                                    <app-code lang="html" code="
+<network-expander
+        id='drugstone-component-id'
+        config='{...}'
+        network='{...}'
+        task-id='WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8'
+        >
+</network-expander>"></app-code>
+
+                                    TODO: additional info on how to get status of task using the token
+
+                                </div>
                             </div>
                         </div>
                     </app-doc-content>

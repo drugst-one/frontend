@@ -9,14 +9,13 @@ import theme from '../exampleTheme.json'
 })
 export class AppComponent {
   title = 'website';
-  public version = "0.8.1-rc3"
+  public version = "0.8.2-rc2"
   public theme = theme;
   public currentTabId :number;
 
   constructor() {
     this.currentTabId=0;
   }
-
 
   switchTab(tabId: number) {
     if (this.currentTabId !== tabId) {

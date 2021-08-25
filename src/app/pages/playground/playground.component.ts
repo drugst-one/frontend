@@ -21,7 +21,7 @@ export class PlaygroundComponent implements OnInit {
     }
     public blankEdgeGroup = {"groupName": "someName", "color": "#e900f5", "dashes": false}
     public network = network;
-    public id = "example-drugst.one"
+    public id = "drugstone-component-id"
     public code: string = "";
     public style: string = "";
 
