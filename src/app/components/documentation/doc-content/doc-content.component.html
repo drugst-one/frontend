@@ -1,0 +1,10 @@
+<div [id]="entry.id+'-content'">
+    <div class="p-panel-title" style="padding: 10px">
+        {{entry.label}}
+    </div>
+    <div style="padding: 15px">
+<!--        <ng-container [ngTemplateOutlet]="content.templateRef"></ng-container>-->
+        <ng-content select=".content"></ng-content>
+    </div>
+    <p-divider *ngIf="divider"></p-divider>
+</div>

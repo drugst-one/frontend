@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-doc-page',
@@ -8,9 +7,10 @@ import {MenuItem} from "primeng/api";
 })
 export class DocPageComponent implements OnInit {
 
-  @Input() id: number = 0
+  @Input() pageId: number = 0
   @Input() currentPage : number = 0
   @Input() navTree : any = {}
+  id: String = ""
 
   public title = ""
 
@@ -18,9 +18,9 @@ export class DocPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.navTree= this.navTree[this.id]
-    console.log(this.navTree)
+    this.navTree= this.navTree[this.pageId]
     this.title = this.navTree.label
+    this.id = this.navTree.id
 
 
   }

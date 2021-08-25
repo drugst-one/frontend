@@ -1,21 +1,10 @@
-<p-panel [collapsed]="false" *ngIf="currentPage===id">
+<p-panel [collapsed]="false" *ngIf="currentPage===pageId">
     <ng-template pTemplate="header">
         <div class="p-panel-title">
            {{title}}
         </div>
     </ng-template>
-    <div *ngFor="let topic of navTree.items">
-        <div class="p-panel-title" [attr.id]="topic.id">
-            {{topic.label}}
-        </div>
-        <div style="margin:15px" *ngIf="topic.id==='events'">
-            <ng-content select="#content-events"></ng-content>
-        </div>
-        <div style="margin:15px" *ngIf="topic.id==='options'">
-            <ng-content select="#content-options"></ng-content>
-        </div>
-        <p-divider></p-divider>
-    </div>
-
-
+   <div>
+       <ng-content select=".doc-entries"></ng-content>
+   </div>
 </p-panel>

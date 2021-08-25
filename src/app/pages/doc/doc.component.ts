@@ -14,30 +14,46 @@ export class DocComponent implements OnInit {
     public page = 0
     public home = {icon: 'pi pi-home'};
     navTree: MenuItem[] = [
-        {id: "home", label: "Home", command: () => this.navigationEvent([0])},
+        {id: "home", label: "Overview", command: () => this.navigationEvent([0])},
         {
             id: "start",
             label: "Get Started", command: () => this.navigationEvent([1]),
             items: [
-                {id: 'need', label: "Do I need Drugstone?!", command: () => this.navigationEvent([1, 0])}
+                {id: 'basics', label: "Basic Integration", command: () => this.navigationEvent([1, 0])},
+                {id: 'angular', label: "Angular JS setup", command: () => this.navigationEvent([1, 1])},
+                {id: 'vuejs', label: "Vue.js setup", command: () => this.navigationEvent([1, 2])},
+                {id: 'rshiny', label: "R-Shiny setup", command: () => this.navigationEvent([1, 3])}
             ]
         }, {
-            id: 'integrate',
-            label: "How to integrate Drugstone?", command: () => this.navigationEvent([2]),
+            id: 'ui',
+            label: "The drugst.one UI", command: () => this.navigationEvent([2]),
             items: [
-                {id: "component", label: "Adding the web-component", command: () => this.navigationEvent([2, 0])},
-                {id: "version", label: "Version Selection", command: () => this.navigationEvent([2, 1])},
-                {id: "options", label: "Options", command: () => this.navigationEvent([2, 2])},
-                {id: "network", label: "Network", command: () => this.navigationEvent([2, 3])},
-                {id: "events", label: "Events", command: () => this.navigationEvent([2, 4])},
+                {id: "ui-network", label: "Network", command: () => this.navigationEvent([2, 0])},
+                {id: "ui-panels", label: "Panels", command: () => this.navigationEvent([2, 1])},
+                {id: "ui-footer", label: "Footer Bar", command: () => this.navigationEvent([2, 2])},
+                {id: "ui-tasks", label: "Task Execution", command: () => this.navigationEvent([2, 3])},
+                {id: "ui-analysis", label: "Analysis window", command: () => this.navigationEvent([2, 4])},
+            ]
+        },
+        {id: 'customize',
+            label: "Customize drusgt.one", command: () => this.navigationEvent([3]),
+            items: [
+                {id: "cust-config", label: "General configuration", command: () => this.navigationEvent([3, 0])},
+                {id: "cust-network", label: "Network", command: () => this.navigationEvent([3, 1])},
+                {id: "cust-version", label: "Version Selection", command: () => this.navigationEvent([3, 2])},
+                {id: "cust-style", label: "Style adjustments", command: () => this.navigationEvent([3, 3])},
+                {id: "cust-events", label: "Events", command: () => this.navigationEvent([3, 4])},
             ]
         },
         {
-            id: "implementation", label: "Implementation Notes", command: () => this.navigationEvent([3]),
+            id: "implementation", label: "Implementation Details", command: () => this.navigationEvent([4]),
             items: [
-                {id: "databases", label: "Databases", command: () => this.navigationEvent([3, 0])},
+                {id: "data", label: "Datasources", command: () => this.navigationEvent([4, 0])},
+                {id: "vis", label: "Vis.js", command: () => this.navigationEvent([4, 1])},
+                {id: "algorithms", label: "Algorithms", command: () => this.navigationEvent([4, 2])},
             ]
-        }
+        },
+        { id:"faq", label:"FAQ", command:()=>this.navigationEvent([5])}
 
     ]
 
@@ -76,25 +92,21 @@ export class DocComponent implements OnInit {
     updateLocation(instant: boolean): void {
         if (!instant)
             setTimeout(()=>{
-                let el = document.getElementById(this.getAttribute(this.idPath, this.navTree, "id"))
-                this.scroll(el)
+                this.updateLocation(true)
             }, 200)
         else {
-            let el = document.getElementById(this.getAttribute(this.idPath, this.navTree, "id"))
-            this.scroll(el)
+            if(this.idPath.length===1)
+                this.scroll(0)
+            else
+            // @ts-ignore
+            this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id")+"-content").offsetTop-150)
         }
     }
 
-    scroll(el: HTMLElement | null) {
-        console.log("test")
-        if (el == null)
-            return
-        window.scrollTo({
-            top: el.getBoundingClientRect().x + el.getBoundingClientRect().top,
-            left: 0,
-            behavior: "smooth"
-        })
-
+    scroll(offset:number) {
+        const panel = document.getElementById("page-container")
+        // @ts-ignore
+        panel.scrollTop = offset
     }
 
     getAttribute(path: number[], tree: Object[], attribute: String): string {

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Directive, TemplateRef} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
 
@@ -14,7 +14,7 @@ export class AppComponent {
   public currentTabId :number;
 
   constructor() {
-    this.currentTabId=3;
+    this.currentTabId=0;
   }
 
 
