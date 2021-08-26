@@ -13,6 +13,7 @@ export class DocComponent implements OnInit {
     public idPath = [0]
     public path = []
     public page = 0
+    public idMap = {}
     public home = {icon: 'pi pi-home'};
     navTree: MenuItem[] = [
         {id: "home", label: "Overview", command: () => this.navigationEvent([0])},
@@ -64,6 +65,7 @@ export class DocComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.createIdMap([],this.navTree)
     }
 
     reset(): void {
@@ -139,5 +141,21 @@ export class DocComponent implements OnInit {
     navigationBarEvent($event: any) {
         this.navTree[this.page]
         $event.item.id
+    }
+
+    createIdMap(currentIds:number[], tree:MenuItem[]):void{
+        for(let id = 0; id<tree.length;id++){
+            let subTree = tree[id]
+            let ids = currentIds.concat(id)
+            // @ts-ignore
+            this.idMap[subTree.id]=ids
+            if(subTree.items !=null)
+                this.createIdMap(ids,subTree.items)
+        }
+    }
+
+    navigateToId(id: string) {
+        // @ts-ignore
+        this.navigationEvent(this.idMap[id]);
     }
 }

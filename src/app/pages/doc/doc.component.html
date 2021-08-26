@@ -14,7 +14,7 @@
             <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">
                 <div class="doc-entries">
                     <div>
-                        <app-start></app-start>
+                        <app-start (navigate)="navigateToId($event)"></app-start>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"
