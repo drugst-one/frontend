@@ -8,7 +8,7 @@
              [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
             <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">
                 <div class="doc-entries">
-                    <app-overview></app-overview>
+                    <app-overview (navigate)="navigateToId($event)"></app-overview>
                 </div>
             </app-doc-page>
             <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">
