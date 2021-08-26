@@ -10,6 +10,7 @@ import theme from '../exampleTheme.json'
 export class AppComponent {
   title = 'website';
   public version = "0.8.2-rc3"
+  public backendPath = "http://ml-s-zbhdock1.ad.uni-hamburg.de/drugstone_api/"
   public theme = theme;
   public currentTabId :number;
 

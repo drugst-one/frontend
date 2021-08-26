@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {Router} from "@angular/router";
 
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class DocComponent implements OnInit {
 
+    @Input() api = ""
     public idPath = [0]
     public path = []
     public page = 0

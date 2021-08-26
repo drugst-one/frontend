@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-cust-events',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cust-events.component.scss']
 })
 export class CustEventsComponent implements OnInit {
+
+  @Input() api = ""
 
   constructor() { }
 
