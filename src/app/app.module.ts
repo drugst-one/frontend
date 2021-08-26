@@ -66,6 +66,7 @@ import { DocPageComponent } from './components/documentation/doc-page/doc-page.c
 import { MotivationComponent } from './pages/motivation/motivation.component';
 import { StandaloneComponent } from './pages/standalone/standalone/standalone.component';
 import { DocContentComponent } from './components/documentation/doc-content/doc-content.component';
+import { CustConfigComponent } from './components/documentation/cust-config/cust-config.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { DocContentComponent } from './components/documentation/doc-content/doc-
         MotivationComponent,
         StandaloneComponent,
         DocContentComponent,
+        CustConfigComponent,
     ],
     imports: [
         BrowserModule,

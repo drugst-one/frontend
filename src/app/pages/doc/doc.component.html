@@ -67,7 +67,7 @@
             <app-doc-page [pageId]="3" [currentPage]="page" [navTree]="navTree" id="page3">
                 <div class="doc-entries">
                     <div>
-                        TODO: Customize
+                        Drugs.One was developed to be an easy to use plug-in for any kind of website. It comes with a default configuration and works out of the box so that it can be integrated without specific web development knowledge. However, we wanted Drugst.One to be fully flexible in order to fit to any kind of web design and use case. Therefore, it offers a multitude of customization options to the user regarding the functionality of the tool as well as the styling. Most of these configuration options can be set via the <a href=“”>Drugst.One playground</a> and can simply get copy and pasted from there.
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[3].items" [entry]="topic"
@@ -77,7 +77,7 @@
                                 TODO: Customize / Network
                             </div>
                             <div *ngIf="topic.id==='cust-config'">
-                                TODO: Customize / Config
+                                <app-cust-config></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
                                 TODO: Customize / Version
@@ -88,7 +88,7 @@
                             <div *ngIf="topic.id==='cust-events'">
                                 For now we cases of information flow from the host page to the drugstone component
                                 (<code>{{"<"}}network-expander{{">"}}</code>).<br>
-                                To communicate some infomration from drugstone to your host page, if requested, we emit
+                                To communicate some information from drugstone to your host page, if requested, we emit
                                 events that can be listened to. This is generally achieved by adding an
                                 <i>EventListener</i> to the component:
                                 <app-code lang="js"
