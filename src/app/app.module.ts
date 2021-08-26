@@ -43,6 +43,8 @@ import {RangeComponent} from './components/playground/sidebar/range/range.compon
 import {HttpClientModule} from "@angular/common/http";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TableModule} from "primeng/table";
+import {TabViewModule} from 'primeng/tabview';
+
 
 import fontawesome from '@fortawesome/fontawesome';
 import {
@@ -67,7 +69,6 @@ import { MotivationComponent } from './pages/motivation/motivation.component';
 import { StandaloneComponent } from './pages/standalone/standalone/standalone.component';
 import { DocContentComponent } from './components/documentation/doc-content/doc-content.component';
 
-import { CustConfigComponent } from './components/documentation/cust-config/cust-config.component';
 import { FaqComponent } from './pages/doc/content/faq/faq.component';
 import { OverviewComponent } from './pages/doc/content/overview/overview.component';
 import { StartComponent } from './pages/doc/content/start/start.component';
@@ -87,6 +88,7 @@ import { CustNetworkComponent } from './pages/doc/content/customize/cust-network
 import { CustVersionComponent } from './pages/doc/content/customize/cust-version/cust-version.component';
 import { CustStyleComponent } from './pages/doc/content/customize/cust-style/cust-style.component';
 import { CustEventsComponent } from './pages/doc/content/customize/cust-events/cust-events.component';
+import { CustConfigComponent } from './pages/doc/content/customize/cust-config/cust-config.component';
 import { ImplementationComponent } from './pages/doc/content/implementation/implementation.component';
 import { ImplDataComponent } from './pages/doc/content/implementation/impl-data/impl-data.component';
 import { ImplVisComponent } from './pages/doc/content/implementation/impl-vis/impl-vis.component';
@@ -137,10 +139,10 @@ import { ImplAlgorithmsComponent } from './pages/doc/content/implementation/impl
         UiAnalysisComponent,
         CustomizeComponent,
         CustNetworkComponent,
-        CustConfigComponent,
         CustVersionComponent,
         CustStyleComponent,
         CustEventsComponent,
+        CustConfigComponent,
         ImplementationComponent,
         ImplDataComponent,
         ImplVisComponent,
@@ -177,6 +179,7 @@ import { ImplAlgorithmsComponent } from './pages/doc/content/implementation/impl
         BreadcrumbModule,
         MenuModule,
         PanelMenuModule,
+        TabViewModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

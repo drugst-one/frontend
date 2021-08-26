@@ -1,1 +1,270 @@
-<p>cust-config works!</p>
+The general configuration allows you to fully customise the layout of the panels as well as the settings for the 
+functionalities like automatically adding network edges or the design of the network nodes. Below, we provide the 
+default configuration of Drugst.One, the settings when no argument is given for the specific parameters. Any of 
+these parameters can be overwritten by passing it to the ‘config’ parameter.
+
+<p-tabView>
+  <p-tabPanel header="Options" leftIcon="pi pi-fw pi-list">
+    <p-table [value]="config" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Parameter</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-entry>
+        <tr>
+          <td>{{ entry.name }}</td>
+          <td>{{ entry.type }}</td>
+          <td>{{ entry.default }}</td>
+          <td>{{ entry.description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-tabPanel>
+  <p-tabPanel header="Groups" leftIcon="pi pi-fw pi-sitemap">
+
+    <div>Groups</div>
+    Groups are templates for either edges ("edgeGroups") or nodes ("nodeGroups"). Drugst.One comes with some 
+    predefined groups, but you can overwrite any styles and define your own groups as you please. As we use Vis.js in Drugst.One, 
+    most of the Vis.js features are supported. 
+
+    <p-messages severity="info" text='"default" groups should just be used as falllbacks and do therefore not appear in the custom legend.'></p-messages>
+
+    <div>Node Groups</div>
+    Node groups define the style of the nodes assigned to them. You can define your own node groups with 
+    your custom styles. Later, you simply need to pass the group to the nodes in the "group" argument 
+    and the style will be applied. <br>
+    Drugst.One requires some default groups like a group for the found nodes in the target search 
+    ("foundNode") or a group for the found drugs in the drug search ("foundDrug"), thus the styles 
+    for these groups are predefined. The default groups defines the style of all nodes without a group. 
+    However, these styles may be partially or completely overwritten by you. <br>
+    <br>
+    A group can contain any of the <a target="_blank" href="https://visjs.github.io/vis-network/docs/network/nodes.html"> 
+    vis.js node options</a>, but must contain "groupName", "type", "shape" and "color".
+
+    <p-table [value]="requiredOptionsNodeGroup" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-entry>
+        <tr>
+          <td>{{ entry.name }}</td>
+          <td>{{ entry.type }}</td>
+          <td>{{ entry.default }}</td>
+          <td>{{ entry.description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    
+    
+    <ul>
+      <li>circle</li>
+      <li>triangle</li>
+      <li>square</li>
+      <li>image</li>
+      <li>text</li>
+      <li>ellipse</li>
+      <li>box</li>
+      <li>diamond</li>
+      <li>dot</li>
+      <li>star</li>
+    </ul>  
+
+    A minimal configuration of a node group could look like this:
+    <app-code [copy]="true" lang="json" code='{
+      groupName: "My Node Group",
+      color: "#FF0000",
+      shape: "diamond",
+      type: "One of my nodes"
+    }'></app-code>
+
+    <div>Default NodeGroups</div>
+    <p-table [value]="defaultNodeGroups" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Function</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-entry>
+        <tr>
+          <td>{{ entry.name }}</td>
+          <td>{{ entry.function }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <div>EdgeGroups</div>
+    The edge groups define the styles of the network nodes. Similar to "nodeGroups", you can define custom 
+    edge groups to design your edges. There is only one edge group predefined, the edge group "default".
+    An edge group must have at least the attributes "groupName" and "color". Optionally, attributes like "dashes" 
+    can be passed onto the group as they are defined in <a target="_blank" href="https://visjs.github.io/vis-network/docs/network/edges.html">vis.js</a>
+    
+    <p-table [value]="requiredOptionsEdgeGroup" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-entry>
+        <tr>
+          <td>{{ entry.name }}</td>
+          <td>{{ entry.type }}</td>
+          <td>{{ entry.default }}</td>
+          <td>{{ entry.description }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    A minimal configuration of an edge group could look like this:
+    <app-code [copy]="true" lang="json" code='{
+      groupName: "My Edge Group",
+      color: "#000000",
+    }'></app-code>
+    
+  </p-tabPanel>
+  <p-tabPanel header="Raw JSON" leftIcon="pi pi-fw pi-clone">
+    <app-code [copy]="true" lang="json" code='{
+      title: "Drugst.One",
+      legendUrl: "",
+      legendClass: "legend",
+      legendPos: "left",
+      taskName: "Drug Search",
+      showLegendNodes: true,
+      showLegendEdges: true,
+      showLeftSidebar: true,
+      showRightSidebar: true,
+      showOverview: true,
+      showQuery: true,
+      showItemSelector: true,
+      showSimpleAnalysis: false,
+      showAdvAnalysis: true,
+      showSelection: true,
+      showTasks: true,
+      showFooter: true,
+      showLegend: true,
+      showFooterButtonExpression: true,
+      showFooterButtonScreenshot: true,
+      showFooterButtonExportGraphml: true,
+      identifier: "symbol",
+      interactionDrugProtein: "DrugBank",
+      interactionProteinProtein: "STRING",
+      nodeShadow: true,
+      edgeShadow: true,
+      autofillEdges: true,
+      nodeGroups: {
+        default: {
+          groupName: "Default Node Group",
+          color: {
+            border: "#FFFF00",
+            background: "#FFFF00",
+            highlight: {
+              border: "#FF0000",
+              background: "#FF0000"
+            },
+          },
+          shape: "triangle",
+          type: "default type",
+          detailShowLabel: false,
+          font: {
+            color: "#000000",
+            size: 14,
+            face: "arial",
+            background: undefined,
+            strokeWidth: 0,
+            strokeColor: "#ffffff",
+            align: "center",
+            bold: false,
+            ital: false,
+            boldital: false,
+            mono: false,
+          },
+          borderWidth: 1,
+          borderWidthSelected: 2
+        },
+        foundNode: {
+          groupName: "Found Nodes",
+          color: {
+            border: "#F12590",
+            background: "#F12590",
+            highlight: {
+              border: "#F12590",
+              background: "#F12590"
+            },
+          },
+          shape: "circle",
+          type: "default node type",
+        },
+        foundDrug: {
+          groupName: "Drugs",
+          color: {
+            border: "#F12590",
+            background: "#F12590",
+            highlight: {
+              border: "#F12590",
+              background: "#F12590"
+            },
+          },
+          shape: "diamond",
+          type: "default drug type",
+        },
+        seedNode: {
+          groupName: "Seed Nodes",
+          shape: "triangle",
+          type: "seed",
+          color: {
+            border: "#F1111D",
+            background: "#F1111D",
+            highlight: {
+              border: "#F1111D",
+              background: "#F1111D"
+            },
+          },
+          font: {
+            color: "#F1111D",
+            size: 14
+          }
+        },
+        selectedNode: {
+          borderWidth: 3,
+          borderWidthSelected: 4,
+          color: {
+            border: "#F8981D",
+            highlight: {
+              border: "#F8981D",
+            },
+          },
+          font: {
+            color: "#F8981D",
+            size: 14
+          }
+        }
+      },
+      edgeGroups: {
+        default: {
+          groupName: "Default Edge Group",
+          color: "black",
+          dashes: false
+        }
+      },
+    }'></app-code>
+  </p-tabPanel>
+</p-tabView>
+
+<h2>NodeGroups</h2>
+
+
+<h2>EdgeGroups</h2>
+
+
