@@ -104,6 +104,7 @@ export class DocComponent implements OnInit {
     }
 
     scroll(offset:number) {
+        console.log(offset)
         const panel = document.getElementById("page-container")
         // @ts-ignore
         panel.scrollTop = offset
