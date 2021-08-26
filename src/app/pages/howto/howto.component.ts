@@ -9,6 +9,7 @@ import {AppComponent} from "../../app.component";
 export class HowtoComponent implements OnInit {
     @Input() public version = ""
     @Input() public theme = {}
+    @Input() public serverVersion = ""
     @Output() tabChangeEvent = new EventEmitter<number>();
     public general = {
         plugin: "",
@@ -38,8 +39,8 @@ export class HowtoComponent implements OnInit {
     ngOnInit(): void {
         this.general.plugin = "" +
             "<head>\n" +
-            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/uhh/drugsTone.js\"></script>\n" +
-            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/uhh/styles.css\">\n" +
+            "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/"+this.serverVersion+"/drugsTone.js\"></script>\n" +
+            "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/"+this.serverVersion+"/styles.css\">\n" +
             "</head>\n\n";
         this.general.body = "" +
             "<body>\n" +

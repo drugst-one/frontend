@@ -14,17 +14,17 @@
             <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">
                 <div class="doc-entries">
                     <div>
-                        <app-start></app-start>
+                        <app-start (navigate)="navigateToId($event)"></app-start>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"
                                      [divider]="topic.id!=='other'">
                         <div class="content">
                             <div *ngIf="topic.id==='basics'">
-                                <app-basics></app-basics>
+                                <app-basics [server]="serverVersion" [version]="version" (navigate)="navigateToId($event)"></app-basics>
                             </div>
-                            <div *ngIf="topic.id==='angular'">
-                                <app-angular></app-angular>
+                            <div *ngIf="topic.id==='angular'" >
+                                <app-angular (navigate)="navigateToId($event)"></app-angular>
                             </div>
                             <div *ngIf="topic.id==='vuejs'">
                                <app-vuejs></app-vuejs>
@@ -80,7 +80,7 @@
                                 <app-cust-network></app-cust-network>
                             </div>
                             <div *ngIf="topic.id==='cust-config'">
-                                <app-cust-config></app-cust-config>
+                                <app-cust-config (navigate)="navigateToId($event)"></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
                                 <app-cust-version></app-cust-version>
@@ -89,7 +89,7 @@
                                 <app-cust-style></app-cust-style>
                             </div>
                             <div *ngIf="topic.id==='cust-events'">
-                                <app-cust-events></app-cust-events>
+                                <app-cust-events [api]="api"></app-cust-events>
 
                             </div>
                         </div>

@@ -83,5 +83,6 @@
   "identifier": "symbol",
   "title": "Breast cancer example network",
   "nodeShadow": true,
-  "edgeShadow": false
+  "edgeShadow": false,
+  "autofillEdges": false
 }

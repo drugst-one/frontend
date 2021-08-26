@@ -53,7 +53,8 @@ import {
     faChevronUp,
     faCode,
     faExclamationTriangle,
-    faLongArrowAltRight
+    faLongArrowAltRight,
+    faCogs
 } from '@fortawesome/free-solid-svg-icons';
 import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
 import {faAngular, faReact, faVuejs} from '@fortawesome/free-brands-svg-icons';
@@ -68,6 +69,7 @@ import { DocPageComponent } from './components/documentation/doc-page/doc-page.c
 import { MotivationComponent } from './pages/motivation/motivation.component';
 import { StandaloneComponent } from './pages/standalone/standalone/standalone.component';
 import { DocContentComponent } from './components/documentation/doc-content/doc-content.component';
+import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
 
 import { FaqComponent } from './pages/doc/content/faq/faq.component';
 import { OverviewComponent } from './pages/doc/content/overview/overview.component';
@@ -147,6 +149,7 @@ import { ImplAlgorithmsComponent } from './pages/doc/content/implementation/impl
         ImplDataComponent,
         ImplVisComponent,
         ImplAlgorithmsComponent,
+        DocSubheaderComponent,
 
     ],
     imports: [
@@ -187,6 +190,6 @@ import { ImplAlgorithmsComponent } from './pages/doc/content/implementation/impl
 export class AppModule {
     constructor() {
         // @ts-ignore
-        fontawesome.library.add(faClipboard,faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
+        fontawesome.library.add(faCogs,faClipboard,faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
     }
 }

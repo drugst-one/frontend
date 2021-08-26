@@ -8,6 +8,7 @@ import {Node} from "../../../interfaces"
 })
 export class MotivationComponent implements OnInit {
   @Output() tabChangeEvent = new EventEmitter<number>();
+  @Input() api = ""
   sourceDBList = [{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}];
   sourceDB = 'symbol'
   availability:object = {}
@@ -22,7 +23,7 @@ export class MotivationComponent implements OnInit {
   }
 
   checkAvailability(sourceDB: string, $event: string) {
-      this.netex.mapNodes([({id:$event} as Node)],sourceDB).then(response=>{
+      this.netex.mapNodes(this.api,[({id:$event} as Node)],sourceDB).then(response=>{
         this.availability = response[0]
         console.log(this.availability)
       })

@@ -23,6 +23,21 @@ export class StandaloneComponent implements OnInit {
     public group = "gene"
     private delimList = ["\t", "\n", ",", ";", " "]
 
+    public dataLists = {
+        identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
+            label: 'Ensemble',
+            value: 'ensg'
+        }],
+        drugProtInterList: [{label: 'DrugBank', value: 'DrugBank'}, {label: 'ChEMBL', value: 'ChEMBL'}, {
+            label: 'DGIdb',
+            value: 'DGIdb'
+        }],
+        protProtInterList: [{label: 'STRING', value: 'STRING'}, {label: 'BioGRID', value: 'BioGRID'}, {
+            label: 'APID',
+            value: 'APID'
+        }],
+    }
+
     constructor() {
     }
 
@@ -53,6 +68,26 @@ export class StandaloneComponent implements OnInit {
     setEdges(): void {
         console.log("not implemented yet")
     }
+    getConfig(param: string) {
+        // @ts-ignore
+        return this.config[param]
+    }
+
+    changeConfig(name: string, value: any) {
+        let change = {}
+        // @ts-ignore
+        change[name] = value;
+        Object.keys(change).forEach(name => {
+            // @ts-ignore
+            if (change[name] != null)
+                // @ts-ignore
+                this.config[name] = change[name];
+            else
+                // @ts-ignore
+                delete this.config[name]
+        })
+    }
+
 
     countOccs(text: string, d: string) {
         return text.split(d).length;

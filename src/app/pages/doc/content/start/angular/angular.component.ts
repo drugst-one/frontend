@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-angular',
@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./angular.component.scss']
 })
 export class AngularComponent implements OnInit {
-
+  @Output() navigate = new EventEmitter<string>();
+  moduleCode = "@NgModule({\n" +
+      "   declarations: [],\n" +
+      "   imports: [],\n" +
+      "   bootstrap: [AppComponent],\n" +
+      "   schemas: [CUSTOM_ELEMENTS_SCHEMA],\n" +
+      "})"
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  navigateTo(id:string): void{
+    this.navigate.emit(id)
   }
 
 }

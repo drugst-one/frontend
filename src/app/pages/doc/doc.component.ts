@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {Router} from "@angular/router";
 
@@ -9,9 +9,13 @@ import {Router} from "@angular/router";
 })
 export class DocComponent implements OnInit {
 
+    @Input() api = ""
+    @Input() version = ""
+    @Input() serverVersion = ""
     public idPath = [0]
     public path = []
     public page = 0
+    public idMap = {}
     public home = {icon: 'pi pi-home'};
     navTree: MenuItem[] = [
         {id: "home", label: "Overview", command: () => this.navigationEvent([0])},
@@ -63,6 +67,7 @@ export class DocComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.createIdMap([],this.navTree)
     }
 
     reset(): void {
@@ -108,7 +113,8 @@ export class DocComponent implements OnInit {
         // @ts-ignore
         const panel = document.getElementById("page-container").children[0].children[0].children[0]
         // @ts-ignore
-        panel.scrollTop = offset
+        panel.scrollTo({top:offset, behavior:"smooth"})
+        // panel.scrollTop = offset
     }
 
     getAttribute(path: number[], tree: Object[], attribute: String): string {
@@ -138,5 +144,21 @@ export class DocComponent implements OnInit {
     navigationBarEvent($event: any) {
         this.navTree[this.page]
         $event.item.id
+    }
+
+    createIdMap(currentIds:number[], tree:MenuItem[]):void{
+        for(let id = 0; id<tree.length;id++){
+            let subTree = tree[id]
+            let ids = currentIds.concat(id)
+            // @ts-ignore
+            this.idMap[subTree.id]=ids
+            if(subTree.items !=null)
+                this.createIdMap(ids,subTree.items)
+        }
+    }
+
+    navigateToId(id: string) {
+        // @ts-ignore
+        this.navigationEvent(this.idMap[id]);
     }
 }

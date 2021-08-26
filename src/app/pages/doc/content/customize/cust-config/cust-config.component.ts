@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 interface Option {
   name: string;
@@ -20,6 +20,7 @@ interface NodeGroup {
 export class CustConfigComponent implements OnInit {
 
   constructor() { }
+  @Output() navigate = new EventEmitter<string>();
 
 
   public config: Option[] = [];
@@ -69,6 +70,22 @@ export class CustConfigComponent implements OnInit {
       {name: 'selectedNode', function: 'Style for the nodes that are selected by the user as seeds nodes.'},
     ]
 
+    this.requiredOptionsNodeGroup = [
+      {name: 'groupName', type: 'string', default: '', description: 'The name of the node group as it appears in the legend.'},
+      {name: 'type', type: 'string', default: '', description: 'The name of the type of node as it appears in the node detail panel.'},
+      {name: 'shape', type: 'string', default: '', description: 'The shape of all nodes belonging to this group. Can be one of "circle", "triangle", "star", "square", "image", "text", "ellipse", "box", "diamond", "dot".'},
+      {name: 'color', type: 'string | object', default: '', description: 'The color of nodes in this group. Can be either a color string (hexacode, rgb, rgba) or an object based on the Vis.js node color property.'},
+    ]
+
+    this.requiredOptionsEdgeGroup = [
+      {name: 'groupName', type: 'string', default: '', description: 'The name of the edge group as it appears in the legend.'},
+      {name: 'color', type: 'string | object', default: '', description: 'The color of edges in this group. Expects a color string (hexacode, rgb, rgba).'},
+    ]
+
+  }
+
+  navigateTo(id:string): void{
+    this.navigate.emit(id)
   }
 
 }
