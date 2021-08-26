@@ -22,7 +22,8 @@ export class DocComponent implements OnInit {
                 {id: 'basics', label: "Basic Integration", command: () => this.navigationEvent([1, 0])},
                 {id: 'angular', label: "Angular JS setup", command: () => this.navigationEvent([1, 1])},
                 {id: 'vuejs', label: "Vue.js setup", command: () => this.navigationEvent([1, 2])},
-                {id: 'rshiny', label: "R-Shiny setup", command: () => this.navigationEvent([1, 3])}
+                {id: 'rshiny', label: "R-Shiny setup", command: () => this.navigationEvent([1, 3])},
+                {id: 'other', label: "Other frameworks", command: () => this.navigationEvent([1, 4])}
             ]
         }, {
             id: 'ui',

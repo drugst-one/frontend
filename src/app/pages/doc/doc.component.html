@@ -8,29 +8,32 @@
              [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
             <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">
                 <div class="doc-entries">
-                    TODO: Overview
+                    <app-overview></app-overview>
                 </div>
             </app-doc-page>
             <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">
                 <div class="doc-entries">
                     <div>
-                        TODO: Get Started
+                        <app-start></app-start>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"
-                                     [divider]="topic.id!=='rshiny'">
+                                     [divider]="topic.id!=='other'">
                         <div class="content">
                             <div *ngIf="topic.id==='basics'">
-                                TODO: Get Started/ Basic Integration content
+                                <app-basics></app-basics>
                             </div>
                             <div *ngIf="topic.id==='angular'">
-                                TODO: Get Started/ Angular setup
+                                <app-angular></app-angular>
                             </div>
                             <div *ngIf="topic.id==='vuejs'">
-                                TODO: Get Started/ Vue.js setup
+                               <app-vuejs></app-vuejs>
                             </div>
                             <div *ngIf="topic.id==='rshiny'">
-                                TODO: Get Started/ R-Shiny setup
+                                <app-rshiny></app-rshiny>
+                            </div>
+                            <div *ngIf="topic.id==='other'">
+                                <app-other></app-other>
                             </div>
                         </div>
                     </app-doc-content>
@@ -39,26 +42,26 @@
             <app-doc-page [pageId]="2" [currentPage]="page" [navTree]="navTree" id="page2">
                 <div class="doc-entries">
                     <div>
-                        TODO: UI
+                       <app-ui></app-ui>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[2].items" [entry]="topic"
                                      [divider]="topic.id!=='ui-analysis'">
                         <div class="content">
                             <div *ngIf="topic.id==='ui-network'">
-                                TODO: UI / Network
+                                <app-ui-network></app-ui-network>
                             </div>
                             <div *ngIf="topic.id==='ui-panels'">
-                                TODO: UI / Panels
+                                <app-ui-panels></app-ui-panels>
                             </div>
                             <div *ngIf="topic.id==='ui-footer'">
-                                TODO: UI / Footer
+                                <app-ui-footer></app-ui-footer>
                             </div>
                             <div *ngIf="topic.id==='ui-tasks'">
-                                TODO: UI / Tasks
+                                <app-ui-tasks></app-ui-tasks>
                             </div>
                             <div *ngIf="topic.id==='ui-analysis'">
-                                TODO: UI / Analysis
+                                <app-ui-analysis></app-ui-analysis>
                             </div>
                         </div>
                     </app-doc-content>
@@ -67,91 +70,27 @@
             <app-doc-page [pageId]="3" [currentPage]="page" [navTree]="navTree" id="page3">
                 <div class="doc-entries">
                     <div>
-                        TODO: Customize
+                        <app-customize></app-customize>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[3].items" [entry]="topic"
                                      [divider]="topic.id!=='cust-events'">
                         <div class="content">
                             <div *ngIf="topic.id==='cust-network'">
-                                TODO: Customize / Network
+                                <app-cust-network></app-cust-network>
                             </div>
                             <div *ngIf="topic.id==='cust-config'">
-                                TODO: Customize / Config
+                                <app-cust-config></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
-                                TODO: Customize / Version
+                                <app-cust-version></app-cust-version>
                             </div>
                             <div *ngIf="topic.id==='cust-style'">
-                                TODO: Customize / Style
+                                <app-cust-style></app-cust-style>
                             </div>
                             <div *ngIf="topic.id==='cust-events'">
-                                For now we cases of information flow from the host page to the drugstone component
-                                (<code>{{"<"}}network-expander{{">"}}</code>).<br>
-                                To communicate some infomration from drugstone to your host page, if requested, we emit
-                                events that can be listened to. This is generally achieved by adding an
-                                <i>EventListener</i> to the component:
-                                <app-code lang="js"
-                                          code='document.getElementById("drugstone-component-id").addEventListener("$eventName",(event)=>{console.log(event.detail)})'>
-                                </app-code>
-                                We select the component by its id (here 'drugstone-component-id') and add the necessary
-                                <i>EventListener</i> where "$eventName" has to be replaced with one of the events
-                                specified below. In this example we just want the received content to be printed into
-                                the browsers console, but this call may be replaced by any custom code, handling the
-                                event data.<br>
-                                In the following the specific events will be covered, including the necessary eventName
-                                to listen to, as well as how the result object is structured. Also some use-cases for
-                                the received object might be proposed here.
-                                <p-divider [style]="{marginLeft:'35%', marginRight:'35%', width:'30%'}"
-                                           [align]="'center'"></p-divider>
-                                <div style="padding-left: 15px">
-                                    <div style="font-size: 15pt">Task creation ("taskEvent")</div>
-                                    Task IDs are emitted when algorithms are applied to subnetworks. This happens both
-                                    for module and drug analysis. These tasks are tracked internally but for general
-                                    result tracking reasons from a hosts perspective it can be necessary to acquire
-                                    them.
-                                    <app-code lang="js"
-                                              code='document.getElementById("drugstone-component-id").addEventListener("taskEvent,(event)=>{callback(event)})'>
-                                    </app-code>
-                                    The <i>event.detail</i> object, your callback function receives is structured like
-                                    follows:
-                                    <app-code [copy]="false" lang="json" code='{
-    "taskId": "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8",   // Unique taskID (token) assigned for this task, can be used to request the loading of this specific result
-    "algorithm": "multisteiner",                    // The algorithm that was applied on the selected seed nodes
-    "target": "drug-target",                        // The type of analysis this search had as goal
-    "params": {                                     // Input parameters of the algorithms
-        "seeds": ["p6321","p2956"],                 // The selected seed genes the algorithms starts with
-        "config": {...}                             // The general drugstone config that was loaded at the moment of execution
-        "input_network": {...},                     // The general drugstone network tat was loaded at the moment of execution to be later merged with the results
-        "ppi_dataset": "STRING",                    // The database for protein-protein interaction information
-        "pdi_dataset": "DrugBank",                  // The database for protein-drug targeting information
-        "target": "drug-target",                    // The type of analysis this search has as goal
-        "num_trees": 5,                             // Specific multisteiner algorithms parameters
-        "tolerance": 10,                            // Specific multisteiner algorithms parameters
-        "ignore_non_seed_baits": false,             // Specific multisteiner algorithms parameters
-        "hub_penalty": 0                            // Specific multisteiner algorithms parameters
-    }
-}'></app-code>
-                                    The <b><i>taskId</i></b> can be used to tell drugstone programmatically to load a
-                                    specific result. For this similar to the <i>id</i>, <i>config</i> or <i>network</i>
-                                    attributes an additional one (<i>task-id</i>) can be set. It accepts the id of a
-                                    successfully finished task. Example where the taskId from the received object is
-                                    set is shown below:
-                                    <app-code lang="js"
-                                              code='document.getElementById("drugstone-component-id").setAttribute("task-id", "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8")'></app-code>
-                                    or
-                                    <app-code lang="html" code="
-<network-expander
-        id='drugstone-component-id'
-        config='{...}'
-        network='{...}'
-        task-id='WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8'
-        >
-</network-expander>"></app-code>
+                                <app-cust-events></app-cust-events>
 
-                                    TODO: additional info on how to get status of task using the token
-
-                                </div>
                             </div>
                         </div>
                     </app-doc-content>
@@ -160,20 +99,20 @@
             <app-doc-page [pageId]="4" [currentPage]="page" [navTree]="navTree" id="page4">
                 <div class="doc-entries">
                     <div>
-                        TODO: Implementation Info
+                        <app-implementation></app-implementation>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[4].items" [entry]="topic"
                                      [divider]="topic.id!=='algorithms'">
                         <div class="content">
                             <div *ngIf="topic.id==='data'">
-                                TODO: Implementation Info / Data
+                                <app-impl-data></app-impl-data>
                             </div>
                             <div *ngIf="topic.id==='vis'">
-                                TODO: Implementation Info / Vis
+                                <app-impl-vis></app-impl-vis>
                             </div>
                             <div *ngIf="topic.id==='algorithms'">
-                                TODO: Implementation Info / Algorithms
+                                <app-impl-algorithms></app-impl-algorithms>
                             </div>
                         </div>
                     </app-doc-content>
@@ -181,7 +120,7 @@
             </app-doc-page>
             <app-doc-page [pageId]="5" [currentPage]="page" [navTree]="navTree" id="page5">
                 <div class="doc-entries">
-                    TODO FAQ
+                    <app-faq></app-faq>
                 </div>
             </app-doc-page>
         </p-scrollPanel>
