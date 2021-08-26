@@ -1,5 +1,5 @@
 <app-drugstonepanel [config]="config" [network]="network" [theme]="theme"></app-drugstonepanel>
-<div style="display: flex">
+<div style="display: flex; width: 91vw">
     <div style="width: 48vw">
         <app-panel title="Node Import" headerIcon="far fa-list-alt">
             <div class="p-content" style="height: 350px; width: 100%;">
@@ -38,6 +38,26 @@
             </div>
         </app-panel>
     </div>
+</div>
+<div style="width:91vw">
+    <app-panel title="Configuration" headerIcon="fas fa-cogs">
+        <div class="p-content">
+        <app-dropdown label="Node Source" [items]="dataLists.identifierList"
+                      tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
+                      [model]="getConfig('identifier')"
+                      (onChange)="changeConfig('identifier',$event)"></app-dropdown>
+        <app-dropdown label="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList"
+                      [model]="getConfig('interactionProteinProtein')"
+                      tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
+                      (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
+        <app-dropdown label="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList"
+                      [model]="getConfig('interactionDrugProtein')"
+                      tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
+                      (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
+
+        </div>
+    </app-panel>
+
 </div>
 
 

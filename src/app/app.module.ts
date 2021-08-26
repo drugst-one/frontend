@@ -51,7 +51,8 @@ import {
     faChevronUp,
     faCode,
     faExclamationTriangle,
-    faLongArrowAltRight
+    faLongArrowAltRight,
+    faCogs
 } from '@fortawesome/free-solid-svg-icons';
 import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
 import {faAngular, faReact, faVuejs} from '@fortawesome/free-brands-svg-icons';
@@ -181,6 +182,6 @@ import { ImplAlgorithmsComponent } from './pages/doc/content/implementation/impl
 export class AppModule {
     constructor() {
         // @ts-ignore
-        fontawesome.library.add(faClipboard,faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
+        fontawesome.library.add(faCogs,faClipboard,faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
     }
 }
