@@ -100,6 +100,7 @@ import {ImplementationComponent} from './pages/doc/content/implementation/implem
 import {ImplDataComponent} from './pages/doc/content/implementation/impl-data/impl-data.component';
 import {ImplVisComponent} from './pages/doc/content/implementation/impl-vis/impl-vis.component';
 import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-algorithms/impl-algorithms.component';
+import { DjangoComponent } from './pages/doc/content/start/django/django.component';
 
 
 @NgModule({
@@ -153,6 +154,7 @@ import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-a
         ImplDataComponent,
         ImplVisComponent,
         ImplAlgorithmsComponent,
+        DjangoComponent,
     ],
     imports: [
         BrowserModule,

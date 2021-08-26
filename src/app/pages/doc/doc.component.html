@@ -27,13 +27,16 @@
                                 <app-angular (navigate)="navigateToId($event)"></app-angular>
                             </div>
                             <div *ngIf="topic.id==='vuejs'">
-                               <app-vuejs></app-vuejs>
+                               <app-vuejs (navigate)="navigateToId($event)"></app-vuejs>
                             </div>
                             <div *ngIf="topic.id==='rshiny'">
                                 <app-rshiny></app-rshiny>
                             </div>
+                            <div *ngIf="topic.id==='django'">
+                                <app-django></app-django>
+                            </div>
                             <div *ngIf="topic.id==='other'">
-                                <app-other></app-other>
+                                <app-other (navigate)="navigateToId($event)"></app-other>
                             </div>
                         </div>
                     </app-doc-content>
