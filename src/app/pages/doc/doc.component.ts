@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 export class DocComponent implements OnInit {
 
     @Input() api = ""
+    @Input() version = ""
+    @Input() serverVersion = ""
     public idPath = [0]
     public path = []
     public page = 0
@@ -111,7 +113,8 @@ export class DocComponent implements OnInit {
         // @ts-ignore
         const panel = document.getElementById("page-container").children[0].children[0].children[0]
         // @ts-ignore
-        panel.scrollTop = offset
+        panel.scrollTo({top:offset, behavior:"smooth"})
+        // panel.scrollTop = offset
     }
 
     getAttribute(path: number[], tree: Object[], attribute: String): string {

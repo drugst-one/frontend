@@ -4,10 +4,10 @@
 <app-header #header style="position: fixed; width: 100%; z-index: 999" (tabChangeEvent)="switchTab($event);playground.fit()"></app-header>
 <div style="padding:75px; background-color: var(--surface-b)">
     <app-home [hidden]="currentTabId!==0" (tabChangeEvent)="switchTab($event); header.tabChange($event)"></app-home>
-    <app-motivation [hidden]="currentTabId!==1" [api]="backendPath" (tabChangeEvent)="switchTab($event); header.tabChange($event)"></app-motivation>
-    <app-howto [hidden]="currentTabId!==2" [version]="version" (tabChangeEvent)="switchTab($event);playground.fit(); header.tabChange($event)" [theme]="theme"></app-howto>
+    <app-motivation [hidden]="currentTabId!==1" [api]="backendPath" (tabChangeEvent)="switchTab($event); header.tabChange($event)" ></app-motivation>
+    <app-howto [hidden]="currentTabId!==2" [version]="version" (tabChangeEvent)="switchTab($event);playground.fit(); header.tabChange($event)" [theme]="theme" [serverVersion]="serverVersion"></app-howto>
     <app-playground #playground [hidden]="currentTabId!==3" [theme]="theme"></app-playground>
-    <app-doc [hidden]="currentTabId!==4" [api]="backendPath"></app-doc>
+    <app-doc [hidden]="currentTabId!==4" [api]="backendPath" [serverVersion]="serverVersion" [version]="version"></app-doc>
     <app-standalone [hidden]="currentTabId!==5"></app-standalone>
 </div>
 
