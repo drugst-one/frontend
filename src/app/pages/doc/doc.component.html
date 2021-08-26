@@ -83,7 +83,7 @@
                                 <app-cust-network></app-cust-network>
                             </div>
                             <div *ngIf="topic.id==='cust-config'">
-                                <app-cust-config></app-cust-config>
+                                <app-cust-config (navigate)="navigateToId($event)"></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
                                 <app-cust-version></app-cust-version>

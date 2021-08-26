@@ -43,6 +43,8 @@ import {RangeComponent} from './components/playground/sidebar/range/range.compon
 import {HttpClientModule} from "@angular/common/http";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {TableModule} from "primeng/table";
+import {TabViewModule} from 'primeng/tabview';
+
 
 import fontawesome from '@fortawesome/fontawesome';
 import {
@@ -100,7 +102,9 @@ import {ImplementationComponent} from './pages/doc/content/implementation/implem
 import {ImplDataComponent} from './pages/doc/content/implementation/impl-data/impl-data.component';
 import {ImplVisComponent} from './pages/doc/content/implementation/impl-vis/impl-vis.component';
 import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-algorithms/impl-algorithms.component';
+import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
 import { DjangoComponent } from './pages/doc/content/start/django/django.component';
+
 
 
 @NgModule({
@@ -146,14 +150,15 @@ import { DjangoComponent } from './pages/doc/content/start/django/django.compone
         UiAnalysisComponent,
         CustomizeComponent,
         CustNetworkComponent,
-        CustConfigComponent,
         CustVersionComponent,
         CustStyleComponent,
         CustEventsComponent,
+        CustConfigComponent,
         ImplementationComponent,
         ImplDataComponent,
         ImplVisComponent,
         ImplAlgorithmsComponent,
+        DocSubheaderComponent,
         DjangoComponent,
     ],
     imports: [
@@ -186,6 +191,7 @@ import { DjangoComponent } from './pages/doc/content/start/django/django.compone
         BreadcrumbModule,
         MenuModule,
         PanelMenuModule,
+        TabViewModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
