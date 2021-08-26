@@ -1,7 +1,7 @@
 <p-panel [collapsed]="false" *ngIf="currentPage===pageId">
     <ng-template pTemplate="header">
         <div class="p-panel-title">
-           {{title}}
+            <i *ngIf="navTree.icon!=null" [class]="navTree.icon" style="margin-right:10px"></i>{{title}}
         </div>
     </ng-template>
    <div style="text-align: justify">
