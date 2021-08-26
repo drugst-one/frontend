@@ -99,13 +99,13 @@ export class DocComponent implements OnInit {
                 this.scroll(0)
             else
             // @ts-ignore
-            this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id")+"-content").offsetTop-150)
+            this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id")+"-content").offsetTop)
         }
     }
 
     scroll(offset:number) {
-        console.log(offset)
-        const panel = document.getElementById("page-container")
+        // @ts-ignore
+        const panel = document.getElementById("page-container").children[0].children[0].children[0]
         // @ts-ignore
         panel.scrollTop = offset
     }

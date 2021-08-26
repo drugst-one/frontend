@@ -4,7 +4,7 @@
     </div>
     <div class="column" style="width: min(85%,calc(100% - 200px))">
         <p-breadcrumb [model]="path" [home]="home" (onItemClick)="breadcrumbsEvent($event)"></p-breadcrumb>
-        <div id="page-container"
+        <p-scrollPanel id="page-container"
              [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
             <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">
                 <div class="doc-entries">
@@ -184,6 +184,6 @@
                     TODO FAQ
                 </div>
             </app-doc-page>
-        </div>
+        </p-scrollPanel>
     </div>
 </div>
