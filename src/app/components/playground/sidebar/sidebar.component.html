@@ -3,7 +3,7 @@
         <p-accordionTab header="DATA">
             <p-fieldset [toggleable]="true" [collapsed]="false">
                 <ng-template pTemplate="header">
-                    Database selectionor
+                    Databases
                 </ng-template>
 
                 <app-dropdown label="Node Source" [items]="dataLists.identifierList"
@@ -20,6 +20,7 @@
                               (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
 
             </p-fieldset>
+            <app-switch label="Autofill interactions" [model]="getConfig('autofillEdges')" (onChange)="changeConfig('autofillEdges',$event)" tooltip="If enabled, adds automatically gene-gene interaction edges." ></app-switch>
         </p-accordionTab>
         <p-accordionTab header="CONFIGURATION">
             <p-fieldset [toggleable]="true" [collapsed]="false">
