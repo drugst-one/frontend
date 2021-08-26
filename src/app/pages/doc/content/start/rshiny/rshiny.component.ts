@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-rshiny',
@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rshiny.component.scss']
 })
 export class RshinyComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {

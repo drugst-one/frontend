@@ -23,42 +23,89 @@ export class DocComponent implements OnInit {
             id: "start",
             label: "Get Started", command: () => this.navigationEvent([1]),
             items: [
-                {id: 'basics', label: "Basic Integration", command: () => this.navigationEvent([1, 0])},
-                {id: 'angular', label: "Angular JS setup", command: () => this.navigationEvent([1, 1])},
-                {id: 'vuejs', label: "Vue.js setup", command: () => this.navigationEvent([1, 2])},
-                {id: 'rshiny', label: "R-Shiny setup", command: () => this.navigationEvent([1, 3])},
-                {id: 'other', label: "Other frameworks", command: () => this.navigationEvent([1, 4])}
+                {
+                    id: 'basics',
+                    icon: "fab fa-html5",
+                    label: "Basic Integration",
+                    command: () => this.navigationEvent([1, 0])
+                },
+                {
+                    id: 'angular',
+                    icon: "fab fa-angular",
+                    label: "AngularJS Setup",
+                    command: () => this.navigationEvent([1, 1])
+                },
+                {id: 'vuejs', icon: "fab fa-vuejs", label: "Vue.js Setup", command: () => this.navigationEvent([1, 2])},
+                {
+                    id: 'rshiny',
+                    icon: "fab fa-r-project",
+                    label: "R-Shiny Setup",
+                    command: () => this.navigationEvent([1, 3])
+                },
+                {
+                    id: 'django',
+                    icon: "fab fa-python",
+                    label: "Django Setup",
+                    command: () => this.navigationEvent([1, 4])
+                },
+                {
+                    id: 'other',
+                    icon: "fas fa-toolbox",
+                    label: "Other Frameworks",
+                    command: () => this.navigationEvent([1, 5])
+                }
             ]
         }, {
             id: 'ui',
-            label: "The drugst.one UI", command: () => this.navigationEvent([2]),
+            label: "The Drugst.One UI", command: () => this.navigationEvent([2]),
             items: [
-                {id: "ui-network", label: "Network", command: () => this.navigationEvent([2, 0])},
-                {id: "ui-panels", label: "Panels", command: () => this.navigationEvent([2, 1])},
-                {id: "ui-footer", label: "Footer Bar", command: () => this.navigationEvent([2, 2])},
-                {id: "ui-tasks", label: "Task Execution", command: () => this.navigationEvent([2, 3])},
-                {id: "ui-analysis", label: "Analysis window", command: () => this.navigationEvent([2, 4])},
+                {
+                    id: "ui-network",
+                    icon: "fas fa-project-diagram",
+                    label: "Network",
+                    command: () => this.navigationEvent([2, 0])
+                },
+                {id: "ui-panels", icon: "fas fa-columns", label: "Panels", command: () => this.navigationEvent([2, 1])},
+                {
+                    id: "ui-footer",
+                    icon: "fas fa-shoe-prints",
+                    label: "Footer Bar",
+                    command: () => this.navigationEvent([2, 2])
+                },
+                {
+                    id: "ui-tasks",
+                    icon: "fas fa-tasks",
+                    label: "Task Execution",
+                    command: () => this.navigationEvent([2, 3])
+                },
+                {
+                    id: "ui-analysis",
+                    icon: "fas fa-search",
+                    label: "Analysis Window",
+                    command: () => this.navigationEvent([2, 4])
+                },
             ]
         },
-        {id: 'customize',
-            label: "Customize drugst.one", command: () => this.navigationEvent([3]),
+        {
+            id: 'customize',
+            label: "Customize Drugst.One", command: () => this.navigationEvent([3]),
             items: [
-                {id: "cust-config", label: "General configuration", command: () => this.navigationEvent([3, 0])},
-                {id: "cust-network", label: "Network", command: () => this.navigationEvent([3, 1])},
-                {id: "cust-version", label: "Version Selection", command: () => this.navigationEvent([3, 2])},
-                {id: "cust-style", label: "Style adjustments", command: () => this.navigationEvent([3, 3])},
-                {id: "cust-events", label: "Events", command: () => this.navigationEvent([3, 4])},
+                {id: "cust-config", icon:"fas fa-cogs", label: "General Configuration", command: () => this.navigationEvent([3, 0])},
+                {id: "cust-network", icon:"fas fa-project-diagram", label: "Network", command: () => this.navigationEvent([3, 1])},
+                {id: "cust-version",icon:"fas fa-code-branch", label: "Version Selection", command: () => this.navigationEvent([3, 2])},
+                {id: "cust-style", icon:"fas fa-palette", label: "Style Adjustments", command: () => this.navigationEvent([3, 3])},
+                {id: "cust-events",icon:"fas fa-bullhorn", label: "Events", command: () => this.navigationEvent([3, 4])},
             ]
         },
         {
             id: "implementation", label: "Implementation Details", command: () => this.navigationEvent([4]),
             items: [
-                {id: "data", label: "Datasources", command: () => this.navigationEvent([4, 0])},
-                {id: "vis", label: "Vis.js", command: () => this.navigationEvent([4, 1])},
-                {id: "algorithms", label: "Algorithms", command: () => this.navigationEvent([4, 2])},
+                {id: "data",icon:"fas fa-database", label: "Datasources", command: () => this.navigationEvent([4, 0])},
+                {id: "vis", icon:"fas fa-project-diagram", label: "vis.js", command: () => this.navigationEvent([4, 1])},
+                {id: "algorithms", icon:"fas fa-magic", label: "Algorithms", command: () => this.navigationEvent([4, 2])},
             ]
         },
-        { id:"faq", label:"FAQ", command:()=>this.navigationEvent([5])}
+        {id: "faq", label: "FAQ", command: () => this.navigationEvent([5])}
 
     ]
 
@@ -67,7 +114,7 @@ export class DocComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.createIdMap([],this.navTree)
+        this.createIdMap([], this.navTree)
     }
 
     reset(): void {
@@ -97,23 +144,23 @@ export class DocComponent implements OnInit {
 
     updateLocation(instant: boolean): void {
         if (!instant)
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.updateLocation(true)
             }, 200)
         else {
-            if(this.idPath.length===1)
+            if (this.idPath.length === 1)
                 this.scroll(0)
             else
-            // @ts-ignore
-            this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id")+"-content").offsetTop)
+                // @ts-ignore
+                this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id") + "-content").offsetTop)
         }
     }
 
-    scroll(offset:number) {
+    scroll(offset: number) {
         // @ts-ignore
         const panel = document.getElementById("page-container").children[0].children[0].children[0]
         // @ts-ignore
-        panel.scrollTo({top:offset, behavior:"smooth"})
+        panel.scrollTo({top: offset, behavior: "smooth"})
         // panel.scrollTop = offset
     }
 
@@ -146,14 +193,14 @@ export class DocComponent implements OnInit {
         $event.item.id
     }
 
-    createIdMap(currentIds:number[], tree:MenuItem[]):void{
-        for(let id = 0; id<tree.length;id++){
+    createIdMap(currentIds: number[], tree: MenuItem[]): void {
+        for (let id = 0; id < tree.length; id++) {
             let subTree = tree[id]
             let ids = currentIds.concat(id)
             // @ts-ignore
-            this.idMap[subTree.id]=ids
-            if(subTree.items !=null)
-                this.createIdMap(ids,subTree.items)
+            this.idMap[subTree.id] = ids
+            if (subTree.items != null)
+                this.createIdMap(ids, subTree.items)
         }
     }
 
