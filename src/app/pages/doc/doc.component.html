@@ -4,33 +4,36 @@
     </div>
     <div class="column" style="width: min(85%,calc(100% - 200px))">
         <p-breadcrumb [model]="path" [home]="home" (onItemClick)="breadcrumbsEvent($event)"></p-breadcrumb>
-        <div id="page-container"
-             [style]='{height: "calc(80vh-60px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
+        <p-scrollPanel id="page-container"
+             [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
             <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">
                 <div class="doc-entries">
-                    TODO: Overview
+                    <app-overview></app-overview>
                 </div>
             </app-doc-page>
             <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">
                 <div class="doc-entries">
                     <div>
-                        TODO: Get Started
+                        <app-start></app-start>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"
-                                     [divider]="topic.id!=='rshiny'">
+                                     [divider]="topic.id!=='other'">
                         <div class="content">
                             <div *ngIf="topic.id==='basics'">
-                                TODO: Get Started/ Basic Integration content
+                                <app-basics></app-basics>
                             </div>
                             <div *ngIf="topic.id==='angular'">
-                                TODO: Get Started/ Angular setup
+                                <app-angular></app-angular>
                             </div>
                             <div *ngIf="topic.id==='vuejs'">
-                                TODO: Get Started/ Vue.js setup
+                               <app-vuejs></app-vuejs>
                             </div>
                             <div *ngIf="topic.id==='rshiny'">
-                                TODO: Get Started/ R-Shiny setup
+                                <app-rshiny></app-rshiny>
+                            </div>
+                            <div *ngIf="topic.id==='other'">
+                                <app-other></app-other>
                             </div>
                         </div>
                     </app-doc-content>
@@ -39,26 +42,26 @@
             <app-doc-page [pageId]="2" [currentPage]="page" [navTree]="navTree" id="page2">
                 <div class="doc-entries">
                     <div>
-                        TODO: UI
+                       <app-ui></app-ui>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[2].items" [entry]="topic"
                                      [divider]="topic.id!=='ui-analysis'">
                         <div class="content">
                             <div *ngIf="topic.id==='ui-network'">
-                                TODO: UI / Network
+                                <app-ui-network></app-ui-network>
                             </div>
                             <div *ngIf="topic.id==='ui-panels'">
-                                TODO: UI / Panels
+                                <app-ui-panels></app-ui-panels>
                             </div>
                             <div *ngIf="topic.id==='ui-footer'">
-                                TODO: UI / Footer
+                                <app-ui-footer></app-ui-footer>
                             </div>
                             <div *ngIf="topic.id==='ui-tasks'">
-                                TODO: UI / Tasks
+                                <app-ui-tasks></app-ui-tasks>
                             </div>
                             <div *ngIf="topic.id==='ui-analysis'">
-                                TODO: UI / Analysis
+                                <app-ui-analysis></app-ui-analysis>
                             </div>
                         </div>
                     </app-doc-content>
@@ -67,25 +70,30 @@
             <app-doc-page [pageId]="3" [currentPage]="page" [navTree]="navTree" id="page3">
                 <div class="doc-entries">
                     <div>
+<<<<<<< HEAD
                         Drugs.One was developed to be an easy to use plug-in for any kind of website. It comes with a default configuration and works out of the box so that it can be integrated without specific web development knowledge. However, we wanted Drugst.One to be fully flexible in order to fit to any kind of web design and use case. Therefore, it offers a multitude of customization options to the user regarding the functionality of the tool as well as the styling. Most of these configuration options can be set via the <a href=“”>Drugst.One playground</a> and can simply get copy and pasted from there.
+=======
+                        <app-customize></app-customize>
+>>>>>>> ae7f66c6cd2cf32d4330f4c6015ccf1d8e71e2bb
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[3].items" [entry]="topic"
                                      [divider]="topic.id!=='cust-events'">
                         <div class="content">
                             <div *ngIf="topic.id==='cust-network'">
-                                TODO: Customize / Network
+                                <app-cust-network></app-cust-network>
                             </div>
                             <div *ngIf="topic.id==='cust-config'">
                                 <app-cust-config></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
-                                TODO: Customize / Version
+                                <app-cust-version></app-cust-version>
                             </div>
                             <div *ngIf="topic.id==='cust-style'">
-                                TODO: Customize / Style
+                                <app-cust-style></app-cust-style>
                             </div>
                             <div *ngIf="topic.id==='cust-events'">
+<<<<<<< HEAD
                                 For now we cases of information flow from the host page to the drugstone component
                                 (<code>{{"<"}}network-expander{{">"}}</code>).<br>
                                 To communicate some information from drugstone to your host page, if requested, we emit
@@ -150,8 +158,10 @@
 </network-expander>"></app-code>
 
                                     TODO: additional info on how to get status of task using the token
+=======
+                                <app-cust-events></app-cust-events>
+>>>>>>> ae7f66c6cd2cf32d4330f4c6015ccf1d8e71e2bb
 
-                                </div>
                             </div>
                         </div>
                     </app-doc-content>
@@ -160,20 +170,20 @@
             <app-doc-page [pageId]="4" [currentPage]="page" [navTree]="navTree" id="page4">
                 <div class="doc-entries">
                     <div>
-                        TODO: Implementation Info
+                        <app-implementation></app-implementation>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[4].items" [entry]="topic"
                                      [divider]="topic.id!=='algorithms'">
                         <div class="content">
                             <div *ngIf="topic.id==='data'">
-                                TODO: Implementation Info / Data
+                                <app-impl-data></app-impl-data>
                             </div>
                             <div *ngIf="topic.id==='vis'">
-                                TODO: Implementation Info / Vis
+                                <app-impl-vis></app-impl-vis>
                             </div>
                             <div *ngIf="topic.id==='algorithms'">
-                                TODO: Implementation Info / Algorithms
+                                <app-impl-algorithms></app-impl-algorithms>
                             </div>
                         </div>
                     </app-doc-content>
@@ -181,9 +191,9 @@
             </app-doc-page>
             <app-doc-page [pageId]="5" [currentPage]="page" [navTree]="navTree" id="page5">
                 <div class="doc-entries">
-                    TODO FAQ
+                    <app-faq></app-faq>
                 </div>
             </app-doc-page>
-        </div>
+        </p-scrollPanel>
     </div>
 </div>

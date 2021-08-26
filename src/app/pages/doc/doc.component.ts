@@ -22,7 +22,8 @@ export class DocComponent implements OnInit {
                 {id: 'basics', label: "Basic Integration", command: () => this.navigationEvent([1, 0])},
                 {id: 'angular', label: "Angular JS setup", command: () => this.navigationEvent([1, 1])},
                 {id: 'vuejs', label: "Vue.js setup", command: () => this.navigationEvent([1, 2])},
-                {id: 'rshiny', label: "R-Shiny setup", command: () => this.navigationEvent([1, 3])}
+                {id: 'rshiny', label: "R-Shiny setup", command: () => this.navigationEvent([1, 3])},
+                {id: 'other', label: "Other frameworks", command: () => this.navigationEvent([1, 4])}
             ]
         }, {
             id: 'ui',
@@ -99,12 +100,13 @@ export class DocComponent implements OnInit {
                 this.scroll(0)
             else
             // @ts-ignore
-            this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id")+"-content").offsetTop-150)
+            this.scroll(document.getElementById(this.getAttribute(this.idPath, this.navTree, "id")+"-content").offsetTop)
         }
     }
 
     scroll(offset:number) {
-        const panel = document.getElementById("page-container")
+        // @ts-ignore
+        const panel = document.getElementById("page-container").children[0].children[0].children[0]
         // @ts-ignore
         panel.scrollTop = offset
     }

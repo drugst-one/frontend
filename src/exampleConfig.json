@@ -36,6 +36,22 @@
       },
       "groupName": "Gene",
       "shape": "circle"
+    },
+    "foundDrug": {
+      "type": "drug",
+      "color": {
+        "border": "#F12590",
+        "background": "#F12590",
+        "highlight": {
+          "border": "#F12590",
+          "background": "#F12590"
+        }
+      },
+      "font": {
+        "color": "#f0f0f0"
+      },
+      "groupName": "Drug",
+      "shape": "diamond"
     }
   },
   "edgeGroups": {
@@ -50,6 +66,10 @@
         2,
         2
       ]
+    },
+    "default": {
+      "color": "#ffffff",
+      "groupName": "default edge"
     },
     "ggi": {
       "color": "#ffffff",
