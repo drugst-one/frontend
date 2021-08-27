@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
 

@@ -8,6 +8,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class HomeComponent implements OnInit {
 
   @Output() tabChangeEvent = new EventEmitter<number>();
+  @Output() navigateDoc = new EventEmitter<string>();
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -18,4 +21,7 @@ export class HomeComponent implements OnInit {
     this.tabChangeEvent.emit(dest)
   }
 
+  switchToDoc(docPage: string) {
+    this.navigateDoc.emit(docPage)
+  }
 }

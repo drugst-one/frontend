@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DocComponent} from './pages/doc/doc.component';
 import {HomeComponent} from './pages/home/home.component';
-import {HowtoComponent} from './pages/howto/howto.component';
 import {PlaygroundComponent} from './pages/playground/playground.component';
 import {SidebarComponent} from './components/playground/sidebar/sidebar.component';
 import {DatapanelComponent} from './components/playground/datapanel/datapanel.component';
@@ -63,7 +62,8 @@ import {
     faPalette,
     faBullhorn,
     faMagic,
-    faDatabase
+    faDatabase,
+    faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
 import {faAngular, faReact, faVuejs, faRProject, faHtml5, faPython} from '@fortawesome/free-brands-svg-icons';
@@ -112,7 +112,6 @@ import { DjangoComponent } from './pages/doc/content/start/django/django.compone
         AppComponent,
         DocComponent,
         HomeComponent,
-        HowtoComponent,
         PlaygroundComponent,
         SidebarComponent,
         DatapanelComponent,
@@ -200,7 +199,7 @@ export class AppModule {
     constructor() {
         // @ts-ignore
         fontawesome.library.add(faCodeBranch,
-            faPalette,faMagic,faDatabase,
+            faPalette,faMagic,faDatabase, faGlobe,
             faBullhorn, faColumns, faShoePrints, faPython, faHtml5, faToolbox, faRProject, faProjectDiagram, faCogs, faClipboard, faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
     }
 }

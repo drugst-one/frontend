@@ -96,16 +96,23 @@ export class DocComponent implements OnInit {
                 {id: "cust-style", icon:"fas fa-palette", label: "Style Adjustments", command: () => this.navigationEvent([3, 3])},
                 {id: "cust-events",icon:"fas fa-bullhorn", label: "Events", command: () => this.navigationEvent([3, 4])},
             ]
-        },
-        {
-            id: "implementation", label: "Implementation Details", command: () => this.navigationEvent([4]),
-            items: [
-                {id: "data",icon:"fas fa-database", label: "Datasources", command: () => this.navigationEvent([4, 0])},
-                {id: "vis", icon:"fas fa-project-diagram", label: "vis.js", command: () => this.navigationEvent([4, 1])},
-                {id: "algorithms", icon:"fas fa-magic", label: "Algorithms", command: () => this.navigationEvent([4, 2])},
+        }, {
+         id:'standalone',
+            label: "Standalone / Drugst.online", command: () => this.navigationEvent([4]),
+            items:[
+                {id: "standalone-options", icon:"fas fa-globe", label: "Standalone Options", command: () => this.navigationEvent([4, 0])},
+                {id: "standalone-url", icon:"fab fa-html5", label: "Standalone URL", command: () => this.navigationEvent([4, 1])},
             ]
         },
-        {id: "faq", label: "FAQ", command: () => this.navigationEvent([5])}
+        {
+            id: "implementation", label: "Implementation Details", command: () => this.navigationEvent([5]),
+            items: [
+                {id: "data",icon:"fas fa-database", label: "Datasources", command: () => this.navigationEvent([5, 0])},
+                {id: "vis", icon:"fas fa-project-diagram", label: "vis.js", command: () => this.navigationEvent([5, 1])},
+                {id: "algorithms", icon:"fas fa-magic", label: "Algorithms", command: () => this.navigationEvent([5, 2])},
+            ]
+        },
+        {id: "faq", label: "FAQ", command: () => this.navigationEvent([6])}
 
     ]
 

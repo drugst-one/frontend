@@ -17,9 +17,11 @@
                 allowfullscreen></iframe>
     </div>
     <div style="display:flex; width: 100%; justify-content:center; margin-left: auto; margin-top:16px">
-        <p-button label="Integrate drugst.one" icon="pi pi-fw pi-th-large" (onClick)="switchTab(2)"></p-button>
+        <p-button label="Integrate drugst.one" icon="pi pi-fw pi-th-large" (onClick)="switchTab(1)"></p-button>
         <span style="margin:16px"></span>
-        <p-button label="Use drugst.online" icon="pi pi-fw pi-send" (onClick)="switchTab(5)"></p-button>
+        <p-button label="Start using URL-config" icon="pi pi-fw pi-send" (onClick)="switchToDoc('standalone-url')"></p-button>
+        <span style="margin:16px"></span>
+        <p-button label="Use drugst.online" icon="pi pi-fw pi-send" (onClick)="switchTab(2)"></p-button>
     </div>
     <div style="display:flex; width: 100%; justify-content:center; margin-left: auto; margin-top:16px">
         <h2 style="font-size: 28px">Such drugs</h2>

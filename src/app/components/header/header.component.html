@@ -3,7 +3,6 @@
         <b (click)="clickHome()" style="color: var(--text-color); font-size: xx-large; display: inline-flex; cursor: pointer "> The drugst.one project
         </b>
         <p-divider layout="vertical"></p-divider>
-        <p-tabMenu *ngIf="!standaloneMode" [model]="tabsModel" [activeItem]="activeTab" class="drugstone-header"></p-tabMenu>
-        <p-tabMenu *ngIf="standaloneMode" [model]="standaloneModel" [activeItem]="standaloneTab" class="drugstone-header"></p-tabMenu>
+        <p-tabMenu [model]="tabsModel" [activeItem]="activeTab" class="drugstone-header"></p-tabMenu>
     </div>
 </div>
