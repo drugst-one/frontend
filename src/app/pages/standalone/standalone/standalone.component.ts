@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 import themes from '../../../../themes.json'
 // @ts-ignore
@@ -16,6 +16,9 @@ export class StandaloneComponent implements OnInit {
     network: Object = {nodes:[], edges:[]}
     theme: Object = {}
     config: Object = {}
+
+    panelNWCollapsed= false;
+    panelDRGSTNCollapsed = true;
 
 
     rawNodes = ""
@@ -47,7 +50,9 @@ export class StandaloneComponent implements OnInit {
         this.config = config
     }
 
-    setNodes(): void {
+    setNodes(): Object[] {
+        if(this.rawNodes.length===0)
+            return []
         let delim = ","
         let min = 0;
         this.delimList.forEach(d => {
@@ -58,15 +63,31 @@ export class StandaloneComponent implements OnInit {
             }
         })
         // @ts-ignore
-        const jsonData = this.rawNodes.split(delim).map(entry => {
+        return this.rawNodes.split(delim).map(entry => {
             let name = entry.trim()
             return {id: name, group: this.group, label: name}
         })
-        this.network = {nodes: jsonData, edges: []}
     }
 
-    setEdges(): void {
-        console.log("not implemented yet")
+    setEdges(): Object[] {
+        if(this.rawEdges.length===0)
+            return []
+        let delim = ","
+        let min = 0;
+        this.delimList.forEach(d => {
+            if(d === "\n")
+                return
+            let count = this.countOccs(this.rawEdges, d)
+            if (count > min) {
+                min = count;
+                delim = d;
+            }
+        })
+        return this.rawEdges.split("\n").map(line=> {
+            let pair = line.split(delim)
+            // let name = entry.trim()
+            return {from: pair[0].trim(), to:pair[1].trim()}
+        })
     }
     getConfig(param: string) {
         // @ts-ignore
@@ -94,4 +115,12 @@ export class StandaloneComponent implements OnInit {
     }
 
 
+    setNetwork() {
+        let nodes = this.setNodes()
+        let edges = this.setEdges()
+        this.network = {nodes: nodes, edges: edges}
+
+        this.panelNWCollapsed=true;
+        this.panelDRGSTNCollapsed = false;
+    }
 }
