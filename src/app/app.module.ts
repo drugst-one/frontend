@@ -105,6 +105,7 @@ import {ImplVisComponent} from './pages/doc/content/implementation/impl-vis/impl
 import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-algorithms/impl-algorithms.component';
 import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
 import { DjangoComponent } from './pages/doc/content/start/django/django.component';
+import {MessagesModule} from "primeng/messages";
 
 
 
@@ -191,7 +192,8 @@ import { DjangoComponent } from './pages/doc/content/start/django/django.compone
         BreadcrumbModule,
         MenuModule,
         PanelMenuModule,
-        TabViewModule
+        TabViewModule,
+        MessagesModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
