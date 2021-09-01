@@ -44,7 +44,6 @@ export class MotivationComponent implements OnInit {
   checkAvailability(sourceDB: string, $event: string) {
       this.netex.mapNodes(this.api,[({id:$event} as Node)],sourceDB).then(response=>{
         this.availability = response[0]
-        console.log(this.availability)
       })
   }
 

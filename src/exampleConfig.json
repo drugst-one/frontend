@@ -39,14 +39,7 @@
     },
     "foundDrug": {
       "type": "drug",
-      "color": {
-        "border": "#F12590",
-        "background": "#F12590",
-        "highlight": {
-          "border": "#F12590",
-          "background": "#F12590"
-        }
-      },
+      "color": "#F12590",
       "font": {
         "color": "#000000"
       },
@@ -56,11 +49,11 @@
   },
   "edgeGroups": {
     "genotype": {
-      "color": "black",
+      "color": "f000000",
       "groupName": "Relevant Gene"
     },
     "has-condition": {
-      "color": "black",
+      "color": "f000000",
       "groupName": "Has Condition",
       "dashes": [
         2,

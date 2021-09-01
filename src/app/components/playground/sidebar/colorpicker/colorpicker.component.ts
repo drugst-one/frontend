@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class ColorpickerComponent implements OnInit {
 
     @Input() public label = "";
-    @Input() public model:any = "white";
+    @Input() public model:any = "#000000";
     @Input() public tooltip = "";
     @Input() public format = "hex";
     @Input() public textinput = true;

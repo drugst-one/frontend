@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
 
@@ -14,7 +14,6 @@ export class AppComponent {
 
   public theme = theme;
   public currentTabId :number;
-
   constructor() {
     this.currentTabId=0;
   }
@@ -24,4 +23,5 @@ export class AppComponent {
       this.currentTabId = tabId
     }
   }
+
 }
