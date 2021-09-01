@@ -129,4 +129,5 @@ export class PlaygroundComponent implements OnInit {
         this.network.nodes = nodes
         this.updateCode()
     }
+
 }

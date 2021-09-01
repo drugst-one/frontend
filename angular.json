@@ -34,7 +34,18 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "src/theme-dark.scss",
+                "bundleName": "theme-dark",
+                "inject": false
+              },
+              {
+                "input": "src/theme-light.scss",
+                "bundleName": "theme-light",
+                "inject": false
+              },
               "src/styles.scss"
+
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [

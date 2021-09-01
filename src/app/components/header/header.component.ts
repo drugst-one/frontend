@@ -1,6 +1,7 @@
-import { EventEmitter } from '@angular/core';
+import {EventEmitter, Inject} from '@angular/core';
 import {Component, OnInit, Output} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {ThemeService} from "../../../services/theme.service";
 
 
 @Component({
@@ -11,13 +12,15 @@ import {MenuItem} from "primeng/api";
 export class HeaderComponent implements OnInit {
 
     @Output() tabChangeEvent = new EventEmitter<number>();
+    @Output() switchThemeEvent = new EventEmitter<boolean>();
     //
     standaloneMode:Boolean = false;
     tabsModel: MenuItem[];
     activeTab: MenuItem;
+    darkThemeStyle = false;
     //
 
-    constructor() {
+    constructor(private themeService: ThemeService) {
         this.tabsModel = [
             {label: 'HOME', icon: 'pi pi-fw pi-home', command: () => this.tabChange(0)},
             {label: 'IDEA', icon: 'pi pi-fw pi-question-circle', command: () => this.tabChange(1)},
@@ -39,5 +42,10 @@ export class HeaderComponent implements OnInit {
         this.standaloneMode= id===5
         this.activeTab = this.tabsModel[id]
         this.tabChangeEvent.emit(id)
+    }
+
+    switchThemeStyle(dark: boolean) {
+        this.themeService.switchTheme(dark? 'theme-dark':'theme-light')
+        this.switchThemeEvent.emit(dark)
     }
 }

@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 // @ts-ignore
 import themes from '../../../../themes.json'
 // @ts-ignore
-import config from '../../../../standaloneConfig.json'
+import configDark from '../../../../standaloneConfigDark.json';
+// @ts-ignore
+import configLight from '../../../../standaloneConfigLight.json'
 // // @ts-ignore
 // import network from '../../../../exampleNetwork.json'
 
@@ -14,8 +16,12 @@ import config from '../../../../standaloneConfig.json'
 export class StandaloneComponent implements OnInit {
 
     network: Object = {nodes:[], edges:[]}
-    theme: Object = {}
+    themeLight: Object = {}
+    themeDark : Object = {}
+    theme : Object = {}
     config: Object = {}
+    configDark: Object={}
+    configLight: Object={}
 
     panelNWCollapsed= false;
     panelDRGSTNCollapsed = true;
@@ -45,9 +51,13 @@ export class StandaloneComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.theme = themes.integrated;
+        this.themeLight = themes["integrated-light"];
+        this.themeDark = themes["integrated-dark"];
+        this.theme = this.themeLight;
         // this.network = network
-        this.config = config
+        this.configLight = configLight
+        this.configDark = configDark
+        this.config = this.configLight
     }
 
     setNodes(): Object[] {
@@ -122,5 +132,21 @@ export class StandaloneComponent implements OnInit {
 
         this.panelNWCollapsed=true;
         this.panelDRGSTNCollapsed = false;
+    }
+
+    setObject(dest: Object, src: Object){
+        Object.keys(src).forEach(key=>{
+            // @ts-ignore
+            dest[key]=src[key];
+        })
+    }
+
+    switchTheme(dark:boolean){
+        let theme = dark? this.themeDark : this.themeLight
+        Object.keys(theme).forEach(key=>{
+            // @ts-ignore
+            document.documentElement.style.setProperty(key, theme[key])
+        })
+        this.config = dark ? this.configDark : this.configLight;
     }
 }

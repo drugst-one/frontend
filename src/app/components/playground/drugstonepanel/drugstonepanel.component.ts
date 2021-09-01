@@ -10,7 +10,6 @@ export class DrugstonepanelComponent implements OnInit {
   @Input() public config:object = {}
   @Input() public network: object = {}
   @Input() public id: string = ""
-  @Input() public theme = {};
 
   constructor() {
   }
@@ -25,9 +24,4 @@ export class DrugstonepanelComponent implements OnInit {
   getNetwork(): string{
     return JSON.stringify(this.network)
   }
-
-  getTheme(): string{
-    return JSON.stringify(this.theme)
-  }
-
 }

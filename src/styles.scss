@@ -4,10 +4,8 @@
 //@import "~bulma/bulma.sass";
 //@import '~bulma-tooltip';
 @import '../theme.css';
-@import '~primeng/resources/themes/vela-blue/theme.css';
 @import "~primeng/resources/primeng.min.css";
 @import "~primeicons/primeicons.css";
-@import '~highlight.js/styles/github-dark-dimmed.css';
 
 
 .dt-card {
@@ -28,8 +26,8 @@ pre {
 }
 
 code {
-  background-color: black;
-  color: #dcdee1;
+  background-color: var(--surface-300);
+  color: var(--surface-800);
 }
 
 .drugstone-header .p-tabmenu .p-tabmenu-nav .p-tabmenu-ink-bar {

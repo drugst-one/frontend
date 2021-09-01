@@ -4,7 +4,7 @@
       "type": "patient",
       "color": "#000000",
       "font": {
-        "color": "#f0f0f0"
+        "color": "#000000"
       },
       "groupName": "Patient",
       "shape": "image",
@@ -14,7 +14,7 @@
       "type": "condition",
       "color": "#000000",
       "font": {
-        "color": "#f0f0f0"
+        "color": "#000000"
       },
       "groupName": "Condition",
       "shape": "text"
@@ -23,7 +23,7 @@
       "type": "gene",
       "color": "#ff881f",
       "font": {
-        "color": "#f0f0f0"
+        "color": "#000000"
       },
       "groupName": "Important Gene",
       "shape": "star"
@@ -48,7 +48,7 @@
         }
       },
       "font": {
-        "color": "#f0f0f0"
+        "color": "#000000"
       },
       "groupName": "Drug",
       "shape": "diamond"
@@ -56,11 +56,11 @@
   },
   "edgeGroups": {
     "genotype": {
-      "color": "white",
+      "color": "black",
       "groupName": "Relevant Gene"
     },
     "has-condition": {
-      "color": "white",
+      "color": "black",
       "groupName": "Has Condition",
       "dashes": [
         2,
@@ -68,11 +68,11 @@
       ]
     },
     "default": {
-      "color": "#ffffff",
+      "color": "#000000",
       "groupName": "default edge"
     },
     "ggi": {
-      "color": "#ffffff",
+      "color": "#000000",
       "groupName": "Interaction",
       "dashes": [
         3,
