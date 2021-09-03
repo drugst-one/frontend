@@ -49,11 +49,11 @@
   },
   "edgeGroups": {
     "genotype": {
-      "color": "f000000",
+      "color": "#000000",
       "groupName": "Relevant Gene"
     },
     "has-condition": {
-      "color": "f000000",
+      "color": "#000000",
       "groupName": "Has Condition",
       "dashes": [
         2,
