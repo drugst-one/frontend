@@ -8,7 +8,7 @@ import theme from '../exampleTheme.json'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public version = "0.8.2-rc7"
+  public version = "0.8.5"
   public serverVersion = "dock1"
   public backendPath = "http://ml-s-zbhdock1.ad.uni-hamburg.de/drugstone_api/"
 
