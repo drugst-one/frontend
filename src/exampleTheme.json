@@ -5,7 +5,7 @@
     "tooltip": "This is the primary highlight color. It is applied on most buttons. "
   },
   "--drgstn-secondary": {
-    "color": "#fd6818",
+    "color": "#2e42f2",
     "label": "Secondary Highlight ",
     "tooltip": "This is the secondary highlight color. It is applied on interactive components other than buttons, like expansion icons or links. "
   },
@@ -15,23 +15,23 @@
     "tooltip": "This is the general success color. It is used to indicate active toggles or positive outcomes. "
   },
   "--drgstn-warning": {
-    "color": "#FFDD57",
+    "color": "#ffdd00",
     "label": "Warning ",
     "tooltip": "This is the general warning color. It is used to signal potential problems for example regarding task execution. "
   },
   "--drgstn-danger": {
-    "color": "#F14668",
+    "color": "#ff2744",
     "label": "Danger ",
     "tooltip": "This is the general danger and error color. It is used to signal inactive toggles or 'dangerous' features like reset/delete buttons or to highlight failed task execution. "
   },
   "--drgstn-background": {
-    "color": "#1f2d40",
+    "color": "#f8f9fa",
     "label": "Main-Background ",
     "tooltip": "This color defines the main background color. When set to the host-site background and other than the panel color the different panels/cards appear disconnected. "
   },
   "--drgstn-panel": {
     "label": "Panel-Background ",
-    "color": "#1f2d40",
+    "color": "#ffffff",
     "tooltip": "This color defines the panel and card background color. When set to the same as the main background, the whole components appears as one connected unit. "
   },
   "--drgstn-info": {
@@ -40,23 +40,23 @@
     "tooltip": "The information color is used for some additional important highlighting. "
   },
   "--drgstn-text-primary": {
-    "color": "#f0f0f0",
+    "color": "#151515",
     "label": "Main-Text ",
     "tooltip": "This color defines the general font color. When using a dark background this should be light and vice versa to maintain readability. "
   },
   "--drgstn-text-secondary": {
-    "color": "#303030",
+    "color": "#eeeeee",
     "label": "Contrast-Text",
     "tooltip": "This color defines the secondary font color, used for example on buttons with the secondary highlight color, so it should contrast it to maintain readability. "
   },
   "--drgstn-border": {
-    "color": "rgba(255, 255, 255, 0.2)"
+    "color": "rgba(0, 0, 0, 0.2)"
   },
   "--drgstn-tooltip": {
-    "color": "rgba(181,181,181,0.9)"
+    "color": "rgba(74,74,74,0.9)"
   },
   "--drgstn-panel-secondary":{
-    "color": "#2b3d57",
+    "color": "#FFFFFF",
     "tooltip": "This color defines the secondary panel color, used for example as background color for boxes on side panels. ",
     "label": "Secondary-Panel"
   },
