@@ -21,7 +21,7 @@
                                      [divider]="topic.id!=='other'">
                         <div class="content">
                             <div *ngIf="topic.id==='basics'">
-                                <app-basics [server]="serverVersion" [version]="version" (navigate)="navigateToId($event)"></app-basics>
+                                <app-basics (navigate)="navigateToId($event)"></app-basics>
                             </div>
                             <div *ngIf="topic.id==='angular'" >
                                 <app-angular (navigate)="navigateToId($event)"></app-angular>
@@ -86,7 +86,7 @@
                                 <app-cust-config (navigate)="navigateToId($event)"></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
-                                <app-cust-version></app-cust-version>
+                                <app-cust-version [server]="serverVersion" [version]="version" (navigate)="navigateToId($event)"></app-cust-version>
                             </div>
                             <div *ngIf="topic.id==='cust-style'">
                                 <app-cust-style></app-cust-style>

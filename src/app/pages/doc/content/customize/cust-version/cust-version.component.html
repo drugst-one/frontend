@@ -1,1 +1,14 @@
-<p>cust-version works!</p>
+You have the possibility to select any tagged version of Drugst.One in your project.
+<p-messages severity="warn">
+    <ng-template pTemplate>
+        <div>Be aware that older versions might not be supported at some point regarding the according backend endpoints!</div>
+    </ng-template>
+</p-messages>
+
+Like introduced in the <a (click)="navigateTo('basics')">basic setup</a> section best practice is to always include the newest minor version release:
+<app-code lang="html" [code]="basicCode"></app-code>
+Apart from this another option for the latest development and thus newest release candidate version would be:
+<app-code lang="html" [code]="versionCode"></app-code>
+Here <code>{{version}}</code> refers to the specific version tag and <code>{{server}}</code> to a specific backend server.
+The available versions can be checked here:
+TODO create index.html for http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/ with table of versions.

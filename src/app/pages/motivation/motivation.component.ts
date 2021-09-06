@@ -28,8 +28,8 @@ export class MotivationComponent implements OnInit {
   ngOnInit(): void {
     this.general.plugin = "" +
         "<head>\n" +
-        "   <script src=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/"+this.serverVersion+"/drugsTone.js\"></script>\n" +
-        "   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/gh/AndiMajore/drugstone-releases@"+this.version+"/"+this.serverVersion+"/styles.css\">\n" +
+        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/drugsTone.js\"></script>\n" +
+        "   <link rel=\"stylesheet\" href=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/styles.css\">\n" +
         "</head>\n\n";
     this.general.body = "" +
         "<body>\n" +
