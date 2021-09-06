@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
+        let dark = Boolean(localStorage.getItem("darkTheme")==='true')
+        this.darkThemeStyle = dark;
+        this.switchThemeStyle(dark)
     }
 
 
@@ -45,7 +48,9 @@ export class HeaderComponent implements OnInit {
     }
 
     switchThemeStyle(dark: boolean) {
+        console.log("switching to dark")
         this.themeService.switchTheme(dark? 'theme-dark':'theme-light')
         this.switchThemeEvent.emit(dark)
+        localStorage.setItem("darkTheme",dark+"")
     }
 }
