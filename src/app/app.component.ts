@@ -18,7 +18,11 @@ export class AppComponent {
     constructor() {
         this.currentTabId = 0;
         let cookieDark = localStorage.getItem("darkTheme") ==='true'
-        const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches || cookieDark;
+        let darkTheme = false;
+        if(localStorage.getItem("darkTheme") == null)
+            darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        else
+            darkTheme = cookieDark;
         localStorage.setItem("darkTheme",darkTheme+"");
     }
 
