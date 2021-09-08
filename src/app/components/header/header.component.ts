@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
     @Output() tabChangeEvent = new EventEmitter<number>();
     @Output() switchThemeEvent = new EventEmitter<boolean>();
     //
-    standaloneMode:Boolean = false;
     tabsModel: MenuItem[];
     activeTab: MenuItem;
     darkThemeStyle = false;
@@ -22,11 +21,11 @@ export class HeaderComponent implements OnInit {
 
     constructor(private themeService: ThemeService) {
         this.tabsModel = [
-            {label: 'HOME', icon: 'pi pi-fw pi-home', command: () => this.tabChange(0)},
-            {label: 'IDEA', icon: 'pi pi-fw pi-question-circle', command: () => this.tabChange(1)},
-            {label: 'STANDALONE', icon: 'pi pi-fw pi-send', command: () => this.tabChange(2)},
-            {label: 'PLAYGROUND', icon: 'pi pi-fw pi-sliders-v', command: () => this.tabChange(3)},
-            {label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', command: () => this.tabChange(4)}]
+            {label: 'HOME', icon: 'pi pi-fw pi-home', routerLink:'home', command: () => this.tabChange(0)},
+            {label: 'IDEA', icon: 'pi pi-fw pi-question-circle', routerLink:'idea', command: () => this.tabChange(1)},
+            {label: 'STANDALONE', icon: 'pi pi-fw pi-send', routerLink:'standalone', command: () => this.tabChange(2)},
+            {label: 'PLAYGROUND', icon: 'pi pi-fw pi-sliders-v', routerLink:'playground', command: () => this.tabChange(3)},
+            {label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', routerLink:'doc', command: () => this.tabChange(4)}]
         this.activeTab = this.tabsModel[0];
     }
 
@@ -41,8 +40,14 @@ export class HeaderComponent implements OnInit {
         location.reload()
     }
 
+    switchTabByName(name:string){
+        Object.entries(this.tabsModel.filter(e=>e.routerLink===name)).forEach(e=>{
+            // @ts-ignore
+            e[1].command()
+        })
+    }
+
     tabChange(id: number) {
-        this.standaloneMode= id===5
         this.activeTab = this.tabsModel[id]
         this.tabChangeEvent.emit(id)
     }

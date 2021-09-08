@@ -1,7 +1,6 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
-import {AppRoutingModule} from './app-routing.module';
+import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from './app.component';
 import {DocComponent} from './pages/doc/doc.component';
 import {HomeComponent} from './pages/home/home.component';
@@ -108,7 +107,7 @@ import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-a
 import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
 import { DjangoComponent } from './pages/doc/content/start/django/django.component';
 import {MessagesModule} from "primeng/messages";
-
+import { PagesComponent } from './pages/pages.component';
 
 
 @NgModule({
@@ -163,11 +162,11 @@ import {MessagesModule} from "primeng/messages";
         ImplAlgorithmsComponent,
         DocSubheaderComponent,
         DjangoComponent,
+        PagesComponent,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule,
         TabMenuModule,
         PanelModule,
         BrowserAnimationsModule,
@@ -195,7 +194,8 @@ import {MessagesModule} from "primeng/messages";
         MenuModule,
         PanelMenuModule,
         TabViewModule,
-        MessagesModule
+        MessagesModule,
+        AppRoutingModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

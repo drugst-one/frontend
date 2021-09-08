@@ -1,15 +1,8 @@
 <style>
 
 </style>
-<app-header #header style="position: fixed; width: 100%; z-index: 999" (tabChangeEvent)="switchTab($event);playground.fit(); " (switchThemeEvent)="standalone.switchTheme($event)"></app-header>
+<app-header #header style="position: fixed; width: 100%; z-index: 999" (tabChangeEvent)="switchTab($event);pages.fitPlayground(); " (switchThemeEvent)="pages.switchTheme($event)"></app-header>
 <div style="padding:75px; background-color: var(--surface-b)">
-    <app-home [hidden]="currentTabId!==0" (tabChangeEvent)="switchTab($event); header.tabChange($event)" (navigateDoc)="switchTab(4); header.tabChange(4); doc.navigateToId($event)"></app-home>
-    <app-motivation [hidden]="currentTabId!==1" [theme]="theme" [api]="backendPath" [version]="version" [serverVersion]="serverVersion" (tabChangeEvent)="switchTab($event); header.tabChange($event)" (navigateDoc)="switchTab(4); header.tabChange(4); doc.navigateToId($event)" ></app-motivation>
-    <app-standalone #standalone [hidden]="currentTabId!==2"></app-standalone>
-    <app-playground #playground [hidden]="currentTabId!==3" [theme]="theme"></app-playground>
-    <app-doc #doc [hidden]="currentTabId!==4" [api]="backendPath" [serverVersion]="serverVersion" [version]="version"></app-doc>
+    <app-pages #pages  [version]="version" [theme]="theme" [backendPath]="backendPath" [currentTabId]="currentTabId" [serverVersion]="serverVersion" (tabChangeEvent)="header.tabChange($event)" (tabIdChangeEvent)="switchTab($event)"></app-pages>
 </div>
-
 <app-footer [version]="version"></app-footer>
-
-<router-outlet></router-outlet>

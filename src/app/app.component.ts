@@ -1,6 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -14,8 +15,15 @@ export class AppComponent {
 
     public theme = theme;
     public currentTabId: number;
+    @ViewChild("header", {static: false}) headerEl: ElementRef | undefined;
 
-    constructor() {
+    constructor(private router: Router) {
+        router.events.subscribe((val)=>{
+            if(val instanceof NavigationEnd) {
+                // @ts-ignore
+                this.headerEl.switchTabByName(val.url.substr(1))
+            }
+        })
         this.currentTabId = 0;
         let cookieDark = localStorage.getItem("darkTheme") ==='true'
         let darkTheme = false;
@@ -29,7 +37,10 @@ export class AppComponent {
     switchTab(tabId: number) {
         if (this.currentTabId !== tabId) {
             this.currentTabId = tabId
+            // @ts-ignore
+            this.headerEl.tabChange(tabId)
         }
     }
+
 
 }

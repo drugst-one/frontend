@@ -16,15 +16,15 @@ export class CustVersionComponent implements OnInit {
 
   ngOnInit(): void {
     this.basicCode="<head>\n" +
-        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/drugsTone.js\"></script>\n" +
+        "   <script src=\"http://ml-s-zbhdock1.ad.uni-hamburg.de/cdn/latest/drugsTone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/styles.css\">\n" +
         "</head>'"
     this.versionCode="<head>\n" +
-        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/"+this.version+"/"+this.server+"/drugsTone.js\"></script>\n" +
+        "   <script src=\"http://ml-s-zbhdock1.ad.uni-hamburg.de/cdn/"+this.version+"/"+this.server+"/drugsTone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/"+this.version+"/"+this.server+"/styles.css\">\n" +
         "</head>'"
     this.nightlyCode="<head>\n" +
-        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/nightly/"+this.server+"/drugsTone.js\"></script>\n" +
+        "   <script src=\"http://ml-s-zbhdock1.ad.uni-hamburg.de/cdn/nightly/"+this.server+"/drugsTone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/nightly/"+this.server+"/styles.css\">\n" +
         "</head>'"
   }

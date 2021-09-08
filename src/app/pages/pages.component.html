@@ -1,0 +1,5 @@
+<app-home [hidden]="currentTabId!==0" (tabChangeEvent)="switchTab($event); tabChange($event)" (navigateDoc)="switchTab(4); tabChange(4); doc.navigateToId($event)"></app-home>
+<app-motivation [hidden]="currentTabId!==1" [theme]="theme" [api]="backendPath" [version]="version" [serverVersion]="serverVersion" (tabChangeEvent)="switchTab($event); tabChange($event)" (navigateDoc)="switchTab(4); tabChange(4); doc.navigateToId($event)" ></app-motivation>
+<app-standalone #standalone [hidden]="currentTabId!==2"></app-standalone>
+<app-playground #playground [hidden]="currentTabId!==3" [theme]="theme"></app-playground>
+<app-doc #doc [hidden]="currentTabId!==4" [api]="backendPath" [serverVersion]="serverVersion" [version]="version"></app-doc>
