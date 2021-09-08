@@ -11,6 +11,7 @@ export class CustVersionComponent implements OnInit {
   @Input() server = ""
   basicCode = ""
   versionCode= ""
+  nightlyCode = ""
   constructor() { }
 
   ngOnInit(): void {
@@ -21,6 +22,10 @@ export class CustVersionComponent implements OnInit {
     this.versionCode="<head>\n" +
         "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/"+this.version+"/"+this.server+"/drugsTone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/"+this.version+"/"+this.server+"/styles.css\">\n" +
+        "</head>'"
+    this.nightlyCode="<head>\n" +
+        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/nightly/"+this.server+"/drugsTone.js\"></script>\n" +
+        "   <link rel=\"stylesheet\" href=\http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/nightly/"+this.server+"/styles.css\">\n" +
         "</head>'"
   }
 

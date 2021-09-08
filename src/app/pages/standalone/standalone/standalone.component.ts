@@ -1,12 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 // @ts-ignore
 import themes from '../../../../themes.json'
 // @ts-ignore
 import configDark from '../../../../standaloneConfigDark.json';
 // @ts-ignore
 import configLight from '../../../../standaloneConfigLight.json'
-// // @ts-ignore
-// import network from '../../../../exampleNetwork.json'
 
 @Component({
     selector: 'app-standalone',
@@ -14,6 +12,8 @@ import configLight from '../../../../standaloneConfigLight.json'
     styleUrls: ['./standalone.component.scss']
 })
 export class StandaloneComponent implements OnInit {
+
+    @ViewChild("standalonePlugin", {static: false}) standalonePluginEl: ElementRef | undefined;
 
     network: Object = {nodes:[], edges:[]}
     themeLight: Object = {}
@@ -25,7 +25,6 @@ export class StandaloneComponent implements OnInit {
 
     panelNWCollapsed= false;
     panelDRGSTNCollapsed = true;
-
 
     rawNodes = ""
     rawEdges = ""
@@ -53,11 +52,19 @@ export class StandaloneComponent implements OnInit {
     ngOnInit(): void {
         this.themeLight = themes["integrated-light"];
         this.themeDark = themes["integrated-dark"];
+        // @ts-ignore
+        this.themeLight['--drgstn-background'] = this.themeLight[['--drgstn-panel']]
+        // @ts-ignore
+        this.themeDark['--drgstn-background'] = this.themeDark[['--drgstn-panel']]
         this.theme = this.themeLight;
-        // this.network = network
         this.configLight = configLight
         this.configDark = configDark
         this.config = this.configLight
+    }
+
+    ngAfterViewInit():void{
+        if (localStorage.getItem("darkTheme")==="true")
+            this.switchTheme(true)
     }
 
     setNodes(): Object[] {
@@ -145,7 +152,7 @@ export class StandaloneComponent implements OnInit {
         let theme = dark? this.themeDark : this.themeLight
         Object.keys(theme).forEach(key=>{
             // @ts-ignore
-            document.documentElement.style.setProperty(key, theme[key])
+            this.standalonePluginEl?.nativeElement.style.setProperty(key, theme[key])
         })
         this.config = dark ? this.configDark : this.configLight;
     }
