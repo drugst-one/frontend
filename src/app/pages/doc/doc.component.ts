@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
-import {Router} from "@angular/router";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
     selector: 'app-doc',
@@ -18,7 +18,7 @@ export class DocComponent implements OnInit {
     public idMap = {}
     public home = {icon: 'pi pi-home'};
     navTree: MenuItem[] = [
-        {id: "home", label: "Overview", command: () => this.navigationEvent([0])},
+        {id: "home", label: "Overview", command: () => this.navigationEvent([0]), routerLink:"doc/home"},
         {
             id: "start",
             label: "Get Started", command: () => this.navigationEvent([1]),
@@ -54,7 +54,7 @@ export class DocComponent implements OnInit {
                     label: "Other Frameworks",
                     command: () => this.navigationEvent([1, 5])
                 }
-            ]
+            ], routerLink:"doc/start"
         }, {
             id: 'ui',
             label: "The Drugst.One UI", command: () => this.navigationEvent([2]),
@@ -84,7 +84,7 @@ export class DocComponent implements OnInit {
                     label: "Analysis Window",
                     command: () => this.navigationEvent([2, 4])
                 },
-            ]
+            ], routerLink:"doc/ui"
         },
         {
             id: 'customize',
@@ -95,14 +95,14 @@ export class DocComponent implements OnInit {
                 {id: "cust-version",icon:"fas fa-code-branch", label: "Version Selection", command: () => this.navigationEvent([3, 2])},
                 {id: "cust-style", icon:"fas fa-palette", label: "Style Adjustments", command: () => this.navigationEvent([3, 3])},
                 {id: "cust-events",icon:"fas fa-bullhorn", label: "Events", command: () => this.navigationEvent([3, 4])},
-            ]
+            ], routerLink:"doc/customize"
         }, {
          id:'standalone',
             label: "Standalone / Drugst.online", command: () => this.navigationEvent([4]),
             items:[
                 {id: "standalone-options", icon:"fas fa-globe", label: "Standalone Options", command: () => this.navigationEvent([4, 0])},
                 {id: "standalone-url", icon:"fab fa-html5", label: "Standalone URL", command: () => this.navigationEvent([4, 1])},
-            ]
+            ], routerLink:"doc/standalone"
         },
         {
             id: "implementation", label: "Implementation Details", command: () => this.navigationEvent([5]),
@@ -110,13 +110,36 @@ export class DocComponent implements OnInit {
                 {id: "data",icon:"fas fa-database", label: "Datasources", command: () => this.navigationEvent([5, 0])},
                 {id: "vis", icon:"fas fa-project-diagram", label: "vis.js", command: () => this.navigationEvent([5, 1])},
                 {id: "algorithms", icon:"fas fa-magic", label: "Algorithms", command: () => this.navigationEvent([5, 2])},
-            ]
+            ], routerLink:"doc/implementation"
         },
-        {id: "faq", label: "FAQ", command: () => this.navigationEvent([6])}
+        {id: "faq", label: "FAQ", command: () => this.navigationEvent([6]) , routerLink:"doc/faq"}
 
     ]
 
     constructor(private router: Router) {
+        router.events.subscribe((val) => {
+            if (val instanceof NavigationEnd) {
+                if (val.url != null) {
+                    // @ts-ignore
+                    var path = val.url.substr(1)
+                    var page = path.split("/")[0].split('#')[0]
+                    // @ts-ignore
+                    if(page==='doc'){
+                        if(path.indexOf("/")>-1){
+                            var section = path.split("/")[1]
+
+                            if(section.indexOf("#")>-1){
+                                var entry = section.split('#')[1]
+                                this.navigateToId(entry)
+                            }else{
+                                this.navigateToId(section)
+                            }
+                        }
+                    }
+
+                }
+            }
+        })
         this.reset()
     }
 
@@ -190,6 +213,8 @@ export class DocComponent implements OnInit {
         if ($event == null || $event.length === 0) {
             this.reset()
         } else {
+            if($event.length>1)
+                window.location.href=window.location.href.split('#')[0]+"#"+this.getAttribute($event,this.navTree,"id")
             this.idPath = $event
             this.update()
         }

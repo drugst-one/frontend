@@ -18,20 +18,24 @@ export class AppComponent {
     @ViewChild("header", {static: false}) headerEl: ElementRef | undefined;
 
     constructor(private router: Router) {
-        router.events.subscribe((val)=>{
-            if(val instanceof NavigationEnd) {
-                // @ts-ignore
-                this.headerEl.switchTabByName(val.url.substr(1))
+        router.events.subscribe((val) => {
+            if (val instanceof NavigationEnd) {
+                if (val.url != null) {
+                    // @ts-ignore
+                    var page = val.url.substr(1).split("/")[0].split('#')[0]
+                    // @ts-ignore
+                    this.headerEl.switchTabByName(page)
+                }
             }
         })
         this.currentTabId = 0;
-        let cookieDark = localStorage.getItem("darkTheme") ==='true'
+        let cookieDark = localStorage.getItem("darkTheme") === 'true'
         let darkTheme = false;
-        if(localStorage.getItem("darkTheme") == null)
+        if (localStorage.getItem("darkTheme") == null)
             darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
         else
             darkTheme = cookieDark;
-        localStorage.setItem("darkTheme",darkTheme+"");
+        localStorage.setItem("darkTheme", darkTheme + "");
     }
 
     switchTab(tabId: number) {
