@@ -23,8 +23,13 @@ export class AppComponent {
                 if (val.url != null) {
                     // @ts-ignore
                     var page = val.url.substr(1).split("/")[0].split('#')[0]
-                    // @ts-ignore
-                    this.headerEl.switchTabByName(page)
+                    if (page.indexOf("?")>-1){
+                        // @ts-ignore
+                        this.headerEl.switchTabByName("standalone")
+                    }else {
+                        // @ts-ignore
+                        this.headerEl.switchTabByName(page)
+                    }
                 }
             }
         })
