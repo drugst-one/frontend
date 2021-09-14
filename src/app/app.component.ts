@@ -12,6 +12,7 @@ export class AppComponent {
     public version = "0.8.7"
     public serverVersion = "dock1"
     public backendPath = "http://ml-s-zbhdock1.ad.uni-hamburg.de/drugstone_api/"
+    // public backendPath = "localhost:8001/"
 
     public theme = theme;
     public currentTabId: number;

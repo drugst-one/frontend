@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 // @ts-ignore
 import themes from '../../../../themes.json'
 // @ts-ignore
@@ -6,6 +6,7 @@ import configDark from '../../../../standaloneConfigDark.json';
 // @ts-ignore
 import configLight from '../../../../standaloneConfigLight.json'
 import {NavigationEnd, Router} from "@angular/router";
+import {RequestService} from "../../../../services/requestService";
 
 @Component({
     selector: 'app-standalone',
@@ -15,7 +16,7 @@ import {NavigationEnd, Router} from "@angular/router";
 export class StandaloneComponent implements OnInit {
 
     @ViewChild("standalonePlugin", {static: false}) standalonePluginEl: ElementRef | undefined;
-
+    @Input() api = ""
     network: Object = {nodes: [], edges: []}
     themeLight: Object = {}
     themeDark: Object = {}
@@ -47,7 +48,7 @@ export class StandaloneComponent implements OnInit {
         }],
     }
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public netex: RequestService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -85,12 +86,12 @@ export class StandaloneComponent implements OnInit {
             this.switchTheme(true)
     }
 
-    setParams(params: object): void {
-        this.panelNWCollapsed=true;
-        this.panelDRGSTNCollapsed=false;
-        if("taskId" in params){
+    async setParams(params: object): Promise<any> {
+        this.panelNWCollapsed = true;
+        this.panelDRGSTNCollapsed = false;
+        if ("taskId" in params) {
             // @ts-ignore
-            this.changeConfig("taskId",params["token"])
+            this.changeConfig("taskId", params["token"])
             return
         }
 
@@ -99,36 +100,49 @@ export class StandaloneComponent implements OnInit {
         nodes = [];
         let edges: any[];
         edges = [];
-        if ("nodes" in params) { // @ts-ignore
-            nodes = this.getNodes(params["nodes"], ",");
-            this.rawNodes = nodes.map(o => o.label).join("\n")
-        }
-        if ("edges" in params) { // @ts-ignore
-            edges = this.getEdges(params["edges"], ",","%20");
-            this.rawEdges = edges.map(o => o.from+" "+o.to).join("\n")
-        }
-        if("identifier" in params) {
+
+        if ("id" in params) {
             // @ts-ignore
-            let ident = params["identifier"]
-            if(this.dataLists.identifierList.map(o=>o.value).indexOf(ident)>-1)
-                this.changeConfig("identifier",ident)
-        }
-        if("interactionProteinProtein" in params) {
-            // @ts-ignore
-            let ident = params["interactionProteinProtein"]
-            if(this.dataLists.protProtInterList.map(o=>o.value).indexOf(ident)>-1)
-                this.changeConfig("interactionProteinProtein",ident)
-        }
-        if("interactionDrugProtein" in params) {
-            // @ts-ignore
-            let ident = params["interactionDrugProtein"]
-            if(this.dataLists.drugProtInterList.map(o=>o.value).indexOf(ident)>-1)
-                this.changeConfig("interactionDrugProtein",ident)
-        }
-        if("autofillEdges" in params){
-            // @ts-ignore
-            let fill = params["autofillEdges"] ==="true"
-            this.changeConfig("autofillEdges",fill)
+            let response = await this.netex.getNetwork(this.api, params["id"]).then(response => {
+                return response
+            })
+            nodes = response.network.nodes
+            edges = response.network.edges
+            if (response.config != null)
+                Object.keys(response.config).forEach(key => this.changeConfig(key, response.config[key]))
+
+        } else {
+            if ("nodes" in params) { // @ts-ignore
+                nodes = this.getNodes(params["nodes"], ",");
+                this.rawNodes = nodes.map(o => o.label).join("\n")
+            }
+            if ("edges" in params) { // @ts-ignore
+                edges = this.getEdges(params["edges"], ",", "%20");
+                this.rawEdges = edges.map(o => o.from + " " + o.to).join("\n")
+            }
+            if ("identifier" in params) {
+                // @ts-ignore
+                let ident = params["identifier"]
+                if (this.dataLists.identifierList.map(o => o.value).indexOf(ident) > -1)
+                    this.changeConfig("identifier", ident)
+            }
+            if ("interactionProteinProtein" in params) {
+                // @ts-ignore
+                let ident = params["interactionProteinProtein"]
+                if (this.dataLists.protProtInterList.map(o => o.value).indexOf(ident) > -1)
+                    this.changeConfig("interactionProteinProtein", ident)
+            }
+            if ("interactionDrugProtein" in params) {
+                // @ts-ignore
+                let ident = params["interactionDrugProtein"]
+                if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
+                    this.changeConfig("interactionDrugProtein", ident)
+            }
+            if ("autofillEdges" in params) {
+                // @ts-ignore
+                let fill = params["autofillEdges"] === "true"
+                this.changeConfig("autofillEdges", fill)
+            }
         }
         if (nodes.length > 0 || edges.length > 0) {
             this.network = {nodes: nodes, edges: edges}
@@ -173,10 +187,10 @@ export class StandaloneComponent implements OnInit {
                 delim = d;
             }
         })
-        return this.getEdges(this.rawEdges,"\n",delim)
+        return this.getEdges(this.rawEdges, "\n", delim)
     }
 
-    getEdges(list: string, delim1:string, delim2: string): Object[]{
+    getEdges(list: string, delim1: string, delim2: string): Object[] {
         return list.split(delim1).map(line => {
             let pair = line.split(delim2)
             return {from: pair[0].trim(), to: pair[1].trim()}
@@ -231,6 +245,16 @@ export class StandaloneComponent implements OnInit {
             // @ts-ignore
             this.standalonePluginEl?.nativeElement.style.setProperty(key, theme[key])
         })
-        this.config = dark ? this.configDark : this.configLight;
+        let conf = dark ? this.configDark : this.configLight;
+
+        if (this.router.url.indexOf("?id") > -1) {
+            Object.keys(conf).forEach(key => {
+                if (key.indexOf("Groups") === -1) {
+                    // @ts-ignore
+                    this.changeConfig(key, conf[key])
+                }
+            })
+        } else
+            this.config = conf
     }
 }

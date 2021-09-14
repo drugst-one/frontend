@@ -16,4 +16,9 @@ export class RequestService{
         const payload = {nodes: JSON.stringify(nodes), identifier: JSON.stringify(identifier)};
         return this.http.post(`${api}map_nodes/`, payload).toPromise();
     }
+
+    public async getNetwork(api:string,id:string):Promise<any>{
+        return this.http.get(`${api}load_network?id=${id}`).toPromise()
+    }
+
 }
