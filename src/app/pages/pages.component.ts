@@ -12,6 +12,7 @@ export class PagesComponent implements OnInit {
   @Input() public version : string = ""
   @Input() public serverVersion : string = ""
   @Input() public backendPath :string = ""
+  @Input() public host: string=""
 
   @Input() public theme = {};
   @Input() public currentTabId: number=0;

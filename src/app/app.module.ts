@@ -108,6 +108,9 @@ import { DocSubheaderComponent } from './components/documentation/doc-subheader/
 import { DjangoComponent } from './pages/doc/content/start/django/django.component';
 import {MessagesModule} from "primeng/messages";
 import { PagesComponent } from './pages/pages.component';
+import { StandaloneOptionsComponent } from './pages/doc/content/standalone/standalone-options/standalone-options.component';
+import { StandaloneUrlComponent } from './pages/doc/content/standalone/standalone-url/standalone-url.component';
+import { StandaloneDocComponent } from './pages/doc/content/standalone/standalone-doc.component';
 
 
 @NgModule({
@@ -163,6 +166,9 @@ import { PagesComponent } from './pages/pages.component';
         DocSubheaderComponent,
         DjangoComponent,
         PagesComponent,
+        StandaloneOptionsComponent,
+        StandaloneUrlComponent,
+        StandaloneDocComponent,
     ],
     imports: [
         BrowserModule,

@@ -102,10 +102,29 @@
             <app-doc-page [pageId]="4" [currentPage]="page" [navTree]="navTree" id="page4">
                 <div class="doc-entries">
                     <div>
-                        <app-implementation></app-implementation>
+                        <app-standalone-doc (navigate)="navigateToId($event)"></app-standalone-doc>
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[4].items" [entry]="topic"
+                                     [divider]="topic.id!=='standalone-url'">
+                        <div class="content">
+                            <div *ngIf="topic.id==='standalone-options'">
+                                <app-standalone-options (navigate)="navigateToId($event)"></app-standalone-options>
+                            </div>
+                            <div *ngIf="topic.id==='standalone-url'">
+                                <app-standalone-url (navigate)="navigateToId($event)" [host]="host" [backend]="api"></app-standalone-url>
+                            </div>
+                        </div>
+                    </app-doc-content>
+                </div>
+            </app-doc-page>
+            <app-doc-page [pageId]="5" [currentPage]="page" [navTree]="navTree" id="page5">
+                <div class="doc-entries">
+                    <div>
+                        <app-implementation></app-implementation>
+                    </div>
+                    <p-divider></p-divider>
+                    <app-doc-content *ngFor="let topic of navTree[5].items" [entry]="topic"
                                      [divider]="topic.id!=='algorithms'">
                         <div class="content">
                             <div *ngIf="topic.id==='data'">
@@ -121,7 +140,7 @@
                     </app-doc-content>
                 </div>
             </app-doc-page>
-            <app-doc-page [pageId]="5" [currentPage]="page" [navTree]="navTree" id="page5">
+            <app-doc-page [pageId]="6" [currentPage]="page" [navTree]="navTree" id="page6">
                 <div class="doc-entries">
                     <app-faq></app-faq>
                 </div>

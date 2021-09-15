@@ -1,0 +1,37 @@
+TODO Standalone URL text
+
+Example GET request to <a [href]="getRequest">example</a>
+<app-code lang="html" [code]="getRequest"></app-code>
+
+<p-table [value]="getConfig">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-entry>
+        <tr>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.type }}</td>
+            <td>{{ entry.default }}</td>
+            <td>{{ entry.description }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+Post create network:
+
+<app-code lang="js" [code]="postCreate"></app-code>
+
+<a (click)="navigateTo('cust-network')">Network</a> and <a
+        (click)="navigateTo('cust-config')">config</a> can be configured exactly like the object handed to the Drugst.One plugin, further defined in the
+<a (click)="navigateTo('customize')">customization</a> section.
+It returns a <i>networkID</i> that can be used to load this saved network in the Standalone application. It is a UUID containing 32 random alphanumeric characters like "cbfa6a27ded04b20963c04376e212ca6". The ID is used to request the loading of the referenced graph into the Drugst.One standalone by querying:
+
+<app-code lang="html" [code]="postLoad"></app-code>
+
+Node and edgestyles are used from configuration when available and not defined by the websites style.

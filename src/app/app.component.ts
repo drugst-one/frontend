@@ -9,9 +9,10 @@ import {NavigationEnd, Router} from "@angular/router";
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    public version = "0.8.7"
+    public version = "0.8.9-rc1"
     public serverVersion = "dock1"
-    public backendPath = "http://ml-s-zbhdock1.ad.uni-hamburg.de/drugstone_api/"
+    public host = "http://cosy-test.zbh.uni-hamburg.de"
+    public backendPath = this.host+"/drugstone_api/"
     // public backendPath = "localhost:8001/"
 
     public theme = theme;
@@ -23,7 +24,7 @@ export class AppComponent {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
                     // @ts-ignore
-                    var page = val.url.substr(1).split("/")[0].split('#')[0]
+                    let page = val.url.substr(1).split("/")[0].split('#')[0];
                     if (page.indexOf("?")>-1){
                         // @ts-ignore
                         this.headerEl.switchTabByName("standalone")

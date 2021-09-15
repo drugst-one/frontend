@@ -1,11 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.scss']
+  selector: 'app-standalone-options',
+  templateUrl: './standalone-options.component.html',
+  styleUrls: ['./standalone-options.component.scss']
 })
-export class StartComponent implements OnInit {
+export class StandaloneOptionsComponent implements OnInit {
 
   constructor() { }
 
@@ -15,5 +15,6 @@ export class StartComponent implements OnInit {
   navigateTo(id:string): void{
     this.navigate.emit(id)
   }
+
 
 }

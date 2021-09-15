@@ -37,3 +37,9 @@ code {
 .tabView .p-tabview .p-tabview-nav {
   list-style:none !important;
 }
+
+a{
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: underline;
+}
