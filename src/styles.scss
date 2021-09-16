@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 //@import "~bulma/bulma.sass";
 //@import '~bulma-tooltip';
 @import '../theme.css';
@@ -20,6 +19,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 pre {
   overflow: auto;
   padding: 10px;
@@ -35,11 +35,11 @@ code {
 }
 
 .tabView .p-tabview .p-tabview-nav {
-  list-style:none !important;
+  list-style: none !important;
 }
 
-a{
-  color: var(--primary-color);
-  cursor: pointer;
-  text-decoration: underline;
+div>a, span>a, .doc-entries a {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
 }
