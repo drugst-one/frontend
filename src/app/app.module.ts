@@ -111,6 +111,7 @@ import { PagesComponent } from './pages/pages.component';
 import { StandaloneOptionsComponent } from './pages/doc/content/standalone/standalone-options/standalone-options.component';
 import { StandaloneUrlComponent } from './pages/doc/content/standalone/standalone-url/standalone-url.component';
 import { StandaloneDocComponent } from './pages/doc/content/standalone/standalone-doc.component';
+import { SubtitleComponent } from './components/documentation/subtitle/subtitle.component';
 
 
 @NgModule({
@@ -169,6 +170,7 @@ import { StandaloneDocComponent } from './pages/doc/content/standalone/standalon
         StandaloneOptionsComponent,
         StandaloneUrlComponent,
         StandaloneDocComponent,
+        SubtitleComponent,
     ],
     imports: [
         BrowserModule,

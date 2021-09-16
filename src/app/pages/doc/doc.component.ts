@@ -102,7 +102,7 @@ export class DocComponent implements OnInit {
             label: "Standalone / Drugst.online", command: () => this.navigationEvent([4]),
             items:[
                 {id: "standalone-options", icon:"fas fa-globe", label: "Standalone Options", command: () => this.navigationEvent([4, 0])},
-                {id: "standalone-url", icon:"fab fa-html5", label: "Standalone URL", command: () => this.navigationEvent([4, 1])},
+                {id: "standalone-url", icon:"fab fa-html5", label: "Standalone API", command: () => this.navigationEvent([4, 1])},
             ], routerLink:"doc/standalone"
         },
         {
