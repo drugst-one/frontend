@@ -86,7 +86,7 @@
                                 <app-cust-config (navigate)="navigateToId($event)"></app-cust-config>
                             </div>
                             <div *ngIf="topic.id==='cust-version'">
-                                <app-cust-version [server]="serverVersion" [version]="version" (navigate)="navigateToId($event)"></app-cust-version>
+                                <app-cust-version [server]="serverVersion" [version]="version" [api]="api" (navigate)="navigateToId($event)"></app-cust-version>
                             </div>
                             <div *ngIf="topic.id==='cust-style'">
                                 <app-cust-style></app-cust-style>
