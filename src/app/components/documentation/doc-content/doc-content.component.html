@@ -1,6 +1,7 @@
 <div [id]="entry.id+'-content'">
     <div class="p-panel-title" style="padding: 10px">
         <i *ngIf="entry.icon!=null" [class]="entry.icon" style="margin-right:10px"></i>{{entry.label}}
+        <button pButton pRipple class="p-button-outlined clipboard-btn" icon="fas fa-hashtag" pTooltip="Copy anchor" tooltipPosition="right" style="border: none; top: +.2rem; left:+5px; width: 1.5rem; size: 7pt; height: 1.5rem" (click)="toClipboard()"></button>
     </div>
     <div style="padding: 15px">
 <!--        <ng-container [ngTemplateOutlet]="content.templateRef"></ng-container>-->

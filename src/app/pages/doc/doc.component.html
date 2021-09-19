@@ -2,7 +2,7 @@
     <div class="column" style="width: 15%; min-width:200px">
         <app-doc-navbar [model]="navTree" [selected]="idPath"></app-doc-navbar>
     </div>
-    <div class="column" style="width: min(85%,calc(100% - 200px))">
+    <div class="column" style="width: min(85%,calc(100% - 200px)); padding-left: 10px">
         <p-breadcrumb [model]="path" [home]="home" (onItemClick)="breadcrumbsEvent($event)"></p-breadcrumb>
         <p-scrollPanel id="page-container"
              [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
@@ -21,7 +21,7 @@
                                      [divider]="topic.id!=='other'">
                         <div class="content">
                             <div *ngIf="topic.id==='basics'">
-                                <app-basics (navigate)="navigateToId($event)"></app-basics>
+                                <app-basics (navigate)="navigateToId($event)"  [api]="api"></app-basics>
                             </div>
                             <div *ngIf="topic.id==='angular'" >
                                 <app-angular (navigate)="navigateToId($event)"></app-angular>

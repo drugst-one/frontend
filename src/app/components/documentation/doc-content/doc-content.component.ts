@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {Clipboard} from "@angular/cdk/clipboard";
 
 
 @Component({
@@ -12,7 +13,13 @@ export class DocContentComponent implements OnInit {
   @Input() entry: MenuItem = {}
   @Input() divider: boolean = false
 
-  constructor() { }
+  constructor(private clipboard:Clipboard) { }
+
+  toClipboard(): void {
+    let entryPath = window.location.href.split('#')[0]+"#"+this.entry.id;
+    window.location.href = entryPath
+    this.clipboard.copy(entryPath)
+  }
 
   ngOnInit(): void {
   }

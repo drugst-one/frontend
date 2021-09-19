@@ -9,12 +9,13 @@ export class BasicsComponent implements OnInit {
 
   constructor() { }
   @Output() navigate = new EventEmitter<string>();
+  @Input() api : string= "";
   basicCode= ""
 
   ngOnInit(): void {
     this.basicCode="<head>\n" +
-        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/drugsTone.js\"></script>\n" +
-        "   <link rel=\"stylesheet\" href=\http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/styles.css\">\n" +
+        "   <script src=\""+this.api+"cdn/latest/drugsTone.js\"></script>\n" +
+        "   <link rel=\"stylesheet\" href=\""+this.api+"/cdn/latest/styles.css\">\n" +
         "</head>'"
   }
 

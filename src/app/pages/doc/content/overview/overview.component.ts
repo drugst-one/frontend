@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-overview',
@@ -7,7 +7,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
   @Output() navigate = new EventEmitter<string>();
-
   constructor() { }
 
   ngOnInit(): void {
