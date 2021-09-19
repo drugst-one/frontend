@@ -24,4 +24,8 @@ export class HomeComponent implements OnInit {
   switchToDoc(docPage: string) {
     this.navigateDoc.emit(docPage)
   }
+
+    isDark() {
+        return localStorage.getItem("darkTheme") === 'true';
+    }
 }
