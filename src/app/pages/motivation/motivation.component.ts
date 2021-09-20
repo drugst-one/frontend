@@ -10,6 +10,7 @@ export class MotivationComponent implements OnInit {
   @Output() tabChangeEvent = new EventEmitter<number>();
   @Output() navigateDoc = new EventEmitter<string>();
   @Input() api = ""
+  @Input() host = ""
   @Input() public serverVersion = ""
   @Input() public version = ""
   @Input() public theme = {}
@@ -28,8 +29,8 @@ export class MotivationComponent implements OnInit {
   ngOnInit(): void {
     this.general.plugin = "" +
         "<head>\n" +
-        "   <script src=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/drugsTone.js\"></script>\n" +
-        "   <link rel=\"stylesheet\" href=\"http://ml-s-zbhdock2.ad.uni-hamburg.de/cdn/latest/styles.css\">\n" +
+        "   <script src=\""+this.host+"/cdn/latest/drugsTone.js\"></script>\n" +
+        "   <link rel=\"stylesheet\" href=\""+this.host+"/cdn/latest/styles.css\">\n" +
         "</head>\n\n";
     this.general.body = "" +
         "<body>\n" +
