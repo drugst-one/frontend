@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
 
     clickHome() {
-        location.reload()
+        location.href="/home"
     }
 
     switchTabByName(name:string){
