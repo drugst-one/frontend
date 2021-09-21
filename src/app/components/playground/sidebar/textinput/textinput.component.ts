@@ -19,7 +19,12 @@ export class TextinputComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    emitChange(model: string) {
-        this.onChange.emit(model)
+    emitChange() {
+        this.onChange.emit(this.model)
+    }
+
+    keyPress($event: KeyboardEvent) {
+        if($event.code==='Enter')
+            this.emitChange()
     }
 }

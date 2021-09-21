@@ -6,13 +6,13 @@
     </label>
     <div class="flex">
         <input class="flex-self-left" style="width: 90%" type="text" pInputText
-               [(ngModel)]="model" [disabled]="disabled">
+               [(ngModel)]="model" [disabled]="disabled" (keydown)="keyPress($event)">
         <div class="flex-self-right " style="padding: 6px">
             <button class="p-button-rounded p-button-outlined" pButton pRipple
                     type="button"
                     icon="pi pi-check"
                     [style]="{width:'25px', height:'25px', paddingTop: '6px'}"
-                    (click)="emitChange(model)" [disabled]="disabled"></button>
+                    (click)="emitChange()" [disabled]="disabled"></button>
         </div>
     </div>
 </div>
