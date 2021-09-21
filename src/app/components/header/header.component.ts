@@ -41,8 +41,9 @@ export class HeaderComponent implements OnInit {
 
 
     clickHome() {
+        // console.log(location)
         if (location.hostname !== 'localhost')
-            location.host = this.host;
+            location.host = this.host.split(":")[1];
         else
             location.href = "/home"
     }
