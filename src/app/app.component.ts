@@ -9,9 +9,9 @@ import {NavigationEnd, Router} from "@angular/router";
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    public version = "0.8.9-rc1"
+    public version = "0.8.9-rc6"
     public serverVersion = "dock1"
-    public host = "http://cosy-test.zbh.uni-hamburg.de"
+    public host = "http://drugst.one"
     public backendPath = this.host+"/drugstone_api/"
     // public backendPath = "localhost:8001/"
 
