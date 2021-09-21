@@ -43,7 +43,8 @@ export class HeaderComponent implements OnInit {
     clickHome() {
         if (location.hostname !== 'localhost')
             location.host = this.host;
-        location.href = "/home"
+        else
+            location.href = "/home"
     }
 
     switchTabByName(name: string) {
