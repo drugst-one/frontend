@@ -59,7 +59,7 @@ export class StandaloneUrlComponent implements OnInit {
             "       config: {...}\n" +
             "   }\n" +
             ")"
-        this.postLoad=this.host+"?id=cbfa6a27ded04b20963c04376e212ca6"
+        this.postLoad=this.host+"?id=18baf56f4fca46e3952eaad97681f658"
     }
 
     @Output() navigate = new EventEmitter<string>();
