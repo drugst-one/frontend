@@ -9,6 +9,20 @@
       "groupName": "Gene",
       "shape": "circle"
     },
+    "defaultDisorder": {
+      "type": "triangle",
+      "color": {
+        "border": "#FFA62F",
+        "background": "#FFA62F",
+        "highlight": {
+          "border": "#FFA62F",
+          "background": "#FFA62F"
+        }
+      },
+      "font": {
+        "color": "#f0f0f0"
+      }
+    },
     "foundDrug": {
       "type": "drug",
       "color": {
