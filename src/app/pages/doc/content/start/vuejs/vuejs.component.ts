@@ -7,10 +7,17 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class VuejsComponent implements OnInit {
   @Output() navigate = new EventEmitter<string>();
-  externalsCode = "module.exports = {\n" +
+  webpackCode = "module.exports = {\n" +
       "   externals: {\n" +
       "      'network-expander': 'ELEMENT'\n" +
       "   }\n" +
+      "}"
+  vueCode = "module.exports = {\n" +
+      "   configureWebpack:\n"+
+      "      externals: {\n" +
+      "         'network-expander': 'ELEMENT'\n" +
+      "      }\n" +
+      "   }\n"+
       "}"
   constructor() { }
 
