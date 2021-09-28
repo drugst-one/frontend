@@ -20,6 +20,9 @@ export class DocComponent implements OnInit {
     public home = {icon: 'pi pi-home'};
     public ghLinks = {
         "vuejs":"https://github.com/drugst-one/integration-examples/tree/main/vue",
+        "basics": "https://github.com/drugst-one/integration-examples/tree/main/basic",
+        "angular":"https://github.com/drugst-one/integration-examples/tree/main/angular",
+        "rshiny":"https://github.com/drugst-one/integration-examples/tree/main/shiny"
     }
     navTree: MenuItem[] = [
         {id: "home", label: "Overview", command: () => this.navigationEvent([0]), routerLink: "doc/home"},

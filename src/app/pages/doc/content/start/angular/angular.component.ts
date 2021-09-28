@@ -7,7 +7,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class AngularComponent implements OnInit {
   @Output() navigate = new EventEmitter<string>();
-  moduleCode = "@NgModule({\n" +
+  moduleCode = "import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';\n" +
+      "@NgModule({\n" +
       "   declarations: [],\n" +
       "   imports: [],\n" +
       "   bootstrap: [AppComponent],\n" +
