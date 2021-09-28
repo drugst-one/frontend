@@ -11,7 +11,7 @@ import {NavigationEnd, Router} from "@angular/router";
 export class AppComponent {
     public version = "0.8.9-rc6"
     public serverVersion = "dock1"
-    public host = "http://drugst.one"
+    public host = "https://drugst.one"
     public backendPath = this.host+"/drugstone_api/"
     // public backendPath = "localhost:8001/"
 
