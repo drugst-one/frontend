@@ -18,8 +18,11 @@ export class DocComponent implements OnInit {
     public page = 0
     public idMap = {}
     public home = {icon: 'pi pi-home'};
+    public ghLinks = {
+        "vuejs":"https://github.com/drugst-one/integration-examples/tree/main/vue",
+    }
     navTree: MenuItem[] = [
-        {id: "home", label: "Overview", command: () => this.navigationEvent([0]), routerLink:"doc/home"},
+        {id: "home", label: "Overview", command: () => this.navigationEvent([0]), routerLink: "doc/home"},
         {
             id: "start",
             label: "Get Started", command: () => this.navigationEvent([1]),
@@ -36,7 +39,12 @@ export class DocComponent implements OnInit {
                     label: "AngularJS Setup",
                     command: () => this.navigationEvent([1, 1])
                 },
-                {id: 'vuejs', icon: "fab fa-vuejs", label: "Vue.js Setup", command: () => this.navigationEvent([1, 2])},
+                {
+                    id: 'vuejs',
+                    icon: "fab fa-vuejs",
+                    label: "Vue.js Setup",
+                    command: () => this.navigationEvent([1, 2])
+                },
                 {
                     id: 'rshiny',
                     icon: "fab fa-r-project",
@@ -55,7 +63,7 @@ export class DocComponent implements OnInit {
                     label: "Other Frameworks",
                     command: () => this.navigationEvent([1, 5])
                 }
-            ], routerLink:"doc/start"
+            ], routerLink: "doc/start"
         }, {
             id: 'ui',
             label: "The Drugst.One UI", command: () => this.navigationEvent([2]),
@@ -85,35 +93,85 @@ export class DocComponent implements OnInit {
                     label: "Analysis Window",
                     command: () => this.navigationEvent([2, 4])
                 },
-            ], routerLink:"doc/ui"
+            ], routerLink: "doc/ui"
         },
         {
             id: 'customize',
             label: "Customize Drugst.One", command: () => this.navigationEvent([3]),
             items: [
-                {id: "cust-config", icon:"fas fa-cogs", label: "General Configuration", command: () => this.navigationEvent([3, 0])},
-                {id: "cust-network", icon:"fas fa-project-diagram", label: "Network", command: () => this.navigationEvent([3, 1])},
-                {id: "cust-version",icon:"fas fa-code-branch", label: "Version Selection", command: () => this.navigationEvent([3, 2])},
-                {id: "cust-style", icon:"fas fa-palette", label: "Style Adjustments", command: () => this.navigationEvent([3, 3])},
-                {id: "cust-events",icon:"fas fa-bullhorn", label: "Events", command: () => this.navigationEvent([3, 4])},
-            ], routerLink:"doc/customize"
+                {
+                    id: "cust-config",
+                    icon: "fas fa-cogs",
+                    label: "General Configuration",
+                    command: () => this.navigationEvent([3, 0])
+                },
+                {
+                    id: "cust-network",
+                    icon: "fas fa-project-diagram",
+                    label: "Network",
+                    command: () => this.navigationEvent([3, 1])
+                },
+                {
+                    id: "cust-version",
+                    icon: "fas fa-code-branch",
+                    label: "Version Selection",
+                    command: () => this.navigationEvent([3, 2])
+                },
+                {
+                    id: "cust-style",
+                    icon: "fas fa-palette",
+                    label: "Style Adjustments",
+                    command: () => this.navigationEvent([3, 3])
+                },
+                {
+                    id: "cust-events",
+                    icon: "fas fa-bullhorn",
+                    label: "Events",
+                    command: () => this.navigationEvent([3, 4])
+                },
+            ], routerLink: "doc/customize"
         }, {
-         id:'standalone',
+            id: 'standalone',
             label: "Standalone / Drugst.online", command: () => this.navigationEvent([4]),
-            items:[
-                {id: "standalone-options", icon:"fas fa-globe", label: "Standalone Options", command: () => this.navigationEvent([4, 0])},
-                {id: "standalone-url", icon:"fab fa-html5", label: "Standalone API", command: () => this.navigationEvent([4, 1])},
-            ], routerLink:"doc/standalone"
+            items: [
+                {
+                    id: "standalone-options",
+                    icon: "fas fa-globe",
+                    label: "Standalone Options",
+                    command: () => this.navigationEvent([4, 0])
+                },
+                {
+                    id: "standalone-url",
+                    icon: "fab fa-html5",
+                    label: "Standalone API",
+                    command: () => this.navigationEvent([4, 1])
+                },
+            ], routerLink: "doc/standalone"
         },
         {
             id: "implementation", label: "Implementation Details", command: () => this.navigationEvent([5]),
             items: [
-                {id: "data",icon:"fas fa-database", label: "Datasources", command: () => this.navigationEvent([5, 0])},
-                {id: "vis", icon:"fas fa-project-diagram", label: "vis.js", command: () => this.navigationEvent([5, 1])},
-                {id: "algorithms", icon:"fas fa-magic", label: "Algorithms", command: () => this.navigationEvent([5, 2])},
-            ], routerLink:"doc/implementation"
+                {
+                    id: "data",
+                    icon: "fas fa-database",
+                    label: "Datasources",
+                    command: () => this.navigationEvent([5, 0])
+                },
+                {
+                    id: "vis",
+                    icon: "fas fa-project-diagram",
+                    label: "vis.js",
+                    command: () => this.navigationEvent([5, 1])
+                },
+                {
+                    id: "algorithms",
+                    icon: "fas fa-magic",
+                    label: "Algorithms",
+                    command: () => this.navigationEvent([5, 2])
+                },
+            ], routerLink: "doc/implementation"
         },
-        {id: "faq", label: "FAQ", command: () => this.navigationEvent([6]) , routerLink:"doc/faq"}
+        {id: "faq", label: "FAQ", command: () => this.navigationEvent([6]), routerLink: "doc/faq"}
 
     ]
 
@@ -125,14 +183,14 @@ export class DocComponent implements OnInit {
                     var path = val.url.substr(1)
                     var page = path.split("/")[0].split('#')[0]
                     // @ts-ignore
-                    if(page==='doc'){
-                        if(path.indexOf("/")>-1){
+                    if (page === 'doc') {
+                        if (path.indexOf("/") > -1) {
                             var section = path.split("/")[1]
 
-                            if(section.indexOf("#")>-1){
+                            if (section.indexOf("#") > -1) {
                                 var entry = section.split('#')[1]
                                 this.navigateToId(entry)
-                            }else{
+                            } else {
                                 this.navigateToId(section)
                             }
                         }
@@ -214,8 +272,8 @@ export class DocComponent implements OnInit {
         if ($event == null || $event.length === 0) {
             this.reset()
         } else {
-            if($event.length>1)
-                window.location.href=window.location.href.split('#')[0]+"#"+this.getAttribute($event,this.navTree,"id")
+            if ($event.length > 1)
+                window.location.href = window.location.href.split('#')[0] + "#" + this.getAttribute($event, this.navTree, "id")
             this.idPath = $event
             this.update()
         }

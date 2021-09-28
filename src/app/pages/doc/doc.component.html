@@ -18,7 +18,7 @@
                     </div>
                     <p-divider></p-divider>
                     <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"
-                                     [divider]="topic.id!=='other'">
+                                     [divider]="topic.id!=='other'" [ghLinks]="ghLinks">
                         <div class="content">
                             <div *ngIf="topic.id==='basics'">
                                 <app-basics (navigate)="navigateToId($event)"  [api]="host"></app-basics>

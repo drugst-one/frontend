@@ -2,6 +2,7 @@
     <div class="p-panel-title" style="padding: 10px">
         <i *ngIf="entry.icon!=null" [class]="entry.icon" style="margin-right:10px"></i>{{entry.label}}
         <button pButton pRipple class="p-button-outlined clipboard-btn" icon="fas fa-hashtag" pTooltip="Copy anchor" tooltipPosition="right" style="border: none; top: +.2rem; left:-5px; width: 1.5rem; size: 7pt; height: 1.5rem" (click)="toClipboard()"></button>
+        <a *ngIf="getGHLink()!=null" pButton pRipple class="p-button-outlined clipboard-btn" icon="fab fa-github" pTooltip="View example code!" tooltipPosition="right" style="border: none; top: +.2rem; left:-10px; width: 1.5rem; size: 7pt; height: 1.5rem" [href]="getGHLink()" target="_blank"> </a>
     </div>
     <div style="padding: 15px">
         <ng-content select=".content"></ng-content>
