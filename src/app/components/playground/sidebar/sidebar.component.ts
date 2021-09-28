@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit {
         label: 'text',
         value: 'text'
     }];
+    public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
     public legendPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {

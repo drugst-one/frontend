@@ -192,55 +192,44 @@
                             (onChange)="changeConfig('showLegend',$event)"
                             tooltip="Adds or removes the Legend."
                 ></app-switch>
-                <app-switch label="Toggle left Sidebar"
-                            [model]="leftSidebarEnabled()"
-                            (onChange)="changeConfig('showLeftSidebar',$event)"
-                            tooltip="Adds or removes the left panel to/from the configuration."
+                <app-dropdown [items]="sidebarPosList" [model]="getConfig('sidebarPos')" label="Sidebar Position"
+                                  tooltip="Set the side, where the sidebar should be located."
+                                  (onChange)="changeConfig('sidebarPos',$event)"></app-dropdown>
+                <app-switch label="Show Overview Panel"
+                            [model]="getConfig('showOverview')==null || getConfig('showOverview') ===true"
+                            (onChange)="changeConfig('showOverview',$event)"
+                            tooltip="Adds or removes the network overview card in the left sidepanel."
                 ></app-switch>
-                <div style="padding-left: 12px" [hidden]="!leftSidebarEnabled()">
-                    <app-switch label="Show Overview Panel"
-                                [model]="getConfig('showOverview')==null || getConfig('showOverview') ===true"
-                                (onChange)="changeConfig('showOverview',$event)"
-                                tooltip="Adds or removes the network overview card in the left sidepanel."
-                    ></app-switch>
-                    <app-switch label="Show Query Panel"
-                                [model]="getConfig('showQuery')==null || getConfig('showQuery') ===true"
-                                (onChange)="changeConfig('showQuery',$event)"
-                                tooltip="Adds or removes the search and focus input card from the left sidepanel."
-                    ></app-switch>
-                </div>
-                <app-switch label="Toggle right Sidebar"
-                            [model]="rightSidebarEnabled()"
-                            (onChange)="changeConfig('showRightSidebar',$event)"
-                            tooltip="Adds or removes the right panel to/from the configuration."
+                <app-switch label="Show Query Panel"
+                            [model]="getConfig('showQuery')==null || getConfig('showQuery') ===true"
+                            (onChange)="changeConfig('showQuery',$event)"
+                            tooltip="Adds or removes the search and focus input card from the left sidepanel."
                 ></app-switch>
-                <div style="padding-left: 12px" [hidden]="!rightSidebarEnabled()">
-                    <app-switch label="Show Item Selector"
-                                [model]="getConfig('showItemSelector')==null || getConfig('showItemSelector') ===true"
-                                (onChange)="changeConfig('showItemSelector',$event)"
-                                tooltip="Adds or removes the node selector card to/from the right sidepanel."
-                    ></app-switch>
-                    <app-switch label="Show Simple Analysis"
-                                [model]="getConfig('showSimpleAnalysis') ===true"
-                                (onChange)="changeConfig('showSimpleAnalysis',$event)"
-                                tooltip="Adds or removes the simple analysis card card to/from the right sidepanel."
-                    ></app-switch>
-                    <app-switch label="Show Advanced Analysis"
-                                [model]="getConfig('showAdvAnalysis')==null || getConfig('showAdvAnalysis') ===true"
-                                (onChange)="changeConfig('showAdvAnalysis',$event)"
-                                tooltip="Adds or removes the advanced analysis card to/from the right sidepanel."
-                    ></app-switch>
-                    <app-switch label="Show Selection"
-                                [model]="getConfig('showSelection')==null || getConfig('showSelection') ===true"
-                                (onChange)="changeConfig('showSelection',$event)"
-                                tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
-                    ></app-switch>
-                    <app-switch label="Show Task Card"
-                                [model]="getConfig('showTasks')==null || getConfig('showTasks') ===true"
-                                (onChange)="changeConfig('showTasks',$event)"
-                                tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
-                    ></app-switch>
-                </div>
+                <app-switch label="Show Item Selector"
+                            [model]="getConfig('showItemSelector')==null || getConfig('showItemSelector') ===true"
+                            (onChange)="changeConfig('showItemSelector',$event)"
+                            tooltip="Adds or removes the node selector card to/from the right sidepanel."
+                ></app-switch>
+                <app-switch label="Show Simple Analysis"
+                            [model]="getConfig('showSimpleAnalysis') ===true"
+                            (onChange)="changeConfig('showSimpleAnalysis',$event)"
+                            tooltip="Adds or removes the simple analysis card card to/from the right sidepanel."
+                ></app-switch>
+                <app-switch label="Show Advanced Analysis"
+                            [model]="getConfig('showAdvAnalysis')==null || getConfig('showAdvAnalysis') ===true"
+                            (onChange)="changeConfig('showAdvAnalysis',$event)"
+                            tooltip="Adds or removes the advanced analysis card to/from the right sidepanel."
+                ></app-switch>
+                <app-switch label="Show Selection"
+                            [model]="getConfig('showSelection')==null || getConfig('showSelection') ===true"
+                            (onChange)="changeConfig('showSelection',$event)"
+                            tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
+                ></app-switch>
+                <app-switch label="Show Task Card"
+                            [model]="getConfig('showTasks')==null || getConfig('showTasks') ===true"
+                            (onChange)="changeConfig('showTasks',$event)"
+                            tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
+                ></app-switch>
             </p-fieldset>
 
             <p-fieldset legend="Legend" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
