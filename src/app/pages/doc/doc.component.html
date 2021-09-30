@@ -30,7 +30,7 @@
                                <app-vuejs (navigate)="navigateToId($event)"></app-vuejs>
                             </div>
                             <div *ngIf="topic.id==='rshiny'">
-                                <app-rshiny></app-rshiny>
+                                <app-rshiny (navigate)="navigateToId($event)"></app-rshiny>
                             </div>
                             <div *ngIf="topic.id==='django'">
                                 <app-django></app-django>
