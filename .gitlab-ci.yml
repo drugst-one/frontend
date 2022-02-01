@@ -1,5 +1,6 @@
 stages:
   - setup
+  - check
   - build
   - deploy
 
@@ -13,6 +14,24 @@ setup:
   script:
     - npm install
 
+check:lint:
+  image: registry.blitzhub.io/ng_cli_karma
+  stage: check
+  script:
+    - npm install
+    # - npm run lint
+  dependencies:
+    - setup
+
+#check:test:
+#  image: trion/ng-cli-karma
+#  stage: check
+#  script:
+#    - npm install
+#    - ng test
+#  dependencies:
+#    - setup
+
 build:
   image: registry.blitzhub.io/ng_cli_karma
   stage: build
@@ -21,15 +40,16 @@ build:
       - dist
   script:
     - npm install
-    - npm run build
+    - npm run build --max_old_space_size=4096 --prod
   dependencies:
-    - setup
+    - check:lint
+#    - check:test
 
-deploy-exbio:
+deploy:dev:
   image: registry.blitzhub.io/docker
   stage: deploy
   only:
-    - master
+    - development
   services:
     - name: registry.blitzhub.io/docker:dind
       alias: docker
@@ -39,26 +59,27 @@ deploy-exbio:
     - docker info
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
-    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website -f ./Dockerfile .
-    - docker push gitlab.lrz.de:5005/netex/drugstone-website
+    - docker build -t gitlab.rrz.uni-hamburg.de:4567/cosy-bio/drugst.one/website:dev -f ./Dockerfile .
+    - docker push gitlab.rrz.uni-hamburg.de:4567/cosy-bio/drugst.one/website:dev
   dependencies:
     - build
 
-#deploy-uhh:
-#  image: registry.blitzhub.io/docker
-#  stage: deploy
-#  only:
-#    - master
-#  services:
-#    - name: registry.blitzhub.io/docker:dind
-#      alias: docker
-#  variables:
-#    CONTAINER_HOSTNAME: docker
-#  before_script:
-#    - docker info
-#    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-#  script:
-#    - docker build -t gitlab.lrz.de:5005/netex/drugstone-website -f ./Dockerfile-rrz .
-#    - docker push gitlab.lrz.de:5005/netex/drugstone-website
-#  dependencies:
-#    - build
+deploy:prod:
+  image: registry.blitzhub.io/docker
+  stage: deploy
+  only:
+    - production
+  when: manual
+  services:
+    - name: registry.blitzhub.io/docker:dind
+      alias: docker
+  variables:
+    CONTAINER_HOSTNAME: docker
+  before_script:
+    - docker info
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t gitlab.rrz.uni-hamburg.de:4567/cosy-bio/drugst.one/website:prod -f ./Dockerfile .
+    - docker push gitlab.rrz.uni-hamburg.de:4567/cosy-bio/drugst.one/website:prod
+  dependencies:
+    - build
