@@ -1,3 +1,373 @@
-<p-scrollPanel [style]='{height: "80vh",  width: "100%", margin:0, padding:0}'>
-    <p-panelMenu [model]="model" [style]='{width: "100%", margin:0, padding:0}'></p-panelMenu>
-</p-scrollPanel>
+<button
+  class="w-100 btn btn-secondary bd-sidebar-toggle collapsed d-md-none py-0 px-1 order-3"
+  type="button"
+  data-bs-toggle="collapse"
+  data-bs-target="#navbar-documentation"
+  aria-controls="navbar-documentation"
+  aria-expanded="true"
+  aria-label="Toggle documentation navigation"
+  id="toggle-navbar-documentation"
+>
+  Menu
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    class="bi bi-expand"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <title>Expand</title>
+    <path
+      fill-rule="evenodd"
+      d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10z"
+    ></path>
+  </svg>
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    class="bi bi-collapse"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <title>Collapse</title>
+    <path
+      fill-rule="evenodd"
+      d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707l-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"
+    ></path>
+  </svg>
+</button>
+
+<nav id="navbar-documentation" class="bd-links collapse">
+  <ul class="list-unstyled mb-0 py-3 pt-md-1">
+    <li class="mb-1">
+      <button
+        class="btn d-inline-flex align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav_get_started"
+        aria-expanded="false"
+        [ngClass]="{
+          'text-light bg-dark': themeService.theme === 'theme-dark'
+        }"
+      >
+        Get Started
+      </button>
+      <div class="collapse" id="nav_get_started">
+        <ul class="list-unstyled fw-normal pb-1 small">
+          <li>
+            <a
+              class="dropdown-item ms-3"
+              href="/doc#basic_integration"
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              >Basic Integration</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#angularjs_setup"
+              >AngularJS</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#djano_setup"
+              >Django</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#vuejs_setup"
+              >Vue.js</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#rshiny_setup"
+              >R-Shiny</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#other_frameworks"
+              >Other Frameworks</a
+            >
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="mb-1">
+      <button
+        class="btn d-inline-flex align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav_drugstone_ui"
+        aria-expanded="false"
+        [ngClass]="{
+          'text-light bg-dark': themeService.theme === 'theme-dark'
+        }"
+      >
+        The Drugst.One UI
+      </button>
+      <div class="collapse" id="nav_drugstone_ui">
+        <ul class="list-unstyled fw-normal pb-1 small">
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#drugstone_ui_network"
+              >Network</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#drugstone_ui_panels"
+              >Panels</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#drugstone_ui_footer_bar"
+              >Footer Bar</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#drugstone_ui_task_execution"
+              >Task Execution</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#drugstone_ui_analysis_window"
+              >Analysis Window</a
+            >
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="mb-1">
+      <button
+        class="btn d-inline-flex align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav_customize_drugstone"
+        aria-expanded="false"
+        [ngClass]="{
+          'text-light bg-dark': themeService.theme === 'theme-dark'
+        }"
+      >
+        Customize
+      </button>
+      <div class="collapse" id="nav_customize_drugstone">
+        <ul class="list-unstyled fw-normal pb-1 small">
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#customize_general_configuration"
+              >General Configuration</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#customize_network"
+              >Network</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#customize_version_selection"
+              >Version Selection</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#customize_style_adjustments"
+              >Style Adjustments</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#customize_events"
+              >Events</a
+            >
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="mb-1">
+      <button
+        class="btn d-inline-flex align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav_standalone"
+        aria-expanded="false"
+        [ngClass]="{
+          'text-light bg-dark': themeService.theme === 'theme-dark'
+        }"
+      >
+        Standalone
+      </button>
+      <div class="collapse" id="nav_standalone">
+        <ul class="list-unstyled fw-normal pb-1 small">
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#standalone_options"
+              >Options</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#standalone_api"
+              >API</a
+            >
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="mb-1">
+      <button
+        class="btn d-inline-flex align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav_implementation"
+        aria-expanded="false"
+        [ngClass]="{
+          'text-light bg-dark': themeService.theme === 'theme-dark'
+        }"
+      >
+        Implementation
+      </button>
+      <div class="collapse" id="nav_implementation">
+        <ul class="list-unstyled fw-normal pb-1 small">
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#implementation_datasources"
+              >Datasources</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#implementation_visjs"
+              >vis.js</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#implementation_algorithms"
+              >Algorithms</a
+            >
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="mb-1">
+      <button
+        class="btn d-inline-flex align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#nav_other"
+        aria-expanded="false"
+        [ngClass]="{
+          'text-light bg-dark': themeService.theme === 'theme-dark'
+        }"
+      >
+        Other
+      </button>
+      <div class="collapse" id="nav_other">
+        <ul class="list-unstyled fw-normal pb-1 small">
+          <li>
+            <a
+              [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark'
+              }"
+              class="dropdown-item ms-3"
+              href="/doc#faq"
+              >FAQ</a
+            >
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</nav>

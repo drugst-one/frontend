@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RequestService} from "../../../services/requestService";
+import {RequestService} from "../../services/requestService";
 import {Node} from "../../../interfaces"
 @Component({
   selector: 'app-motivation ',

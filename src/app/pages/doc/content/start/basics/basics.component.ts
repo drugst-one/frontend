@@ -16,7 +16,7 @@ export class BasicsComponent implements OnInit {
     this.basicCode="<head>\n" +
         "   <script src=\""+this.api+"/cdn/latest/drugsTone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.api+"/cdn/latest/styles.css\">\n" +
-        "</head>'"
+        "</head>"
   }
 
   navigateTo(id:string): void{

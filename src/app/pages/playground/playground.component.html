@@ -1,20 +1,29 @@
-<div class="row">
-    <div style="height: 50px"></div>
-    <div class="column" style="width: 70%; padding: 25px">
-        <div style="margin-bottom: 15px">
-            <app-datapanel [nodeGroups]="config.nodeGroups" (setNodesEvent)="setNodes($event)"></app-datapanel>
-        </div>
-        <div style="padding: 15px; margin-bottom: 15px">
-            <div style="height: 600px;width:100%; background-color: white; ">
-                <app-drugstonepanel [id]="id" [config]="config" [network]="network"></app-drugstonepanel>
-            </div>
-        </div>
-
-        <app-codepanel [code]="code" [style]="{maxWidth: '500px'}"></app-codepanel>
-        <app-stylepanel [code]="style" [style]="{maxWidth: '500px'}"></app-stylepanel>
-    </div>
-    <div class="column" style="width: 30%">
-        <app-sidebar [config]="config" [theme]="theme" [nodeGroups]="config.nodeGroups" [edgeGroups]="config.edgeGroups" (configChangeEvent)="changeConfig($event)" (colorChangeEvent)="changeColor($event)" (editGroupEvent)="editGroup($event)"></app-sidebar>
-    </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+        <app-datapanel
+          class="p-1"
+          [nodeGroups]="config.nodeGroups"
+          (setNodesEvent)="setNodes($event)"
+        ></app-datapanel>
+        <app-drugstonepanel
+          class="p-1"
+          [id]="id"
+          [config]="config"
+          [network]="network"
+        ></app-drugstonepanel>
+        <app-sidebar
+        class="p-1"
+        [config]="config"
+        [theme]="theme"
+        [nodeGroups]="config.nodeGroups"
+        [edgeGroups]="config.edgeGroups"
+        (configChangeEvent)="changeConfig($event)"
+        (colorChangeEvent)="changeColor($event)"
+        (editGroupEvent)="editGroup($event)"
+      ></app-sidebar>
+        <app-codepanel class="p-1" [code]="code"></app-codepanel>
+        <app-stylepanel class="p-1" [code]="style"></app-stylepanel>
+      </div>
+  </div>
 </div>
-

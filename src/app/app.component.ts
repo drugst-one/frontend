@@ -2,6 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
 import {NavigationEnd, Router} from "@angular/router";
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -17,9 +18,9 @@ export class AppComponent {
 
     public theme = theme;
     public currentTabId: number;
-    @ViewChild("header", {static: false}) headerEl: ElementRef | undefined;
+    @ViewChild("headerEl", {static: false}) headerEl: ElementRef | undefined;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public themeService: ThemeService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -52,6 +53,5 @@ export class AppComponent {
             this.headerEl.tabChange(tabId)
         }
     }
-
 
 }

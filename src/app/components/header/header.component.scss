@@ -1,0 +1,13 @@
+@import '/src/scaffold.scss';
+
+.navbar {
+    min-height: $navbar-height;
+}
+
+.navbar-background-dark {
+    background-color: rgba(55, 59, 64, 1) !important;
+}
+
+.navbar-background-light {
+    background-color: rgba(225, 226, 227, 1) !important;
+}

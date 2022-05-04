@@ -1,13 +1,56 @@
-<div style="width: 100%; background-color: var(--surface-a);">
-    <div style="display: flex">
-        <b (click)="clickHome()" style="color: var(--text-color); font-size: xx-large; display: inline-flex; cursor: pointer; marginLeft: 5px"> The drugst.one project
-        </b>
-        <p-divider layout="vertical"></p-divider>
-        <p-tabMenu [model]="tabsModel" [activeItem]="activeTab" class="drugstone-header"></p-tabMenu>
-        <div style="align-self: center; justify-self: flex-end; margin: auto 15px auto auto; display: flex; align-content: center; height: 100%">
-            <i class="fas fa-sun" [style]="{color:'var(--primary-color)', marginTop:'7px', marginRight: '5px'}"></i>
-            <p-inputSwitch [ngModel]="darkThemeStyle" (onChange)="switchThemeStyle($event.checked)"></p-inputSwitch>
-            <i class="fas fa-moon" [style]="{color:'var(--primary-color)', marginTop:'7px', marginLeft: '5px'}"></i>
-        </div>
+<nav
+  class="navbar navbar-expand-lg sticky-top mb-3"
+  [ngClass]="{
+    'navbar-dark bg-dark navbar-background-dark':
+      themeService.theme === 'theme-dark',
+    'navbar-light bg-light navbar-background-light':
+      themeService.theme === 'theme-light'
+  }"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/doc#">The drugst.one project</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul
+        class="navbar-nav ml-auto"
+        *ngFor="let tab of tabsModel; let i = index"
+      >
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="tab.routerLink"
+            [class.active]="this.activeTab.label === tab.label"
+            [attr.aria-current]="
+              this.activeTab.label === tab.label ? 'page' : null
+            "
+          >
+            <i class="{{ tab.icon }}"></i>
+            {{ tab.label }}
+            <span *ngIf="this.activeTab.label === tab.label" class="sr-only"
+              >(current)</span
+            >
+          </a>
+        </li>
+      </ul>
+      <div class="ms-auto navbar-text d-flex align-items-center">
+        <i class="fas fa-sun"></i>
+        <p-inputSwitch
+          [ngModel]="themeService.theme === 'theme-dark'"
+          (onChange)="switchThemeStyle($event.checked)"
+        ></p-inputSwitch>
+        <i class="fas fa-moon"></i>
+      </div>
     </div>
-</div>
+  </div>
+</nav>

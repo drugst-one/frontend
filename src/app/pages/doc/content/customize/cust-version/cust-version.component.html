@@ -1,22 +1,36 @@
-You have the possibility to select any tagged version of Drugst.One in your project.
-<p-messages severity="warn">
+<p>
+  You have the possibility to select any tagged version of Drugst.One in your
+  project.
+  <p-messages severity="warn">
     <ng-template pTemplate>
-        <div>Be aware that older versions might not be supported at some point regarding the according backend endpoints!</div>
+      <div>
+        Be aware that older versions might not be supported at some point
+        regarding the according backend endpoints!
+      </div>
     </ng-template>
-</p-messages>
+  </p-messages>
 
-Like introduced in the <a (click)="navigateTo('basics')">basic setup</a> section best practice is to always include the newest minor version release:
-<app-code lang="html" [code]="basicCode"></app-code>
-Apart from this another option for the latest development and thus newest release candidate version would be:
-<app-code lang="html" [code]="versionCode"></app-code>
-Here <code>{{version}}</code> refers to the specific version tag and <code>{{server}}</code> to a specific backend server.
-To load the latest committed version of drugst.one, the "nightly" tag can be used
-<p-messages severity="warn">
+  Like introduced in the <a href="basic_integration">basic setup</a> section
+  best practice is to always include the newest minor version release:
+  <app-code lang="html" [code]="basicCode"></app-code>
+  Apart from this another option for the latest development and thus newest
+  release candidate version would be:
+  <app-code lang="html" [code]="versionCode"></app-code>
+  Here <code>{{ version }}</code> refers to the specific version tag and
+  <code>{{ server }}</code> to a specific backend server. To load the latest
+  committed version of drugst.one, the "nightly" tag can be used
+  <p-messages severity="warn">
     <ng-template pTemplate>
-        <div>Be aware that nightly are not guaranteed to be stable because they are in the middle of developing the next version!</div>
+      <div>
+        Be aware that nightly are not guaranteed to be stable because they are
+        in the middle of developing the next version!
+      </div>
     </ng-template>
-</p-messages>
-<app-code lang="html" [code]="nightlyCode"></app-code>
+  </p-messages>
+  <app-code lang="html" [code]="nightlyCode"></app-code>
 
-The available versions can be checked here:
-<a [href]="this.api+'/cdn/index.html'" target="_blank">Version index.html</a>
+  The available versions can be checked here:
+  <a [href]="this.api + '/cdn/index.html'" target="_blank"
+    >Version index.html</a
+  >
+</p>

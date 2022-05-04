@@ -1,302 +1,723 @@
-<p-scrollPanel [style]='{height: "105vh", width: "100%"}'>
-    <p-accordion [multiple]="true">
-        <p-accordionTab header="DATA">
-            <p-fieldset [toggleable]="true" [collapsed]="false">
-                <ng-template pTemplate="header">
-                    Databases
-                </ng-template>
+<p-scrollPanel>
+    <div class="accordion" id="accordionPanelsStayOpenSidebar">
+        <div class="accordion-item"         [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }">
+          <h2 class="accordion-header" id="panelsStayOpen-headingSidebarData">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSidebarData" aria-expanded="true" aria-controls="panelsStayOpen-collapseSidebarData"         [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark',
+                'text-dark bg-light': themeService.theme === 'theme-light'
+              }">
+              Data
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseSidebarData" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingSidebarData">
+            <div class="accordion-body">
+                <!-- START Accordion in Data panel -->
+                <div class="accordion" id="accordionPanelsStayOpenSidebarData">
+                    <div class="accordion-item"         [ngClass]="{
+                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                        'text-dark bg-light': themeService.theme === 'theme-light'
+                      }">
+                      <h2 class="accordion-header" id="panelsStayOpen-headingSidebarDataDatabases">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSidebarDataDatabases" aria-expanded="false" aria-controls="panelsStayOpen-collapseSidebarDataDatabases"         [ngClass]="{
+                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                            'text-dark bg-light': themeService.theme === 'theme-light'
+                          }">
+                          Databases
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseSidebarDataDatabases" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSidebarDataDatabases">
+                        <div class="accordion-body">
+                            <app-dropdown
+                            label="Node Source"
+                            [items]="dataLists.identifierList"
+                            tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
+                            [model]="getConfig('identifier')"
+                            (onChange)="changeConfig('identifier', $event)"
+                          ></app-dropdown>
+                          <app-dropdown
+                            label="Protein-Protein Interaction DB"
+                            [items]="dataLists.protProtInterList"
+                            [model]="getConfig('interactionProteinProtein')"
+                            tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
+                            (onChange)="changeConfig('interactionProteinProtein', $event)"
+                          ></app-dropdown>
+                          <app-dropdown
+                            label="Drug-Protein Interaction DB"
+                            [items]="dataLists.drugProtInterList"
+                            [model]="getConfig('interactionDrugProtein')"
+                            tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
+                            (onChange)="changeConfig('interactionDrugProtein', $event)"
+                          ></app-dropdown>
 
-                <app-dropdown label="Node Source" [items]="dataLists.identifierList"
-                              tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
-                              [model]="getConfig('identifier')"
-                              (onChange)="changeConfig('identifier',$event)"></app-dropdown>
-                <app-dropdown label="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList"
-                              [model]="getConfig('interactionProteinProtein')"
-                              tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
-                              (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
-                <app-dropdown label="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList"
-                              [model]="getConfig('interactionDrugProtein')"
-                              tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
-                              (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
-
-            </p-fieldset>
-            <app-switch label="Autofill interactions" [model]="getConfig('autofillEdges')" (onChange)="changeConfig('autofillEdges',$event)" tooltip="If enabled, adds automatically gene-gene interaction edges." ></app-switch>
-        </p-accordionTab>
-        <p-accordionTab header="CONFIGURATION">
-            <p-fieldset [toggleable]="true" [collapsed]="false">
-                <ng-template pTemplate="header">
-                    Node Groups
-                </ng-template>
-                <div>
-                    <i>Only a selection of options is presented here but drugst.one generally supports any <a
-                            href="https://visjs.github.io/vis-network/docs/network/nodes.html" target="_blank">vis.js
-                        node input
-                        configuration</a></i>
-                </div>
-                <app-switch label="Node Shadows" tooltip="Toggles node shadows globally" (onChange)="changeConfig('nodeShadow',$event)" [model]="getConfig('nodeShadow')==null || !!getConfig('nodeShadow')">
-                </app-switch>
-                <div *ngIf="nodeGroups !=null &&objectSize(nodeGroups)>0">
-                    <div *ngFor="let nodeGroup of (nodeGroups | keyvalue)">
-                        <div [style]="{padding: 0, margin: '15px'}">
-                            <p-fieldset [toggleable]="true" [collapsed]="true">
-                                <ng-template pTemplate="header">
-                                <span class="p-card-title">
-                                Group: {{nodeGroup.key}}
-                                </span>
-                                </ng-template>
-                                <app-textinput label="ID" [model]="nodeGroup.key"
-                                               (onChange)="changeGroupConfig(nodeGroups,nodeGroup.key, 'id',$event)"
-                                               tooltip="The group id that is used to map nodes to this group in the network configuration file. Has to be unique!"></app-textinput>
-                                <div *ngFor="let nodeConf of (nodeGroup.value | keyvalue)"
-                                     [style]="{padding: 0, margin: 0}">
-                                    <div *ngIf="nodeConf.key === 'color'" style="margin-left: 5px">
-                                        <app-colorpicker label="Node color" [model]="nodeConf.value"
-                                                         tooltip="The nodes color, if a solid shape is selected. Unused when selecting 'text' or 'image'."
-                                                         [format]="((nodeConf.value+'').startsWith('rgb') ? 'rgb': 'hex')"
-                                                         (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"></app-colorpicker>
-                                    </div>
-                                    <div *ngIf="nodeConf.key === 'font'" style="margin-left: 5px">
-                                        <app-colorpicker label="Font color" [model]="getValue(nodeConf.value,'color')"
-                                                         tooltip="The color of the node label. Should complement either background color or node color."
-                                                         [format]="((nodeConf.value+'').startsWith('rgb') ? 'rgb': 'hex')"
-                                                         (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, {color:$event})"></app-colorpicker>
-                                    </div>
-                                    <div *ngIf="nodeConf.key === 'shape'"
-                                         style="display: flex; justify-content: flex-start">
-                                        <div style="width: 100%">
-                                            <app-dropdown [fill]="true" label="Shape" [items]="shapeList"
-                                                          [model]="nodeConf.value"
-                                                          (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event);"
-                                                          tooltip="All basic vis-js shapes are supported and reflected in the legend. 'Text' will use the node label without shape. 'Image' will allow the use of an image. "></app-dropdown>
-                                            <app-textinput [hidden]="nodeConf.value!=='image'" label="imageURL"
-                                                           [model]="nodeGroup.value['image']"
-                                                           tooltip="Provide an image by entering a web URL. If CORS-Headers are not set correctly on the image host server then the 'Screenshot' function will fail!"
-                                                           (onChange)="changeNodeImage($event,nodeGroup.key)"></app-textinput>
-                                        </div>
-                                    </div>
-                                    <app-textinput
-                                            *ngIf="nodeConf.key === 'groupName'"
-                                            [label]="nodeConf.key"
-                                            [model]="nodeConf.value"
-                                            (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"
-                                            tooltip="Set a group label that is shown in the legend and the node information panel."></app-textinput>
-                                    <app-textinput
-                                            *ngIf="nodeConf.key === 'type'"
-                                            [label]="nodeConf.key"
-                                            [model]="nodeConf.value"
-                                            (onChange)="changeGroupConfig(nodeGroups, nodeGroup.key, nodeConf.key, $event)"
-                                            tooltip="Set a general node type of this group, which will be shown in the node information panel."></app-textinput>
-                                </div>
-                                <p-divider></p-divider>
-                                <div style="display: flex; justify-content: center">
-                                    <p-button label="Delete" icon="fas fa-trash"
-                                              styleClass="p-button-sm p-button-danger"
-                                              (onClick)="deleteGroup(nodeGroups,nodeGroup.key)"></p-button>
-                                </div>
-                            </p-fieldset>
                         </div>
+                      </div>
                     </div>
-                </div>
-                <div [style]="{padding: 0, margin: '15px'}">
-                    <p-fieldset (click)="addNewNodeGroup()" [collapsed]="true">
-                        <ng-template pTemplate="header">
-                            <div style="padding:16px; cursor: pointer"><i class="pi pi-plus"></i> Add new Group</div>
-                        </ng-template>
-                    </p-fieldset>
-                </div>
-            </p-fieldset>
-            <div style="height: 25px"></div>
-            <p-fieldset legend="Edge Groups" [toggleable]="true" [collapsed]="false">
-                <i>Only a selection of options is presented here but drugst.one generally supports any
-                    <a href="https://visjs.github.io/vis-network/docs/network/edges.html" target="_blank">
-                        vis.js edge input configuration
-                    </a>
-                </i>
-                <app-switch label="Edge Shadows" tooltip="Toggles edge shadows globally" (onChange)="changeConfig('edgeShadow',$event)" [model]="getConfig('edgeShadow')==null || !!getConfig('edgeShadow')">
-                </app-switch>
-                <div *ngIf="edgeGroups !=null &&objectSize(edgeGroups)>0">
-                    <div *ngFor="let group of (edgeGroups | keyvalue)">
-                        <div [style]="{padding: 0, margin: '15px'}">
-                            <p-fieldset [toggleable]="true" [collapsed]="true">
-                                <ng-template pTemplate="header">
-                                <span class="p-card-title">
-                                Group: {{group.key}}
-                                </span>
-                                </ng-template>
-                                <app-textinput label="ID" [model]="group.key"
-                                               (onChange)="changeGroupConfig(edgeGroups,group.key, 'id',$event)"
-                                               tooltip="Set the group id of the edge which is used to map edges to their edge group in the network configuration file. Has to be unique!"></app-textinput>
-                                <div *ngFor="let params of (group.value | keyvalue)"
-                                     [style]="{padding: 0, margin: 0}">
-                                    <div *ngIf="params.key === 'color'" style="margin-left: 5px">
-                                        <app-colorpicker label="Edge color" [model]="params.value"
-                                                         tooltip="Set the color of the line. A contrasting color to the background color should be chosen!"
-                                                         [format]="((params.value+'').startsWith('rgb') ? 'rgb': 'hex')"
-                                                         (onChange)="changeGroupConfig(edgeGroups, group.key, params.key, $event)"></app-colorpicker>
-                                    </div>
-                                    <app-textinput *ngIf="params.key !== 'color' && params.key !=='dashes'"
-                                                   [label]="params.key"
-                                                   [model]="params.value"
-                                                   (onChange)="changeGroupConfig(edgeGroups, group.key, params.key, $event)"
-                                                   tooltip="Set a group label of the edge group, which is displayed in the legend."></app-textinput>
-                                </div>
-                                <app-switch label="Dashed" tooltip="Switch between dashed and normal mode."
-                                            [model]="group.value['dashes']!=null && group.value['dashes']!==false"
-                                            (onChange)="changeGroupConfig(edgeGroups, group.key,'dashes',$event ? [3,3] : undefined)"></app-switch>
-                                <div *ngIf="group.value['dashes'] !=null &&group.value['dashes'] !==false"
-                                     style="display:flex">
-                                    <div style="justify-content: flex-start; width: 50%">
-                                        <app-range label="Dash size" tooltip="Define the size of a dash."
-                                                   [model]="group.value['dashes'][0]"
-                                                   [min]="1" [max]="100"
-                                                   (onChange)="changeEdgeDashes(edgeGroups, group.key, 0,$event)"></app-range>
-                                    </div>
-                                    <div style="justify-content: flex-end; width: 50%">
-                                        <app-range label="Gap size"
-                                                   tooltip="Define the size of the gap between two dashes."
-                                                   [model]="group.value['dashes'][1]"
-                                                   [min]="1" [max]="100"
-                                                   (onChange)="changeEdgeDashes(edgeGroups, group.key,  1,$event)"></app-range>
-                                    </div>
-                                </div>
-                                <p-divider></p-divider>
-                                <div style="display: flex; justify-content: center">
-                                    <p-button label="Delete" icon="fas fa-trash"
-                                              styleClass="p-button-sm p-button-danger"
-                                              (onClick)="deleteGroup(edgeGroups,group.key)"></p-button>
-                                </div>
-
-                            </p-fieldset>
-                        </div>
-                    </div>
-                </div>
-                <div [style]="{padding: 0, margin: '15px'}">
-                    <p-fieldset (click)="addNewEdgeGroup()" [collapsed]="true">
-                        <ng-template pTemplate="header">
-                            <div style="padding:16px; cursor: pointer"><i class="pi pi-plus"></i> Add new Group</div>
-                        </ng-template>
-                    </p-fieldset>
-                </div>
-            </p-fieldset>
-
-        </p-accordionTab>
-        <p-accordionTab header="INTERFACE" [selected]="true">
-            <p-fieldset legend="Components" [toggleable]="true" [collapsed]="true" [style]="{marginBottom: '15px'}">
-                <app-switch label="Show Footer"
-                            [model]="getConfig('showFooter')==null || getConfig('showFooter') ===true"
-                            (onChange)="changeConfig('showFooter',$event)"
-                            tooltip="Adds or removes the main footer."
+                  </div>
+                  <app-switch
+                  label="Autofill interactions"
+                  [model]="getConfig('autofillEdges')"
+                  (onChange)="changeConfig('autofillEdges', $event)"
+                  tooltip="If enabled, adds automatically gene-gene interaction edges."
                 ></app-switch>
-                <app-switch label="Show Legend"
-                            [model]="getConfig('showLegend')==null || getConfig('showLegend') ===true"
-                            (onChange)="changeConfig('showLegend',$event)"
-                            tooltip="Adds or removes the Legend."
-                ></app-switch>
-                <app-dropdown [items]="sidebarPosList" [model]="getConfig('sidebarPos')" label="Sidebar Position"
-                                  tooltip="Set the side, where the sidebar should be located."
-                                  (onChange)="changeConfig('sidebarPos',$event)"></app-dropdown>
-                <app-switch label="Show Overview Panel"
-                            [model]="getConfig('showOverview')==null || getConfig('showOverview') ===true"
-                            (onChange)="changeConfig('showOverview',$event)"
-                            tooltip="Adds or removes the network overview card in the left sidepanel."
-                ></app-switch>
-                <app-switch label="Show Query Panel"
-                            [model]="getConfig('showQuery')==null || getConfig('showQuery') ===true"
-                            (onChange)="changeConfig('showQuery',$event)"
-                            tooltip="Adds or removes the search and focus input card from the left sidepanel."
-                ></app-switch>
-                <app-switch label="Show Item Selector"
-                            [model]="getConfig('showItemSelector')==null || getConfig('showItemSelector') ===true"
-                            (onChange)="changeConfig('showItemSelector',$event)"
-                            tooltip="Adds or removes the node selector card to/from the right sidepanel."
-                ></app-switch>
-                <app-switch label="Show Simple Analysis"
-                            [model]="getConfig('showSimpleAnalysis') ===true"
-                            (onChange)="changeConfig('showSimpleAnalysis',$event)"
-                            tooltip="Adds or removes the simple analysis card card to/from the right sidepanel."
-                ></app-switch>
-                <app-switch label="Show Advanced Analysis"
-                            [model]="getConfig('showAdvAnalysis')==null || getConfig('showAdvAnalysis') ===true"
-                            (onChange)="changeConfig('showAdvAnalysis',$event)"
-                            tooltip="Adds or removes the advanced analysis card to/from the right sidepanel."
-                ></app-switch>
-                <app-switch label="Show Selection"
-                            [model]="getConfig('showSelection')==null || getConfig('showSelection') ===true"
-                            (onChange)="changeConfig('showSelection',$event)"
-                            tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
-                ></app-switch>
-                <app-switch label="Show Task Card"
-                            [model]="getConfig('showTasks')==null || getConfig('showTasks') ===true"
-                            (onChange)="changeConfig('showTasks',$event)"
-                            tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
-                ></app-switch>
-            </p-fieldset>
-
-            <p-fieldset legend="Legend" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
-                <app-switch label="Show Legend"
-                            [model]="getConfig('showLegend')==null || getConfig('showLegend') ===true"
-                            (onChange)="changeConfig('showLegend',$event)"
-                            tooltip="Adds or removes the Legend."
-                ></app-switch>
-                <div [hidden]="getConfig('showLegend')!=null && getConfig('showLegend') ===false"
-                     style="padding-left: 12px">
-                    <app-dropdown [items]="legendPosList" [model]="getConfig('legendPos')" label="Legend Position"
-                                  tooltip="Set the side, where the legend should be located."
-                                  (onChange)="changeConfig('legendPos',$event)"></app-dropdown>
-                    <app-switch label="Use custom Legend" [model]="useLegendURL"
-                                tooltip="Use this option, if you want to provide a custom legend as image."
-                                (onChange)="changeConfig('legendUrl',($event ? getConfig('legendUrl') : '')); useLegendURL=$event"></app-switch>
-                    <app-textinput [hidden]="!useLegendURL" label="Legend Image URL" [model]="getConfig('legendUrl')"
-                                   [disabled]="!useLegendURL"
-                                   (onChange)="changeConfig('legendUrl',$event); useLegendURL=$event !==undefined && $event.length!==0"
-                                   tooltip="Enter a web URL for an image that conains your custom legend!"></app-textinput>
-                    <app-switch label="Show Legend Nodes"
-                                [model]="getConfig('showLegendNodes')==null || getConfig('showLegendNodes') ===true"
-                                (onChange)="changeConfig('showLegendNodes',$event)"
-                                tooltip="Adds or removes the node types entries to/from the legend."
-                                [hidden]="useLegendURL"
-                    ></app-switch>
-                    <app-switch label="Show Legend Edges"
-                                [model]="getConfig('showLegendEdges')==null || getConfig('showLegendEdges') ===true"
-                                (onChange)="changeConfig('showLegendEdges',$event)"
-                                tooltip="Adds or removes the edge type entries from the legend."
-                                [hidden]="useLegendURL"
-                    ></app-switch>
-                    <app-textinput label="Legend Style Class" [model]="getConfig('legendClass')"
-                                   (onChange)="changeConfig('legendClass',$event)"
-                                   tooltip="Enter a class name that shall be applied on the autogenerated legend."></app-textinput>
-                </div>
-            </p-fieldset>
-            <p-fieldset legend="Labels" [toggleable]="true" [collapsed]="true" [style]="{marginBottom:'15px'}">
-                <app-textinput label="Title" [model]="getConfig('title')"
-                               (onChange)="changeConfig('title',$event !=null && $event.length>0 ? $event : 'Drugst.one')"
-                               tooltip="Sets the main title above the network panel."></app-textinput>
-                <app-textinput label="Analysis Task Name" [model]="getConfig('taskName')"
-                               (onChange)="changeConfig('taskName',$event !=null && $event.length>0 ? $event : 'Find Drug Candidates')"
-                               tooltip="Replaces the default 'Run Task X' label with some custom one."></app-textinput>
-            </p-fieldset>
-        </p-accordionTab>
-        <p-accordionTab>
-            <ng-template pTemplate="header">
-                STYLE
-            </ng-template>
-
-            <app-dropdown label="Predefined Theme"
-                          tooltip="Apply an already created theme on the drugst.one plugin and use it as a basis to create your own."
-                          [items]="themeList"
-                          (onChange)="applyTheme($event)"></app-dropdown>
-
-            <div style="margin-bottom: 15px"></div>
-            <app-switch [model]="themeIsDark" (onChange)="switchColorMode($event)" label="Dark Theme"
-                        tooltip="Sets text-color and some other background-color dependent variables automatically."></app-switch>
-            <div *ngFor="let color of theme | keyvalue">
-                <app-colorpicker *ngIf="getThemeValue(color.key,'label') !=null"
-                                 [label]="getThemeValue(color.key,'label')"
-                                 [model]="getValue(color.value,'color')"
-                                 (onChange)="changeColor(color.key,$event)"
-                                 [tooltip]="getThemeValue(color.key,'tooltip')"></app-colorpicker>
             </div>
-        </p-accordionTab>
+          </div>
+          <!-- END Accordion in Data panel -->
 
-    </p-accordion>
+        </div>
+        <div class="accordion-item" [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }">
+          <h2 class="accordion-header" id="panelsStayOpen-headingSidebarConfiguration">
+            <button [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark',
+                'text-dark bg-light': themeService.theme === 'theme-light'
+              }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSidebarConfiguration" aria-expanded="false" aria-controls="panelsStayOpen-collapseSidebarConfiguration">
+              Configuration
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseSidebarConfiguration" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSidebarConfiguration">
+            <div class="accordion-body">
+              
+
+
+
+
+                <div class="accordion" id="accordionPanelsStayOpenConfiguration">
+                    <div class="accordion-item" [ngClass]="{
+                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                        'text-dark bg-light': themeService.theme === 'theme-light'
+                      }">
+                      <h2 class="accordion-header" id="panelsStayOpen-headingConfigurationNodeGroups">
+                        <button [ngClass]="{
+                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                            'text-dark bg-light': themeService.theme === 'theme-light'
+                          }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseConfigurationNodeGroups" aria-expanded="true" aria-controls="panelsStayOpen-collapseConfigurationNodeGroups">
+                          Node Groups
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseConfigurationNodeGroups" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingConfigurationNodeGroups">
+                        <div class="accordion-body">
+                            <div>
+                                <i
+                                  >Only a selection of options is presented here but drugst.one
+                                  generally supports any
+                                  <a
+                                    href="https://visjs.github.io/vis-network/docs/network/nodes.html"
+                                    target="_blank"
+                                    >vis.js node input configuration</a
+                                  ></i
+                                >
+                              </div>
+                              <app-switch
+                                label="Node Shadows"
+                                tooltip="Toggles node shadows globally"
+                                (onChange)="changeConfig('nodeShadow', $event)"
+                                [model]="getConfig('nodeShadow') == null || !!getConfig('nodeShadow')"
+                              >
+                              </app-switch>
+
+                            <!-- START Node group accordion -->
+                              <div class="accordion" id="accordionPanelsStayOpenConfigurationNodeGroups" *ngIf="nodeGroups != null && objectSize(nodeGroups) > 0">
+                                
+                                <!-- START Node group list accordion -->
+                                <div class="accordion-item" *ngFor="let nodeGroup of nodeGroups | keyvalue" [ngClass]="{
+                                    'text-light bg-dark': themeService.theme === 'theme-dark',
+                                    'text-dark bg-light': themeService.theme === 'theme-light'
+                                  }">
+                                  <h2 class="accordion-header" id="panelsStayOpen-headingConfigurationNodeGroupsList{{nodeGroup.key}}">
+                                    <button [ngClass]="{
+                                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                                        'text-dark bg-light': themeService.theme === 'theme-light'
+                                      }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" attr.data-bs-target="{{'#panelsStayOpen-collapseConfigurationNodeGroupsList'+nodeGroup.key}}" aria-expanded="true" attr.aria-controls="{{'panelsStayOpen-collapseConfigurationNodeGroupsList'+nodeGroup.key}}">
+                                        Group: {{ nodeGroup.key }}
+                                    </button>
+                                  </h2>
+                                  <div id="{{'panelsStayOpen-collapseConfigurationNodeGroupsList'+nodeGroup.key}}" class="accordion-collapse collapse" attr.aria-labelledby="{{'panelsStayOpen-headingConfigurationNodeGroupsList'+nodeGroup.key}}">
+                                    <div class="accordion-body">
+                                        <app-textinput
+                                        label="ID"
+                                        [model]="nodeGroup.key"
+                                        (onChange)="
+                                          changeGroupConfig(nodeGroups, nodeGroup.key, 'id', $event)
+                                        "
+                                        tooltip="The group id that is used to map nodes to this group in the network configuration file. Has to be unique!"
+                                      ></app-textinput>
+                                      <div *ngFor="let nodeConf of nodeGroup.value | keyvalue">
+                                        <div
+                                          *ngIf="nodeConf.key === 'color'"
+                                        >
+                                          <app-colorpicker
+                                            label="Node color"
+                                            [model]="nodeConf.value"
+                                            tooltip="The nodes color, if a solid shape is selected. Unused when selecting 'text' or 'image'."
+                                            [format]="
+                                              (nodeConf.value + '').startsWith('rgb') ? 'rgb' : 'hex'
+                                            "
+                                            (onChange)="
+                                              changeGroupConfig(
+                                                nodeGroups,
+                                                nodeGroup.key,
+                                                nodeConf.key,
+                                                $event
+                                              )
+                                            "
+                                          ></app-colorpicker>
+                                        </div>
+                                        <div *ngIf="nodeConf.key === 'font'" style="margin-left: 5px">
+                                          <app-colorpicker
+                                            label="Font color"
+                                            [model]="getValue(nodeConf.value, 'color')"
+                                            tooltip="The color of the node label. Should complement either background color or node color."
+                                            [format]="
+                                              (nodeConf.value + '').startsWith('rgb') ? 'rgb' : 'hex'
+                                            "
+                                            (onChange)="
+                                              changeGroupConfig(
+                                                nodeGroups,
+                                                nodeGroup.key,
+                                                nodeConf.key,
+                                                { color: $event }
+                                              )
+                                            "
+                                          ></app-colorpicker>
+                                        </div>
+                                        <div
+                                          *ngIf="nodeConf.key === 'shape'"
+                                        >
+                                          <div style="width: 100%">
+                                            <app-dropdown
+                                              [fill]="true"
+                                              label="Shape"
+                                              [items]="shapeList"
+                                              [model]="nodeConf.value"
+                                              (onChange)="
+                                                changeGroupConfig(
+                                                  nodeGroups,
+                                                  nodeGroup.key,
+                                                  nodeConf.key,
+                                                  $event
+                                                )
+                                              "
+                                              tooltip="All basic vis-js shapes are supported and reflected in the legend. 'Text' will use the node label without shape. 'Image' will allow the use of an image. "
+                                            ></app-dropdown>
+                                            <app-textinput
+                                              [hidden]="nodeConf.value !== 'image'"
+                                              label="imageURL"
+                                              [model]="nodeGroup.value['image']"
+                                              tooltip="Provide an image by entering a web URL. If CORS-Headers are not set correctly on the image host server then the 'Screenshot' function will fail!"
+                                              (onChange)="changeNodeImage($event, nodeGroup.key)"
+                                            ></app-textinput>
+                                          </div>
+                                        </div>
+                                        <app-textinput
+                                          *ngIf="nodeConf.key === 'groupName'"
+                                          [label]="nodeConf.key"
+                                          [model]="nodeConf.value"
+                                          (onChange)="
+                                            changeGroupConfig(
+                                              nodeGroups,
+                                              nodeGroup.key,
+                                              nodeConf.key,
+                                              $event
+                                            )
+                                          "
+                                          tooltip="Set a group label that is shown in the legend and the node information panel."
+                                        ></app-textinput>
+                                        <app-textinput
+                                          *ngIf="nodeConf.key === 'type'"
+                                          [label]="nodeConf.key"
+                                          [model]="nodeConf.value"
+                                          (onChange)="
+                                            changeGroupConfig(
+                                              nodeGroups,
+                                              nodeGroup.key,
+                                              nodeConf.key,
+                                              $event
+                                            )
+                                          "
+                                          tooltip="Set a general node type of this group, which will be shown in the node information panel."
+                                        ></app-textinput>
+                                      </div>
+                                      <p-divider></p-divider>
+                                      <div style="display: flex; justify-content: center">
+                                        <p-button
+                                          label="Delete"
+                                          icon="fas fa-trash"
+                                          styleClass="p-button-sm p-button-danger"
+                                          (onClick)="deleteGroup(nodeGroups, nodeGroup.key)"
+                                        ></p-button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- END Node group list accordion-->
+                                <p-button
+                                label="Add new Group"
+                                icon="pi pi-plus"
+                                styleClass="p-button-sm p-button-primary m-2"
+                                (onClick)="addNewNodeGroup()"
+                              ></p-button>
+                              </div>
+                                <!-- END Node group accordion-->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item" [ngClass]="{
+                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                        'text-dark bg-light': themeService.theme === 'theme-light'
+                      }">
+                      <h2 class="accordion-header" id="panelsStayOpen-headingConfigurationEdgeGroups">
+                        <button [ngClass]="{
+                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                            'text-dark bg-light': themeService.theme === 'theme-light'
+                          }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseConfigurationEdgeGroups" aria-expanded="false" aria-controls="panelsStayOpen-collapseConfigurationEdgeGroups">
+                          Edge Groups
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseConfigurationEdgeGroups" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingConfigurationEdgeGroups">
+                        <div class="accordion-body">
+                            <i
+                            >Only a selection of options is presented here but drugst.one
+                            generally supports any
+                            <a
+                              href="https://visjs.github.io/vis-network/docs/network/edges.html"
+                              target="_blank"
+                            >
+                              vis.js edge input configuration
+                            </a>
+                          </i>
+                          <app-switch
+                            label="Edge Shadows"
+                            tooltip="Toggles edge shadows globally"
+                            (onChange)="changeConfig('edgeShadow', $event)"
+                            [model]="getConfig('edgeShadow') == null || !!getConfig('edgeShadow')"
+                          >
+                          </app-switch>
+
+                                <!-- START Accordion edge group list-->
+                                <div class="accordion" id="accordionPanelsStayOpenConfigurationEdgeGroupList" *ngIf="edgeGroups != null && objectSize(edgeGroups) > 0">
+                                    <div class="accordion-item" *ngFor="let group of edgeGroups | keyvalue" [ngClass]="{
+                                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                                        'text-dark bg-light': themeService.theme === 'theme-light'
+                                      }">
+                                      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button [ngClass]="{
+                                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                                            'text-dark bg-light': themeService.theme === 'theme-light'
+                                          }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" attr.data-bs-target="{{'#panelsStayOpen-collapseConfigurationEdgeGroupList'+group.key}}" aria-expanded="true" attr.aria-controls="{{'panelsStayOpen-collapseConfigurationEdgeGroupList'+group.key}}">
+                                            Group: {{ group.key }}
+                                        </button>
+                                      </h2>
+                                      <div id="{{'panelsStayOpen-collapseConfigurationEdgeGroupList'+group.key}}" class="accordion-collapse collapse" attr.aria-labelledby="{{'panelsStayOpen-headingConfigurationEdgeGroupList'+group.key}}">
+                                        <div class="accordion-body">
+                                              <app-textinput
+                                                label="ID"
+                                                [model]="group.key"
+                                                (onChange)="
+                                                  changeGroupConfig(edgeGroups, group.key, 'id', $event)
+                                                "
+                                                tooltip="Set the group id of the edge which is used to map edges to their edge group in the network configuration file. Has to be unique!"
+                                              ></app-textinput>
+                                              <div
+                                                *ngFor="let params of group.value | keyvalue"
+                                                [style]="{ padding: 0, margin: 0 }"
+                                              >
+                                                <div *ngIf="params.key === 'color'" style="margin-left: 5px">
+                                                  <app-colorpicker
+                                                    label="Edge color"
+                                                    [model]="params.value"
+                                                    tooltip="Set the color of the line. A contrasting color to the background color should be chosen!"
+                                                    [format]="
+                                                      (params.value + '').startsWith('rgb') ? 'rgb' : 'hex'
+                                                    "
+                                                    (onChange)="
+                                                      changeGroupConfig(
+                                                        edgeGroups,
+                                                        group.key,
+                                                        params.key,
+                                                        $event
+                                                      )
+                                                    "
+                                                  ></app-colorpicker>
+                                                </div>
+                                                <app-textinput
+                                                  *ngIf="params.key !== 'color' && params.key !== 'dashes'"
+                                                  [label]="params.key"
+                                                  [model]="params.value"
+                                                  (onChange)="
+                                                    changeGroupConfig(
+                                                      edgeGroups,
+                                                      group.key,
+                                                      params.key,
+                                                      $event
+                                                    )
+                                                  "
+                                                  tooltip="Set a group label of the edge group, which is displayed in the legend."
+                                                ></app-textinput>
+                                              </div>
+                                              <app-switch
+                                                label="Dashed"
+                                                tooltip="Switch between dashed and normal mode."
+                                                [model]="
+                                                  group.value['dashes'] != null &&
+                                                  group.value['dashes'] !== false
+                                                "
+                                                (onChange)="
+                                                  changeGroupConfig(
+                                                    edgeGroups,
+                                                    group.key,
+                                                    'dashes',
+                                                    $event ? [3, 3] : undefined
+                                                  )
+                                                "
+                                              ></app-switch>
+                                              <div
+                                                *ngIf="
+                                                  group.value['dashes'] != null &&
+                                                  group.value['dashes'] !== false
+                                                "
+                                                style="display: flex"
+                                              >
+                                                <div style="justify-content: flex-start; width: 50%">
+                                                  <app-range
+                                                    label="Dash size"
+                                                    tooltip="Define the size of a dash."
+                                                    [model]="group.value['dashes'][0]"
+                                                    [min]="1"
+                                                    [max]="100"
+                                                    (onChange)="
+                                                      changeEdgeDashes(edgeGroups, group.key, 0, $event)
+                                                    "
+                                                  ></app-range>
+                                                </div>
+                                                <div style="justify-content: flex-end; width: 50%">
+                                                  <app-range
+                                                    label="Gap size"
+                                                    tooltip="Define the size of the gap between two dashes."
+                                                    [model]="group.value['dashes'][1]"
+                                                    [min]="1"
+                                                    [max]="100"
+                                                    (onChange)="
+                                                      changeEdgeDashes(edgeGroups, group.key, 1, $event)
+                                                    "
+                                                  ></app-range>
+                                                </div>
+                                              </div>
+                                              <p-divider></p-divider>
+                                              <div style="display: flex; justify-content: center">
+                                                <p-button
+                                                  label="Delete"
+                                                  icon="fas fa-trash"
+                                                  styleClass="p-button-sm p-button-danger"
+                                                  (onClick)="deleteGroup(edgeGroups, group.key)"
+                                                ></p-button>
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                  </div>
+                                <!-- END Accordion edge group list-->
+                                <p-button
+                                label="Add new Group"
+                                icon="pi pi-plus"
+                                styleClass="p-button-sm p-button-primary m-2"
+                                (onClick)="addNewEdgeGroup()"
+                              ></p-button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }">
+          <h2 class="accordion-header" id="panelsStayOpen-headingSidebarInterface">
+            <button [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark',
+                'text-dark bg-light': themeService.theme === 'theme-light'
+              }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSidebarInterface" aria-expanded="false" aria-controls="panelsStayOpen-collapseSidebarInterface">
+              Interface
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseSidebarInterface" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSidebarInterface">
+            <div class="accordion-body">
+
+                <!-- START accordion in interface -->
+                <div class="accordion" id="accordionPanelsStayOpenInterface">
+                    <div class="accordion-item" [ngClass]="{
+                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                        'text-dark bg-light': themeService.theme === 'theme-light'
+                      }">
+                      <h2 class="accordion-header" id="panelsStayOpen-headingInterfaceComponents">
+                        <button [ngClass]="{
+                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                            'text-dark bg-light': themeService.theme === 'theme-light'
+                          }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseInterfaceComponents" aria-expanded="true" aria-controls="panelsStayOpen-collapseInterfaceComponents">
+                          Components
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseInterfaceComponents" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingInterfaceComponents">
+                        <div class="accordion-body">
+                            <app-switch
+                            label="Show Footer"
+                            [model]="
+                              getConfig('showFooter') == null || getConfig('showFooter') === true
+                            "
+                            (onChange)="changeConfig('showFooter', $event)"
+                            tooltip="Adds or removes the main footer."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Legend"
+                            [model]="
+                              getConfig('showLegend') == null || getConfig('showLegend') === true
+                            "
+                            (onChange)="changeConfig('showLegend', $event)"
+                            tooltip="Adds or removes the Legend."
+                          ></app-switch>
+                          <app-dropdown
+                            [items]="sidebarPosList"
+                            [model]="getConfig('sidebarPos')"
+                            label="Sidebar Position"
+                            tooltip="Set the side, where the sidebar should be located."
+                            (onChange)="changeConfig('sidebarPos', $event)"
+                          ></app-dropdown>
+                          <app-switch
+                            label="Show Overview Panel"
+                            [model]="
+                              getConfig('showOverview') == null ||
+                              getConfig('showOverview') === true
+                            "
+                            (onChange)="changeConfig('showOverview', $event)"
+                            tooltip="Adds or removes the network overview card in the left sidepanel."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Query Panel"
+                            [model]="
+                              getConfig('showQuery') == null || getConfig('showQuery') === true
+                            "
+                            (onChange)="changeConfig('showQuery', $event)"
+                            tooltip="Adds or removes the search and focus input card from the left sidepanel."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Item Selector"
+                            [model]="
+                              getConfig('showItemSelector') == null ||
+                              getConfig('showItemSelector') === true
+                            "
+                            (onChange)="changeConfig('showItemSelector', $event)"
+                            tooltip="Adds or removes the node selector card to/from the right sidepanel."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Simple Analysis"
+                            [model]="getConfig('showSimpleAnalysis') === true"
+                            (onChange)="changeConfig('showSimpleAnalysis', $event)"
+                            tooltip="Adds or removes the simple analysis card card to/from the right sidepanel."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Advanced Analysis"
+                            [model]="
+                              getConfig('showAdvAnalysis') == null ||
+                              getConfig('showAdvAnalysis') === true
+                            "
+                            (onChange)="changeConfig('showAdvAnalysis', $event)"
+                            tooltip="Adds or removes the advanced analysis card to/from the right sidepanel."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Selection"
+                            [model]="
+                              getConfig('showSelection') == null ||
+                              getConfig('showSelection') === true
+                            "
+                            (onChange)="changeConfig('showSelection', $event)"
+                            tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
+                          ></app-switch>
+                          <app-switch
+                            label="Show Task Card"
+                            [model]="
+                              getConfig('showTasks') == null || getConfig('showTasks') === true
+                            "
+                            (onChange)="changeConfig('showTasks', $event)"
+                            tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
+                          ></app-switch>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item" [ngClass]="{
+                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                        'text-dark bg-light': themeService.theme === 'theme-light'
+                      }">
+                      <h2 class="accordion-header" id="panelsStayOpen-headingInterfaceLegend">
+                        <button [ngClass]="{
+                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                            'text-dark bg-light': themeService.theme === 'theme-light'
+                          }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseInterfaceLegend" aria-expanded="false" aria-controls="panelsStayOpen-collapseInterfaceLegend">
+                          Legend
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseInterfaceLegend" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingInterfaceLegend">
+                        <div class="accordion-body">
+                            <app-switch
+                            label="Show Legend"
+                            [model]="
+                              getConfig('showLegend') == null || getConfig('showLegend') === true
+                            "
+                            (onChange)="changeConfig('showLegend', $event)"
+                            tooltip="Adds or removes the Legend."
+                          ></app-switch>
+                          <div
+                            [hidden]="
+                              getConfig('showLegend') != null && getConfig('showLegend') === false
+                            "
+                            style="padding-left: 12px"
+                          >
+                            <app-dropdown
+                              [items]="legendPosList"
+                              [model]="getConfig('legendPos')"
+                              label="Legend Position"
+                              tooltip="Set the side, where the legend should be located."
+                              (onChange)="changeConfig('legendPos', $event)"
+                            ></app-dropdown>
+                            <app-switch
+                              label="Use custom Legend"
+                              [model]="useLegendURL"
+                              tooltip="Use this option, if you want to provide a custom legend as image."
+                              (onChange)="
+                                changeConfig('legendUrl', $event ? getConfig('legendUrl') : '');
+                                useLegendURL = $event
+                              "
+                            ></app-switch>
+                            <app-textinput
+                              [hidden]="!useLegendURL"
+                              label="Legend Image URL"
+                              [model]="getConfig('legendUrl')"
+                              [disabled]="!useLegendURL"
+                              (onChange)="
+                                changeConfig('legendUrl', $event);
+                                useLegendURL = $event !== undefined && $event.length !== 0
+                              "
+                              tooltip="Enter a web URL for an image that conains your custom legend!"
+                            ></app-textinput>
+                            <app-switch
+                              label="Show Legend Nodes"
+                              [model]="
+                                getConfig('showLegendNodes') == null ||
+                                getConfig('showLegendNodes') === true
+                              "
+                              (onChange)="changeConfig('showLegendNodes', $event)"
+                              tooltip="Adds or removes the node types entries to/from the legend."
+                              [hidden]="useLegendURL"
+                            ></app-switch>
+                            <app-switch
+                              label="Show Legend Edges"
+                              [model]="
+                                getConfig('showLegendEdges') == null ||
+                                getConfig('showLegendEdges') === true
+                              "
+                              (onChange)="changeConfig('showLegendEdges', $event)"
+                              tooltip="Adds or removes the edge type entries from the legend."
+                              [hidden]="useLegendURL"
+                            ></app-switch>
+                            <app-textinput
+                              label="Legend Style Class"
+                              [model]="getConfig('legendClass')"
+                              (onChange)="changeConfig('legendClass', $event)"
+                              tooltip="Enter a class name that shall be applied on the autogenerated legend."
+                            ></app-textinput>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item" [ngClass]="{
+                        'text-light bg-dark': themeService.theme === 'theme-dark',
+                        'text-dark bg-light': themeService.theme === 'theme-light'
+                      }">
+                      <h2 class="accordion-header" id="panelsStayOpen-headingInterfaceLabels">
+                        <button [ngClass]="{
+                            'text-light bg-dark': themeService.theme === 'theme-dark',
+                            'text-dark bg-light': themeService.theme === 'theme-light'
+                          }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseInterfaceLabels" aria-expanded="false" aria-controls="panelsStayOpen-collapseInterfaceLabels">
+                          Labels
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapseInterfaceLabels" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingInterfaceLabels">
+                        <div class="accordion-body">
+                            <app-textinput
+                            label="Title"
+                            [model]="getConfig('title')"
+                            (onChange)="
+                              changeConfig(
+                                'title',
+                                $event != null && $event.length > 0 ? $event : 'Drugst.one'
+                              )
+                            "
+                            tooltip="Sets the main title above the network panel."
+                          ></app-textinput>
+                          <app-textinput
+                            label="Analysis Task Name"
+                            [model]="getConfig('taskName')"
+                            (onChange)="
+                              changeConfig(
+                                'taskName',
+                                $event != null && $event.length > 0
+                                  ? $event
+                                  : 'Find Drug Candidates'
+                              )
+                            "
+                            tooltip="Replaces the default 'Run Task X' label with some custom one."
+                          ></app-textinput>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }">
+            <h2 class="accordion-header" id="panelsStayOpen-headingSidebarStyle">
+              <button [ngClass]="{
+                'text-light bg-dark': themeService.theme === 'theme-dark',
+                'text-dark bg-light': themeService.theme === 'theme-light'
+              }" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSidebarStyle" aria-expanded="false" aria-controls="panelsStayOpen-collapseSidebarStyle">
+                Style
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseSidebarStyle" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSidebarStyle">
+              <div class="accordion-body">
+                <app-dropdown
+                label="Predefined Theme"
+                tooltip="Apply an already created theme on the drugst.one plugin and use it as a basis to create your own."
+                [items]="themeList"
+                (onChange)="applyTheme($event)"
+              ></app-dropdown>
+              <br/>
+              <app-switch
+                [model]="themeIsDark"
+                (onChange)="switchColorMode($event)"
+                label="Dark Theme"
+                tooltip="Sets text-color and some other background-color dependent variables automatically."
+              ></app-switch>
+              <div *ngFor="let color of theme | keyvalue">
+                <app-colorpicker
+                  *ngIf="getThemeValue(color.key, 'label') != null"
+                  [label]="getThemeValue(color.key, 'label')"
+                  [model]="getValue(color.value, 'color')"
+                  (onChange)="changeColor(color.key, $event)"
+                  [tooltip]="getThemeValue(color.key, 'tooltip')"
+                ></app-colorpicker>
+              </div>
+              </div>
+            </div>
+          </div>
+      </div>
 </p-scrollPanel>

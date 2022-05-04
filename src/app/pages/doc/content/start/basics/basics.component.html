@@ -1,15 +1,25 @@
-For the integration of Drugst.One into an simple html project, the Drugst.One plugin has to be imported. For this unly two lines of code have to be added in the
-<code>head</code> section of your html file:
-<app-code lang="html" [code]="basicCode"></app-code>
-These urls will always provide you with the latest release version of Drugst.One.
-For the use of specific versions please refer to the dedicated <a
-        (click)="navigateTo('cust-version')">version</a> section.<br>
-Adding these import lines loads the plugin from a content delivery network and allows now the use of the <code>{{'<'}}network-expander{{'>'}}</code> tag.
-An unconfigured and customized version of Drugst.one can therefore be integrated by creating an html component:
-<app-code lang="html" code="<html>
+<p>
+  For the integration of Drugst.One into an simple html project, the Drugst.One
+  plugin has to be imported. For this unly two lines of code have to be added in
+  the <code>head</code> section of your html file:
+  <app-code lang="html" [code]="basicCode"></app-code>
+  These urls will always provide you with the latest release version of
+  Drugst.One. For the use of specific versions please refer to the dedicated
+  <a (click)="navigateTo('cust-version')">version</a> section.<br />
+  Adding these import lines loads the plugin from a content delivery network and
+  allows now the use of the <code>{{ "<" }}network-expander{{ ">" }}</code> tag.
+  An unconfigured and customized version of Drugst.one can therefore be
+  integrated by creating an html component:
+  <app-code
+    lang="html"
+    code="<html>
     <network-expander id='drugstone-component-id'></network-expander>
-</html>"></app-code>
-The ID can of course be changed or removed but is here set specifically to "drugstone-component-id" for documentation consistency reasons.
-To add <a (click)="navigateTo('cust-network')">network</a> information, or customize <a
-        (click)="navigateTo('cust-style')">styling</a> or general <a
-        (click)="navigateTo('cust-config')">configuration</a> please refer to the specific sections.
+</html>"
+  ></app-code>
+  The ID can of course be changed or removed but is here set specifically to
+  "drugstone-component-id" for documentation consistency reasons. To add
+  <a href="/doc#customize_network" >network</a> information, or customize
+  <a href="/doc#customize_style_adjustments" >styling</a> or general
+  <a href="/doc#customize_general_configuration" >configuration</a> please refer to the
+  specific sections.
+</p>

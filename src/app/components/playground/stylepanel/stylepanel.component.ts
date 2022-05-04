@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-stylepanel',
@@ -9,7 +10,7 @@ export class StylepanelComponent implements OnInit {
 
   @Input() public code :string = ":root{\n}"
 
-  constructor() { }
+  constructor(public themeService: ThemeService) { }
 
   ngOnInit(): void {
   }

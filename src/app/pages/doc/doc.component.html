@@ -1,150 +1,117 @@
-<div class="row" id="doc-page">
-    <div class="column" style="width: 15%; min-width:200px" >
-        <app-doc-navbar [model]="navTree" [selected]="idPath"></app-doc-navbar>
+<div
+  class="container"
+  id="doc-page"
+  data-bs-spy="scroll"
+  data-bs-target="#documentation"
+  data-bs-offset="0"
+>
+  <div id="documentation" class="row">
+    <div class="col-md-3" id="mobile-navbar-menu">
+      <app-doc-navbar></app-doc-navbar>
     </div>
-    <div class="column" style="width: min(85%,calc(100% - 200px)); padding-left: 10px">
-        <p-breadcrumb [model]="path" [home]="home" (onItemClick)="breadcrumbsEvent($event)"></p-breadcrumb>
-        <p-scrollPanel id="page-container"
-             [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>
-            <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">
-                <div class="doc-entries">
-                    <app-overview (navigate)="navigateToId($event)"></app-overview>
-                </div>
-            </app-doc-page>
-            <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">
-                <div class="doc-entries">
-                    <div>
-                        <app-start (navigate)="navigateToId($event)"></app-start>
-                    </div>
-                    <p-divider></p-divider>
-                    <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"
-                                     [divider]="topic.id!=='other'" [ghLinks]="ghLinks">
-                        <div class="content">
-                            <div *ngIf="topic.id==='basics'">
-                                <app-basics (navigate)="navigateToId($event)"  [api]="host"></app-basics>
-                            </div>
-                            <div *ngIf="topic.id==='angular'" >
-                                <app-angular (navigate)="navigateToId($event)"></app-angular>
-                            </div>
-                            <div *ngIf="topic.id==='vuejs'">
-                               <app-vuejs (navigate)="navigateToId($event)"></app-vuejs>
-                            </div>
-                            <div *ngIf="topic.id==='rshiny'">
-                                <app-rshiny (navigate)="navigateToId($event)"></app-rshiny>
-                            </div>
-                            <div *ngIf="topic.id==='django'">
-                                <app-django></app-django>
-                            </div>
-                            <div *ngIf="topic.id==='other'">
-                                <app-other (navigate)="navigateToId($event)"></app-other>
-                            </div>
-                        </div>
-                    </app-doc-content>
-                </div>
-            </app-doc-page>
-            <app-doc-page [pageId]="2" [currentPage]="page" [navTree]="navTree" id="page2">
-                <div class="doc-entries">
-                    <div>
-                       <app-ui></app-ui>
-                    </div>
-                    <p-divider></p-divider>
-                    <app-doc-content *ngFor="let topic of navTree[2].items" [entry]="topic"
-                                     [divider]="topic.id!=='ui-analysis'">
-                        <div class="content">
-                            <div *ngIf="topic.id==='ui-network'">
-                                <app-ui-network></app-ui-network>
-                            </div>
-                            <div *ngIf="topic.id==='ui-panels'">
-                                <app-ui-panels></app-ui-panels>
-                            </div>
-                            <div *ngIf="topic.id==='ui-footer'">
-                                <app-ui-footer></app-ui-footer>
-                            </div>
-                            <div *ngIf="topic.id==='ui-tasks'">
-                                <app-ui-tasks></app-ui-tasks>
-                            </div>
-                            <div *ngIf="topic.id==='ui-analysis'">
-                                <app-ui-analysis></app-ui-analysis>
-                            </div>
-                        </div>
-                    </app-doc-content>
-                </div>
-            </app-doc-page>
-            <app-doc-page [pageId]="3" [currentPage]="page" [navTree]="navTree" id="page3">
-                <div class="doc-entries">
-                    <div>
-                        <app-customize></app-customize>
-                    </div>
-                    <p-divider></p-divider>
-                    <app-doc-content *ngFor="let topic of navTree[3].items" [entry]="topic"
-                                     [divider]="topic.id!=='cust-events'">
-                        <div class="content">
-                            <div *ngIf="topic.id==='cust-network'">
-                                <app-cust-network></app-cust-network>
-                            </div>
-                            <div *ngIf="topic.id==='cust-config'">
-                                <app-cust-config (navigate)="navigateToId($event)"></app-cust-config>
-                            </div>
-                            <div *ngIf="topic.id==='cust-version'">
-                                <app-cust-version [server]="serverVersion" [version]="version" [api]="host" (navigate)="navigateToId($event)"></app-cust-version>
-                            </div>
-                            <div *ngIf="topic.id==='cust-style'">
-                                <app-cust-style></app-cust-style>
-                            </div>
-                            <div *ngIf="topic.id==='cust-events'">
-                                <app-cust-events [api]="api"></app-cust-events>
 
-                            </div>
-                        </div>
-                    </app-doc-content>
-                </div>
-            </app-doc-page>
-            <app-doc-page [pageId]="4" [currentPage]="page" [navTree]="navTree" id="page4">
-                <div class="doc-entries">
-                    <div>
-                        <app-standalone-doc (navigate)="navigateToId($event)"></app-standalone-doc>
-                    </div>
-                    <p-divider></p-divider>
-                    <app-doc-content *ngFor="let topic of navTree[4].items" [entry]="topic"
-                                     [divider]="topic.id!=='standalone-url'">
-                        <div class="content">
-                            <div *ngIf="topic.id==='standalone-options'">
-                                <app-standalone-options (navigate)="navigateToId($event)"></app-standalone-options>
-                            </div>
-                            <div *ngIf="topic.id==='standalone-url'">
-                                <app-standalone-url (navigate)="navigateToId($event)" [host]="host" [backend]="api"></app-standalone-url>
-                            </div>
-                        </div>
-                    </app-doc-content>
-                </div>
-            </app-doc-page>
-            <app-doc-page [pageId]="5" [currentPage]="page" [navTree]="navTree" id="page5">
-                <div class="doc-entries">
-                    <div>
-                        <app-implementation></app-implementation>
-                    </div>
-                    <p-divider></p-divider>
-                    <app-doc-content *ngFor="let topic of navTree[5].items" [entry]="topic"
-                                     [divider]="topic.id!=='algorithms'">
-                        <div class="content">
-                            <div *ngIf="topic.id==='data'">
-                                <app-impl-data></app-impl-data>
-                            </div>
-                            <div *ngIf="topic.id==='vis'">
-                                <app-impl-vis></app-impl-vis>
-                            </div>
-                            <div *ngIf="topic.id==='algorithms'">
-                                <app-impl-algorithms></app-impl-algorithms>
-                            </div>
-                        </div>
-                    </app-doc-content>
-                </div>
-            </app-doc-page>
-            <app-doc-page [pageId]="6" [currentPage]="page" [navTree]="navTree" id="page6">
-                <div class="doc-entries">
-                    <app-faq></app-faq>
-                </div>
-            </app-doc-page>
-        </p-scrollPanel>
+    <div class="col-md-9">
+      <!-- Chapter Start-->
+      <a id="get_started"></a>
+      <h2 class="text-center m-3 mt-5">Get Started</h2>
+      <a id="basic_integration"></a>
+      <h4>Basic Integration</h4>
+      <app-basics [api]="host"></app-basics>
+      <a id="angularjs_setup"></a>
+      <h4>AngularJS</h4>
+      <app-angular></app-angular>
+      <a id="djano_setup"></a>
+      <h4>Django</h4>
+      <app-django></app-django>
+      <a id="vuejs_setup"></a>
+      <h4>Vue.js</h4>
+      <app-vuejs></app-vuejs>
+      <a id="other_frameworks"></a>
+      <h4>Other Frameworks</h4>
+      <app-other></app-other>
+      <!-- Chapter End-->
+
+      <!-- Chapter Start-->
+      <a id="drugstone_ui"></a>
+      <h2 class="text-center m-3 mt-5">The Drugst.One UI</h2>
+
+      <a id="drugstone_ui_network"></a>
+      <h4>Network</h4>
+      <app-ui-network></app-ui-network>
+      <a id="drugstone_ui_panels"></a>
+      <h4>Panels</h4>
+      <app-ui-panels></app-ui-panels>
+      <a id="drugstone_ui_footer_bar"></a>
+      <h4>Footer Bar</h4>
+      <app-ui-footer></app-ui-footer>
+      <a id="drugstone_ui_task_execution"></a>
+      <h4>Task Execution</h4>
+      <app-ui-tasks></app-ui-tasks>
+      <a id="drugstone_ui_analysis_window"></a>
+      <h4>Analysis Window</h4>
+      <app-ui-analysis></app-ui-analysis>
+      <!-- Chapter End-->
+
+      <!-- Chapter Start-->
+      <a id="customize_drugstone"></a>
+      <h2 class="text-center m-3 mt-5">Customize Drugst.One</h2>
+
+      <a id="customize_general_configuration"></a>
+      <h4>General Configuration</h4>
+      <app-cust-config></app-cust-config>
+      <a id="customize_network"></a>
+      <h4>Network</h4>
+      <app-cust-network></app-cust-network>
+      <a id="customize_version_selection"></a>
+      <h4>Version Selection</h4>
+      <app-cust-version
+        [server]="serverVersion"
+        [version]="version"
+        [api]="host"
+      ></app-cust-version>
+      <a id="customize_style_adjustments"></a>
+      <h4>Style Adjustments</h4>
+      <app-cust-style></app-cust-style>
+      <a id="customize_events"></a>
+      <h4>Events</h4>
+      <app-cust-events [api]="api"></app-cust-events>
+      <!-- Chapter End-->
+
+      <!-- Chapter Start-->
+      <a id="standalone"></a>
+      <h2 class="text-center m-3 mt-5">Standalone</h2>
+
+      <a id="standalone_options"></a>
+      <h4>Options</h4>
+      <app-standalone-options></app-standalone-options>
+      <a id="standalone_api"></a>
+      <h4>API</h4>
+      <app-standalone-url [host]="host" [backend]="api"></app-standalone-url>
+      <!-- Chapter End-->
+
+      <!-- Chapter Start-->
+      <a id="implementation"></a>
+      <h2 class="text-center m-3 mt-5">Implementation</h2>
+
+      <a id="implementation_datasources"></a>
+      <h4>Datasources</h4>
+      <app-impl-data></app-impl-data>
+      <a id="implementation_visjs"></a>
+      <h4>vis.js</h4>
+      <app-impl-vis></app-impl-vis>
+      <a id="implementation_algorithms"></a>
+      <h4>Algorithms</h4>
+      <app-impl-algorithms></app-impl-algorithms>
+      <!-- Chapter End-->
+
+      <!-- Chapter Start-->
+      <a id="other"></a>
+      <h2 class="text-center m-3 mt-5">Other</h2>
+
+      <a id="faq"></a>
+      <h4>FAQ</h4>
+      <app-faq></app-faq>
+      <!-- Chapter End-->
     </div>
+  </div>
 </div>

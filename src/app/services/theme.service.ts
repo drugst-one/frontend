@@ -8,7 +8,11 @@ import {DOCUMENT} from "@angular/common";
 export class ThemeService {
     constructor(@Inject(DOCUMENT) private document: Document) {}
 
-    switchTheme(theme: string){
+    // default theme
+    public theme: 'theme-dark' | 'theme-light' = 'theme-light';
+
+    switchTheme(theme: 'theme-dark' | 'theme-light'){
+        this.theme = theme;
         let themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
         if(themeLink)
             themeLink.href=theme+".css";
