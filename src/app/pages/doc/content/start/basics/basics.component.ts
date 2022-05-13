@@ -14,7 +14,7 @@ export class BasicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.basicCode="<head>\n" +
-        "   <script src=\""+this.cdn+"/latest/drugsTone.js\"></script>\n" +
+        "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
         "</head>'"
   }

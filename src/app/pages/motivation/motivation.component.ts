@@ -28,7 +28,7 @@ export class MotivationComponent implements OnInit {
   ngOnInit(): void {
     this.general.plugin = "" +
         "<head>\n" +
-        "   <script src=\""+this.cdn+"/latest/drugsTone.js\"></script>\n" +
+        "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
         "</head>\n\n";
     this.general.body = "" +

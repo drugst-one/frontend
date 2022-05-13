@@ -17,15 +17,15 @@ export class CustVersionComponent implements OnInit {
 
   ngOnInit(): void {
     this.basicCode="<head>\n" +
-        "   <script src=\""+this.cdn+"/latest/drugsTone.js\"></script>\n" +
+        "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
         "</head>'"
     this.versionCode="<head>\n" +
-        "   <script src=\""+this.cdn+"/"+this.version+"/drugsTone.js\"></script>\n" +
+        "   <script src=\""+this.cdn+"/"+this.version+"/drugstone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.cdn+"/"+this.version+"/styles.css\">\n" +
         "</head>'"
     this.nightlyCode="<head>\n" +
-        "   <script src=\""+this.api+"/cdn/nightly/drugsTone.js\"></script>\n" +
+        "   <script src=\""+this.api+"/cdn/nightly/drugstone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.api+"/cdn/nightly/styles.css\">\n" +
         "</head>'"
   }
