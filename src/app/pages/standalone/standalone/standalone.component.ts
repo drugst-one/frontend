@@ -6,7 +6,8 @@ import configDark from '../../../../standaloneConfigDark.json';
 // @ts-ignore
 import configLight from '../../../../standaloneConfigLight.json'
 import {NavigationEnd, Router} from "@angular/router";
-import {RequestService} from "../../../../services/requestService";
+import {RequestService} from "../../../services/requestService";
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-standalone',
@@ -48,7 +49,7 @@ export class StandaloneComponent implements OnInit {
         }],
     }
 
-    constructor(private router: Router, public netex: RequestService) {
+    constructor(private router: Router, public netex: RequestService, public themeService: ThemeService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {

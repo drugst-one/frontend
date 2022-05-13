@@ -1,5 +1,6 @@
 import {EventEmitter, Output} from '@angular/core';
 import {Component, Input, OnInit} from '@angular/core';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-datapanel',
@@ -16,7 +17,7 @@ export class DatapanelComponent implements OnInit {
     public group = "default"
     private delimList = ["\t", "\n", ",", ";", " "]
 
-    constructor() {
+    constructor(public themeService: ThemeService) {
     }
 
     ngOnInit(): void {

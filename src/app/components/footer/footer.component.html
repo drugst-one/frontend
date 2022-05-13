@@ -1,5 +1,18 @@
-<div style="position: fixed; bottom: 0; z-index: 999 ; width: 100%; background-color: var(--surface-a); justify-content: center; display: flex">
-    <p style="color: var(--text-color);">
-    drugst.one@v{{version}} | 2022 | <a href="https://www.cosy.bio/contact" style="color: white; font-style: oblique">Cosy.Bio</a>
+<footer
+  class="footer mt-auto py-3 text-center"
+  [ngClass]="{
+    'bg-dark text-light': themeService.theme === 'theme-dark',
+    'bg-light': themeService.theme === 'theme-light'
+  }"
+>
+  <div class="container">
+    <p>
+      drugst.one@v{{ version }} | 2022 |
+      <a
+        href="https://www.cosy.bio/contact"
+        style="color: white; font-style: oblique"
+        >Cosy.Bio</a
+      >
     </p>
-</div>
+  </div>
+</footer>

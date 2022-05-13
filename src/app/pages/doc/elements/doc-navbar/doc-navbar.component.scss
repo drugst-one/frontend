@@ -1,0 +1,41 @@
+@import "../../../../../scaffold.scss";
+
+.bd-links .btn {
+  &:before {
+    width: 1.25em;
+    line-height: 0;
+    content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+    transition: transform 0.35s ease;
+    transform-origin: 0.5em 50%;
+  }
+  &.text-light:before {
+    content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='none' stroke='rgba(255,255,255,.5)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/></svg>");
+  }
+}
+
+.bd-links .btn[aria-expanded="true"]:before {
+  transform: rotate(90deg);
+}
+
+.bd-sidebar-toggle:not(.collapsed) .bi-expand {
+  display: none;
+}
+
+.bd-sidebar-toggle.collapsed .bi-collapse {
+  display: none;
+}
+
+@media (min-width: $media-md) {
+  #navbar-documentation {
+    position: sticky;
+    top: 5rem;
+
+    height: calc(100vh - 7rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    // center
+    display: block !important;
+    padding-left: 0.25rem;
+    margin-left: -0.25rem;
+  }
+}

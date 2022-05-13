@@ -1,60 +1,158 @@
-<div style="width: 91vw">
-    <app-panel title="Network Input" headerIcon="far fa-list-alt" [collapsed]="panelNWCollapsed">
-        <div class="p-content" style="height: 400px; width: 100%;">
-            <div style="display: flex; height: 87.5%">
-                <div style="width: 48vw;height: 100%">
-                    <div style="width: 100%; height: 20%; display: flex">
-                        <span style="align-self: flex-start; font-size: x-large; margin:15px"><b>Nodes</b></span>
-                        <app-dropdown label="Node Source" [items]="dataLists.identifierList"
-                                      tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
-                                      [model]="getConfig('identifier')"
-                                      (onChange)="changeConfig('identifier',$event)"
-                                      style="align-self: flex-end; margin-left: auto;"></app-dropdown>
-                    </div>
-                    <textarea pInputTextarea style="height: 80%; width: 100%;" [(ngModel)]="rawNodes"
-                              placeholder="Enter a list of node ids separated by: tab, newline, comma, semicolon or space! E.g.:  PTEN, TP53 "
-                              [autoResize]="false"></textarea>
-                </div>
-                <p-divider layout="vertical"></p-divider>
-                <div style="width: 48vw;height: 100%">
-                    <div style="width: 100%; height: 20%; display: flex">
-                        <span style="align-self: flex-start; font-size: x-large; margin:15px"><b>Edges</b></span>
-                    </div>
-                    <textarea pInputTextarea style="height: 80%; width: 100%;" [(ngModel)]="rawEdges"
-                              placeholder="Enter an edge list, so pairs of nodeIDs separated by: tab, comma, semicolon or space and each pair separated by newline (\n)! E.g.:  PTEN, TP53\nPTEN, BRCA1 "
-                              [autoResize]="false"></textarea>
-                </div>
+<div class="container">
+  <div class="accordion" id="accordionPanelsStandalone">
+    <div class="accordion-item" [ngClass]="{
+        'text-light bg-dark': themeService.theme === 'theme-dark',
+        'text-dark bg-light': themeService.theme === 'theme-light'
+      }">
+      <h2 class="accordion-header" id="panelsNetworkInput">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseOne"
+          aria-expanded="true"
+          aria-controls="panelsStayOpen-collapseOne"
+          [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }"
+        >
+          <i class="far fa-list-alt"></i>&nbsp;Network Input
+        </button>
+      </h2>
+      <div
+        id="panelsStayOpen-collapseOne"
+        class="accordion-collapse collapse show"
+        aria-labelledby="panelsNetworkInput"
+      >
+        <div class="accordion-body">
+          <app-dropdown
+            label="Node Source"
+            [items]="dataLists.identifierList"
+            tooltip="Select the type of source IDs you use for your gene/protein nodes. This is necessary to correctly map the entries and to provide additional information. Additional sources may be included in the future or upon request."
+            [model]="getConfig('identifier')"
+            (onChange)="changeConfig('identifier', $event)"
+          ></app-dropdown>
+          <div class="row p-2">
+            <div class="col-md-6 border-end">
+              <h3>Nodes</h3>
+              <textarea
+                class="w-100"
+                pInputTextarea
+                [(ngModel)]="rawNodes"
+                placeholder="Enter a list of node ids separated by: tab, newline, comma, semicolon or space! E.g.:  PTEN, TP53 "
+                [autoResize]="false"
+              ></textarea>
             </div>
-            <div style="width: 100%; height: 50px; display: flex; justify-content: center; margin-top:16px">
-                <p-button label="Load Network"
-                          icon="fas fa-long-arrow-alt-right"
-                          styleClass="p-button-sm p-button-primary"
-                          (onClick)="setNetwork()"></p-button>
+            <div class="col-md-6">
+              <h3>Edges</h3>
+              <div>
+                <textarea
+                  class="w-100"
+                  pInputTextarea
+                  [(ngModel)]="rawEdges"
+                  placeholder="Enter an edge list, so pairs of nodeIDs separated by: tab, comma, semicolon or space and each pair separated by newline (\n)! E.g.:  PTEN, TP53\nPTEN, BRCA1 "
+                  [autoResize]="false"
+                ></textarea>
+              </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center p-2">
+              <p-button
+                label="Load Network"
+                icon="fas fa-long-arrow-alt-right"
+                styleClass="p-button-sm p-button-primary"
+                (onClick)="setNetwork()"
+              ></p-button>
+            </div>
+          </div>
         </div>
-
-    </app-panel>
-</div>
-<div style="width:91vw">
-    <app-panel title="Advanced" headerIcon="fas fa-cogs">
-        <div class="p-content">
-            <app-dropdown label="Protein-Protein Interaction DB" [items]="dataLists.protProtInterList"
-                          [model]="getConfig('interactionProteinProtein')"
-                          tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
-                          (onChange)="changeConfig('interactionProteinProtein',$event)"></app-dropdown>
-            <app-dropdown label="Drug-Protein Interaction DB" [items]="dataLists.drugProtInterList"
-                          [model]="getConfig('interactionDrugProtein')"
-                          tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
-                          (onChange)="changeConfig('interactionDrugProtein',$event)"></app-dropdown>
-            <app-switch label="Autofill interactions" [model]="getConfig('autofillEdges') == null || getConfig('autofillEdges')" (onChange)="changeConfig('autofillEdges',$event)" tooltip="If enabled, adds automatically gene-gene interaction edges." ></app-switch>
+      </div>
+    </div>
+    <div class="accordion-item" [ngClass]="{
+        'text-light bg-dark': themeService.theme === 'theme-dark',
+        'text-dark bg-light': themeService.theme === 'theme-light'
+      }">
+      <h2 class="accordion-header" id="panelsAdvancedSettings">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseTwo"
+          aria-expanded="false"
+          aria-controls="panelsStayOpen-collapseTwo"
+          [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }"
+        >
+          <i class="fas fa-cogs"></i>&nbsp;Advanced Settings
+        </button>
+      </h2>
+      <div
+        id="panelsStayOpen-collapseTwo"
+        class="accordion-collapse collapse"
+        aria-labelledby="panelsAdvancedSettings"
+      >
+        <div class="accordion-body">
+          <app-dropdown
+            label="Protein-Protein Interaction DB"
+            [items]="dataLists.protProtInterList"
+            [model]="getConfig('interactionProteinProtein')"
+            tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
+            (onChange)="changeConfig('interactionProteinProtein', $event)"
+          ></app-dropdown>
+          <app-dropdown
+            label="Drug-Protein Interaction DB"
+            [items]="dataLists.drugProtInterList"
+            [model]="getConfig('interactionDrugProtein')"
+            tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
+            (onChange)="changeConfig('interactionDrugProtein', $event)"
+          ></app-dropdown>
+          <app-switch
+            label="Autofill interactions"
+            [model]="
+              getConfig('autofillEdges') == null || getConfig('autofillEdges')
+            "
+            (onChange)="changeConfig('autofillEdges', $event)"
+            tooltip="If enabled, adds automatically gene-gene interaction edges."
+          ></app-switch>
         </div>
-    </app-panel>
-</div>
-<div style="width:91vw">
-    <app-panel title="Drugstone" headerIcon="fas fa-capsules" [collapsed]="panelDRGSTNCollapsed">
-        <div class="p-content" #standalonePlugin>
-            <app-drugstonepanel [config]="config" [network]="network"></app-drugstonepanel>
+      </div>
+    </div>
+    <div class="accordion-item" [ngClass]="{
+        'text-light bg-dark': themeService.theme === 'theme-dark',
+        'text-dark bg-light': themeService.theme === 'theme-light'
+      }">
+      <h2 class="accordion-header" id="panelsDrugstone">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseThree"
+          aria-expanded="false"
+          aria-controls="panelsStayOpen-collapseThree"
+          [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }"
+        >
+          <i class="fas fa-capsules"></i>&nbsp;Drugst.One
+        </button>
+      </h2>
+      <div
+        id="panelsStayOpen-collapseThree"
+        class="accordion-collapse collapse"
+        aria-labelledby="panelspanelsDrugstone"
+      >
+        <div class="accordion-body" #standalonePlugin>
+          <app-drugstonepanel
+            [config]="config"
+            [network]="network"
+          ></app-drugstonepanel>
         </div>
-    </app-panel>
+      </div>
+    </div>
+  </div>
 </div>
-

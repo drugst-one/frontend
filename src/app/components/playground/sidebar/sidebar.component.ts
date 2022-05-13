@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { ThemeService } from 'src/app/services/theme.service';
 // @ts-ignore
 import themes from "../../../../themes.json"
 
@@ -57,7 +58,7 @@ export class SidebarComponent implements OnInit {
     // export type InteractionProteinProteinDB = 'STRING'|'BioGRID'|'APID';
 
 
-    constructor() {
+    constructor(public themeService: ThemeService) {
         this.readThemes();
     }
 

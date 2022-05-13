@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MenuItem} from "primeng/api";
+import { ThemeService } from "../../../../services/theme.service";
+
 
 @Component({
   selector: 'app-doc-navbar',
@@ -13,7 +15,7 @@ export class DocNavbarComponent implements OnInit {
 
   @Output() navigationEvent = new EventEmitter<String[]>()
 
-  constructor() { }
+  constructor(public themeService: ThemeService) { }
 
   ngOnInit(): void {
   }

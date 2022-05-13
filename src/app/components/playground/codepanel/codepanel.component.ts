@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-codepanel',
@@ -8,8 +9,9 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CodepanelComponent implements OnInit {
 
 
+
   @Input() public code :string = "<drugst-one>\n</drugst-one>"
-  constructor() { }
+  constructor(public themeService: ThemeService) { }
 
   ngOnInit(): void {
   }
