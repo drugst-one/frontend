@@ -23,6 +23,8 @@
             <app-switch label="Autofill interactions" [model]="getConfig('autofillEdges')" (onChange)="changeConfig('autofillEdges',$event)" tooltip="If enabled, adds automatically gene-gene interaction edges." ></app-switch>
         </p-accordionTab>
         <p-accordionTab header="CONFIGURATION">
+            <app-switch label="Initial physics" tooltip="Toggles node initial interaction physics of the network" (onChange)="changeConfig('physicsOn',$event)" [model]="getConfig('physicsOn')!=null && getConfig('physicsOn')">
+            </app-switch>
             <p-fieldset [toggleable]="true" [collapsed]="false">
                 <ng-template pTemplate="header">
                     Node Groups
