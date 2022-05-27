@@ -11,7 +11,7 @@ export class DocComponent implements OnInit {
 
     @Input() api = ""
     @Input() version = ""
-    @Input() serverVersion = ""
+    @Input() cdn = ""
     @Input() host = ""
     public idPath = [0]
     public path = []

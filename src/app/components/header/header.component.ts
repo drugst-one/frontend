@@ -1,7 +1,7 @@
-import {EventEmitter, Inject, Input} from '@angular/core';
-import {Component, OnInit, Output} from '@angular/core';
-import {MenuItem} from "primeng/api";
-import {ThemeService} from "../../../services/theme.service";
+import { EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { MenuItem } from "primeng/api";
+import { ThemeService } from "../../services/theme.service";
 
 
 @Component({
@@ -16,9 +16,8 @@ export class HeaderComponent implements OnInit {
     @Input() host: string = ""
     tabsModel: MenuItem[];
     activeTab: MenuItem;
-    darkThemeStyle = false;
 
-    constructor(private themeService: ThemeService) {
+    constructor(public themeService: ThemeService) {
         this.tabsModel = [
             {label: 'HOME', icon: 'pi pi-fw pi-home', routerLink: 'home', command: () => this.tabChange(0)},
             {label: 'IDEA', icon: 'pi pi-fw pi-question-circle', routerLink: 'idea', command: () => this.tabChange(1)},
@@ -35,18 +34,9 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         let dark = Boolean(localStorage.getItem("darkTheme") === 'true')
-        this.darkThemeStyle = dark;
-        this.switchThemeStyle(dark)
-    }
-
-
-    clickHome() {
-        console.log(location)
-        console.log(this.host)
-        if (location.hostname !== 'localhost')
-            location.href = this.host+"/home"
-        else
-            location.href = "/home"
+        if (dark) {
+            this.switchThemeStyle(dark)
+        }
     }
 
     switchTabByName(name: string) {

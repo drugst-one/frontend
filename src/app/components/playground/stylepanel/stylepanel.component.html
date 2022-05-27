@@ -1,5 +1,37 @@
-<app-panel title="Style-Code" headerIcon="fas fa-code" [collapsed]="false">
-    <div class="p-content">
-        <app-code lang="css" [code]="code"></app-code>
+<div class="accordion" id="accordionStyle">
+    <div
+      class="accordion-item"
+      [ngClass]="{
+        'text-light bg-dark': themeService.theme === 'theme-dark',
+        'text-dark bg-light': themeService.theme === 'theme-light'
+      }"
+    >
+      <h2 class="accordion-header" id="headingStyle">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseStyle"
+          aria-expanded="true"
+          aria-controls="collapseStyle"
+          [ngClass]="{
+            'text-light bg-dark': themeService.theme === 'theme-dark',
+            'text-dark bg-light': themeService.theme === 'theme-light'
+          }"
+        >
+          <i class="fas fa-code"></i>&nbsp;Style-Code
+        </button>
+      </h2>
+      <div
+        id="collapseStyle"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingStyle"
+        data-bs-parent="#accordionStyle"
+      >
+        <div class="accordion-body">
+            <app-code lang="css" [code]="code"></app-code>
+        </div>
+      </div>
     </div>
-</app-panel>
+  </div>
+

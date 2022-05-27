@@ -113,6 +113,7 @@ import { StandaloneOptionsComponent } from './pages/doc/content/standalone/stand
 import { StandaloneUrlComponent } from './pages/doc/content/standalone/standalone-url/standalone-url.component';
 import { StandaloneDocComponent } from './pages/doc/content/standalone/standalone-doc.component';
 import { SubtitleComponent } from './components/documentation/subtitle/subtitle.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -204,7 +205,8 @@ import { SubtitleComponent } from './components/documentation/subtitle/subtitle.
         PanelMenuModule,
         TabViewModule,
         MessagesModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NgbModule
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

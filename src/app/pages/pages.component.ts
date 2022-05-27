@@ -10,7 +10,8 @@ export class PagesComponent implements OnInit {
   @ViewChild("playground", {static: false}) playgroundEl: ElementRef | undefined;
   @ViewChild("standalone", {static: false}) standaloneEl: ElementRef | undefined;
   @Input() public version : string = ""
-  @Input() public serverVersion : string = ""
+  @Input() public cdnVersion : string = ""
+  @Input() public cdn : string = ""
   @Input() public backendPath :string = ""
   @Input() public host: string=""
 

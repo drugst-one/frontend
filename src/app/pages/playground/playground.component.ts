@@ -44,7 +44,7 @@ export class PlaygroundComponent implements OnInit {
                 delete configcpy[key]
             }
         })
-        this.code = "<network-expander\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</network-expander>"
+        this.code = "<drugst-one\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</drugst-one>"
         let colors = JSON.stringify(Object.keys(this.theme).map(key => {
             let o = {}
             // @ts-ignore

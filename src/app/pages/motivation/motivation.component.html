@@ -1,105 +1,137 @@
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="What is drugst.one?">
-    <i><b>drugst.one</b></i> is a plugin that aims to provide an easy and convenient way to integrate a <b>network
-    viewer</b>
-    into any
-    applicable website. The focus of <i><b>drugst.one</b></i> lies on <b>biological networks</b>, meaning gene or protein
-    nodes,
-    and it
-    provides
-    a toolbox to enrich the initial set of entries with <b>interaction</b> information or even different algorithms for
-    the
-    <b>ranking of drug candidates</b>. But also not strictly defined data, like <b>patient labels</b> or
-    <b>celllines</b>, can be visualized.
-    The data necessary for this as well as any computation is carried out on our backend
+<div class="container">
+  <p-card class="dt-card card mb-3" header="What is drugst.one?">
+    <i><b>drugst.one</b></i> is a plugin that aims to provide an easy and
+    convenient way to integrate a <b>network viewer</b> into any applicable
+    website. The focus of <i><b>drugst.one</b></i> lies on
+    <b>biological networks</b>, meaning gene or protein nodes, and it provides a
+    toolbox to enrich the initial set of entries with
+    <b>interaction</b> information or even different algorithms for the
+    <b>ranking of drug candidates</b>. But also not strictly defined data, like
+    <b>patient labels</b> or <b>celllines</b>, can be visualized. The data
+    necessary for this as well as any computation is carried out on our backend
     servers.
-    <br>
-    <i><b>drugst.one</b></i> is integrated easily into <b>any website</b>, as can be seen below or on the <a
-        (click)="tabChange(1)">HowTo-Page</a>,
-    and is <b>highly adjustable</b> to your current website styling. Different features or panels of <i><b>drugst.one</b></i>
-    can be even removed
-    from your specific implementation, if it does not suit the concept of the rest of the page.<br>
-    If your current website or web-application features at some point a <b>list of genes or proteins</b> and are
-    interested to <b>close the gap to drugs</b> that might yield therapeutic effects, then you should consider giving
-    <b><i>drugst.one</i></b> a try.
-    This project is still under development so bugs or other issues might occur, but together with you we hope to get
-    rid of all
-    of those and to further improve the <i><b>drugst.one</b></i> plugin (link contact?).
-</p-card>
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="What Data does drugst.one use?">
-    Detailed information about the data sources will be added in the future.<br>
-    With the node checker below you can check for  availability of specific protein/gene entries:
+    <br />
+    <i><b>drugst.one</b></i> is integrated easily into <b>any website</b>, as
+    can be seen below or on the <a (click)="tabChange(1)">HowTo-Page</a>, and is
+    <b>highly adjustable</b> to your current website styling. Different features
+    or panels of <i><b>drugst.one</b></i> can be even removed from your specific
+    implementation, if it does not suit the concept of the rest of the page.<br />
+    If your current website or web-application features at some point a
+    <b>list of genes or proteins</b> and are interested to
+    <b>close the gap to drugs</b> that might yield therapeutic effects, then you
+    should consider giving <b><i>drugst.one</i></b> a try. This project is still
+    under development so bugs or other issues might occur, but together with you
+    we hope to get rid of all of those and to further improve the
+    <i><b>drugst.one</b></i> plugin (link contact?).
+  </p-card>
+  <p-card class="dt-card card mb-3" header="What Data does drugst.one use?">
+    Detailed information about the data sources will be added in the future.<br />
+    With the node checker below you can check for availability of specific
+    protein/gene entries:
     <ng-template pTemplate="footer">
-        <div style="display: flex">
-            <div style="justify-content: flex-start">
-                <app-dropdown [items]="sourceDBList" label="Node ID" tooltip="Select the node id source you use for your gene/protein labels. Other sources may be added upon request." [model]="sourceDB"
-                              (onChange)="sourceDB=$event"></app-dropdown>
-                <app-textinput label="Check you node ID" tooltip="Enter the specific node ID you want to check. Currently it is still case sensitive: Symbold & Ensemble -> all letters uppercase."
-                               (onChange)="checkAvailability(sourceDB, $event)"></app-textinput>
-            </div>
-            <div style="width: 50%; justify-content: flex-end; margin-left: auto; margin-right: 10%">
-                <div *ngIf="getElement(availability,'netexId')!=null">
-                    <p-table [value]="availability | keyvalue">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>ID</th>
-                                <th>VALUE</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-entry>
-                            <tr>
-                                <td>{{entry.key}}</td>
-                                <td>{{entry.value}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-                <div *ngIf="getElement(availability,'netexId')==null && getElement(availability,'id')!=null" style="padding-top: 50px;">
-                    <i>Your gene could not be found in our database!</i>
-                </div>
-            </div>
-
+      <div style="display: flex">
+        <div style="justify-content: flex-start">
+          <app-dropdown
+            [items]="sourceDBList"
+            label="Node ID"
+            tooltip="Select the node id source you use for your gene/protein labels. Other sources may be added upon request."
+            [model]="sourceDB"
+            (onChange)="sourceDB = $event"
+          ></app-dropdown>
+          <app-textinput
+            label="Check you node ID"
+            tooltip="Enter the specific node ID you want to check. Currently it is still case sensitive: Symbold & Ensemble -> all letters uppercase."
+            (onChange)="checkAvailability(sourceDB, $event)"
+          ></app-textinput>
         </div>
+        <div
+        >
+          <div *ngIf="getElement(availability, 'netexId') != null">
+            <p-table [value]="availability | keyvalue">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>ID</th>
+                  <th>VALUE</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-entry>
+                <tr>
+                  <td>{{ entry.key }}</td>
+                  <td>{{ entry.value }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div
+            *ngIf="
+              getElement(availability, 'netexId') == null &&
+              getElement(availability, 'id') != null
+            "
+          >
+            <i>Your gene could not be found in our database!</i>
+          </div>
+        </div>
+      </div>
     </ng-template>
-</p-card>
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="Use drugst.one!">
-    The integration of <b><i>drugst.one</i></b> into any existing website is straight forward and was successfully <b>tested</b>
+  </p-card>
+  <p-card class="dt-card card mb-3" header="Use drugst.one!">
+    The integration of <b><i>drugst.one</i></b> into any existing website is
+    straight forward and was successfully <b>tested</b>
     for some
-    <b>popular frameworks</b> already (e.g. <b>Vue-js</b>, <b></b>AngularJS). The main idea is that you only have to
-    import our js component
-    and stylesheet. After that the <code>{{"<"}}network-expander{{">"}}</code> tag is available in your project. Through parameters the
-    <b>content, style and behaviour</b> of this component <b>can be adjusted</b> and is even able to adjust <b>dynamically</b>
-    to
-    configuration changes. <br>
-    To get the information needed to integrate <b><i>drugst.one</i></b> yourself, please refer to the basic instructions below or the <b>Documentation</b> section.
+    <b>popular frameworks</b> already (e.g. <b>Vue-js</b>, <b></b>AngularJS).
+    The main idea is that you only have to import our js component and
+    stylesheet. After that the
+    <code>{{ "<" }}drugst-one{{ ">" }}</code> tag is available in your
+    project. Through parameters the <b>content, style and behaviour</b> of this
+    component <b>can be adjusted</b> and is even able to adjust
+    <b>dynamically</b> to configuration changes. <br />
+    To get the information needed to integrate
+    <b><i>drugst.one</i></b> yourself, please refer to the basic instructions
+    below or the <b>Documentation</b> section.
     <ng-template pTemplate="footer">
-        <p-button type="button" label="Integration" icon="fas fa-angle-right" iconPos="right"
-                  (onClick)="switchToDoc('start')"></p-button>
+      <p-button
+        type="button"
+        label="Integration"
+        icon="fas fa-angle-right"
+        iconPos="right"
+        (onClick)="switchToDoc('start')"
+      ></p-button>
     </ng-template>
-
-</p-card>
-<p-card class="dt-card" [style]="{padding:'15px', margin:'5px'}" header="How to integrate drugst.one?">
-    We prepared this plugin in a way that the integration process is as easy as currently possible. To add the necessary
-    script and style files to your project, just add the code below to the <code>{{"<"}}head{{">"}}</code> section of
-    your <i><b>index.html</b></i> file.
+  </p-card>
+  <p-card class="dt-card card mb-3" header="How to integrate drugst.one?">
+    We prepared this plugin in a way that the integration process is as easy as
+    currently possible. To add the necessary script and style files to your
+    project, just add the code below to the
+    <code>{{ "<" }}head{{ ">" }}</code> section of your
+    <i><b>index.html</b></i> file.
     <app-code lang="html" [code]="general.plugin"></app-code>
-    Based on the framework you use in your project, additional configuration may be necessary. Check out the section
-    below for more information on that.
-    Adjusting the version tag helps you to use some specific version of the drugst.one plugin (<a
-        href="http://ml-s-zbhdock1.ad.uni-hamburg.de/cdn/index.html" target="_blank">Version List</a>), but older
-    versions may not be supported forever. A tag for the automatic use of the newest version is not yet integrated but
-    is worked on.
-    <br>
-    After adding a valid version of drugst.one to your project a <i>html component</i> is exposed that can be then used
-    to add a default drugst.one panel to your website.
+    Based on the framework you use in your project, additional configuration may
+    be necessary. Check out the section below for more information on that.
+    Adjusting the version tag helps you to use some specific version of the
+    drugst.one plugin (<a
+      href="https://cdn.drugst.one"
+      target="_blank"
+      >Version List</a
+    >), but older versions may not be supported forever. A tag for the automatic
+    use of the newest version is not yet integrated but is worked on.
+    <br />
+    After adding a valid version of drugst.one to your project a
+    <i>html component</i> is exposed that can be then used to add a default
+    drugst.one panel to your website.
     <app-code lang="html" [code]="general.body"></app-code>
-    The customization of the panel is achieved by handing over parameters to the component. All the configuration
-    parameters, their syntax and structure can be checked in the <a (click)="tabChange(4)">Documentation</a> or
-    interactively explored and set
-    in the <a (click)="tabChange(3)">Playground</a> tab. Any configuration created there can be copied and directly
-    added to your project and provides an easy way to quickly set up drugst.one to your liking and to get familiar with
-    its use. <br>
-    The color theme of drugst.one can also be adjusted freely by setting specific css variables for your website. These
-    can be of course adjusted manually, but again the <i>Playground</i> tab has some nice features to create a theme
-    that fits into your application. The available variables are the following:
+    The customization of the panel is achieved by handing over parameters to the
+    component. All the configuration parameters, their syntax and structure can
+    be checked in the <a (click)="tabChange(4)">Documentation</a> or
+    interactively explored and set in the
+    <a (click)="tabChange(3)">Playground</a> tab. Any configuration created
+    there can be copied and directly added to your project and provides an easy
+    way to quickly set up drugst.one to your liking and to get familiar with its
+    use. <br />
+    The color theme of drugst.one can also be adjusted freely by setting
+    specific css variables for your website. These can be of course adjusted
+    manually, but again the <i>Playground</i> tab has some nice features to
+    create a theme that fits into your application. The available variables are
+    the following:
     <app-code lang="css" [code]="getTheme()"></app-code>
-</p-card>
+  </p-card>
+</div>

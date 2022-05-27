@@ -2,6 +2,7 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
 import {NavigationEnd, Router} from "@angular/router";
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -9,17 +10,18 @@ import {NavigationEnd, Router} from "@angular/router";
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    public version = "0.9.0"
-    public serverVersion = "dock1"
+    public version = "0.9.5"
+    public cdnVersion = "prod/v0.9.5"
     public host = "https://drugst.one"
-    public backendPath = this.host+"/drugstone_api/"
+    public cdn = "https://cdn.drugst.one"
+    public backendPath = "https://api.drugst.one/"
     // public backendPath = "localhost:8001/"
 
     public theme = theme;
     public currentTabId: number;
-    @ViewChild("header", {static: false}) headerEl: ElementRef | undefined;
+    @ViewChild("headerEl", {static: false}) headerEl: ElementRef | undefined;
 
-    constructor(private router: Router) {
+    constructor(private router: Router, public themeService: ThemeService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -52,6 +54,5 @@ export class AppComponent {
             this.headerEl.tabChange(tabId)
         }
     }
-
 
 }

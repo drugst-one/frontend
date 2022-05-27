@@ -1,5 +1,5 @@
 For now we depicted cases of information flow from the host page to the drugstone component
-(<code>{{"<"}}network-expander{{">"}}</code>).<br>
+(<code>{{"<"}}drugst-one{{">"}}</code>).<br>
 To communicate some information from Drugst.One to your host page, if requested, we emit
 events that can be listened to. This is generally achieved by adding an
 <i>EventListener</i> to the component:
@@ -53,13 +53,13 @@ the received object might be proposed here.
               code='document.getElementById("drugstone-component-id").setAttribute("task-id", "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8")'></app-code>
     or
     <app-code lang="html" code="
-<network-expander
+<drugst-one
         id='drugstone-component-id'
         config='{...}'
         network='{...}'
         task-id='WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8'
         >
-</network-expander>"></app-code>
+</drugst-one>"></app-code>
 
     TODO: additional info on how to get status of task using the token with {{api}}
 

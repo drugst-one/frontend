@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RequestService} from "../../../services/requestService";
+import {RequestService} from "../../services/requestService";
 import {Node} from "../../../interfaces"
 @Component({
   selector: 'app-motivation ',
@@ -11,8 +11,7 @@ export class MotivationComponent implements OnInit {
   @Output() navigateDoc = new EventEmitter<string>();
   @Input() api = ""
   @Input() host = ""
-  @Input() public serverVersion = ""
-  @Input() public version = ""
+  @Input() cdn = ""
   @Input() public theme = {}
   sourceDBList = [{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}];
   sourceDB = 'symbol'
@@ -29,12 +28,12 @@ export class MotivationComponent implements OnInit {
   ngOnInit(): void {
     this.general.plugin = "" +
         "<head>\n" +
-        "   <script src=\""+this.host+"/cdn/latest/drugsTone.js\"></script>\n" +
-        "   <link rel=\"stylesheet\" href=\""+this.host+"/cdn/latest/styles.css\">\n" +
+        "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
+        "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
         "</head>\n\n";
     this.general.body = "" +
         "<body>\n" +
-        "   <network-expander></network-expander>\n" +
+        "   <drugst-one></drugst-one>\n" +
         "</body>\n"
   }
 
