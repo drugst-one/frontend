@@ -54,5 +54,10 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "typescript": "~4.2.3"
+  },
+  "overrides": {
+    "@angular-devkit/build-angular": {
+      "sass": "~1.36.0"
+    }
   }
 }
