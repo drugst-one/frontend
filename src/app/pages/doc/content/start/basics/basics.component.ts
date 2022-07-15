@@ -9,14 +9,14 @@ export class BasicsComponent implements OnInit {
 
   constructor() { }
   @Output() navigate = new EventEmitter<string>();
-  @Input() api : string= "";
+  @Input() cdn : string= "";
   basicCode= ""
 
   ngOnInit(): void {
     this.basicCode="<head>\n" +
-        "   <script src=\""+this.api+"/cdn/latest/drugsTone.js\"></script>\n" +
-        "   <link rel=\"stylesheet\" href=\""+this.api+"/cdn/latest/styles.css\">\n" +
-        "</head>"
+        "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
+        "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
+        "</head>'"
   }
 
   navigateTo(id:string): void{

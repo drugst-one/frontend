@@ -81,12 +81,10 @@
           </h2>
           <div id="panelsStayOpen-collapseSidebarConfiguration" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSidebarConfiguration">
             <div class="accordion-body">
-              
-
-
-
 
                 <div class="accordion" id="accordionPanelsStayOpenConfiguration">
+                    <app-switch label="Initial physics" tooltip="Toggles node initial interaction physics of the network" (onChange)="changeConfig('physicsOn',$event)" [model]="getConfig('physicsOn')!=null && getConfig('physicsOn')">
+                    </app-switch>
                     <div class="accordion-item" [ngClass]="{
                         'text-light bg-dark': themeService.theme === 'theme-dark',
                         'text-dark bg-light': themeService.theme === 'theme-light'

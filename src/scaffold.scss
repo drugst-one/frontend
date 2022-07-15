@@ -11,7 +11,7 @@ $black: black;
 
 $navbar-height: 70px;
 $footer-height: auto;
-$border-grey-color: #D3D3D3;
+$border-grey-color: #77787a;
 
 $accordion-icon-color: $border-grey-color; //$accordion-color;
 $accordion-icon-active-color: $border-grey-color; //   $accordion-button-active-color;
@@ -42,3 +42,5 @@ $navbar-light-brand-color: $navbar-light-active-color;
 $navbar-light-brand-hover-color: $navbar-light-active-color;
 $navbar-dark-brand-color: $navbar-dark-active-color;
 $navbar-dark-brand-hover-color: $navbar-dark-active-color;
+
+$card-bg: $border-grey-color;

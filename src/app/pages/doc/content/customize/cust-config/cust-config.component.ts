@@ -56,6 +56,7 @@ export class CustConfigComponent implements OnInit {
       {name: 'interactionDrugProtein', type: 'string', default: 'DrugBank', description: 'The drug database which should be used to fetch the drug-protein interactions. Possible values are "DrugBank", "Chembl", "DGIdb".'},
       {name: 'interactionProteinProtein', type: 'string', default: 'STRING', description: 'The database which should be used to fetch the protein-protein interactions. Possible values are "STRING", "BioGRID", "APID".'},
       {name: 'autofillEdges', type: 'boolean', default: 'false', description: 'Automatically fetch interactions for all network nodes from the selected protein interaction database (see "interactionDrugProtein").'},
+      {name:'physicsOn', type:'boolean',default:'false',description:'Sets initial state of the network interaction physics.'},
       {name: 'nodeShadow', type: 'boolean', default: 'true', description: 'Turn the shadows of the network nodes on or off.'},
       {name: 'edgeShadow', type: 'boolean', default: 'true', description: 'Turn the shadows of the network edges on or off.'},
       {name: 'nodeGroups', type: 'object', default: 'see "Raw JSON"', description: 'Node groups which define the style for the network nodes. Every node in the network will be assigned to one of the node groups. The styles of the default node groups can be overwritten here. For more information see "Groups".'},

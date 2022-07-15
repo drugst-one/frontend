@@ -1,28 +1,25 @@
-<div
-class="w-100 min-vh-100"
-  [ngClass]="{
+
+    <div
+            class="w-100 min-vh-100"
+            [ngClass]="{
     'text-light bg-dark': themeService.theme === 'theme-dark',
     'bg-light': themeService.theme === 'theme-light'
   }"
->
-  <app-header
-    #headerEl
-    (tabChangeEvent)="switchTab($event); pages.fitPlayground()"
-    [host]="host"
-    (switchThemeEvent)="pages.switchTheme($event)"
-  ></app-header>
-  <div class="container main-container">
-    <app-pages
-      #pages
-      [version]="version"
-      [theme]="theme"
-      [host]="host"
-      [backendPath]="backendPath"
-      [currentTabId]="currentTabId"
-      [serverVersion]="serverVersion"
-      (tabChangeEvent)="headerEl.tabChange($event)"
-      (tabIdChangeEvent)="switchTab($event)"
-    ></app-pages>
-  </div>
-  <app-footer class="footer mt-auto py-3" [version]="version"></app-footer>
-</div>
+    >
+        <app-header
+            #headerEl
+            (tabChangeEvent)="switchTab($event); pages.fitPlayground()"
+            [host]="host"
+            (switchThemeEvent)="pages.switchTheme($event)"
+        ></app-header>
+        <div class="container main-container">
+            <app-pages
+                #pages
+                [version]="version" [theme]="theme" [host]="host" [backendPath]="backendPath" [cdn]="cdn"
+                [currentTabId]="currentTabId" [cdnVersion]="cdnVersion"
+                (tabChangeEvent)="headerEl.tabChange($event)"
+                (tabIdChangeEvent)="switchTab($event)"
+            ></app-pages>
+        </div>
+        <app-footer class="footer mt-auto py-3" [version]="version"></app-footer>
+    </div>

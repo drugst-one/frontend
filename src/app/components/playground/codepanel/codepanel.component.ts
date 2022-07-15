@@ -9,7 +9,8 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class CodepanelComponent implements OnInit {
 
 
-  @Input() public code :string = "<network-expander>\n</network-expander>"
+
+  @Input() public code :string = "<drugst-one>\n</drugst-one>"
   constructor(public themeService: ThemeService) { }
 
   ngOnInit(): void {
