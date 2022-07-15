@@ -29,10 +29,10 @@ export class StandaloneComponent implements OnInit {
     panelNWCollapsed = false;
     panelDRGSTNCollapsed = true;
 
-    rawNodes = ""
-    rawEdges = ""
-    public group = "gene"
-    private delimList = ["\t", "\n", ",", ";", " "]
+    rawNodes = "";
+    rawEdges = "";
+    public group = "gene";
+    private delimList = ["\t", "\n", ",", ";", " "];
 
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
@@ -84,7 +84,7 @@ export class StandaloneComponent implements OnInit {
 
     ngAfterViewInit(): void {
         if (localStorage.getItem("darkTheme") === "true")
-            this.switchTheme(true)
+            this.switchTheme(true);
     }
 
     async setParams(params: object): Promise<any> {
@@ -92,7 +92,7 @@ export class StandaloneComponent implements OnInit {
         this.panelDRGSTNCollapsed = false;
         if ("taskId" in params) {
             // @ts-ignore
-            this.changeConfig("taskId", params["token"])
+            this.changeConfig("taskId", params["token"]);
             return
         }
 

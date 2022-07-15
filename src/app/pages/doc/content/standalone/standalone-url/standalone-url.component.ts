@@ -56,6 +56,7 @@ export class StandaloneUrlComponent implements OnInit {
             "   \""+this.backend+"create_network\",\n" +
             "   {\n" +
             "       network: {nodes: [...], edges: [...]},\n" +
+            "       groups: {...}\n" +
             "       config: {...}\n" +
             "   }\n" +
             ")"
