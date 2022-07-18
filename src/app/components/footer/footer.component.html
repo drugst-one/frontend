@@ -1,17 +1,37 @@
-<footer
-  class="footer mt-auto py-3 text-center"
-  [ngClass]="{
-    'bg-dark text-light': themeService.theme === 'theme-dark',
-    'bg-light': themeService.theme === 'theme-light'
-  }"
->
-  <div class="container">
-    <p>
-      drugst.one@v{{ version }} | 2022 |
-      <a
-        href="https://www.cosy.bio/contact"
-        >Cosy.Bio</a
-      >
-    </p>
-  </div>
-</footer>
+<div class="container">
+  <footer class="row row-cols-5 py-5 mt-5 border-top">
+    <div class="col">
+      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+        <img src="{{themeService.theme === 'theme-dark' ? '/assets/logo_navbar_dark.png' : '/assets/logo_navbar.png'}}" alt="drugst.one project logo" height="20px">
+      </a>
+      <p class="text-muted">drugst.one@v{{ version }}</p>
+      <p class="text-muted">© 2022</p>
+    </div>
+
+    <div class="col">
+
+    </div>
+
+    <div class="col">
+      <h5>Content</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+        <li class="nav-item mb-2"><a href="/idea" class="nav-link p-0 text-muted">Idea</a></li>
+        <li class="nav-item mb-2"><a href="/standalone" class="nav-link p-0 text-muted">Standalone</a></li>
+        <li class="nav-item mb-2"><a href="/playground" class="nav-link p-0 text-muted">Playground</a></li>
+        <li class="nav-item mb-2"><a href="/doc" class="nav-link p-0 text-muted">Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <h5>About us</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="https://www.cosy.bio/contact" target="_blank" class="nav-link p-0 text-muted">Impressum</a></li>
+        <li class="nav-item mb-2"><a href="https://twitter.com/cosybio_uhh?lang=de" target="_blank" class="nav-link p-0 text-muted">Twitter</a></li>
+      </ul>
+    </div>
+    
+  </footer>
+</div>
+
+
