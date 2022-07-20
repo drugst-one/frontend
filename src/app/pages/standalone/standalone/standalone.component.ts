@@ -17,6 +17,11 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class StandaloneComponent implements OnInit {
 
     @ViewChild("standalonePlugin", {static: false}) standalonePluginEl: ElementRef | undefined;
+
+    @ViewChild('networkInput') networkInput?: ElementRef<HTMLElement>;
+    @ViewChild('advancedSettings') advancedSettings?: ElementRef<HTMLElement>;
+    @ViewChild('drugstoneApp') drugstoneApp?: ElementRef<HTMLElement>;
+
     @Input() api = ""
     network: Object = {nodes: [], edges: []}
     themeLight: Object = {}
@@ -25,9 +30,6 @@ export class StandaloneComponent implements OnInit {
     config: Object = {}
     configDark: Object = {}
     configLight: Object = {}
-
-    panelNWCollapsed = false;
-    panelDRGSTNCollapsed = true;
 
     rawNodes = "";
     rawEdges = "";
@@ -88,8 +90,8 @@ export class StandaloneComponent implements OnInit {
     }
 
     async setParams(params: object): Promise<any> {
-        this.panelNWCollapsed = true;
-        this.panelDRGSTNCollapsed = false;
+        this.toggleTab(this.networkInput, false);
+        this.toggleTab(this.drugstoneApp, true);
         if ("taskId" in params) {
             // @ts-ignore
             this.changeConfig("taskId", params["token"]);
@@ -229,8 +231,8 @@ export class StandaloneComponent implements OnInit {
         let edges = this.setEdges()
         this.network = {nodes: nodes, edges: edges}
 
-        this.panelNWCollapsed = true;
-        this.panelDRGSTNCollapsed = false;
+        this.toggleTab(this.networkInput, false);
+        this.toggleTab(this.drugstoneApp, true);
     }
 
     setObject(dest: Object, src: Object) {
@@ -258,4 +260,16 @@ export class StandaloneComponent implements OnInit {
         } else
             this.config = conf
     }
+
+    public toggleTab(tab: ElementRef<HTMLElement> | undefined, open: boolean) {
+        if (tab === undefined) {
+            return;
+        }
+        const el: HTMLElement = tab.nativeElement;
+        const is_closed = el.classList.contains('collapsed');
+        if (open === is_closed) {
+            el.click();
+        }
+    }
+    
 }
