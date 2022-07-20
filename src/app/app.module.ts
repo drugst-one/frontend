@@ -114,6 +114,7 @@ import { StandaloneUrlComponent } from './pages/doc/content/standalone/standalon
 import { StandaloneDocComponent } from './pages/doc/content/standalone/standalone-doc.component';
 import { SubtitleComponent } from './components/documentation/subtitle/subtitle.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StandaloneButtonsComponent } from './pages/doc/content/standalone/standalone-buttons/standalone-buttons.component';
 
 
 @NgModule({
@@ -173,6 +174,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         StandaloneUrlComponent,
         StandaloneDocComponent,
         SubtitleComponent,
+        StandaloneButtonsComponent,
     ],
     imports: [
         BrowserModule,

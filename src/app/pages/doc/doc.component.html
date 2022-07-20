@@ -9,97 +9,6 @@
     <div class="col-md-3" id="mobile-navbar-menu">
       <app-doc-navbar></app-doc-navbar>
     </div>
-<!--    <div class="column" style="width: min(85%,calc(100% - 200px)); padding-left: 10px">-->
-<!--        <p-breadcrumb [model]="path" [home]="home" (onItemClick)="breadcrumbsEvent($event)"></p-breadcrumb>-->
-<!--        <p-scrollPanel id="page-container"-->
-<!--             [style]='{height: "calc(80vh - 40px)",  width: "100%", margin:0, padding:0, overflowY: "auto"}'>-->
-<!--            <app-doc-page [pageId]="0" [currentPage]="page" [navTree]="navTree" id="page0">-->
-<!--                <div class="doc-entries">-->
-<!--                    <app-overview (navigate)="navigateToId($event)"></app-overview>-->
-<!--                </div>-->
-<!--            </app-doc-page>-->
-<!--            <app-doc-page [pageId]="1" [currentPage]="page" [navTree]="navTree" id="page1">-->
-<!--                <div class="doc-entries">-->
-<!--                    <div>-->
-<!--                        <app-start (navigate)="navigateToId($event)"></app-start>-->
-<!--                    </div>-->
-<!--                    <p-divider></p-divider>-->
-<!--                    <app-doc-content *ngFor="let topic of navTree[1].items" [entry]="topic"-->
-<!--                                     [divider]="topic.id!=='other'" [ghLinks]="ghLinks">-->
-<!--                        <div class="content">-->
-<!--                            <div *ngIf="topic.id==='basics'">-->
-<!--                                <app-basics (navigate)="navigateToId($event)"  [cdn]="cdn"></app-basics>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='angular'" >-->
-<!--                                <app-angular (navigate)="navigateToId($event)"></app-angular>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='vuejs'">-->
-<!--                               <app-vuejs (navigate)="navigateToId($event)"></app-vuejs>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='rshiny'">-->
-<!--                                <app-rshiny (navigate)="navigateToId($event)"></app-rshiny>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='django'">-->
-<!--                                <app-django></app-django>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='other'">-->
-<!--                                <app-other (navigate)="navigateToId($event)"></app-other>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </app-doc-content>-->
-<!--                </div>-->
-<!--            </app-doc-page>-->
-<!--            <app-doc-page [pageId]="2" [currentPage]="page" [navTree]="navTree" id="page2">-->
-<!--                <div class="doc-entries">-->
-<!--                    <div>-->
-<!--                       <app-ui></app-ui>-->
-<!--                    </div>-->
-<!--                    <p-divider></p-divider>-->
-<!--                    <app-doc-content *ngFor="let topic of navTree[2].items" [entry]="topic"-->
-<!--                                     [divider]="topic.id!=='ui-analysis'">-->
-<!--                        <div class="content">-->
-<!--                            <div *ngIf="topic.id==='ui-network'">-->
-<!--                                <app-ui-network></app-ui-network>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='ui-panels'">-->
-<!--                                <app-ui-panels></app-ui-panels>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='ui-footer'">-->
-<!--                                <app-ui-footer></app-ui-footer>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='ui-tasks'">-->
-<!--                                <app-ui-tasks></app-ui-tasks>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='ui-analysis'">-->
-<!--                                <app-ui-analysis></app-ui-analysis>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </app-doc-content>-->
-<!--                </div>-->
-<!--            </app-doc-page>-->
-<!--            <app-doc-page [pageId]="3" [currentPage]="page" [navTree]="navTree" id="page3">-->
-<!--                <div class="doc-entries">-->
-<!--                    <div>-->
-<!--                        <app-customize></app-customize>-->
-<!--                    </div>-->
-<!--                    <p-divider></p-divider>-->
-<!--                    <app-doc-content *ngFor="let topic of navTree[3].items" [entry]="topic"-->
-<!--                                     [divider]="topic.id!=='cust-events'">-->
-<!--                        <div class="content">-->
-<!--                            <div *ngIf="topic.id==='cust-network'">-->
-<!--                                <app-cust-network ></app-cust-network>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='cust-config'">-->
-<!--                                <app-cust-config (navigate)="navigateToId($event)"></app-cust-config>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='cust-version'">-->
-<!--                                <app-cust-version [cdn]="cdn" [version]="version" [api]="host" (navigate)="navigateToId($event)"></app-cust-version>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='cust-style'">-->
-<!--                                <app-cust-style></app-cust-style>-->
-<!--                            </div>-->
-<!--                            <div *ngIf="topic.id==='cust-events'">-->
-<!--                                <app-cust-events [api]="api"></app-cust-events>-->
 
     <div class="col-md-9">
       <!-- Chapter Start-->
@@ -169,7 +78,11 @@
       <!-- Chapter Start-->
       <a id="standalone"></a>
       <h2 class="text-center m-3 mt-5">Standalone</h2>
+      <app-standalone-doc></app-standalone-doc>
 
+      <a id="standalone_buttons"></a>
+      <h4>Drugst.One Buttons</h4>
+      <app-standalone-buttons></app-standalone-buttons>
       <a id="standalone_options"></a>
       <h4>Options</h4>
       <app-standalone-options></app-standalone-options>
