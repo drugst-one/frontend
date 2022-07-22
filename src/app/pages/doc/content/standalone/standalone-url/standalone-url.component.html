@@ -5,9 +5,9 @@
   intermediate <i>POST</i> request the boundaries of this small standalone
   interface can even be skipped and any
   <a href="/doc#customize_network">network</a> and
-  <a href="/doc#customize_general_configuration">configuration</a> that is
+  <a href="/doc#customize_general">configuration</a> that is
   applicable on the Drugst.One plugin itself, can be loaded.
-  <app-subtitle title="GET"></app-subtitle>
+  <app-doc-subsubheader text="GET"></app-doc-subsubheader>
   The following depicts an explicit <a [href]="getRequest">example</a>, how a
   simple network can be loaded and configured through an URL:
   <app-code lang="html" [code]="getRequest"></app-code>
@@ -46,7 +46,7 @@
     </ng-template>
   </p-table>
 
-  <app-subtitle title="POST"></app-subtitle>
+  <app-doc-subsubheader text="POST"></app-doc-subsubheader>
 
   For configurations with more than 2,048 characters or additional network
   parameters or own edge or node groups we also provide a way to load these
@@ -61,9 +61,9 @@
   <app-code lang="js" [code]="postCreate"></app-code>
 
   <a href="/doc#customize_network">Network</a> and
-  <a href="/doc#customize_general_configuration">config</a> objects can be defined
+  <a href="/doc#customize_general">config</a> objects can be defined
   exactly as the ones handed to the Drugst.One plugin, further defined in the
-  <a href="/doc#customize_general_configuration">customization</a> section. The call
+  <a href="/doc#customize_general">customization</a> section. The call
   returns a <i>networkID</i> that can be used to load this saved network in the
   Standalone application. This UUID contains 32 random alphanumeric characters
   (e.g. "cbfa6a27ded04b20963c04376e212ca6"). It is then used to request the

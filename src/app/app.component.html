@@ -12,7 +12,7 @@
             [host]="host"
             (switchThemeEvent)="pages.switchTheme($event)"
         ></app-header>
-        <div class="container main-container">
+        <div class="container-fluid main-container">
             <app-pages
                 #pages
                 [version]="version" [theme]="theme" [host]="host" [backendPath]="backendPath" [cdn]="cdn"

@@ -1,17 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
-interface Option {
-  name: string;
-  type: string;
-  default: string;
-  description: string;
-}
-
-interface NodeGroup {
-  name: string;
-  function: string;
-}
-
+import { NodeGroup, Option } from 'src/interfaces';
 @Component({
   selector: 'app-cust-config',
   templateUrl: './cust-config.component.html',
@@ -24,9 +12,6 @@ export class CustConfigComponent implements OnInit {
 
 
   public config: Option[] = [];
-  public defaultNodeGroups: NodeGroup[] = [];
-  public requiredOptionsNodeGroup: Option[] = [];
-  public requiredOptionsEdgeGroup: Option[] = [];
 
   ngOnInit() {
     this.config = [
@@ -59,28 +44,7 @@ export class CustConfigComponent implements OnInit {
       {name:'physicsOn', type:'boolean',default:'false',description:'Sets initial state of the network interaction physics.'},
       {name: 'nodeShadow', type: 'boolean', default: 'true', description: 'Turn the shadows of the network nodes on or off.'},
       {name: 'edgeShadow', type: 'boolean', default: 'true', description: 'Turn the shadows of the network edges on or off.'},
-      {name: 'nodeGroups', type: 'object', default: 'see "Raw JSON"', description: 'Node groups which define the style for the network nodes. Every node in the network will be assigned to one of the node groups. The styles of the default node groups can be overwritten here. For more information see "Groups".'},
-      {name: 'edgeGroups', type: 'object', default: 'see "Raw JSON"', description: 'The same as "nodeGroups" but for the network edges (see "nodeGroups"). For more information see "Groups".'},
-    ]
-
-    this.defaultNodeGroups = [
-      {name: 'default', function: 'Fallback option for all nodes without any group assigned.'},
-      {name: 'foundNode', function: 'Node group for all nodes found by Drugst.One that are not drugs (either drug target nodes or nodes that connect drugs to the network).'},
-      {name: 'foundDrug', function: 'Node group for all drug nodes found by Drugst.One. Drugs can either be found via the drug search or via the "Drugs" button in the footer of the network.'},
-      {name: 'seedNode', function: 'Style to highlight seed nodes in the task result used as input for the particular task.'},
-      {name: 'selectedNode', function: 'Style for the nodes that are selected by the user as seeds nodes.'},
-    ]
-
-    this.requiredOptionsNodeGroup = [
-      {name: 'groupName', type: 'string', default: '', description: 'The name of the node group as it appears in the legend.'},
-      {name: 'type', type: 'string', default: '', description: 'The name of the type of node as it appears in the node detail panel.'},
-      {name: 'shape', type: 'string', default: '', description: 'The shape of all nodes belonging to this group. Can be one of "circle", "triangle", "star", "square", "image", "text", "ellipse", "box", "diamond", "dot".'},
-      {name: 'color', type: 'string | object', default: '', description: 'The color of nodes in this group. Can be either a color string (hexacode, rgb, rgba) or an object based on the Vis.js node color property.'},
-    ]
-
-    this.requiredOptionsEdgeGroup = [
-      {name: 'groupName', type: 'string', default: '', description: 'The name of the edge group as it appears in the legend.'},
-      {name: 'color', type: 'string | object', default: '', description: 'The color of edges in this group. Expects a color string (hexacode, rgb, rgba).'},
+      {name: 'groups', type: 'object', default: 'see "Raw JSON"', description: 'Groups ("nodeGroups" and "edgeGroups") which define the style for the network nodes. Every node in the network will be assigned to one of the node groups. The styles of the default node groups can be overwritten here. For more information see "Groups".'},
     ]
 
   }

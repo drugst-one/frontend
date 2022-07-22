@@ -1,5 +1,14 @@
+export interface Option {
+    name: string;
+    type: string;
+    default: string;
+    description: string;
+}
 
-
+export interface NodeGroup {
+    name: string;
+    function: string;
+}
 
 export interface Node {
     label: string;

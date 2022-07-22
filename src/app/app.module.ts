@@ -105,7 +105,7 @@ import {ImplementationComponent} from './pages/doc/content/implementation/implem
 import {ImplDataComponent} from './pages/doc/content/implementation/impl-data/impl-data.component';
 import {ImplVisComponent} from './pages/doc/content/implementation/impl-vis/impl-vis.component';
 import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-algorithms/impl-algorithms.component';
-import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
+import { DocSubsubheaderComponent } from './components/documentation/doc-subsubheader/doc-subsubheader.component';
 import { DjangoComponent } from './pages/doc/content/start/django/django.component';
 import {MessagesModule} from "primeng/messages";
 import { PagesComponent } from './pages/pages.component';
@@ -115,6 +115,10 @@ import { StandaloneDocComponent } from './pages/doc/content/standalone/standalon
 import { SubtitleComponent } from './components/documentation/subtitle/subtitle.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StandaloneButtonsComponent } from './pages/doc/content/standalone/standalone-buttons/standalone-buttons.component';
+import { CustGroupsComponent } from './pages/doc/content/customize/cust-groups/cust-groups.component';
+import { CustGeneralComponent } from './pages/doc/content/customize/cust-general/cust-general.component';
+import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
+import { DocHeaderComponent } from './components/documentation/doc-header/doc-header.component';
 
 
 @NgModule({
@@ -167,7 +171,7 @@ import { StandaloneButtonsComponent } from './pages/doc/content/standalone/stand
         ImplDataComponent,
         ImplVisComponent,
         ImplAlgorithmsComponent,
-        DocSubheaderComponent,
+        DocSubsubheaderComponent,
         DjangoComponent,
         PagesComponent,
         StandaloneOptionsComponent,
@@ -175,6 +179,10 @@ import { StandaloneButtonsComponent } from './pages/doc/content/standalone/stand
         StandaloneDocComponent,
         SubtitleComponent,
         StandaloneButtonsComponent,
+        CustGroupsComponent,
+        CustGeneralComponent,
+        DocSubheaderComponent,
+        DocHeaderComponent,
     ],
     imports: [
         BrowserModule,

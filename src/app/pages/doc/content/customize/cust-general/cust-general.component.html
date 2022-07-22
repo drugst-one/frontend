@@ -1,0 +1,34 @@
+<p>
+  The Drugst.One component accepts 3 different arguments: "config", "groups" and
+  "network".
+</p>
+
+<ul>
+  <li>
+    "config" describes the general configuration of the app. Here you can
+    define, which elements and functionalities you want to include in your
+    Drugst.One instance and the position in the app.
+  </li>
+  <li>
+    "groups" defines the labels and styles such as color and shape for each
+    node/edge group. These configurations will be applied to each node/edge with
+    the according "group" attribute.
+  </li>
+  <li>
+    "network" contains the complete network data for nodes and edges. Keep in
+    mind that you don't need to define edges, instead Drugst.One can load them
+    from a PPI dataset of your choice.
+  </li>
+</ul>
+
+<app-code
+  [copy]="true"
+  lang="html"
+  code='
+  <drugst-one
+    config="{}"
+    groups="{}"
+    network="{}">
+  </drugst-one>
+  '
+></app-code>
