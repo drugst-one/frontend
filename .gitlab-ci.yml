@@ -63,6 +63,7 @@ deploy:dev:
     - docker push gitlab.rrz.uni-hamburg.de:4567/cosy-bio/drugst.one/website:dev
   dependencies:
     - build
+  tags: [docker]
 
 deploy:prod:
   image: registry.blitzhub.io/docker
