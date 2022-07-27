@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="accordion" id="accordionPanelsStandalone">
     <div class="accordion-item" [ngClass]="{
         'text-light bg-dark': themeService.theme === 'theme-dark',
@@ -6,6 +6,7 @@
       }">
       <h2 class="accordion-header" id="panelsNetworkInput">
         <button
+          #networkInput
           class="accordion-button"
           type="button"
           data-bs-toggle="collapse"
@@ -76,6 +77,7 @@
       }">
       <h2 class="accordion-header" id="panelsAdvancedSettings">
         <button
+          #advancedSettings
           class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
@@ -127,6 +129,7 @@
       }">
       <h2 class="accordion-header" id="panelsDrugstone">
         <button
+          #drugstoneApp
           class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"

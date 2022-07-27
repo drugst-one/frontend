@@ -1,25 +1,39 @@
 <div class="container">
-  <div class="row text-center justify-content-center">
-    <div class="col-md-6">
-      <img
-        class="img-fluid"
-        [src]="isDark() ? '/assets/logo_dark.png' : '/assets/logo.png'"
-        height="300px"
-      />
+  <div class="px-4 py-4 text-center">
+    <img
+      class="d-block mx-auto mb-4 home-logo"
+      [src]="isDark() ? '/assets/logo_dark.png' : '/assets/logo.png'"
+      alt="drugstone logo"
+    />
+    <!-- <h1 class="display-5 fw-bold">Centered hero</h1> -->
+    <div class="col-lg-6 mx-auto">
+      <p class="lead">Visualize protein interactions with one click or integrate Drugst.One with 3 lines of code.
+        <br>
+        Close the link between Proteins and Drugs on your website!
+      </p>
+      
     </div>
   </div>
+  <img />
   <div class="row align-items-start text-center">
     <div class="col">
-      <iframe
-        width="360"
-        height="240"
-        src="https://www.youtube.com/embed/ScMzIvxBSi4"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        class="video"
-      ></iframe>
+        <iframe
+          width="360"
+          height="240"
+          src="https://www.youtube.com/embed/ScMzIvxBSi4"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="video"
+        ></iframe>
+      <div class="row">
+        <p-button
+          label="Integrate drugst.one"
+          icon="pi pi-fw pi-th-large"
+          (onClick)="switchTab(1)"
+        ></p-button>
+      </div>
     </div>
     <div class="col">
       <iframe
@@ -32,6 +46,13 @@
         allowfullscreen
         class="video"
       ></iframe>
+      <div class="row">
+        <p-button
+        label="Start using URL-config"
+        icon="pi pi-fw pi-send"
+        (onClick)="switchToDoc('standalone-url')"
+      ></p-button>
+      </div>
     </div>
     <div class="col">
       <iframe
@@ -44,39 +65,14 @@
         allowfullscreen
         class="video"
       ></iframe>
-    </div>
-  </div>
-
-  <div class="row text-center mb-3">
-    <div class="col-12">
-      <h2>Close the link between genes and drugs!</h2>
-    </div>
-    <div class="col-12">
-      <h2>Enrich your results</h2>
-    </div>
-  </div>
-
-  <div class="row text-center">
-    <div class="col-md-4 mb-3">
-      <p-button
-        label="Integrate drugst.one"
-        icon="pi pi-fw pi-th-large"
-        (onClick)="switchTab(1)"
-      ></p-button>
-    </div>
-    <div class="col-md-4 mb-3">
-      <p-button
-        label="Start using URL-config"
-        icon="pi pi-fw pi-send"
-        (onClick)="switchToDoc('standalone-url')"
-      ></p-button>
-    </div>
-    <div class="col-md-4 mb-3">
-      <p-button
+      <div class="row">
+        <p-button
         label="Use drugst.online"
         icon="pi pi-fw pi-send"
         (onClick)="switchTab(2)"
       ></p-button>
+      </div>
     </div>
   </div>
+
 </div>

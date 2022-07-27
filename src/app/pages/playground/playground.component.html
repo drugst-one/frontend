@@ -3,21 +3,21 @@
     <div class="col-lg-12">
         <app-datapanel
           class="p-1"
-          [nodeGroups]="config.nodeGroups"
+          [nodeGroups]="groups.nodeGroups"
           (setNodesEvent)="setNodes($event)"
         ></app-datapanel>
         <app-drugstonepanel
           class="p-1"
           [id]="id"
-          [config]="config"
+          [config]="getMergedConfig()"
           [network]="network"
         ></app-drugstonepanel>
         <app-sidebar
         class="p-1"
         [config]="config"
         [theme]="theme"
-        [nodeGroups]="config.nodeGroups"
-        [edgeGroups]="config.edgeGroups"
+        [nodeGroups]="groups.nodeGroups"
+        [edgeGroups]="groups.edgeGroups"
         (configChangeEvent)="changeConfig($event)"
         (colorChangeEvent)="changeColor($event)"
         (editGroupEvent)="editGroup($event)"

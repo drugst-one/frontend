@@ -1,6 +1,148 @@
-<ul>
-    <li>Mostly based on visjs</li>
-    <li>node config</li>
-    <li>edge config</li>
-    <li>Groups (nodes/edges) (link to top, switch to tab)</li>
-</ul>
+<p>
+  The network is based on
+  <a href="https://visjs.github.io/vis-network/" target="_blank"
+    >Vis.js version 9.0.4 ()</a
+  >. Therefore, Drugst.One supports all options available for Vis.js networks as
+  describes on the
+  <a href="https://visjs.github.io/vis-network/docs/network/" target="_blank"
+    >official Vis.js webpage</a
+  >. The nodes and edges can be defined in the parameter "network" while the
+  styles for nodes and edges should be defined in the parameter "groups" under
+  the keys "nodeGroups" and "edgeGroups", respectively. Each group (nodeGroups
+  and edgeGroups) is defined by a key and an object. A minimal example of how
+  the groups could look like is shown in
+  <a href="/doc#customize_general">"groups"</a>.
+</p>
+
+<p>
+  While the node and edge styles are defined in the "group" parameter, the
+  network parameter in the Drugst.One component serves as data input for the
+  network. The network has the two attributes "nodes" and "edges", which each
+  expect a list with objects for nodes and edges, respectively.
+</p>
+
+<app-code
+  [copy]="true"
+  lang="html"
+  code='
+network = {
+  "nodes": [],
+  "edges": []
+}
+'
+>
+</app-code>
+
+<p>
+  Here some of the required and some of the optional parameters for the node
+  and edge objects are described. Since Drugst.One is using Vis.js, valid node and edge
+  parameters in Vis.js can also be used in Drugst.One in addition to the
+  parameters describes here.
+</p>
+
+<app-doc-subsubheader
+  text="Nodes"
+  id="cust_network_nodes"
+></app-doc-subsubheader>
+<p>
+  The "nodes" attributes expects a list with objects for each node. Each node
+  must have an unique 'id', which is the only required parameter. The "id" is
+  the node identifier and will be displayed as node name in the network.
+  <br />
+  For genes/proteins, the 'id' attribute is the gene identifier in the selected
+  "identifier" space. For example, if the "identifier" is "symbol", valid ids
+  are "PTEN", "MYC", "TP53" and so forth. Drugst.One will attempt to map each
+  node to a gene/protein entity in its database and fetch corresponding known
+  information from the database. If it cannot be mapped, it will still display
+  the node with all attributes that are passed in the node object. However, this
+  node will not be available for selection and thus for the analysis tasks.
+</p>
+
+<p-messages severity="info">
+  <ng-template pTemplate>
+    <div>
+      All node objects must have an unique 'id' attribute, regardless whether
+      they are biological entities.
+    </div>
+  </ng-template>
+</p-messages>
+
+<p>
+  Other nodes which do not represent genes/proteins will still have to have an
+  "id" attribute. In this case, the "id" will still be used to display the name
+  of the node in the network.
+</p>
+
+<app-code
+  [copy]="true"
+  lang="html"
+  code='
+network = {
+  "nodes": [{"id":"PTEN"}, {"id":"custom123"}]
+}
+'
+>
+</app-code>
+
+<p>
+  In addition to the "id", each should have a
+  <a href="/doc#customize_group_configuration">"group"</a> that it is assigned.
+  The node will inherit all styles defined in the group. Note that the group
+  assigned to a node must exist in the nodeGroups, otherwise an error will be
+  thrown.
+</p>
+
+<app-code
+  [copy]="true"
+  lang="html"
+  code='
+network = {
+  "nodes": [{"id":"PTEN" "group": "gene"}, {"id":"custom123", "group": "customNodes"}]
+}
+'
+>
+</app-code>
+
+<app-doc-subsubheader
+  text="Edges"
+  id="cust_network_edges"
+></app-doc-subsubheader>
+
+<p>
+  The "edges" attribute expects a list of edge objects, each containing the keys
+  "from" and "to". The values for these keys must the node "id" values of the
+  source and the target node. By default, the network is undirected. In this
+  case, the values of "from" and "to" are exchangeable.
+</p>
+
+<app-code
+  [copy]="true"
+  lang="html"
+  code='
+network = {
+  "nodes": [{"id":"PTEN"}, {"id":"custom123"}],
+  "edges": [{"from":"PTEN", "to":"custom123"}]
+}
+'
+>
+</app-code>
+
+<p>
+  In addition to the required parameters, each node can also have a "group". The
+  value of the "group" must be a key of an
+  <a href="/doc#config-edge-groups">"edgeGroup"</a>. If the "edgeGroup" does not
+  exist, an error will be thrown. The edge will inherit all styles defined in
+  the edge group.
+</p>
+
+<app-code
+  [copy]="true"
+  lang="html"
+  code='
+network = {
+  "nodes": [{"id":"PTEN"}, {"id":"custom123"}],
+  "edges": [{"from":"PTEN", "to":"custom123", "group":"significantEdges"}]
+}
+'
+>
+</app-code>

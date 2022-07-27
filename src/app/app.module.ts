@@ -81,7 +81,7 @@ import {DocPageComponent} from './components/documentation/doc-page/doc-page.com
 import {MotivationComponent} from './pages/motivation/motivation.component';
 import {StandaloneComponent} from './pages/standalone/standalone/standalone.component';
 import {DocContentComponent} from './components/documentation/doc-content/doc-content.component';
-import {FaqComponent} from './pages/doc/content/faq/faq.component';
+import {FaqComponent} from './pages/doc/content/other/faq/faq.component';
 import {OverviewComponent} from './pages/doc/content/overview/overview.component';
 import {StartComponent} from './pages/doc/content/start/start.component';
 import {BasicsComponent} from './pages/doc/content/start/basics/basics.component';
@@ -105,7 +105,7 @@ import {ImplementationComponent} from './pages/doc/content/implementation/implem
 import {ImplDataComponent} from './pages/doc/content/implementation/impl-data/impl-data.component';
 import {ImplVisComponent} from './pages/doc/content/implementation/impl-vis/impl-vis.component';
 import {ImplAlgorithmsComponent} from './pages/doc/content/implementation/impl-algorithms/impl-algorithms.component';
-import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
+import { DocSubsubheaderComponent } from './components/documentation/doc-subsubheader/doc-subsubheader.component';
 import { DjangoComponent } from './pages/doc/content/start/django/django.component';
 import {MessagesModule} from "primeng/messages";
 import { PagesComponent } from './pages/pages.component';
@@ -114,6 +114,12 @@ import { StandaloneUrlComponent } from './pages/doc/content/standalone/standalon
 import { StandaloneDocComponent } from './pages/doc/content/standalone/standalone-doc.component';
 import { SubtitleComponent } from './components/documentation/subtitle/subtitle.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StandaloneButtonsComponent } from './pages/doc/content/standalone/standalone-buttons/standalone-buttons.component';
+import { CustGroupsComponent } from './pages/doc/content/customize/cust-groups/cust-groups.component';
+import { CustGeneralComponent } from './pages/doc/content/customize/cust-general/cust-general.component';
+import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
+import { DocHeaderComponent } from './components/documentation/doc-header/doc-header.component';
+import { ContactComponent } from './pages/doc/content/other/contact/contact.component';
 
 
 @NgModule({
@@ -166,13 +172,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         ImplDataComponent,
         ImplVisComponent,
         ImplAlgorithmsComponent,
-        DocSubheaderComponent,
+        DocSubsubheaderComponent,
         DjangoComponent,
         PagesComponent,
         StandaloneOptionsComponent,
         StandaloneUrlComponent,
         StandaloneDocComponent,
         SubtitleComponent,
+        StandaloneButtonsComponent,
+        CustGroupsComponent,
+        CustGeneralComponent,
+        DocSubheaderComponent,
+        DocHeaderComponent,
+        ContactComponent,
     ],
     imports: [
         BrowserModule,

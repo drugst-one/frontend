@@ -1,0 +1,185 @@
+body {
+    --drgst-buttons-black: #212529;
+    --drgst-buttons-white: #ffffff;
+    --drgst-buttons-blue: #0096FF;
+    --drgst-buttons-darkblue: #00008B;
+    --drgst-buttons-green: #4CBB17;
+    --drgst-buttons-darkgreen: #023020;
+    --drgst-buttons-yellow: #FDDA0D;
+    --drgst-buttons-darkyellow: #8B8000;
+    --drgst-buttons-red: #EE4B2B;
+    --drgst-buttons-darkred: #7B1818;
+    --drgst-buttons-grey: #D3D3D3;
+    --drgst-buttons-darkgrey: #696969;
+}
+
+.drgstn-button {
+    /* icon */
+    background-image: url("http://localhost:4200/assets/favicon-32x32.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 20px 20px;
+    background-position-x: 6px;
+    background-origin: padding-box;
+    padding-left: 32px !important;
+
+    /* effects */
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+    display: inline-block;
+
+    /* size */
+    padding: .5rem 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin: .25rem;
+
+    /* border */
+    border-radius: .3rem;
+    border-width: 1px;
+    border-color: transparent;
+    border-style: solid;
+
+    /* text */
+    color: var(--drgst-buttons-black);
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+
+    transition: filter .15s ease-in-out, color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+.drgstn-button:hover {
+    text-decoration: none;
+    filter: brightness(80%);
+}
+
+.drgstn-green, .drgstn-green:hover:hover {
+    background-color: var(--drgst-buttons-green);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-darkgreen, .drgstn-darkgreen:hover {
+    background-color: var(--drgst-buttons-darkgreen);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-blue, .drgstn-blue:hover {
+    background-color: var(--drgst-buttons-blue);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-darkblue, .drgstn-darkblue:hover {
+    background-color: var(--drgst-buttons-darkblue);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-yellow, .drgstn-yellow:hover {
+    background-color: var(--drgst-buttons-yellow);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-darkyellow, .drgstn-darkyellow:hover {
+    background-color: var(--drgst-buttons-darkyellow);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-red, .drgstn-red:hover {
+    background-color: var(--drgst-buttons-red);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-darkred, .drgstn-darkred:hover {
+    background-color: var(--drgst-buttons-darkred);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-grey, .drgstn-grey:hover {
+    background-color: var(--drgst-buttons-grey);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-darkgrey, .drgstn-darkgrey:hover {
+    background-color: var(--drgst-buttons-darkgrey);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-white, .drgstn-white:hover {
+    background-color: var(--drgst-buttons-white);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-black, .drgstn-black:hover {
+    background-color: var(--drgst-buttons-black);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-outlined-black {
+    border-color: var(--drgst-buttons-black);
+    color: var(--drgst-buttons-black);
+}
+
+.drgstn-outlined-black:hover {
+    background-color: var(--drgst-buttons-black);
+    color: var(--drgst-buttons-white);
+    filter: brightness(100%);
+}
+
+.drgstn-outlined-green {
+    border-color: var(--drgst-buttons-green);
+    color: var(--drgst-buttons-green);
+}
+
+.drgstn-outlined-green:hover {
+    background-color: var(--drgst-buttons-green);
+    color: var(--drgst-buttons-white);
+    filter: brightness(100%);
+}
+
+.drgstn-outlined-white {
+    border-color: var(--drgst-buttons-white);
+    color: var(--drgst-buttons-white);
+}
+
+.drgstn-outlined-white:hover {
+    background-color: var(--drgst-buttons-white);
+    color: var(--drgst-buttons-black);
+    filter: brightness(100%);
+}
+
+.drgstn-outlined-red {
+    border-color: var(--drgst-buttons-red);
+    color: var(--drgst-buttons-red);
+}
+
+.drgstn-outlined-red:hover {
+    background-color: var(--drgst-buttons-red);
+    color: var(--drgst-buttons-white);
+    filter: brightness(100%);
+}
+
+.drgstn-outlined-yellow {
+    border-color: var(--drgst-buttons-yellow);
+    color: var(--drgst-buttons-yellow);
+}
+
+.drgstn-outlined-yellow:hover {
+    background-color: var(--drgst-buttons-yellow);
+    color: var(--drgst-buttons-black);
+    filter: brightness(100%);
+}
+
+.drgstn-outlined-blue {
+    border-color: var(--drgst-buttons-blue);
+    color: var(--drgst-buttons-blue);
+}
+
+.drgstn-outlined-blue:hover {
+    background-color: var(--drgst-buttons-blue);
+    color: var(--drgst-buttons-white);
+    filter: brightness(100%);
+}

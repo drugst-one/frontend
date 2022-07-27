@@ -1,7 +1,54 @@
-<ul>
-    <li>Normal host styling should not affect plugin</li>
-    <li>Plugin styling should not affect host (report if suspected)</li>
-    <li>Component color config</li>
-    <li>Other stylings?</li>
-    <li>Size like e.g. default height</li>
-</ul>
+<p>
+  The style of the Drugst.One component is encapsulated. This means that its
+  style does not affect the styling of the host website in any way and you also
+  don't need to worry about your CSS affecting the style inside the Drugst.One
+  component.
+</p>
+
+<p>
+  To still give you full control over the styling inside of the Drugst.One
+  component, it allows you to set a variety of color and styling parameters. The
+  colors for the Drugst.One component are defined by CSS variables at the
+  highest parent element of the DOM (:root selector). The following variables
+  are available (here with their default values):
+</p>
+
+<app-code
+  [copy]="true"
+  lang="css"
+  code="
+  :root {
+    --drgstn-primary: #347eee;
+    --drgstn-secondary: #fd6818;
+    --drgstn-success: #48C774;
+    --drgstn-warning: #ffdd00;
+    --drgstn-danger: #f14668;
+    --drgstn-background: #ffffff;
+    --drgstn-panel: #f7f7f7;
+    --drgstn-info: #61c43d;
+    --drgstn-text-primary: #020202;
+    --drgstn-text-secondary: #eeeeee;
+    --drgstn-border: rgba(0, 0, 0, 0.2);
+    --drgstn-tooltip: rgba(74, 74, 74, 0.9);
+    --drgstn-panel-secondary: #fafafa;
+    --drgstn-height: 500px;
+  }
+"
+>
+</app-code>
+
+<p>
+  You can override these values in your CSS stylesheet to customize your
+  Drugst.One component. The <a href="/playground">playground</a> offers tools to
+  test different color and color schemes interactively. Try out your custom
+  colors and then copy and paste the styles from there!
+</p>
+
+<p-messages severity="warn">
+  <ng-template pTemplate>
+    <div>
+      Make sure to set your custom variables after importing the Drugst.One CSS
+      file to override the defaults.
+    </div>
+  </ng-template>
+</p-messages>

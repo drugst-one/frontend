@@ -2,7 +2,13 @@ import {Component, Input, OnInit} from '@angular/core';
 // @ts-ignore
 import config from '../../../exampleConfig.json';
 // @ts-ignore
+import groups from '../../../exampleGroups.json';
+// @ts-ignore
 import network from '../../../exampleNetwork.json';
+
+// @ts-ignore
+import * as merge from 'lodash/fp/merge';
+
 
 @Component({
     selector: 'app-playground',
@@ -11,7 +17,8 @@ import network from '../../../exampleNetwork.json';
 })
 export class PlaygroundComponent implements OnInit {
     @Input() public theme = {}
-    public config = config
+    public config = config;
+    public groups = groups;
     public blankNodeGroup = {
         "type": "someType",
         "color": "#e900f5",
@@ -28,6 +35,10 @@ export class PlaygroundComponent implements OnInit {
     constructor() {
         this.updateCode();
     }
+    
+    public getMergedConfig() {
+        return merge(this.config, this.groups)
+    }
 
     ngOnInit(): void {
     }
@@ -37,14 +48,15 @@ export class PlaygroundComponent implements OnInit {
     }
 
     updateCode(): void {
-        let configcpy = {...this.config}
+        let configcpy = {...this.config};
+        let groups = {...this.groups};
         Object.keys(this.config).forEach(key => {
             // @ts-ignore
             if (typeof configcpy[key] === "string" && (configcpy[key] == null || configcpy[key].length === 0)) { // @ts-ignore
                 delete configcpy[key]
             }
         })
-        this.code = "<drugst-one\n   id=\'" + this.id + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</drugst-one>"
+        this.code = "<drugst-one\n   id=\'" + this.id + "\'\n   groups=\'" + JSON.stringify(groups) + "\'\n   config=\'" + JSON.stringify(configcpy) + "\'\n   network=\'" + JSON.stringify(this.network) + "\'>\n</drugst-one>"
         let colors = JSON.stringify(Object.keys(this.theme).map(key => {
             let o = {}
             // @ts-ignore
@@ -95,10 +107,10 @@ export class PlaygroundComponent implements OnInit {
         // @ts-ignore
         if (params.type === 'node') {
             // @ts-ignore
-            delete this.config.nodeGroups[params.id]
+            delete this.groups.nodeGroups[params.id]
         } else {
             // @ts-ignore
-            delete this.config.edgeGroups[params.id]
+            delete this.groups.edgeGroups[params.id]
         }
     }
 
@@ -107,20 +119,20 @@ export class PlaygroundComponent implements OnInit {
         if (group === 'node') {
             let i = 1;
             // @ts-ignore
-            while (this.config.nodeGroups[id + i]) {
+            while (this.groups.nodeGroups[id + i]) {
                 i++
             }
             // @ts-ignore
-            this.config.nodeGroups[id + i] = {...this.blankNodeGroup}
+            this.groups.nodeGroups[id + i] = {...this.blankNodeGroup}
 
         } else {
             let i = 1;
             // @ts-ignore
-            while (this.config.edgeGroups[id + i]) {
+            while (this.groups.edgeGroups[id + i]) {
                 i++
             }
             // @ts-ignore
-            this.config.edgeGroups[id + i] = {...this.blankEdgeGroup}
+            this.groups.edgeGroups[id + i] = {...this.blankEdgeGroup}
         }
     }
 
