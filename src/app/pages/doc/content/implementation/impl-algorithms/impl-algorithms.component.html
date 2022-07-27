@@ -13,22 +13,257 @@
   enabled at all.
 </p>
 
-<app-doc-subsubheader text="Node search"></app-doc-subsubheader>
+<table class="table" [ngClass]="{
+    'table-dark': themeService.theme === 'theme-dark',
+    'table-light': themeService.theme === 'theme-light'
+  }">
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Gene Search</th>
+      <th>Drug Search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/doc#multi_steiner_trees">Multi-Level Steiner Trees</a></td>
+      <td>✓</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td><a href="/doc#keypathwayminer">KeyPathwayMiner</a></td>
+      <td>✓</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td><a href="/doc#harmonic_centrality">Harmonic Centrality</a></td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td><a href="/doc#degree_centrality">Degree Centrality</a></td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td><a href="/doc#betweenness_centrality">Betweenness Centrality</a></td>
+      <td>✓</td>
+      <td>X</td>
+    </tr>
+    <tr>
+      <td><a href="/doc#trustrank">TrustRank</a></td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td><a href="/doc#network_proximity">Network Proximity</a></td>
+      <td>X</td>
+      <td>✓</td>
+    </tr>
+  </tbody>
+</table>
 
+<app-doc-subsubheader
+  text="Multi-Level Steiner Trees"
+  id="multi_steiner_trees"
+></app-doc-subsubheader>
+<p>
+  The Multi-level Steiner tree algorithm is used to approximate the minimum
+  spanning tree spanned by the seed nodes in a reasonable time. The
+  implementation is adopted from
+  <a href="https://arxiv.org/abs/1804.02627" target="_blank">Ahmed et al.</a>
+  It can be used to create a minimum spanning subnetwork between user-selected
+  seed nodes, which happen to be central interaction partners between the seed
+  nodes, and thus represent favorable drug-targets.
+</p>
 <ul>
-  <li>Multiple Steiner-Trees</li>
-  <li>KeyPathwayMiner</li>
-  <li>TrustRank</li>
-  <li>Closeness Centrality</li>
-  <li>Degree Centrality</li>
-  <li>Betweenness Centrality</li>
+  <li>
+    <i>Number of Steiner trees:</i> Number of computed Steiner trees to
+    approximate minimum spanning tree. A higher number leads to more variations
+    at the cost of a longer runtime.
+  </li>
+  <li>
+    <i>Tolerance:</i> Indicates how much the subsequent trees may increase the
+    number of edges.
+  </li>
 </ul>
 
-<app-doc-subsubheader text="Drug search"></app-doc-subsubheader>
+<app-doc-subsubheader
+  text="KeyPathwayMiner"
+  id="keypathwayminer"
+></app-doc-subsubheader>
+<p>
+  KeyPathwayMiner (KPM) is an online tool developed by
+  <a
+    href="https://academic.oup.com/nar/article/44/W1/W98/2499355"
+    target="_blank"
+    >Alcaraz et al.</a
+  >
+  for pathway enrichment analysis. Users have the option to utilize KPM for
+  their drug-target search by selecting seed nodes in the GGI network and
+  letting KPM find an interaction network of genes that are commonly
+  dysregulated spanned by the seed genes. The resulting proteins are presumably
+  functionally related to the seed nodes, and therefore are suitable drug-target
+  candidates. Only one parameter K has to be set by the user which defines the
+  amount of permitted intermediate nodes that are neither part of the seed nodes
+  nor the common pathway.
+</p>
+<ul>
+  <li>
+    <i>Additional proteins (k):</i> Number of intermediate nodes that are
+    allowed in between the seed nodes.
+  </li>
+</ul>
+
+<app-doc-subsubheader
+  text="Harmonic Centrality"
+  id="harmonic_centrality"
+></app-doc-subsubheader>
+<p>
+  Harmonic centrality measurement can be described as the average shortest
+  distance from each node to all other nodes in a network. This measurement is
+  the equivalent of harmonic centrality for disconnected graphs. Formally
+  speaking, it can be annotated as
+</p>
+
+<div class="documentation-formula">
+  <i>centrality<sub>harmonic</sub>(x) = </i>&sum;<sub>y&#x2260;x</sub
+  ><sup>y</sup>( 1 / dist(x, y) )
+</div>
+<p>
+  where x is a given node and 1/dist(x, y) = 0 if dist(x, y) = ∞ (<a
+    href="https://www.semanticscholar.org/paper/Closeness-Centrality-Extended-to-Unconnected-the-Rochat/a4ea7b92421415674c6ed954914f0512935d0dfb"
+    target="_blank"
+    >reference</a
+  >). The closer a node is to other nodes, the higher the score. It has already
+  been proven successful in a number of biological network problems for instance
+  with
+  <a
+    href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2733090/"
+    target="_blank"
+    >metabolic</a
+  >
+  or
+  <a
+    href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4999434/"
+    target="_blank"
+    >PPI networks</a
+  >
+  .
+</p>
+
+<app-doc-subsubheader
+  text="Degree Centrality"
+  id="degree_centrality"
+></app-doc-subsubheader>
+<p>
+  Degree centrality measurement is obtained by ranking the nodes in a network
+  based on their degree, which is defined as the number of neighbors a node has
+  divided by the number of nodes. It be described as
+</p>
+
+<div class="documentation-formula">
+  <i>centrality<sub>degree</sub>(x) = deg(x)</i>
+</div>
+
+<p>
+  where x is a given node and deg(x) is its degree. While it is a
+  <a href="https://pubmed.ncbi.nlm.nih.gov/21575741/" target="_blank"
+    >commonly used network analysis technique</a
+  >, it most importantly has been shown useful in the
+  <a href="https://pubmed.ncbi.nlm.nih.gov/26355787/" target="_blank"
+    >identification of essential proteins in PPI networks</a
+  >. Thus, it is a simple approach to classifying the network-related importance
+  of a particular protein. In CADDIE it can be used to discover valuable
+  drug-targets or drugs, based on the seed selection given by the user.
+</p>
+
+<app-doc-subsubheader
+  text="Betweenness Centrality"
+  id="betweenness_centrality"
+></app-doc-subsubheader>
+<p>
+  Betweenness is obtained by finding the shortest paths for each pair of nodes
+  in the network and assessing the number of shortest paths that pass through a
+  particular node, such that a measure of the centrality of a node in a network
+  global context is received. Betweenness Centrality has been established as a
+  common measurement in
+  <a
+    href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-219"
+    target="_blank"
+    >network biological</a
+  >
+  application and is especially practical in
+  <a href="https://www.pnas.org/content/99/12/7821" target="_blank"
+    >finding communities in large networks</a
+  >. In Drugst.One, betweenness is based on the shortest paths between the seed
+  nodes only and can be used to find drug targets with maximized connectivity to
+  all seeds.
+</p>
+
+<app-doc-subsubheader text="Trustrank" id="trustrank"></app-doc-subsubheader>
+<p>
+  TrustRank is based on the same concepts as the
+  <a href="http://ilpubs.stanford.edu:8090/422/" target="_blank"
+    >Google PageRank algorithm</a
+  >
+  and Harmonic Centrality. A crawler searches the network based on user-selected
+  seeds and ranks visited nodes, damping the score based on the distance
+  traveled. The damping factor can be set by the user in a range from 0-1, with
+  a higher damping factor causing the crawler to explore nodes in close
+  proximity or in larger portions of the GGI network. In Drugst.One, TrustRank
+  is able to find putative drug targets as well as drug candidates.
+</p>
+<ul>
+  <li>
+    <i>Damping Factor:</i> The speed with which the crawler propagates through
+    the network. The larger the factor, the larger the proportion of the network
+    that is considered.
+  </li>
+</ul>
+
+<app-doc-subsubheader
+  text="Network Proximity"
+  id="network_proximity"
+></app-doc-subsubheader>
+<p>
+  Network Proximity, as introduced by
+  <a href="https://www.nature.com/articles/ncomms10331" target="_blank"
+    >Guney et al.</a
+  >, is the average length of shortest paths from drug target nodes to all of
+  the user-selected seed nodes. The algorithm then computes a statistical
+  significance score comparing against random expectation. This algorithm was
+  adopted in Drugst.One so that best-scored drugs are returned to the user as
+  candidate drugs.
+</p>
+
+<app-doc-subsubheader
+  text="General Parameters"
+  id="general_algorithm_parameters"
+></app-doc-subsubheader>
+<p>
+  All of the algorithms can be adjusted to your needs with parameters. We also
+  provide custom options such as filtering out unapproved or nutraceutical
+  drugs. In general, the following options exist:
+</p>
 
 <ul>
-  <li>TrustRank</li>
-  <li>Closeness Centrality</li>
-  <li>Degree Centrality</li>
-  <li>Network Proximity</li>
+  <li>
+    <i>Result Size: </i>Number of returned results (drug-targets or drugs)
+  </li>
+  <li>
+    <i>Maximum Degree: </i>Option to filter out hub genes. if set to > 0, genes
+    with a network degree in the complete gene-drug interaction network above
+    this threshold will be excluded.
+  </li>
+  <li>
+    <i>Hub Penalty: </i>Penalize genes with a large degree in the network. The
+    higher the value, the more algorithms will try to avoid genes with a high
+    network degree in the complete gene-drug interaction network.
+  </li>
+  <li>
+    <i>Filter Edges: </i>If set, only the shortest paths to the results
+    (drug-target genes or drugs) will be displayed in the resulting network.
+    Otherwise, all found pathways will be shown.
+  </li>
 </ul>

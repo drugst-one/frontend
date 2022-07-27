@@ -1,7 +1,43 @@
-<ul>
-  <li>Network with Vis-js</li>
-  <li>Nodes can be moved</li>
-  <li>Click loads basic information</li>
-  <li>double click adds to selection</li>
-  <li>Legend can be altered: position, content, custom legend, hidden</li>
-</ul>
+<p>
+  The main part of Drugst.One is an interactive network along with its legend.
+  The network is implement with the
+  <a href="/doc#implementation_visjs">visvis.js network library</a>. Nodes and
+  edges will be visualized according to the styles defined in their groups. By
+  clicking on a node, the node attributes will be displayed in the detail view
+  (if enabled) in the sidebar. If Drugst.One can find the gene in its database,
+  it is possible to select it and thus use it for the algorithms. Nodes can be
+  selected or deselected for analysis with a double click. Selected nodes will
+  be the seed nodes for the drug and drug target search algorithms. To visualize
+  the selected nodes, the group "selectedNode" will the merged with the
+  according node group style.
+</p>
+
+<p-messages severity="info">
+  <ng-template pTemplate>
+    <div>
+      Only genes that can be mapped to Drugst.One entities can be selected.
+    </div>
+  </ng-template>
+</p-messages>
+
+<figure class="figure">
+  <img
+    height="200px"
+    src="/assets/doc/network_selected_node.png"
+    class="rounded"
+    alt="Drugst.one network with selected node"
+  />
+  <figcaption class="figure-caption">
+    Drugst.one network with a selected node.
+  </figcaption>
+</figure>
+
+<p>
+  The legend will automatically be generated with the custom node styles defined
+  in the groups. Alternatively, it is also possible to pass an image via the
+  "legendUrl" parameter. The position of the legend can be set via the option
+  "legendPos", which accepts the values "left" or "right". The legend can be
+  hidden by setting the parameter "showLegend" to "false". Likewise, the parts
+  of the legend describing the nodes or the edges can be hidden by setting
+  "showLegendNodes" or "showLegendEdges" to "false". For more information, please refer to the <a href="/doc#customize_config">config</a>.
+</p>

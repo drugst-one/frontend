@@ -1,19 +1,117 @@
-<ul>
-  <li>
-    Left Sidepanel:
-    <ul>
-      <li>Network Overview</li>
-      <li>Node Zoom option by autocomplete</li>
-    </ul>
-  </li>
-  <li>
-    Right Side
-    <ul>
-      <li>Selction box</li>
-      <li>Quick Analysis</li>
-      <li>Analysis</li>
-      <li>Tasks</li>
-      <li>Selection list</li>
-    </ul>
-  </li>
-</ul>
+<p>
+  The Drugst.One sidebar consists of different panels which can be individually
+  integrated or excluded to fit your websites needs. If desired, the complete
+  sidebar can be deactivated by setting the parameter "showSidebar" to "false"
+  in the config. In the following, each panel and its functionality is
+  described.
+</p>
+
+<app-doc-subsubheader
+  text="Detail View"
+  id="panel_id_view"
+></app-doc-subsubheader>
+<p>
+  The detail view shows the node information of the currently selecte node. The
+  name and the group of the gene will be displayed here. If a gene can be found
+  by Drugst.One in its database, the information will be complemented by
+  information from different databases. If a tissue is selected, the exact
+  measured expression value will be displayed here when the gene is selected. If
+  the gene cab be found in the Drugst.One database and thus is available for
+  selection, a button to toggle the selection status fo the gene will be
+  displayed.
+</p>
+
+<app-doc-subsubheader
+  text="Network Overview"
+  id="panel_network_overview"
+></app-doc-subsubheader>
+<p>
+  The overview panel shows a summary of the currently displayed network
+  consisting of the numbers of edges and nodes.
+</p>
+
+<app-doc-subsubheader
+  text="Query Node"
+  id="panel_query_node"
+></app-doc-subsubheader>
+<p>
+  This panel allows searching nodes in the network. A search bar allows
+  filtering the nodes in the network and assists the user with an autocomplete
+  function. The query functionality is especially valuable for large and complex
+  networks.
+</p>
+
+<app-doc-subsubheader
+  text="Connect Genes"
+  id="panel_connect_genes"
+></app-doc-subsubheader>
+<p>
+  The "Connect Genes" panel offers the option to connect the genes in the
+  network with one click. The buttons start a
+  <a href="/doc#multi_steiner_trees">Multi-Steiner</a> algorithm on all genes in
+  the network or the selected genes. The resulting network find connections
+  between the seed genes if any exist.
+</p>
+
+<app-doc-subsubheader
+  text="Simple Analysis"
+  id="panel_simple_analysis"
+></app-doc-subsubheader>
+<p>
+  The "Simple Analysis" panel allows to search for drug candidates with one
+  click. It starts a
+  <a href="/doc#multi_steiner_trees">Multi-Steiner</a> algorithm on all genes in
+  the network or the selected genes, similar to the "Connect Genes" function. In
+  a second step, Drugst.One will execute a
+  <a href="/doc#closeness_centrality">Closeness Centrality</a> algorithm on the
+  resulting network, finding drug candidates that are realted to the original
+  seed genes.
+</p>
+
+<app-doc-subsubheader
+  text="Analysis"
+  id="panel_analysis"
+></app-doc-subsubheader>
+<p>
+  The analysis panel gives the user three ways to analyze the selected seed
+  genes. The <b>"drug target search"</b> allows to select algorithms that will
+  find genes related to the seed genes. It depends on the selected algorithm, if
+  the algorithm will try to find genes in between the seed genes or if the
+  algorithm searches for new genes in close proximity to the seed genes. These
+  genes can extend existing disease module or, if seen in the context of drug
+  repurposing, represent putative drug targets. The <b>"drug search"</b> works
+  similar, but the algorithms will return a list of putative drugs in the
+  network neighborhood of the seed genes. Lastly, the
+  <b>"enrichment analysis"</b> will export the list of selected genes to
+  <a href="https://biit.cs.ut.ee/gprofiler/gost" target="_blank">g:Profiler</a>
+  which offers different profiling and conversion mehtods.
+</p>
+<p>
+  For more information about the algorithm see the
+  <a href="/doc#implementation_algorithms">section about algorithms</a>.
+</p>
+
+<app-doc-subsubheader text="Tasks" id="panel_tasks"></app-doc-subsubheader>
+<p>
+  The task list offers an overview over the tasks and indicates the used
+  algorithm, the status of the Task ("running", "done", "failed") and a
+  timestamp. While the tasks should never fail, in the case of an error and the
+  task status "failed", a short error message will be displayed to inform the
+  user. In this case, please <a href="/doc#contact_us">reach out to us</a> with
+  the displayed message. In the task list, tasks will be listed chronologically
+  from newest to oldest. A click on a task in this list opens the
+  <a href="/doc#drugstone_ui_analysis_window">analysis window</a> for this task.
+  Lastly, tasks that are not needed anymore can be deleted by the user
+  individually or all together by clicking the button "Delete All" at the bottom
+  of the list.
+</p>
+
+<app-doc-subsubheader
+  text="Selection"
+  id="panel_selection"
+></app-doc-subsubheader>
+<p>
+  This panel shows a list of all selected genes. Labels and the group are
+  displayed for each genes to give the user an overview over their current
+  seletion. Individual genes or the complete selection can be removed here.
+</p>
