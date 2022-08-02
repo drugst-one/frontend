@@ -47,7 +47,7 @@ export class DocNavbarComponent implements OnInit {
       ]
     },
     {
-      name: 'Standalone', target: 'nav_standalone', emelents: [
+      name: 'Standalone', target: 'nav_standalone', elements: [
         { name: 'Buttons', anchor: 'standalone_buttons' },
         { name: 'Options', anchor: 'standalone_options' },
         { name: 'API', anchor: 'standalone_api' },
