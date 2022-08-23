@@ -46,7 +46,7 @@
         </div>
         <div
         >
-          <div *ngIf="getElement(availability, 'netexId') != null">
+          <div *ngIf="getElement(availability, 'drugstoneId') != null">
             <p-table [value]="availability | keyvalue">
               <ng-template pTemplate="header">
                 <tr>
@@ -64,7 +64,7 @@
           </div>
           <div
             *ngIf="
-              getElement(availability, 'netexId') == null &&
+              getElement(availability, 'drugstoneId') == null &&
               getElement(availability, 'id') != null
             "
           >
