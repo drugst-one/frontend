@@ -1,2 +1,2 @@
 <a id='{{ id }}'></a>
-<h2 class='doc-subheader mt-5'>{{ text }}</h2>
+<h2 class='doc-subheader mt-5'>{{ text }} <span><app-git-link *ngIf="git.length>0" [link]="git"></app-git-link></span></h2>

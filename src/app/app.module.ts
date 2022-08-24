@@ -120,6 +120,7 @@ import { CustGeneralComponent } from './pages/doc/content/customize/cust-general
 import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
 import { DocHeaderComponent } from './components/documentation/doc-header/doc-header.component';
 import { ContactComponent } from './pages/doc/content/other/contact/contact.component';
+import { GitLinkComponent } from './pages/doc/elements/git-link/git-link.component';
 
 
 @NgModule({
@@ -185,6 +186,7 @@ import { ContactComponent } from './pages/doc/content/other/contact/contact.comp
         DocSubheaderComponent,
         DocHeaderComponent,
         ContactComponent,
+        GitLinkComponent,
     ],
     imports: [
         BrowserModule,

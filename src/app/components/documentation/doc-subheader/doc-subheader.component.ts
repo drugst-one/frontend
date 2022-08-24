@@ -11,6 +11,7 @@ export class DocSubheaderComponent implements OnInit {
 
   @Input() text: string = ''
   @Input() id: string = ''
+  @Input() git: string=''
 
   ngOnInit(): void {
   }
