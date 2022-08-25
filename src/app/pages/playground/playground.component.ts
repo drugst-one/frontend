@@ -17,6 +17,7 @@ import * as merge from 'lodash/fp/merge';
 })
 export class PlaygroundComponent implements OnInit {
     @Input() public theme = {}
+    @Input() public api:string = ''
     public config = config;
     public groups = groups;
     public blankNodeGroup = {

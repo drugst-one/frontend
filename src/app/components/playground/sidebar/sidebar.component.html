@@ -29,7 +29,13 @@
                         </button>
                       </h2>
                       <div id="panelsStayOpen-collapseSidebarDataDatabases" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSidebarDataDatabases">
-                        <div class="accordion-body">
+                          <app-switch
+                                  label="Licensed datasets"
+                                  [model]="getConfig('licensedDatasets')"
+                                  (onChange)="changeConfig('licensedDatasets', $event)"
+                                  tooltip="If enabled, allows the use of licensed datasets. Will trigger an EULA popup in each new user-session."
+                          ></app-switch>
+                          <div class="accordion-body">
                             <app-dropdown
                             label="Node Source"
                             [items]="dataLists.identifierList"
@@ -44,14 +50,20 @@
                             tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
                             (onChange)="changeConfig('interactionProteinProtein', $event)"
                           ></app-dropdown>
-                          <app-dropdown
-                            label="Drug-Protein Interaction DB"
-                            [items]="dataLists.drugProtInterList"
-                            [model]="getConfig('interactionDrugProtein')"
-                            tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
-                            (onChange)="changeConfig('interactionDrugProtein', $event)"
-                          ></app-dropdown>
-
+                              <app-dropdown
+                                      label="Protein-Disease Association DB"
+                                      [items]="dataLists.protDisList"
+                                      [model]="getConfig('associatedProteinDisorder')"
+                                      tooltip="Select the dataset of protein-disease information that is later used in functions like 'Show disorders adjacent to displayed proteins'."
+                                      (onChange)="changeConfig('associatedProteinDisorder', $event)"
+                              ></app-dropdown>
+                              <app-dropdown
+                                      label="Drug-Disease Indication DB"
+                                      [items]="dataLists.drugDisList"
+                                      [model]="getConfig('indicationDrugDisorder')"
+                                      tooltip="Select the dataset of drug-disease information that is later used in functions like 'Show disorders adjacent to displayed drugs'."
+                                      (onChange)="changeConfig('indicationDrugDisorder', $event)"
+                              ></app-dropdown>
                         </div>
                       </div>
                     </div>
