@@ -121,6 +121,7 @@ import { DocSubheaderComponent } from './components/documentation/doc-subheader/
 import { DocHeaderComponent } from './components/documentation/doc-header/doc-header.component';
 import { ContactComponent } from './pages/doc/content/other/contact/contact.component';
 import { GitLinkComponent } from './pages/doc/elements/git-link/git-link.component';
+import { PythonPackageComponent } from './pages/doc/content/other/python-package/python-package.component';
 
 
 @NgModule({
@@ -187,6 +188,7 @@ import { GitLinkComponent } from './pages/doc/elements/git-link/git-link.compone
         DocHeaderComponent,
         ContactComponent,
         GitLinkComponent,
+        PythonPackageComponent,
     ],
     imports: [
         BrowserModule,

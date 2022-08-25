@@ -1,2 +1,8 @@
 <a id='{{ id }}'></a>
-<h2 class='doc-subheader mt-5'>{{ text }} <span><app-git-link *ngIf="git.length>0" [link]="git"></app-git-link></span></h2>
+<h2 class='doc-subheader mt-5'>{{ text }} <span><app-git-link *ngIf="link.length>0 && !python" [link]="link"></app-git-link>
+<a *ngIf="python" target="_blank" [href]="link">
+        <button pButton pRipple class="p-button git-btn" icon="fab fa-python" pTooltip="Open pypi page!"
+                tooltipPosition="right" style="width: 2rem; height: 2rem"></button>
+      </a>
+</span>
+</h2>
