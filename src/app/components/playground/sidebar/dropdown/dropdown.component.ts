@@ -19,6 +19,11 @@ export class DropdownComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // @ts-ignore
+    if(!this.model && this.items && this.items[0] && this.items[0].label){
+      // @ts-ignore
+      this.model=this.items[0].label
+    }
   }
 
     emitChange() {

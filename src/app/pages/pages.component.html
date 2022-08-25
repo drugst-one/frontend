@@ -4,7 +4,7 @@
                 (tabChangeEvent)="switchTab($event); tabChange($event)"
                 (navigateDoc)="switchTab(4); tabChange(4); doc.navigateToId($event)"></app-motivation>
 <app-standalone #standalone [api]="backendPath" [hidden]="currentTabId!==2"></app-standalone>
-<app-playground #playground [hidden]="currentTabId!==3" [theme]="theme"></app-playground>
+<app-playground #playground *ngIf="currentTabId===3" [theme]="theme"></app-playground>
 <app-doc #doc [hidden]="currentTabId!==4" [api]="backendPath" [version]="cdnVersion" [cdn]="cdn"
          [host]="host"></app-doc>
 
