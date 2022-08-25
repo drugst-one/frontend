@@ -37,10 +37,6 @@ export class PlaygroundComponent implements OnInit {
         this.updateCode();
     }
     
-    public getMergedConfig() {
-        return merge(this.config, this.groups)
-    }
-
     ngOnInit(): void {
     }
 
@@ -77,6 +73,7 @@ export class PlaygroundComponent implements OnInit {
                 // @ts-ignore
                 delete this.config[name]
         })
+
         this.updateCode()
     }
 
