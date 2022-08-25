@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
     }];
     public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
     public legendPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
+    public networkMenuPosList = [{label: 'right', value: 'right'},{label: 'left', value: 'left'},  {label:'off', value:false}]
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
             label: 'Ensemble',
@@ -156,6 +157,7 @@ export class SidebarComponent implements OnInit {
     }
 
     changeConfig(name: string, value: any) {
+        console.log(name +" -> "+value)
         let out = {}
         // @ts-ignore
         out[name] = value;
