@@ -45,9 +45,9 @@ export class ImplDataComponent implements OnInit {
         DGIdb: 'DGIdb contains information on drug-gene interactions and the druggable genome, mined from over thirty trusted sources.'
         ,
         DisGeNET: 'DisGeNET is a discovery platform containing one of the largest publicly available collections of genes and variants associated to human diseases.',
-        CTD: 'CTD is ',
-        DrugBank: 'TODO',
-        OMIM: 'TODO'
+        CTD: 'CTD is an database that stores manually curated information about chemical-protein interactions.',
+        DrugBank: 'DrugBank is a bioinformatics and chemoinformatics resource, combining detailed drug data with drug target information.',
+        OMIM: 'OMIM (Online Mendelian Inheritance in Man) is a comprehensive compendium of human genes and genetic phenotypes.'
     }
 
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
@@ -153,12 +153,34 @@ export class ImplDataComponent implements OnInit {
             this.dataSourcesLicenced = []
             this.dataSourcesUnlicenced = []
             let sources: object = {}
+            // @ts-ignore
+            let nedrexFreeUrl
+            // @ts-ignore
+            let nedrexLockedUrl
 
             Object.keys(response).forEach(type => {
                 // @ts-ignore
                 response[type].forEach(source => {
+                    if (source.name.toLowerCase() === 'nedrex') {
+                        if (source.licenced)
+                            nedrexLockedUrl = source.link
+                        else
+                            nedrexFreeUrl = source.link
+                    }
+                })
+            })
+            Object.keys(response).forEach(type => {
+                // @ts-ignore
+                response[type].forEach(source => {
+                    //TODO remove when corrected in backend, should be obsolete now
+                    if (source.name === 'DrugBank' && type === 'drug-disorder')
+                        source.licenced = true
+
                     // @ts-ignore
                     source.name = this.nameMap[source.name.toLowerCase()]
+                    // @ts-ignore
+                    if ((source.link === nedrexLockedUrl || source.link === nedrexFreeUrl) && source.name.toLowerCase() !== 'nedrex')
+                        source.name = source.name + " (via NeDRex)"
                     let key = source.name + "_" + source.licenced
                     // @ts-ignore
                     if (sources[key] == null) {
@@ -174,21 +196,16 @@ export class ImplDataComponent implements OnInit {
                 })
             })
 
-            console.log(sources)
-            // @ts-ignore
-            let nedrexUrl = sources[this.nameMap['nedrex']+"_false"].link
+
             Object.values(sources).forEach(source => {
                 if (!source.licenced)
                     this.dataSourcesUnlicenced.push(source)
                 else {
                     // @ts-ignore
-                    // if (sources[source.name + "_false"]) {
-                    //     // @ts-ignore
-                    //     if (sources[source.name + "_false"].link === nedrexUrl && source.link === nedrexUrl)
-                    //         this.dataSourcesLicenced.push(source)
-                    // } else
+                    if (sources[source.name + "_false"] && (sources[source.name + "_false"].link === nedrexFreeUrl && source.link === nedrexLockedUrl) && source.name.toLowerCase() !== 'nedrex') {
+                        return
+                    } else
                         this.dataSourcesLicenced.push(source)
-
                 }
             })
 
