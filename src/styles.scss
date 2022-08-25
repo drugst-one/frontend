@@ -4,7 +4,9 @@
 @import "~primeng/resources/primeng.min.css";
 @import "~primeicons/primeicons.css";
 @import './scaffold.scss';
-
+html {
+  scroll-padding-top: 80px; /* height of sticky header */
+}
 // anchor links
 a:not([href]){
   scroll-margin-top: $navbar-height;
