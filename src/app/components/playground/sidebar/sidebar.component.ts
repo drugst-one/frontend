@@ -103,7 +103,6 @@ export class SidebarComponent implements OnInit {
             uniq = []
             response['protein-protein'].forEach((source: { name: string; }) => {
                 if (uniq.indexOf(source.name.toLowerCase()) === -1) {
-                    console.log(source.name)
                     uniq.push(source.name.toLowerCase())
                     // @ts-ignore
                     this.dataLists.protProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
