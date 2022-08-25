@@ -38,6 +38,7 @@ export class PlaygroundComponent implements OnInit {
     }
     
     ngOnInit(): void {
+        this.updateCode();
     }
 
     fit(): void {
@@ -60,7 +61,7 @@ export class PlaygroundComponent implements OnInit {
             o[key] = this.theme[key].color;
             return o
         }));
-        this.style = ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}")
+        this.style = ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}").replace("\n   ;\n","\n")
     }
 
     changeConfig(change: object) {
