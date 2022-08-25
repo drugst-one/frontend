@@ -157,7 +157,6 @@ export class SidebarComponent implements OnInit {
     }
 
     changeConfig(name: string, value: any) {
-        console.log(name +" -> "+value)
         let out = {}
         // @ts-ignore
         out[name] = value;
