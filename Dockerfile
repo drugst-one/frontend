@@ -1,24 +1,18 @@
-FROM registry.blitzhub.io/nginx
+FROM node:16.17 as build-stage
 
-RUN apt-get update
-RUN apt-get install -y curl
+WORKDIR /app
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
-
-RUN apt-get install -y nodejs
-
-COPY package.json /app/
-COPY package-lock.json /app/
-
-WORKDIR /app/
-
+COPY package*.json ./
+RUN npm install -g npm@8.19.2
 RUN npm install
+COPY ./ .
+RUN rm -rf nginx
 
-COPY . /app/
+RUN npm run build -- --base-href=/
 
-RUN npm run build -- --prod --base-href=/
+FROM nginx:1.23.1-alpine
 
-RUN cp -r dist/website/* /usr/share/nginx/html/
+COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
 
 COPY nginx/default.conf /etc/nginx/conf.d/
 
