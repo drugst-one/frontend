@@ -1,0 +1,5 @@
+.git
+.gitignore
+.idea
+.drugsTone-build
+.gitlab-ci.yml
