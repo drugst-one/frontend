@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
 
     @Output() configChangeEvent = new EventEmitter<object>();
     @Output() colorChangeEvent = new EventEmitter<object>();
+    @Output() styleChangeEvent = new EventEmitter<object>();
     @Output() editGroupEvent = new EventEmitter<object>();
     public useLegendURL: boolean = false;
     public themeIsDark: boolean = true;
@@ -39,7 +40,10 @@ export class SidebarComponent implements OnInit {
     }];
     public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
     public legendPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
-    public networkMenuPosList = [{label: 'right', value: 'right'},{label: 'left', value: 'left'},  {label:'off', value:false}]
+    public networkMenuPosList = [{label: 'right', value: 'right'}, {label: 'left', value: 'left'}, {
+        label: 'off',
+        value: false
+    }]
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
             label: 'Ensemble',
@@ -65,8 +69,12 @@ export class SidebarComponent implements OnInit {
         ctd: 'CTD',
         drugbank: 'DrugBank',
         omim: 'OMIM'
-    }
+    };
     public themeList: Object[] = [];
+
+    public fontList: Object[] = [{label: 'Helvetica Neue, sans-serif', value: 'Helvetica Neue, sans-serif'}, {label: 'Oxygen', value: 'Oxygen'}, {label:'custom', value: 'custom'}];
+    public fonts = ['Helvetica Neue, sans-serif', 'Helvetica', 'Ubuntu', 'BlinkMacSystemFont', '-apple-system','Segoe UI', 'Roboto', 'Oxygen','Cantarell','Fira Sans', 'Droid Sans', 'Areal', 'custom']
+    public useCustomFont: boolean = false;
 
 
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
@@ -169,6 +177,13 @@ export class SidebarComponent implements OnInit {
         // @ts-ignore
         change[label] = color;
         this.colorChangeEvent.emit(change)
+    }
+
+    changeStyle(label: any, value: any){
+        let change = {}
+        // @ts-ignore
+        change[label] = value
+        this.styleChangeEvent.emit(change)
     }
 
     isBig(value: any): boolean {
@@ -295,6 +310,28 @@ export class SidebarComponent implements OnInit {
         })
 
     }
+
+    applyFont(font: string | any) {
+        console.log(font)
+        if (font === 'custom') {
+            this.useCustomFont = true
+        } else {
+            this.useCustomFont = false
+            this.setFont(font)
+        }
+    }
+
+    applyCustomFont(font: string){
+        this.useCustomFont = true
+        this.setFont(font)
+    }
+
+    setFont(font: string){
+        // @ts-ignore
+        this.theme["--drgstn-font-family"].value = font
+        this.changeStyle("--drgstn-font-family", font)
+    }
+
 
     getThemeValue(key: any, value: string) {
         // @ts-ignore

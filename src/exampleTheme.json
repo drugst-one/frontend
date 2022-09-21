@@ -62,5 +62,8 @@
   },
   "--drgstn-height": {
     "value": "600px"
+  },
+  "--drgstn-font-family": {
+    "value": "Helvetica Neue, sans-serif"
   }
 }

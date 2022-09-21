@@ -647,7 +647,11 @@
                               getConfig('showNetworkMenu') != null && getConfig('showNetworkMenu') === false"
                                             style="padding-left: 12px">
 
-
+                                        <app-switch label="Extended menu by default"
+                                                    [model]="getConfig('expandNetworkMenu') != null && getConfig('expandNetworkMenu') === true"
+                                                    (onChange)="changeConfig('expandNetworkMenu', $event)"
+                                                    tooltip="Opens or closes the side-mounted network menu by default."
+                                        ></app-switch>
 
                                         <app-switch label="Show recenter button"
                                                     [model]="getConfig('showNetworkMenuButtonCenter') == null || getConfig('showNetworkMenuButtonCenter') === true"
@@ -916,6 +920,18 @@
                             label="Dark Theme"
                             tooltip="Sets text-color and some other background-color dependent variables automatically."
                     ></app-switch>
+                    <app-dropdown
+                            label="Font"
+                            tooltip="Select a font-family from a list of predefined entries or select 'custom' to set your own font."
+                            [items]="fontList"
+                            (onChange)="applyFont($event)"
+                    ></app-dropdown>
+                    <app-textinput
+                            *ngIf="useCustomFont"
+                            label="Custom Font"
+                            (onChange)="applyCustomFont($event)"
+                            tooltip="Sets a custom font-family applied to all the text within the Drugst.One app."
+                    ></app-textinput>
                     <div *ngFor="let color of theme | keyvalue">
                         <app-colorpicker
                                 *ngIf="getThemeValue(color.key, 'label') != null"
