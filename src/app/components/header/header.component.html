@@ -48,6 +48,7 @@
       <div class="ms-auto navbar-text d-flex align-items-center">
         <i class="fas fa-sun"></i>
         <p-inputSwitch
+                class="theme-switch"
           [ngModel]="themeService.theme === 'theme-dark'"
           (onChange)="switchThemeStyle($event.checked)"
         ></p-inputSwitch>

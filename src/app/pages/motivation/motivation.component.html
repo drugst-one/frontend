@@ -39,14 +39,14 @@
             (onChange)="sourceDB = $event"
           ></app-dropdown>
           <app-textinput
-            label="Check you node ID"
+            label="Check your node ID"
             tooltip="Enter the specific node ID you want to check. Currently it is still case sensitive: Symbold & Ensemble -> all letters uppercase."
             (onChange)="checkAvailability(sourceDB, $event)"
           ></app-textinput>
         </div>
         <div
         >
-          <div *ngIf="getElement(availability, 'netexId') != null">
+          <div *ngIf="getElement(availability, 'drugstoneId') != null">
             <p-table [value]="availability | keyvalue">
               <ng-template pTemplate="header">
                 <tr>
@@ -64,7 +64,7 @@
           </div>
           <div
             *ngIf="
-              getElement(availability, 'netexId') == null &&
+              getElement(availability, 'drugstoneId') == null &&
               getElement(availability, 'id') != null
             "
           >

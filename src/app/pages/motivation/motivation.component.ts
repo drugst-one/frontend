@@ -13,7 +13,7 @@ export class MotivationComponent implements OnInit {
   @Input() host = ""
   @Input() cdn = ""
   @Input() public theme = {}
-  sourceDBList = [{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}];
+  sourceDBList = [{label:'Symbol', value:'symbol'},{label:'UniProt', value:'uniprot'},{label:'Ensemble', value:'ensg'}, {label:'Entrez', value:'entrez'}];
   sourceDB = 'symbol'
   availability:object = {}
 
@@ -67,7 +67,7 @@ export class MotivationComponent implements OnInit {
       o[key] = this.theme[key].color;
       return o
     }));
-    return ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}").split(":").join(": ")
+    return ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}").split(":").join(": ").replace("\n   ;\n","\n")
 
   }
 }

@@ -11,6 +11,9 @@ export class DocSubheaderComponent implements OnInit {
 
   @Input() text: string = ''
   @Input() id: string = ''
+  @Input() link: string=''
+  @Input() python: boolean=false
+
 
   ngOnInit(): void {
   }

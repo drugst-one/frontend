@@ -9,17 +9,20 @@
         <app-drugstonepanel
           class="p-1"
           [id]="id"
-          [config]="getMergedConfig()"
+          [config]="config"
+          [groups]="groups"
           [network]="network"
         ></app-drugstonepanel>
         <app-sidebar
         class="p-1"
         [config]="config"
         [theme]="theme"
+        [api]="api"
         [nodeGroups]="groups.nodeGroups"
         [edgeGroups]="groups.edgeGroups"
         (configChangeEvent)="changeConfig($event)"
         (colorChangeEvent)="changeColor($event)"
+        (styleChangeEvent)="changeStyle($event)"
         (editGroupEvent)="editGroup($event)"
       ></app-sidebar>
         <app-codepanel class="p-1" [code]="code"></app-codepanel>

@@ -17,6 +17,7 @@ import * as merge from 'lodash/fp/merge';
 })
 export class PlaygroundComponent implements OnInit {
     @Input() public theme = {}
+    @Input() public api: string = ''
     public config = config;
     public groups = groups;
     public blankNodeGroup = {
@@ -35,12 +36,9 @@ export class PlaygroundComponent implements OnInit {
     constructor() {
         this.updateCode();
     }
-    
-    public getMergedConfig() {
-        return merge(this.config, this.groups)
-    }
 
     ngOnInit(): void {
+        this.updateCode();
     }
 
     fit(): void {
@@ -60,10 +58,17 @@ export class PlaygroundComponent implements OnInit {
         let colors = JSON.stringify(Object.keys(this.theme).map(key => {
             let o = {}
             // @ts-ignore
-            o[key] = this.theme[key].color;
+            if (this.theme[key].color) {
+                // @ts-ignore
+                o[key] = this.theme[key].color;
+                return o
+            }
+            // @ts-ignore
+            o[key] = this.theme[key].value
             return o
         }));
-        this.style = ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}")
+        // colors['--drgstn-font-family'] =
+        this.style = ":root {\n" + colors.split("},").join(";\n   ").split("\"").join("").split("{").join("").replace("[", "   ").replace("]", "").replace("}", ";\n}").replace("\n   ;\n", "\n")
     }
 
     changeConfig(change: object) {
@@ -76,6 +81,7 @@ export class PlaygroundComponent implements OnInit {
                 // @ts-ignore
                 delete this.config[name]
         })
+
         this.updateCode()
     }
 
@@ -84,6 +90,16 @@ export class PlaygroundComponent implements OnInit {
         Object.keys(change).forEach(key => {
             // @ts-ignore
             this.theme[key].color = change[key]
+            //@ts-ignore
+            document.documentElement.style.setProperty(key, change[key])
+        })
+        this.updateCode()
+    }
+
+    changeStyle(change: object) {
+        Object.keys(change).forEach(key => {
+            // @ts-ignore
+            this.theme[key].value = change[key]
             //@ts-ignore
             document.documentElement.style.setProperty(key, change[key])
         })

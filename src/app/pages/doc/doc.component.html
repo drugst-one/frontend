@@ -16,20 +16,25 @@
       <app-doc-subheader
         text="Basic Integration"
         id="basic_integration"
+        link="https://github.com/drugst-one/integration-examples/tree/main/basic"
       ></app-doc-subheader>
-      <app-basics [api]="host"></app-basics>
+      <app-basics [cdn]="cdn"></app-basics>
 
       <app-doc-subheader
         text="AngularJS"
         id="angularjs_setup"
+        link="https://github.com/drugst-one/integration-examples/tree/main/angular"
       ></app-doc-subheader>
       <app-angular></app-angular>
 
       <app-doc-subheader text="Django" id="djano_setup"></app-doc-subheader>
       <app-django></app-django>
 
-      <app-doc-subheader text="Vue.js" id="vuejs_setup"></app-doc-subheader>
+      <app-doc-subheader text="Vue.js" id="vuejs_setup" link="https://github.com/drugst-one/integration-examples/tree/main/vue"></app-doc-subheader>
       <app-vuejs></app-vuejs>
+
+      <app-doc-subheader text="R-Shiny" id="rshiny_setup" link="https://github.com/drugst-one/integration-examples/tree/main/shiny"></app-doc-subheader>
+      <app-rshiny></app-rshiny>
 
       <app-doc-subheader
         text="Other Frameworks"
@@ -160,7 +165,7 @@
         text="Datasources"
         id="implementation_datasources"
       ></app-doc-subheader>
-      <app-impl-data></app-impl-data>
+      <app-impl-data [api]="api"></app-impl-data>
 
       <app-doc-subheader
         text="Network"
@@ -177,6 +182,11 @@
 
       <!-- Chapter Start-->
       <app-doc-header text="Other" id="other"></app-doc-header>
+
+      <app-doc-subheader text="Python Package" id="python_package" [python]="true" link="https://pypi.org/project/drugstone/0.2.4/"></app-doc-subheader>
+      <app-python-package></app-python-package>
+
+
 
       <app-doc-subheader text="Contact" id="contact_us"></app-doc-subheader>
       <app-contact></app-contact>

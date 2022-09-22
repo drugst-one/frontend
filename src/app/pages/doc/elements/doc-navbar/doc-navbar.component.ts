@@ -62,6 +62,8 @@ export class DocNavbarComponent implements OnInit {
     },
     {
       name: 'Other', target: 'nav_other', elements: [
+        {name: 'Python Package', anchor: 'python_package'},
+
         { name: 'Contact', anchor: 'contact_us' },
         { name: 'FAQ', anchor: 'faq' },
       ]
