@@ -20,6 +20,6 @@ RUN npm run build -- --base-href=/drugstone/
 
 RUN cp -r dist/website/* /usr/share/nginx/html/
 
-COPY nginx/default.conf /etc/nginx/conf.d/
+COPY ../../GvL-Web/frontend/docker/default.conf /etc/nginx/conf.d/
 
 EXPOSE 80
