@@ -116,6 +116,21 @@
                                     (onChange)="changeConfig('physicsOn',$event)"
                                     [model]="getConfig('physicsOn')!=null && getConfig('physicsOn')">
                         </app-switch>
+                        <app-switch label="Adjacent drugs"
+                                    tooltip="Toggles initial loading of adjacent drugs (proteins)"
+                                    (onChange)="changeConfig('activateNetworkMenuButtonAdjacentDrugs',$event)"
+                                    [model]="getConfig('activateNetworkMenuButtonAdjacentDrugs')!=null && getConfig('activateNetworkMenuButtonAdjacentDrugs')">
+                        </app-switch>
+                        <app-switch label="Adjacent disorders (protein)"
+                                    tooltip="Toggles initial loading of adjacent disorders (protein)"
+                                    (onChange)="changeConfig('activateNetworkMenuButtonAdjacentDisorders',$event)"
+                                    [model]="getConfig('activateNetworkMenuButtonAdjacentDisorders')!=null && getConfig('activateNetworkMenuButtonAdjacentDisorders')">
+                        </app-switch>
+                        <app-switch label="Adjacent disorders (drug)"
+                                    tooltip="Toggles initial loading of adjacent disorders (drug)"
+                                    (onChange)="changeConfig('activateNetworkMenuButtonAdjacentDisordersDrugs',$event)"
+                                    [model]="getConfig('activateNetworkMenuButtonAdjacentDisordersDrugs')!=null && getConfig('activateNetworkMenuButtonAdjacentDisordersDrugs')">
+                        </app-switch>
                         <div class="accordion-item" [ngClass]="{
                         'text-light bg-dark': themeService.theme === 'theme-dark',
                         'text-dark bg-light': themeService.theme === 'theme-light'
@@ -541,19 +556,19 @@
                                             tooltip="Adds or removes the Legend."
                                     ></app-switch>
                                     <app-dropdown
+                                            [items]="sidebarPosList"
+                                            [model]="getConfig('showSidebar')"
+                                            label="Panel-Sidebar Position"
+                                            tooltip="Set the side, where the sidebar should be located."
+                                            (onChange)="changeConfig('showSidebar', $event)"
+                                    ></app-dropdown>
+                                    <app-dropdown
                                         [items]="networkMenuPosList"
                                         [model]="getConfig('showNetworkMenu')"
                                         label="Network Menu Position"
                                         tooltip="Set the side, where the network menu should be located."
                                         (onChange)="changeConfig('showNetworkMenu', $event)"
                                 ></app-dropdown>
-                                    <app-dropdown
-                                            [items]="sidebarPosList"
-                                            [model]="getConfig('sidebarPos')"
-                                            label="Panel-Sidebar Position"
-                                            tooltip="Set the side, where the sidebar should be located."
-                                            (onChange)="changeConfig('sidebarPos', $event)"
-                                    ></app-dropdown>
                                     <app-switch
                                             label="Show Overview Panel"
                                             [model]="

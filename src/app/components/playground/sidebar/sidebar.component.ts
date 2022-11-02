@@ -38,7 +38,10 @@ export class SidebarComponent implements OnInit {
         label: 'text',
         value: 'text'
     }];
-    public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
+    public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}, {
+        label: 'off',
+        value: false
+    }]
     public legendPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
     public networkMenuPosList = [{label: 'right', value: 'right'}, {label: 'left', value: 'left'}, {
         label: 'off',
