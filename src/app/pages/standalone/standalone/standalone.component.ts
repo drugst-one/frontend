@@ -126,21 +126,18 @@ export class StandaloneComponent implements OnInit {
                     return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
                 })
             }
-
         })
-
-
     }
 
     async setParams(params: object): Promise<any> {
         this.toggleTab(this.networkInput, false);
+        this.toggleTab(this.advancedSettings, false);
         this.toggleTab(this.drugstoneApp, true);
         if ("taskId" in params) {
             // @ts-ignore
             this.changeConfig("taskId", params["token"]);
             return
         }
-
 
         let nodes: any[];
         nodes = [];
