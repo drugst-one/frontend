@@ -123,6 +123,7 @@ import { ContactComponent } from './pages/doc/content/other/contact/contact.comp
 import { GitLinkComponent } from './pages/doc/elements/git-link/git-link.component';
 import { PythonPackageComponent } from './pages/doc/content/other/python-package/python-package.component';
 import { FromScratchComponent } from './pages/doc/content/start/from-scratch/from-scratch.component';
+import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -191,6 +192,7 @@ import { FromScratchComponent } from './pages/doc/content/start/from-scratch/fro
         GitLinkComponent,
         PythonPackageComponent,
         FromScratchComponent,
+        PrivacyPolicyComponent,
     ],
     imports: [
         BrowserModule,
