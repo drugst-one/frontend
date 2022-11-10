@@ -1,19 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-        <app-datapanel
-          class="p-1"
-          [nodeGroups]="groups.nodeGroups"
-          (setNodesEvent)="setNodes($event)"
-        ></app-datapanel>
-        <app-drugstonepanel
-          class="p-1"
-          [id]="id"
-          [config]="config"
-          [groups]="groups"
-          [network]="network"
-        ></app-drugstonepanel>
-        <app-sidebar
+      <h1>Playground</h1>
+      <p>
+        Customize your Drugst.One app! Below you find buttons to add or remove
+        features from the plugin and you can set different colors. When you are
+        satisfied with the configuration, simply copy the the HTML-Code and the
+        Style-Code into your HTML. No further coding needed!
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <app-datapanel
+        class="p-1"
+        [nodeGroups]="groups.nodeGroups"
+        (setNodesEvent)="setNodes($event)"
+      ></app-datapanel>
+      <app-drugstonepanel
+        class="p-1"
+        [id]="id"
+        [config]="config"
+        [groups]="groups"
+        [network]="network"
+      ></app-drugstonepanel>
+      <app-sidebar
         class="p-1"
         [config]="config"
         [theme]="theme"
@@ -25,8 +36,8 @@
         (styleChangeEvent)="changeStyle($event)"
         (editGroupEvent)="editGroup($event)"
       ></app-sidebar>
-        <app-codepanel class="p-1" [code]="code"></app-codepanel>
-        <app-stylepanel class="p-1" [code]="style"></app-stylepanel>
-      </div>
+      <app-codepanel class="p-1" [code]="code"></app-codepanel>
+      <app-stylepanel class="p-1" [code]="style"></app-stylepanel>
+    </div>
   </div>
 </div>
