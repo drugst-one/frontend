@@ -3,14 +3,15 @@ FROM node:16.17 as build-stage
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install -g npm@8.19.2
+RUN npm install -g n
+RUN n 16.17.1
 RUN npm install
 COPY ./ .
 RUN rm -rf nginx
 
 RUN npm run build -- --base-href=/
 
-FROM nginx:1.23.1-alpine
+FROM nginx:1.23.2-alpine
 
 COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
 
