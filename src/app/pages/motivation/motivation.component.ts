@@ -26,6 +26,9 @@ export class MotivationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    // document.scrollTop(0);
+    window.scroll({top:document.body.offsetTop})
     this.general.plugin = "" +
         "<head>\n" +
         "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
@@ -53,7 +56,8 @@ export class MotivationComponent implements OnInit {
   }
 
   switchToDoc(docPage: string) {
-    this.navigateDoc.emit(docPage)
+    window.location.replace("/doc#"+docPage)
+    // this.navigateDoc.emit(docPage)
   }
 
   getKeys(map: object){

@@ -22,10 +22,12 @@ export class DocComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    }
-
-    navigateToId(id: string) {
-        // @ts-ignore
-        this.navigationEvent(this.idMap[id]);
+        if (window.location.href.indexOf('doc#') > -1) {
+            setTimeout(() => {
+                const el = document.getElementById(window.location.href.split('#')[1])
+                // @ts-ignore
+                el.scrollIntoView()
+            }, 500)
+        }
     }
 }

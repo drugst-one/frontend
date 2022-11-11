@@ -1,4 +1,12 @@
-<div class="container-fluid">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Standalone</h1>
+      <p>
+        Use Drugst.One as if it was integrated on your one website! Below you have the Drugst.One app based on the configuration below. This page can be the target of URL based requests to visualize specific genes. You can read more about how to create such URLs <a class="link-primary" (click)="switchToDoc('standalone')">here</a>.
+      </p>
+    </div>
+  </div>
   <div class="accordion" id="accordionPanelsStandalone">
     <div
       class="accordion-item"
@@ -14,7 +22,7 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#panelsStayOpen-collapseThree"
-          aria-expanded="false"
+          aria-expanded="true"
           aria-controls="panelsStayOpen-collapseThree"
           [ngClass]="{
             'text-light bg-dark': themeService.theme === 'theme-dark',
@@ -26,7 +34,7 @@
       </h2>
       <div
         id="panelsStayOpen-collapseThree"
-        class="accordion-collapse collapse"
+        class="accordion-collapse collapse show"
         aria-labelledby="panelspanelsDrugstone"
       >
         <div class="accordion-body" #standalonePlugin>

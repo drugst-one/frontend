@@ -58,13 +58,19 @@ export class StandaloneComponent implements OnInit {
             label: 'Ensemble',
             value: 'ensg'
         }, {label: 'Entrez', value: 'entrez'}],
-        drugProtInterList: [{label: 'DrugBank', value: {name:'DrugBank',licenced:true}}, {label: 'ChEMBL', value: {name:'ChEMBL',licenced:true}}, {
+        drugProtInterList: [{label: 'DrugBank', value: {name: 'DrugBank', licenced: true}}, {
+            label: 'ChEMBL',
+            value: {name: 'ChEMBL', licenced: true}
+        }, {
             label: 'DGIdb',
-            value: {name:'DGIdb',licenced:true}
+            value: {name: 'DGIdb', licenced: true}
         }],
-        protProtInterList: [{label: 'STRING', value: {name: 'STRING',licenced:true}}, {label: 'BioGRID', value: {name:'BioGRID',licenced:true}}, {
+        protProtInterList: [{label: 'STRING', value: {name: 'STRING', licenced: true}}, {
+            label: 'BioGRID',
+            value: {name: 'BioGRID', licenced: true}
+        }, {
             label: 'APID',
-            value: {name:'APID',licenced:true}
+            value: {name: 'APID', licenced: true}
         }],
         drugDisList: [],
         protDisList: []
@@ -107,6 +113,10 @@ export class StandaloneComponent implements OnInit {
     ngAfterViewInit(): void {
         if (localStorage.getItem("darkTheme") === "true")
             this.switchTheme(true);
+    }
+
+    switchToDoc(id: string) {
+        window.location.replace("/doc#" + id)
     }
 
     async loadDatasets() {

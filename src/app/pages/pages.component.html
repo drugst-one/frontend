@@ -1,10 +1,8 @@
-<app-home [hidden]="currentTabId!==0" (tabChangeEvent)="switchTab($event); tabChange($event)"
-          (navigateDoc)="switchTab(4); tabChange(4); doc.navigateToId($event)"></app-home>
+<app-home [hidden]="currentTabId!==0" (tabChangeEvent)="switchTab($event); tabChange($event)"></app-home>
 <app-motivation [hidden]="currentTabId!==1" [theme]="theme" [host]="host" [api]="backendPath" [cdn]="cdn"
-                (tabChangeEvent)="switchTab($event); tabChange($event)"
-                (navigateDoc)="switchTab(4); tabChange(4); doc.navigateToId($event)"></app-motivation>
-<app-standalone #standalone  *ngIf="currentTabId!==3" [api]="backendPath" [hidden]="currentTabId!==2"></app-standalone>
-<app-playground #playground *ngIf="currentTabId===3" [theme]="theme" [api]="backendPath"></app-playground>
-<app-doc #doc [hidden]="currentTabId!==4" [api]="backendPath" [version]="cdnVersion" [cdn]="cdn"
+                (tabChangeEvent)="switchTab($event); tabChange($event)"></app-motivation>
+<app-standalone #standalone  *ngIf="currentTabId==2" [api]="backendPath" [hidden]="currentTabId!==2"></app-standalone>
+<app-playground #playground *ngIf="currentTabId===3" [theme]="theme" [hidden]="currentTabId!==3" [api]="backendPath"></app-playground>
+<app-doc [hidden]="currentTabId!==4" [api]="backendPath" [version]="cdnVersion" [cdn]="cdn"
          [host]="host"></app-doc>
 
