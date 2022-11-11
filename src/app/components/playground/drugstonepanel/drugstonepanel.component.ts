@@ -9,6 +9,7 @@ export class DrugstonepanelComponent implements OnInit {
 
   @Input() public config:object = {}
   @Input() public network: object = {}
+  @Input() public groups: object ={ nodeGroups:{}}
   @Input() public id: string = ""
 
   constructor() {
@@ -24,4 +25,9 @@ export class DrugstonepanelComponent implements OnInit {
   getNetwork(): string{
     return JSON.stringify(this.network)
   }
+
+  getGroups(): string{
+    return JSON.stringify(this.groups)
+  }
+
 }

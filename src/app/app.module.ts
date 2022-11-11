@@ -120,6 +120,10 @@ import { CustGeneralComponent } from './pages/doc/content/customize/cust-general
 import { DocSubheaderComponent } from './components/documentation/doc-subheader/doc-subheader.component';
 import { DocHeaderComponent } from './components/documentation/doc-header/doc-header.component';
 import { ContactComponent } from './pages/doc/content/other/contact/contact.component';
+import { GitLinkComponent } from './pages/doc/elements/git-link/git-link.component';
+import { PythonPackageComponent } from './pages/doc/content/other/python-package/python-package.component';
+import { FromScratchComponent } from './pages/doc/content/start/from-scratch/from-scratch.component';
+import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -185,6 +189,10 @@ import { ContactComponent } from './pages/doc/content/other/contact/contact.comp
         DocSubheaderComponent,
         DocHeaderComponent,
         ContactComponent,
+        GitLinkComponent,
+        PythonPackageComponent,
+        FromScratchComponent,
+        PrivacyPolicyComponent,
     ],
     imports: [
         BrowserModule,

@@ -24,6 +24,7 @@ export class DocNavbarComponent implements OnInit {
         { name: 'Vue.JS', anchor: 'vuejs_setup' },
         { name: 'R-Shiny', anchor: 'rshiny_setup' },
         { name: 'Other Frameworks', anchor: 'other_frameworks' },
+        { name: 'From Scratch', anchor: 'from_scratch' },
       ]
     },
     {
@@ -47,7 +48,7 @@ export class DocNavbarComponent implements OnInit {
       ]
     },
     {
-      name: 'Standalone', target: 'nav_standalone', emelents: [
+      name: 'Standalone', target: 'nav_standalone', elements: [
         { name: 'Buttons', anchor: 'standalone_buttons' },
         { name: 'Options', anchor: 'standalone_options' },
         { name: 'API', anchor: 'standalone_api' },
@@ -62,7 +63,9 @@ export class DocNavbarComponent implements OnInit {
     },
     {
       name: 'Other', target: 'nav_other', elements: [
+        {name: 'Python Package', anchor: 'python_package'},
         { name: 'Contact', anchor: 'contact_us' },
+        { name: 'Privacy Policy', anchor: 'privacy_policy' },
         { name: 'FAQ', anchor: 'faq' },
       ]
     }

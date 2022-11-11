@@ -7,7 +7,7 @@ import configDark from '../../../../standaloneConfigDark.json';
 import configLight from '../../../../standaloneConfigLight.json'
 import {NavigationEnd, Router} from "@angular/router";
 import {RequestService} from "../../../services/requestService";
-import { ThemeService } from 'src/app/services/theme.service';
+import {ThemeService} from 'src/app/services/theme.service';
 
 @Component({
     selector: 'app-standalone',
@@ -36,22 +36,41 @@ export class StandaloneComponent implements OnInit {
     public group = "gene";
     private delimList = ["\t", "\n", ",", ";", " "];
 
+    public nameMap = {
+        nedrex: 'NeDRex',
+        biogrid: 'BioGRID',
+        iid: 'IID',
+        intact: 'IntAct',
+        string: 'STRING',
+        apid: 'APID',
+        drugcentral: 'DrugCentral',
+        chembl: 'ChEMBL',
+        dgidb: 'DGIdb',
+        disgenet: 'DisGeNET',
+        ctd: 'CTD',
+        drugbank: 'DrugBank',
+        omim: 'OMIM'
+    }
+
+
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
             label: 'Ensemble',
             value: 'ensg'
-        }],
-        drugProtInterList: [{label: 'DrugBank', value: 'DrugBank'}, {label: 'ChEMBL', value: 'ChEMBL'}, {
+        }, {label: 'Entrez', value: 'entrez'}],
+        drugProtInterList: [{label: 'DrugBank', value: {name:'DrugBank',licenced:true}}, {label: 'ChEMBL', value: {name:'ChEMBL',licenced:true}}, {
             label: 'DGIdb',
-            value: 'DGIdb'
+            value: {name:'DGIdb',licenced:true}
         }],
-        protProtInterList: [{label: 'STRING', value: 'STRING'}, {label: 'BioGRID', value: 'BioGRID'}, {
+        protProtInterList: [{label: 'STRING', value: {name: 'STRING',licenced:true}}, {label: 'BioGRID', value: {name:'BioGRID',licenced:true}}, {
             label: 'APID',
-            value: 'APID'
+            value: {name:'APID',licenced:true}
         }],
+        drugDisList: [],
+        protDisList: []
     }
 
-    constructor(private router: Router, public netex: RequestService, public themeService: ThemeService) {
+    constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -82,6 +101,7 @@ export class StandaloneComponent implements OnInit {
         this.configLight = configLight
         this.configDark = configDark
         this.config = this.configLight
+        this.loadDatasets()
     }
 
     ngAfterViewInit(): void {
@@ -89,15 +109,35 @@ export class StandaloneComponent implements OnInit {
             this.switchTheme(true);
     }
 
+    async loadDatasets() {
+        this.drugstone.getDatasources(this.api).then(response => {
+            this.dataLists = {
+                identifierList: this.dataLists.identifierList,
+                drugProtInterList: response['protein-drug'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
+                }),
+                protProtInterList: response['protein-protein'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
+                }),
+                drugDisList: response['drug-disorder'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
+                }),
+                protDisList: response['protein-disorder'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
+                })
+            }
+        })
+    }
+
     async setParams(params: object): Promise<any> {
         this.toggleTab(this.networkInput, false);
+        this.toggleTab(this.advancedSettings, false);
         this.toggleTab(this.drugstoneApp, true);
         if ("taskId" in params) {
             // @ts-ignore
             this.changeConfig("taskId", params["token"]);
             return
         }
-
 
         let nodes: any[];
         nodes = [];
@@ -106,7 +146,7 @@ export class StandaloneComponent implements OnInit {
 
         if ("id" in params) {
             // @ts-ignore
-            let response = await this.netex.getNetwork(this.api, params["id"]).then(response => {
+            let response = await this.drugstone.getNetwork(this.api, params["id"]).then(response => {
                 return response
             })
             nodes = response.network.nodes
@@ -133,13 +173,13 @@ export class StandaloneComponent implements OnInit {
                 // @ts-ignore
                 let ident = params["interactionProteinProtein"]
                 if (this.dataLists.protProtInterList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeConfig("interactionProteinProtein", ident)
+                    this.changeDataset("interactionProteinProtein", ident)
             }
             if ("interactionDrugProtein" in params) {
                 // @ts-ignore
                 let ident = params["interactionDrugProtein"]
                 if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeConfig("interactionDrugProtein", ident)
+                    this.changeDataset("interactionDrugProtein", ident)
             }
             if ("autofillEdges" in params) {
                 // @ts-ignore
@@ -205,10 +245,16 @@ export class StandaloneComponent implements OnInit {
         return this.config[param]
     }
 
+    changeDataset(name: string, value: any) {
+        this.changeConfig('licensedDatasets', value.licenced)
+        this.changeConfig(name, value.name)
+    }
+
     changeConfig(name: string, value: any) {
         let change = {}
         // @ts-ignore
         change[name] = value;
+
         Object.keys(change).forEach(name => {
             // @ts-ignore
             if (change[name] != null)
@@ -271,5 +317,5 @@ export class StandaloneComponent implements OnInit {
             el.click();
         }
     }
-    
+
 }

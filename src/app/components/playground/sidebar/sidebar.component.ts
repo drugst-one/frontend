@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { ThemeService } from 'src/app/services/theme.service';
+import {ThemeService} from 'src/app/services/theme.service';
 // @ts-ignore
 import themes from "../../../../themes.json"
+import {RequestService} from "../../../services/requestService";
 
 @Component({
     selector: 'app-sidebar',
@@ -14,6 +15,7 @@ export class SidebarComponent implements OnInit {
 
     @Output() configChangeEvent = new EventEmitter<object>();
     @Output() colorChangeEvent = new EventEmitter<object>();
+    @Output() styleChangeEvent = new EventEmitter<object>();
     @Output() editGroupEvent = new EventEmitter<object>();
     public useLegendURL: boolean = false;
     public themeIsDark: boolean = true;
@@ -21,6 +23,7 @@ export class SidebarComponent implements OnInit {
     @Input() public edgeGroups: object = {}
     @Input() public config: object = {}
     @Input() public theme = {}
+    @Input() public api: string = ''
 
     public shapeList: Object[] = [{label: 'circle', value: 'circle'}, {label: 'diamond', value: 'diamond'}, {
         label: 'star',
@@ -35,39 +38,107 @@ export class SidebarComponent implements OnInit {
         label: 'text',
         value: 'text'
     }];
-    public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
+    public sidebarPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}, {
+        label: 'off',
+        value: false
+    }]
     public legendPosList = [{label: 'left', value: 'left'}, {label: 'right', value: 'right'}]
+    public networkMenuPosList = [{label: 'right', value: 'right'}, {label: 'left', value: 'left'}, {
+        label: 'off',
+        value: false
+    }]
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
             label: 'Ensemble',
             value: 'ensg'
-        }],
-        drugProtInterList: [{label: 'DrugBank', value: 'DrugBank'}, {label: 'ChEMBL', value: 'ChEMBL'}, {
-            label: 'DGIdb',
-            value: 'DGIdb'
-        }],
-        protProtInterList: [{label: 'STRING', value: 'STRING'}, {label: 'BioGRID', value: 'BioGRID'}, {
-            label: 'APID',
-            value: 'APID'
-        }],
+        }, {label: 'Entrez', value: 'entrez'}],
+        drugProtInterList: [],
+        protProtInterList: [],
+        drugDisList: [],
+        protDisList: []
     }
+
+    public nameMap = {
+        nedrex: 'NeDRex',
+        biogrid: 'BioGRID',
+        iid: 'IID',
+        intact: 'IntAct',
+        string: 'STRING',
+        apid: 'APID',
+        drugcentral: 'DrugCentral',
+        chembl: 'ChEMBL',
+        dgidb: 'DGIdb',
+        disgenet: 'DisGeNET',
+        ctd: 'CTD',
+        drugbank: 'DrugBank',
+        omim: 'OMIM'
+    };
     public themeList: Object[] = [];
 
-    // export type Identifier = 'symbol'|'uniprot'|'ensg';
-    // export type InteractionDrugProteinDB = 'DrugBank'|'ChEMBL'|'DGIdb';
-    // export type InteractionProteinProteinDB = 'STRING'|'BioGRID'|'APID';
+    public fontList: Object[] = [{label: 'Helvetica Neue, sans-serif', value: 'Helvetica Neue, sans-serif'}, {label: 'Oxygen', value: 'Oxygen'}, {label:'custom', value: 'custom'}];
+    public fonts = ['Helvetica Neue, sans-serif', 'Helvetica', 'Ubuntu', 'BlinkMacSystemFont', '-apple-system','Segoe UI', 'Roboto', 'Oxygen','Cantarell','Fira Sans', 'Droid Sans', 'Areal', 'custom']
+    public useCustomFont: boolean = false;
 
 
-    constructor(public themeService: ThemeService) {
+    constructor(public themeService: ThemeService, public drugstone: RequestService) {
         this.readThemes();
     }
 
     ngOnInit(): void {
+        this.loadDatasets()
     }
 
     readThemes(): void {
         Object.keys(themes).forEach(label => {
             this.themeList.push({label: label, value: themes[label]})
+        })
+    }
+
+
+    async loadDatasets() {
+        this.drugstone.getDatasources(this.api).then(response => {
+            this.dataLists = {
+                identifierList: this.dataLists.identifierList, drugProtInterList: [],
+                protProtInterList: [],
+                drugDisList: [],
+                protDisList: []
+            }
+            let uniq: string[] = []
+            response['protein-drug'].forEach((source: { name: string; }) => {
+                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
+                    uniq.push(source.name.toLowerCase())
+                    // @ts-ignore
+                    this.dataLists.drugProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
+                    })
+                }
+            })
+            uniq = []
+            response['protein-protein'].forEach((source: { name: string; }) => {
+                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
+                    uniq.push(source.name.toLowerCase())
+                    // @ts-ignore
+                    this.dataLists.protProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
+                    })
+                }
+            })
+            uniq = []
+            response['protein-disorder'].forEach((source: { name: string; }) => {
+                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
+                    uniq.push(source.name.toLowerCase())
+                    // @ts-ignore
+                    this.dataLists.protDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
+                    })
+                }
+            })
+            uniq = []
+            response['drug-disorder'].forEach((source: { name: string; }) => {
+                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
+                    uniq.push(source.name.toLowerCase())
+                    // @ts-ignore
+                    this.dataLists.drugDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
+                    })
+                }
+            })
         })
     }
 
@@ -109,6 +180,13 @@ export class SidebarComponent implements OnInit {
         // @ts-ignore
         change[label] = color;
         this.colorChangeEvent.emit(change)
+    }
+
+    changeStyle(label: any, value: any){
+        let change = {}
+        // @ts-ignore
+        change[label] = value
+        this.styleChangeEvent.emit(change)
     }
 
     isBig(value: any): boolean {
@@ -193,23 +271,23 @@ export class SidebarComponent implements OnInit {
 
     switchColorMode(dark: boolean) {
         this.changeColor("--drgstn-border", this.getBorderColor(dark))
-        this.changeColor("--drgstn-tooltip",this.getTooltipColor(dark))
+        this.changeColor("--drgstn-tooltip", this.getTooltipColor(dark))
         // return dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
     }
 
-    getBorderColor(dark:boolean){
+    getBorderColor(dark: boolean) {
         return dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
     }
 
-    getTooltipColor(dark:boolean){
-        return dark ? "rgba(181,181,181,0.9)":"rgba(74,74,74,0.9)" ;
+    getTooltipColor(dark: boolean) {
+        return dark ? "rgba(181,181,181,0.9)" : "rgba(74,74,74,0.9)";
     }
 
-    toBoolean(value:any){
-        if(typeof value == "boolean")
+    toBoolean(value: any) {
+        if (typeof value == "boolean")
             return value
-        if(typeof value == "string")
-            return value[0]==='t'
+        if (typeof value == "string")
+            return value[0] === 't'
         return !!value
     }
 
@@ -235,6 +313,28 @@ export class SidebarComponent implements OnInit {
         })
 
     }
+
+    applyFont(font: string | any) {
+        console.log(font)
+        if (font === 'custom') {
+            this.useCustomFont = true
+        } else {
+            this.useCustomFont = false
+            this.setFont(font)
+        }
+    }
+
+    applyCustomFont(font: string){
+        this.useCustomFont = true
+        this.setFont(font)
+    }
+
+    setFont(font: string){
+        // @ts-ignore
+        this.theme["--drgstn-font-family"].value = font
+        this.changeStyle("--drgstn-font-family", font)
+    }
+
 
     getThemeValue(key: any, value: string) {
         // @ts-ignore

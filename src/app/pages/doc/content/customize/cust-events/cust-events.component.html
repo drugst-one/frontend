@@ -28,19 +28,18 @@ the received object might be proposed here.
     The <i>event.detail</i> object, your callback function receives is structured like
     follows:
     <app-code [copy]="false" lang="json" code='{
-    "taskId": "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8",   // Unique taskID (token) assigned for this task, can be used to request the loading of this specific result
+    "taskId": "GFpwPHkc6gsXGvIx1g83w0hO8i95przG",   // Unique taskID (token) assigned for this task, can be used to request the loading of this specific result
     "algorithm": "multisteiner",                    // The algorithm that was applied on the selected seed nodes
     "target": "drug-target",                        // The type of analysis this search had as goal
     "params": {                                     // Input parameters of the algorithms
-        "seeds": ["p6321","p2956"],                 // The selected seed genes the algorithms starts with
+        "seeds": ["BRCA2","PTEN"],                 // The selected seed genes the algorithms starts with
         "config": {...},                            // The general drugstone config that was loaded at the moment of execution
         "input_network": {...},                     // The general drugstone network tat was loaded at the moment of execution to be later merged with the results
         "ppi_dataset": "STRING",                    // The database for protein-protein interaction information
-        "pdi_dataset": "DrugBank",                  // The database for protein-drug targeting information
+        "pdi_dataset": "NeDRex",                  // The database for protein-drug targeting information
         "target": "drug-target",                    // The type of analysis this search has as goal
         "num_trees": 5,                             // Specific multisteiner algorithms parameters
         "tolerance": 10,                            // Specific multisteiner algorithms parameters
-        "ignore_non_seed_baits": false,             // Specific multisteiner algorithms parameters
         "hub_penalty": 0                            // Specific multisteiner algorithms parameters
     }
 }'></app-code>
@@ -50,14 +49,14 @@ the received object might be proposed here.
     successfully finished task. Example where the taskId from the received object is
     set is shown below:
     <app-code lang="js"
-              code='document.getElementById("drugstone-component-id").setAttribute("task-id", "WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8")'></app-code>
+              code='document.getElementById("drugstone-component-id").setAttribute("task-id", "GFpwPHkc6gsXGvIx1g83w0hO8i95przG")'></app-code>
     or
     <app-code lang="html" code="
 <drugst-one
         id='drugstone-component-id'
         config='{...}'
         network='{...}'
-        task-id='WaXyNqTWJDIPRPzBM14lUXSZNB8vDbF8'
+        task-id='GFpwPHkc6gsXGvIx1g83w0hO8i95przG'
         >
 </drugst-one>"></app-code>
 
