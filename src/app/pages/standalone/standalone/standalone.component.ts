@@ -28,6 +28,7 @@ export class StandaloneComponent implements OnInit {
     themeDark: Object = {}
     theme: Object = {}
     config: Object = {}
+    groups: Object = {}
     configDark: Object = {}
     configLight: Object = {}
 
@@ -37,7 +38,7 @@ export class StandaloneComponent implements OnInit {
     private delimList = ["\t", "\n", ",", ";", " "];
 
     public cysticFibrosisGenes = ['CFTR', 'TGFB1', 'TNFRSF1A', 'FCGR2A', 'ENG', 'DCTN4', 'CLCA4', 'STX1A',
-            'SCNN1G', 'SCNN1A', 'SCNN1B']
+        'SCNN1G', 'SCNN1A', 'SCNN1B']
 
     public nameMap = {
         nedrex: 'NeDRex',
@@ -61,22 +62,22 @@ export class StandaloneComponent implements OnInit {
             label: 'Ensemble',
             value: 'ensg'
         }, {label: 'Entrez', value: 'entrez'}],
-        drugProtInterList: [{label: 'DrugBank', value: {name: 'DrugBank', licenced: true}}, {
+        drugProtInterList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},{label: 'DrugBank', value: {name: 'DrugBank', licenced: true}}, {
             label: 'ChEMBL',
             value: {name: 'ChEMBL', licenced: true}
         }, {
             label: 'DGIdb',
             value: {name: 'DGIdb', licenced: true}
         }],
-        protProtInterList: [{label: 'STRING', value: {name: 'STRING', licenced: true}}, {
+        protProtInterList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},{label: 'STRING', value: {name: 'STRING', licenced: true}}, {
             label: 'BioGRID',
             value: {name: 'BioGRID', licenced: true}
         }, {
             label: 'APID',
             value: {name: 'APID', licenced: true}
         }],
-        drugDisList: [],
-        protDisList: []
+        drugDisList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}}],
+        protDisList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}}]
     }
 
     constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService) {
@@ -84,25 +85,31 @@ export class StandaloneComponent implements OnInit {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
                     // @ts-ignore
-                    var page = val.url.substr(1).split("/")[0].split('#')[0]
-                    if (page.indexOf("?") > -1) {
-                        let params = {}
-                        page.split("?")[1].split("&").forEach(pair => {
-                            let p = pair.split("=");
-                            // @ts-ignore
-                            params[p[0]] = p[1];
-                        })
-                        this.setParams(params)
-                    }
+                    this.readParamsFromURL(val.url)
                 }
             }
         })
-        if (this.rawNodes === '') {
-            this.updateNodeImport(this.cysticFibrosisGenes);
-            this.setNetwork();
-            setTimeout(() => {
-                this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
-            }, 1000)
+    }
+
+    readParamsFromURL(url: string): void {
+        var page = url.substr(1).split("/")[0].split('#')[0]
+        if (page.indexOf("?") > -1) {
+            let params = {}
+            page.split("?")[1].split("&").forEach(pair => {
+                let p = pair.split("=");
+                // @ts-ignore
+                params[p[0]] = p[1];
+            })
+            this.setParams(params).catch(console.error)
+            history.replaceState('', '', "/standalone" + location.search)
+        } else {
+            if (this.rawNodes === '') {
+                this.updateNodeImport(this.cysticFibrosisGenes);
+                this.setNetwork();
+                setTimeout(() => {
+                    this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+                }, 1000)
+            }
         }
     }
 
@@ -118,6 +125,8 @@ export class StandaloneComponent implements OnInit {
         this.configDark = configDark
         this.config = this.configLight
         this.loadDatasets()
+        this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
+
     }
 
     ngAfterViewInit(): void {
@@ -168,9 +177,11 @@ export class StandaloneComponent implements OnInit {
             // @ts-ignore
             let response = await this.drugstone.getNetwork(this.api, params["id"]).then(response => {
                 return response
-            })
+            }).catch(console.error)
             nodes = response.network.nodes
             edges = response.network.edges
+            if (response.groups != null)
+                Object.keys(response.groups).forEach(key => this.changeGroups(key, response.groups[key]))
             if (response.config != null)
                 Object.keys(response.config).forEach(key => this.changeConfig(key, response.config[key]))
 
@@ -201,11 +212,47 @@ export class StandaloneComponent implements OnInit {
                 if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
                     this.changeDataset("interactionDrugProtein", ident)
             }
+            if ("indicationDrugDisorder" in params) {
+                // @ts-ignore
+                let ident = params["indicationDrugDisorder"]
+                if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
+                    this.changeDataset("indicationDrugDisorder", ident)
+            }
+            if ("associatedProteinDisorder" in params) {
+                // @ts-ignore
+                let ident = params["associatedProteinDisorder"]
+                if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
+                    this.changeDataset("associatedProteinDisorder", ident)
+            }
             if ("autofillEdges" in params) {
                 // @ts-ignore
                 let fill = params["autofillEdges"] === "true"
                 this.changeConfig("autofillEdges", fill)
             }
+            if ("activateNetworkMenuButtonAdjacentDrugs" in params) {
+                // @ts-ignore
+                let activate = params["activateNetworkMenuButtonAdjacentDrugs"] === "true"
+                this.changeConfig("activateNetworkMenuButtonAdjacentDrugs", activate)
+            }
+
+            if ("activateNetworkMenuButtonAdjacentDisorders" in params) {
+                // @ts-ignore
+                let activate = params["activateNetworkMenuButtonAdjacentDisorders"] === "true"
+                this.changeConfig("activateNetworkMenuButtonAdjacentDisorders", activate)
+            }
+
+            if ("activateNetworkMenuButtonAdjacentDisorderDrugs" in params) {
+                // @ts-ignore
+                let activate = params["activateNetworkMenuButtonAdjacentDisorderDrugs"] === "true"
+                this.changeConfig("activateNetworkMenuButtonAdjacentDisorderDrugs", activate)
+            }
+
+            if ("licensedDatasets" in params) {
+                // @ts-ignore
+                let activate = params["licensedDatasets"] === "true"
+                this.changeConfig("licensedDatasets", activate)
+            }
+
         }
         if (nodes.length > 0 || edges.length > 0) {
             this.network = {nodes: nodes, edges: edges}
@@ -268,6 +315,21 @@ export class StandaloneComponent implements OnInit {
     changeDataset(name: string, value: any) {
         this.changeConfig('licensedDatasets', value.licenced)
         this.changeConfig(name, value.name)
+    }
+
+    changeGroups(name: string, value: any) {
+        let change = {}
+        // @ts-ignore
+        change[name] = value;
+        Object.keys(change).forEach(name => {
+            // @ts-ignore
+            if (change[name] != null)
+                // @ts-ignore
+                this.groups[name] = change[name];
+            else
+                // @ts-ignore
+                delete this.groups[name]
+        })
     }
 
     changeConfig(name: string, value: any) {
