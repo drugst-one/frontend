@@ -85,6 +85,20 @@ export class PlaygroundComponent implements OnInit {
         this.updateCode()
     }
 
+    changeGroup(change: object) {
+        Object.keys(change).forEach(name => {
+            // @ts-ignore
+            if (change[name] != null)
+                // @ts-ignore
+                this.groups[name] = change[name];
+            else
+                // @ts-ignore
+                delete this.groups[name]
+        })
+
+        this.updateCode()
+    }
+
 
     changeColor(change: object) {
         Object.keys(change).forEach(key => {

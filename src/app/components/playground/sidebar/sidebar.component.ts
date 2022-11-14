@@ -14,6 +14,7 @@ import {RequestService} from "../../../services/requestService";
 export class SidebarComponent implements OnInit {
 
     @Output() configChangeEvent = new EventEmitter<object>();
+    @Output() groupChangeEvent = new EventEmitter<object>();
     @Output() colorChangeEvent = new EventEmitter<object>();
     @Output() styleChangeEvent = new EventEmitter<object>();
     @Output() editGroupEvent = new EventEmitter<object>();
@@ -75,8 +76,11 @@ export class SidebarComponent implements OnInit {
     };
     public themeList: Object[] = [];
 
-    public fontList: Object[] = [{label: 'Helvetica Neue, sans-serif', value: 'Helvetica Neue, sans-serif'}, {label: 'Oxygen', value: 'Oxygen'}, {label:'custom', value: 'custom'}];
-    public fonts = ['Helvetica Neue, sans-serif', 'Helvetica', 'Ubuntu', 'BlinkMacSystemFont', '-apple-system','Segoe UI', 'Roboto', 'Oxygen','Cantarell','Fira Sans', 'Droid Sans', 'Areal', 'custom']
+    public fontList: Object[] = [{
+        label: 'Helvetica Neue, sans-serif',
+        value: 'Helvetica Neue, sans-serif'
+    }, {label: 'Oxygen', value: 'Oxygen'}, {label: 'custom', value: 'custom'}];
+    public fonts = ['Helvetica Neue, sans-serif', 'Helvetica', 'Ubuntu', 'BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Oxygen', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Areal', 'custom']
     public useCustomFont: boolean = false;
 
 
@@ -108,8 +112,7 @@ export class SidebarComponent implements OnInit {
                 if (uniq.indexOf(source.name.toLowerCase()) === -1) {
                     uniq.push(source.name.toLowerCase())
                     // @ts-ignore
-                    this.dataLists.drugProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
-                    })
+                    this.dataLists.drugProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
                 }
             })
             uniq = []
@@ -117,8 +120,7 @@ export class SidebarComponent implements OnInit {
                 if (uniq.indexOf(source.name.toLowerCase()) === -1) {
                     uniq.push(source.name.toLowerCase())
                     // @ts-ignore
-                    this.dataLists.protProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
-                    })
+                    this.dataLists.protProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
                 }
             })
             uniq = []
@@ -126,8 +128,7 @@ export class SidebarComponent implements OnInit {
                 if (uniq.indexOf(source.name.toLowerCase()) === -1) {
                     uniq.push(source.name.toLowerCase())
                     // @ts-ignore
-                    this.dataLists.protDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
-                    })
+                    this.dataLists.protDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
                 }
             })
             uniq = []
@@ -135,8 +136,7 @@ export class SidebarComponent implements OnInit {
                 if (uniq.indexOf(source.name.toLowerCase()) === -1) {
                     uniq.push(source.name.toLowerCase())
                     // @ts-ignore
-                    this.dataLists.drugDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name
-                    })
+                    this.dataLists.drugDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
                 }
             })
         })
@@ -145,9 +145,11 @@ export class SidebarComponent implements OnInit {
     changeGroupConfig(groups: object, groupId: string, key: any, value: any) {
         if (groups === this.nodeGroups && key === 'shape' && value !== 'image')
             this.changeNodeImage(null, groupId)
+        console.log(groups)
+        console.log(groupId + " - " + key + ": " + value)
         // @ts-ignore
         groups[groupId][key] = value
-        if (key === 'id') {
+        if (key === 'id' && groupId !== value) {
             // @ts-ignore
             groups[value] = groups[groupId]
             this.deleteGroup(groups, groupId)
@@ -156,10 +158,11 @@ export class SidebarComponent implements OnInit {
     }
 
     updateGroupsConfig(groups: object) {
+        //somehow updated node group gets deleted
         if (groups === this.nodeGroups)
-            this.changeConfig('nodeGroups', groups)
+            this.changeGroups('nodeGroups', groups)
         else if (groups === this.edgeGroups)
-            this.changeConfig('edgeGroups', groups)
+            this.changeGroups('edgeGroups', groups)
     }
 
 
@@ -174,6 +177,12 @@ export class SidebarComponent implements OnInit {
         this.configChangeEvent.emit(out)
     }
 
+    changeGroups(name: string, value: any) {
+        let out = {}
+        // @ts-ignore
+        out[name] = value;
+        this.groupChangeEvent.emit(out)
+    }
 
     changeColor(label: any, color: string) {
         let change = {}
@@ -182,7 +191,7 @@ export class SidebarComponent implements OnInit {
         this.colorChangeEvent.emit(change)
     }
 
-    changeStyle(label: any, value: any){
+    changeStyle(label: any, value: any) {
         let change = {}
         // @ts-ignore
         change[label] = value
@@ -324,12 +333,12 @@ export class SidebarComponent implements OnInit {
         }
     }
 
-    applyCustomFont(font: string){
+    applyCustomFont(font: string) {
         this.useCustomFont = true
         this.setFont(font)
     }
 
-    setFont(font: string){
+    setFont(font: string) {
         // @ts-ignore
         this.theme["--drgstn-font-family"].value = font
         this.changeStyle("--drgstn-font-family", font)

@@ -32,6 +32,7 @@
         [nodeGroups]="groups.nodeGroups"
         [edgeGroups]="groups.edgeGroups"
         (configChangeEvent)="changeConfig($event)"
+        (groupChangeEvent)="changeGroup($event)"
         (colorChangeEvent)="changeColor($event)"
         (styleChangeEvent)="changeStyle($event)"
         (editGroupEvent)="editGroup($event)"
