@@ -145,8 +145,6 @@ export class SidebarComponent implements OnInit {
     changeGroupConfig(groups: object, groupId: string, key: any, value: any) {
         if (groups === this.nodeGroups && key === 'shape' && value !== 'image')
             this.changeNodeImage(null, groupId)
-        console.log(groups)
-        console.log(groupId + " - " + key + ": " + value)
         // @ts-ignore
         groups[groupId][key] = value
         if (key === 'id' && groupId !== value) {

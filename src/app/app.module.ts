@@ -67,6 +67,7 @@ import {
     faSun,
     faMoon,
     faHashtag,
+    faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
 import {faAngular, faReact, faVuejs, faRProject, faHtml5, faPython, faGithub} from '@fortawesome/free-brands-svg-icons';
@@ -235,7 +236,7 @@ export class AppModule {
     constructor() {
         // @ts-ignore
         fontawesome.library.add(faCodeBranch,
-            faPalette,faMagic,faDatabase, faGlobe,faCapsules,faSun, faMoon,faHashtag,faGithub,
+            faPalette,faMagic,faDatabase, faGlobe,faCapsules,faSun, faMoon,faHashtag,faGithub, faTrash,
             faBullhorn, faColumns, faShoePrints, faPython, faHtml5, faToolbox, faRProject, faProjectDiagram, faCogs, faClipboard, faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
     }
 }
