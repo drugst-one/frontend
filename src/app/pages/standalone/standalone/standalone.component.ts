@@ -36,6 +36,9 @@ export class StandaloneComponent implements OnInit {
     public group = "gene";
     private delimList = ["\t", "\n", ",", ";", " "];
 
+    public cysticFibrosisGenes = ['CFTR', 'TGFB1', 'TNFRSF1A', 'FCGR2A', 'ENG', 'DCTN4', 'CLCA4', 'STX1A',
+            'SCNN1G', 'SCNN1A', 'SCNN1B']
+
     public nameMap = {
         nedrex: 'NeDRex',
         biogrid: 'BioGRID',
@@ -94,6 +97,13 @@ export class StandaloneComponent implements OnInit {
                 }
             }
         })
+        if (this.rawNodes === '') {
+            this.updateNodeImport(this.cysticFibrosisGenes);
+            this.setNetwork();
+            setTimeout(() => {
+                this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }, 1000)
+        }
     }
 
     ngOnInit(): void {
@@ -326,6 +336,11 @@ export class StandaloneComponent implements OnInit {
         if (open === is_closed) {
             el.click();
         }
+    }
+
+
+    public updateNodeImport(genes: any) {
+        this.rawNodes = genes.join(',');
     }
 
 }
