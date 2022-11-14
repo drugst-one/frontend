@@ -24,25 +24,61 @@ export class StandaloneUrlComponent implements OnInit {
             name: "identifier",
             type: "string",
             default: "symbol",
-            description: "Can be one of the supported identifier types to map gene names. Options are: \"symbol\" (gene Symbol), \"uniprot\" (Uniprot accession number), \"ensg\" (Ensembl Gene ID)."
+            description: "Can be one of the supported identifier types to map gene names. Options are: \"symbol\" (gene Symbol), \"uniprot\" (Uniprot accession number), \"ensg\" (Ensembl Gene ID), \"entrez\" (Entrez ID)."
         },
         {
-            name: "interactionProteinProtein",
-            type: "string",
-            default: "STRING",
-            description: "The database which should be used to fetch the protein-protein interactions. Possible values are \"STRING\", \"BioGRID\", \"APID\"."
-        },
-        {
-            name: "interactionDrugProtein",
-            type: "string",
-            default: "DrugBank",
-            description: "The drug database which should be used to fetch the drug-protein interactions. Possible values are \"DrugBank\", \"Chembl\", \"DGIdb\"."
+            name: "licensedDatasets",
+            type: "boolean",
+            default: "false",
+            description: "Use licensed versions of selected datasets if these should exist."
         },
         {
             name: "autofillEdges",
             type: "boolean",
-            default: "true",
-            description: "Switch to activate or deactivate the loading of known interaction edges from the selected interaction database."
+            default: "false",
+            description: "Enable to autofill protein interaction edges."
+        },
+        {
+            name: "interactionProteinProtein",
+            type: "string",
+            default: "NeDRex",
+            description: "The database which should be used to fetch the protein-protein interactions. Possible values are \"NeDRex\", \"IID\", \"IntAct\", \"STRING\", \"BioGRID\", \"APID\".  For more information check Implementation > Data"
+        },
+        {
+            name: "interactionDrugProtein",
+            type: "string",
+            default: "NeDRex",
+            description: "The drug database which should be used to fetch the drug-protein interactions. Possible values are \"NeDRex\", \"DrugBank\", \"DrugCentral\", \"ChEMBL\", \"DGIdb\".  For more information check Implementation > Data"
+        },
+        {
+            name: "associatedProteinDisorder",
+            type: "string",
+            default: "NeDRex",
+            description: "The database which should be used to fetch protein-disorder association edges. Possible values are \"NeDRex\", \"DisGeNET\", \"OMIM\".  For more information check Implementation > Data"
+        },
+        {
+            name: "indicationDrugDisorder",
+            type: "string",
+            default: "NeDRex",
+            description: "The database which should be used to fetch drug-disorder indication edges. Possible values are \"NeDRex\", \"CTD\", \"DrugCentral\", \"DrugBank\".  For more information check Implementation > Data"
+        },
+        {
+            name: "activateNetworkMenuButtonAdjacentDrugs",
+            type: "boolean",
+            default: "false",
+            description: "Enable to automatically show drug interacting with proteins."
+        },
+        {
+            name: "activateNetworkMenuButtonAdjacentDisorders",
+            type: "boolean",
+            default: "false",
+            description: "Enable to automatically show disorders linked to shown proteins."
+        },
+        {
+            name: "activateNetworkMenuButtonAdjacentDisorderDrugs",
+            type: "boolean",
+            default: "false",
+            description: "Enable to automatically show drugs for shown disorders."
         },
     ]
 
