@@ -1,24 +1,5 @@
 {
   "nodeGroups": {
-    "patient": {
-      "type": "patient",
-      "color": "#000000",
-      "font": {
-        "color": "#000000"
-      },
-      "groupName": "Patient",
-      "shape": "image",
-      "image": "https://static.thenounproject.com/png/22780-200.png"
-    },
-    "condition": {
-      "type": "condition",
-      "color": "#000000",
-      "font": {
-        "color": "#000000"
-      },
-      "groupName": "Condition",
-      "shape": "text"
-    },
     "important": {
       "type": "gene",
       "color": "#ff881f",
@@ -48,23 +29,9 @@
     }
   },
   "edgeGroups": {
-    "genotype": {
-      "color": "#000000",
-      "groupName": "Relevant Gene"
-    },
-    "has-condition": {
-      "color": "#000000",
-      "groupName": "Has Condition",
-      "dashes": [2, 2]
-    },
     "default": {
       "color": "#000000",
       "groupName": "default edge"
-    },
-    "ggi": {
-      "color": "#000000",
-      "groupName": "Interaction",
-      "dashes": [3, 2]
     }
   }
 }

@@ -3,7 +3,7 @@
 
         <!-- <h1 class="display-5 fw-bold">Centered hero</h1> -->
         <div class="row mt-5">
-            <div class="col-lg-7 col-md-12 text-lg-start text-sm-center" >
+            <div class="col-lg-7 col-md-12 text-lg-start text-sm-center">
                 <!-- <img
                         class="ml-auto mr-0 mb-4 home-logo"
                         [src]="isDark() ? '/assets/logo_white.png' : '/assets/logo_black.png'"
@@ -13,10 +13,12 @@
                     Network Exploration and Drug Repurposing on your website</h1>
                 <p class="lead mt-3">
                     <br>
-                    Drugst.One turns your tool that outputs a list of genes or proteins into a feature rich, drug repurposing web tool with interactive network visualization.
+                    Drugst.One turns your tool that outputs a list of genes or proteins into a feature rich, drug
+                    repurposing web tool with interactive network visualization.
                     <br>
                     <br>
-                    With just 3 lines of code, users of your website can benefit from the exploratory functions and immediately start researching the results of your tool.
+                    With just 3 lines of code, users of your website can benefit from the exploratory functions and
+                    immediately start researching the results of your tool.
                     <br>
                     <br>
                 </p>
@@ -30,65 +32,52 @@
     </div>
     <div class="row align-items-start text-center">
         <div class="col">
-            <span style="width: 360px; height: 240px"> Video coming soon </span>
-            <!--        <iframe-->
-            <!--          width="360"-->
-            <!--          height="240"-->
-            <!--          src="https://www.youtube.com/embed/ScMzIvxBSi4"-->
-            <!--          title="YouTube video player"-->
-            <!--          frameborder="0"-->
-            <!--          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-            <!--          allowfullscreen-->
-            <!--          class="video"-->
-            <!--        ></iframe>-->
-            <div class="row">
+            <div class="d-flex justify-content-center">
                 <p-button
                         label="Integrate drugst.one"
                         icon="pi pi-fw pi-th-large"
                         (onClick)="switchTab('idea')"
                 ></p-button>
             </div>
+            <div class="d-flex justify-content-center">
+                <div style="width:360px; height: 240px">
+                    <video poster="assets/videos/tutorial1.png" controls width="360px" height="240px">
+                        <source src="assets/videos/tutorial1.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
         </div>
         <div class="col">
-            <span style="width: 360px; height: 240px"> Video coming soon </span>
-            <!--      <iframe-->
-            <!--        width="360"-->
-            <!--        height="240"-->
-            <!--        src="https://www.youtube.com/embed/oznr-1-poSU"-->
-            <!--        title="YouTube video player"-->
-            <!--        frameborder="0"-->
-            <!--        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-            <!--        allowfullscreen-->
-            <!--        class="video"-->
-            <!--      ></iframe>-->
-
-            <div class="row">
-                <a href="/doc#basic_integration">
+            <div class="d-flex justify-content-center">
+                <p-button
+                        label="Configure drugst.one"
+                        icon="pi pi-fw pi-send"
+                        (onClick)="switchTab('playground')"
+                ></p-button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div style="width:360px; height: 240px">
+                    <video poster="assets/videos/placeholder.png" controls width="360px" height="240px">
+<!--                        <source src="assets/videos/tutorial1.mp4" type="video/mp4">-->
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <a href="/doc#standalone_api">
                     <p-button
-                            label="Start using URL-config"
+                            label="Use Drugst.One standalone"
                             icon="pi pi-fw pi-send"
                     ></p-button>
                 </a>
             </div>
-        </div>
-        <div class="col">
-            <span style="width: 360px; height: 240px"> Video coming soon </span>
-            <!--      <iframe-->
-            <!--        width="360"-->
-            <!--        height="240"-->
-            <!--        src="https://www.youtube.com/embed/NpEaa2P7qZI"-->
-            <!--        title="YouTube video player"-->
-            <!--        frameborder="0"-->
-            <!--        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-            <!--        allowfullscreen-->
-            <!--        class="video"-->
-            <!--      ></iframe>-->
-            <div class="row">
-                <p-button
-                        label="Use drugst.online"
-                        icon="pi pi-fw pi-send"
-                        (onClick)="switchTab('standalone')"
-                ></p-button>
+            <div class="d-flex justify-content-center">
+                <div style="width:360px; height: 240px">
+                    <video poster="assets/videos/placeholder.png" controls width="360px" height="240px">
+<!--                        <source src="assets/videos/tutorial1.mp4" type="video/mp4">-->
+                    </video>
+                </div>
             </div>
         </div>
     </div>
