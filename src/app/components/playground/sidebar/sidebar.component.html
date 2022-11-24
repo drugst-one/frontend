@@ -52,21 +52,28 @@
                                     ></app-dropdown>
                                     <app-dropdown
                                             label="Protein-Protein Interaction DB"
-                                            [items]="dataLists.protProtInterList"
+                                            [items]="filterDatasets(dataLists.protProtInterList, getConfig('licensedDatasets'))"
                                             [model]="getConfig('interactionProteinProtein')"
-                                            tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
+                                            tooltip="Select the dataset of protein-protein information that is later used in functions like 'Drug Target Search' and 'Connect Genes'."
+                                            (onChange)="changeConfig('interactionProteinProtein', $event)"
+                                    ></app-dropdown>
+                                    <app-dropdown
+                                            label="Drug-Protein Interaction DB"
+                                            [items]="filterDatasets(dataLists.drugProtInterList, getConfig('licensedDatasets'))"
+                                            [model]="getConfig('interactionDrugProtein')"
+                                            tooltip="Select the dataset of drug-protein information that is later used in functions like 'Drug Search' and 'Quick Drug Search'."
                                             (onChange)="changeConfig('interactionProteinProtein', $event)"
                                     ></app-dropdown>
                                     <app-dropdown
                                             label="Protein-Disease Association DB"
-                                            [items]="dataLists.protDisList"
+                                            [items]="filterDatasets(dataLists.protDisList, getConfig('licensedDatasets'))"
                                             [model]="getConfig('associatedProteinDisorder')"
                                             tooltip="Select the dataset of protein-disease information that is later used in functions like 'Show disorders adjacent to displayed proteins'."
                                             (onChange)="changeConfig('associatedProteinDisorder', $event)"
                                     ></app-dropdown>
                                     <app-dropdown
                                             label="Drug-Disease Indication DB"
-                                            [items]="dataLists.drugDisList"
+                                            [items]="filterDatasets(dataLists.drugDisList, getConfig('licensedDatasets'))"
                                             [model]="getConfig('indicationDrugDisorder')"
                                             tooltip="Select the dataset of drug-disease information that is later used in functions like 'Show disorders adjacent to displayed drugs'."
                                             (onChange)="changeConfig('indicationDrugDisorder', $event)"
@@ -663,7 +670,7 @@
                                             style="padding-left: 12px">
 
                                         <app-switch label="Extended menu by default"
-                                                    [model]="getConfig('expandNetworkMenu') != null && getConfig('expandNetworkMenu') === true"
+                                                    [model]="getConfig('expandNetworkMenu') == null || getConfig('expandNetworkMenu') === true"
                                                     (onChange)="changeConfig('expandNetworkMenu', $event)"
                                                     tooltip="Opens or closes the side-mounted network menu by default."
                                         ></app-switch>

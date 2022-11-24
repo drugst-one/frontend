@@ -107,39 +107,84 @@ export class SidebarComponent implements OnInit {
                 drugDisList: [],
                 protDisList: []
             }
-            let uniq: string[] = []
-            response['protein-drug'].forEach((source: { name: string; }) => {
-                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
-                    uniq.push(source.name.toLowerCase())
+            let uniqMap = {}
+            response['protein-drug'].forEach((source: { name: string; licenced: boolean }) => {
+                let name = source.name.toLowerCase()
+                // @ts-ignore
+                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
+                if (source.licenced) {
                     // @ts-ignore
-                    this.dataLists.drugProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
-                }
-            })
-            uniq = []
-            response['protein-protein'].forEach((source: { name: string; }) => {
-                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
-                    uniq.push(source.name.toLowerCase())
+                    s['licensed'] = true
+                } else {
                     // @ts-ignore
-                    this.dataLists.protProtInterList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
+                    s['open'] = true
                 }
+                // @ts-ignore
+                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
             })
-            uniq = []
-            response['protein-disorder'].forEach((source: { name: string; }) => {
-                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
-                    uniq.push(source.name.toLowerCase())
+            // @ts-ignore
+            Object.values(uniqMap).forEach(o => this.dataLists.drugProtInterList.push(o))
+            uniqMap = {}
+            response['protein-protein'].forEach((source: { name: string; licenced: boolean }) => {
+                let name = source.name.toLowerCase()
+                // @ts-ignore
+                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
+                if (source.licenced) {
                     // @ts-ignore
-                    this.dataLists.protDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
-                }
-            })
-            uniq = []
-            response['drug-disorder'].forEach((source: { name: string; }) => {
-                if (uniq.indexOf(source.name.toLowerCase()) === -1) {
-                    uniq.push(source.name.toLowerCase())
+                    s['licensed'] = true
+                } else {
                     // @ts-ignore
-                    this.dataLists.drugDisList.push({label: this.nameMap[source.name] ? this.nameMap[source.name.toLowerCase()] : source.name, value: source.name})
+                    s['open'] = true
                 }
+                // @ts-ignore
+                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
             })
+            // @ts-ignore
+            Object.values(uniqMap).forEach(o => this.dataLists.protProtInterList.push(o))
+
+            uniqMap = []
+            response['protein-disorder'].forEach((source: { name: string; licenced: boolean }) => {
+                let name = source.name.toLowerCase()
+                // @ts-ignore
+                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
+                if (source.licenced) {
+                    // @ts-ignore
+                    s['licensed'] = true
+                } else {
+                    // @ts-ignore
+                    s['open'] = true
+                }
+                // @ts-ignore
+                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
+            })
+            // @ts-ignore
+            Object.values(uniqMap).forEach(o => this.dataLists.protDisList.push(o))
+            uniqMap = []
+            response['drug-disorder'].forEach((source: { name: string; licenced: boolean }) => {
+                let name = source.name.toLowerCase()
+                // @ts-ignore
+                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
+                if (source.licenced) {
+                    // @ts-ignore
+                    s['licensed'] = true
+                } else {
+                    // @ts-ignore
+                    s['open'] = true
+                }
+                // @ts-ignore
+                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
+            })
+            // @ts-ignore
+            Object.values(uniqMap).forEach(o => this.dataLists.drugDisList.push(o))
         })
+    }
+
+    // @ts-ignore
+    filterDatasets(datasets, licensed){
+        if(licensed)
+            return datasets
+        // @ts-ignore
+        return datasets.filter(o=>o.open)
     }
 
     changeGroupConfig(groups: object, groupId: string, key: any, value: any) {
