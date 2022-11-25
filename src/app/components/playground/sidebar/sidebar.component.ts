@@ -102,7 +102,8 @@ export class SidebarComponent implements OnInit {
     async loadDatasets() {
         this.drugstone.getDatasources(this.api).then(response => {
             this.dataLists = {
-                identifierList: this.dataLists.identifierList, drugProtInterList: [],
+                identifierList: this.dataLists.identifierList,
+                drugProtInterList: [],
                 protProtInterList: [],
                 drugDisList: [],
                 protDisList: []
@@ -123,7 +124,7 @@ export class SidebarComponent implements OnInit {
                 uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
             })
             // @ts-ignore
-            Object.values(uniqMap).forEach(o => this.dataLists.drugProtInterList.push(o))
+            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.drugProtInterList.push(o))
             uniqMap = {}
             response['protein-protein'].forEach((source: { name: string; licenced: boolean }) => {
                 let name = source.name.toLowerCase()
@@ -140,7 +141,7 @@ export class SidebarComponent implements OnInit {
                 uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
             })
             // @ts-ignore
-            Object.values(uniqMap).forEach(o => this.dataLists.protProtInterList.push(o))
+            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.protProtInterList.push(o))
 
             uniqMap = []
             response['protein-disorder'].forEach((source: { name: string; licenced: boolean }) => {
@@ -158,7 +159,7 @@ export class SidebarComponent implements OnInit {
                 uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
             })
             // @ts-ignore
-            Object.values(uniqMap).forEach(o => this.dataLists.protDisList.push(o))
+            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.protDisList.push(o))
             uniqMap = []
             response['drug-disorder'].forEach((source: { name: string; licenced: boolean }) => {
                 let name = source.name.toLowerCase()
@@ -175,16 +176,21 @@ export class SidebarComponent implements OnInit {
                 uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
             })
             // @ts-ignore
-            Object.values(uniqMap).forEach(o => this.dataLists.drugDisList.push(o))
+            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.drugDisList.push(o))
         })
     }
 
+    sorted(list: any) {
+        // @ts-ignore
+        return list.sort((a, b) => (a.label < b.label ? -1 : 1))
+    }
+
     // @ts-ignore
-    filterDatasets(datasets, licensed){
-        if(licensed)
+    filterDatasets(datasets, licensed) {
+        if (licensed)
             return datasets
         // @ts-ignore
-        return datasets.filter(o=>o.open)
+        return datasets.filter(o => o.open)
     }
 
     changeGroupConfig(groups: object, groupId: string, key: any, value: any) {
@@ -306,6 +312,13 @@ export class SidebarComponent implements OnInit {
         // @ts-ignore
         newDashes[idx] = updt
         this.changeGroupConfig(edgeGroups, key, 'dashes', newDashes);
+    }
+
+    getConfigOrDefault(param: string, def: any) {
+        let config = this.getConfig(param)
+        if (config == null)
+            return def
+        return config
     }
 
     getConfig(param: string) {
