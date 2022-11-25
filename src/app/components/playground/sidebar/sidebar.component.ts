@@ -226,6 +226,27 @@ export class SidebarComponent implements OnInit {
         this.configChangeEvent.emit(out)
     }
 
+    changeAdvAnalysisConfig(name: string, value: boolean) {
+        let config = this.getConfig('showAdvAnalysisContent')
+        console.log(config)
+        if (config == null) {
+            config = ['drug-target-search', 'drug-search', 'enrichment-gprofiler', 'enrichment-digest']
+        }
+        console.log(config)
+        console.log(config.includes(name))
+        if (value) {
+            if (!config.includes(name))
+                config.push(name)
+        } else {
+            let idx = config.indexOf(name)
+            if (idx > -1)
+                config.splice(idx, 1)
+        }
+        console.log(config)
+        this.changeConfig("showAdvAnalysisContent", config)
+    }
+
+
     changeGroups(name: string, value: any) {
         let out = {}
         // @ts-ignore
@@ -322,6 +343,7 @@ export class SidebarComponent implements OnInit {
     }
 
     getConfig(param: string) {
+
         // @ts-ignore
         return this.config[param]
     }

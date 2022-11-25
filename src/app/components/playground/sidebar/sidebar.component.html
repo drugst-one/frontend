@@ -563,77 +563,115 @@
                                             tooltip="Adds or removes the Legend."
                                     ></app-switch>
                                     <app-dropdown
+                                            [items]="networkMenuPosList"
+                                            [model]="getConfig('showNetworkMenu')"
+                                            label="Network Menu Position"
+                                            tooltip="Set the side, where the network menu should be located."
+                                            (onChange)="changeConfig('showNetworkMenu', $event)"
+                                    ></app-dropdown>
+                                    <app-dropdown
                                             [items]="sidebarPosList"
                                             [model]="getConfig('showSidebar')"
                                             label="Panel-Sidebar Position"
                                             tooltip="Set the side, where the sidebar should be located."
                                             (onChange)="changeConfig('showSidebar', $event)"
                                     ></app-dropdown>
-                                    <app-dropdown
-                                        [items]="networkMenuPosList"
-                                        [model]="getConfig('showNetworkMenu')"
-                                        label="Network Menu Position"
-                                        tooltip="Set the side, where the network menu should be located."
-                                        (onChange)="changeConfig('showNetworkMenu', $event)"
-                                ></app-dropdown>
-                                    <app-switch
-                                            label="Show Overview Panel"
-                                            [model]="
+                                    <div
+                                            [hidden]="
+                              getConfig('showSidebar') != null && getConfig('showSidebar') === false"
+                                            style="padding-left: 12px">
+                                        <app-switch
+                                                label="Show Overview Panel"
+                                                [model]="
                               getConfig('showOverview') == null ||
                               getConfig('showOverview') === true
                             "
-                                            (onChange)="changeConfig('showOverview', $event)"
-                                            tooltip="Adds or removes the network overview card in the left sidepanel."
-                                    ></app-switch>
-                                    <app-switch
-                                            label="Show Query Panel"
-                                            [model]="
+                                                (onChange)="changeConfig('showOverview', $event)"
+                                                tooltip="Adds or removes the network overview card in the left sidepanel."
+                                        ></app-switch>
+                                        <app-switch
+                                                label="Show Query Panel"
+                                                [model]="
                               getConfig('showQuery') == null || getConfig('showQuery') === true
                             "
-                                            (onChange)="changeConfig('showQuery', $event)"
-                                            tooltip="Adds or removes the search and focus input card from the left sidepanel."
-                                    ></app-switch>
-                                    <app-switch
-                                            label="Show Item Selector"
-                                            [model]="
+                                                (onChange)="changeConfig('showQuery', $event)"
+                                                tooltip="Adds or removes the search and focus input card from the left sidepanel."
+                                        ></app-switch>
+                                        <app-switch
+                                                label="Show Item Selector"
+                                                [model]="
                               getConfig('showItemSelector') == null ||
                               getConfig('showItemSelector') === true
                             "
-                                            (onChange)="changeConfig('showItemSelector', $event)"
-                                            tooltip="Adds or removes the node selector card to/from the right sidepanel."
-                                    ></app-switch>
-                                    <app-switch
-                                            label="Show Simple Analysis"
-                                            [model]="getConfig('showSimpleAnalysis') === true"
-                                            (onChange)="changeConfig('showSimpleAnalysis', $event)"
-                                            tooltip="Adds or removes the simple analysis card card to/from the right sidepanel."
-                                    ></app-switch>
-                                    <app-switch
-                                            label="Show Advanced Analysis"
-                                            [model]="
+                                                (onChange)="changeConfig('showItemSelector', $event)"
+                                                tooltip="Adds or removes the node selector card to/from the right sidepanel."
+                                        ></app-switch>
+                                        <app-switch
+                                                label="Show Connect Genes"
+                                                [model]="getConfig('showConnectGenes') == null ||getConfig('showConnectGenes') === true"
+                                                (onChange)="changeConfig('showConnectGenes', $event)"
+                                                tooltip="Adds or removes the connect genes card card to/from the right sidepanel."
+                                        ></app-switch>
+                                        <app-switch
+                                                label="Show Quick Drug Search"
+                                                [model]="getConfig('showSimpleAnalysis') == null || getConfig('showSimpleAnalysis') === true"
+                                                (onChange)="changeConfig('showSimpleAnalysis', $event)"
+                                                tooltip="Adds or removes the quick drug search analysis card card to/from the right sidepanel."
+                                        ></app-switch>
+                                        <app-switch
+                                                label="Show Advanced Analysis"
+                                                [model]="
                               getConfig('showAdvAnalysis') == null ||
                               getConfig('showAdvAnalysis') === true
                             "
-                                            (onChange)="changeConfig('showAdvAnalysis', $event)"
-                                            tooltip="Adds or removes the advanced analysis card to/from the right sidepanel."
-                                    ></app-switch>
-                                    <app-switch
-                                            label="Show Selection"
-                                            [model]="
+                                                (onChange)="changeConfig('showAdvAnalysis', $event)"
+                                                tooltip="Adds or removes the advanced analysis card to/from the right sidepanel."
+                                        ></app-switch>
+                                        <div [hidden]="getConfig('showAdvAnalysis') != null &&
+                              getConfig('showAdvAnalysis') === false" style="padding-left: 12px">
+                                            <app-switch
+                                                    label="Drug Target Search"
+                                                    [model]="getConfig('showAdvAnalysisContent') == null || getConfig('showAdvAnalysisContent').includes('drug-target-search')"
+                                                    (onChange)="changeAdvAnalysisConfig('drug-target-search', $event)"
+                                                    tooltip="Adds or removes the button for drug target algorithm execution from Analysis panel."
+                                            ></app-switch>
+                                            <app-switch
+                                                    label="Drug Search"
+                                                    [model]="getConfig('showAdvAnalysisContent') == null || getConfig('showAdvAnalysisContent').includes('drug-search')"
+                                                    (onChange)="changeAdvAnalysisConfig('drug-search', $event)"
+                                                    tooltip="Adds or removes the button for drug search algorithm execution from Analysis panel."
+                                            ></app-switch>
+                                            <app-switch
+                                                    label="Enrichment: g:Profiler"
+                                                    [model]="getConfig('showAdvAnalysisContent') == null ||getConfig('showAdvAnalysisContent').includes('enrichment-gprofiler')"
+                                                    (onChange)="changeAdvAnalysisConfig('enrichment-gprofiler', $event)"
+                                                    tooltip="Adds or removes the button redirecting to g:Profiler (https://biit.cs.ut.ee/gprofiler/) for gene enrichment analysis from the analysis panel."
+                                            ></app-switch>
+                                            <app-switch
+                                                    label="Enrichment: DIGEST"
+                                                    [model]="getConfig('showAdvAnalysisContent') == null ||getConfig('showAdvAnalysisContent').includes('enrichment-digest')"
+                                                    (onChange)="changeAdvAnalysisConfig('enrichment-digest', $event)"
+                                                    tooltip="Adds or removes the button redirecting to DIGEST (https://digest.net) for gene enrichment analysis from the analysis panel."
+                                            ></app-switch>
+                                            </div>
+                                        <app-switch
+                                                label="Show Selection"
+                                                [model]="
                               getConfig('showSelection') == null ||
                               getConfig('showSelection') === true
                             "
-                                            (onChange)="changeConfig('showSelection', $event)"
-                                            tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
-                                    ></app-switch>
-                                    <app-switch
-                                            label="Show Task Card"
-                                            [model]="
+                                                (onChange)="changeConfig('showSelection', $event)"
+                                                tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
+                                        ></app-switch>
+                                        <app-switch
+                                                label="Show Task Card"
+                                                [model]="
                               getConfig('showTasks') == null || getConfig('showTasks') === true
                             "
-                                            (onChange)="changeConfig('showTasks', $event)"
-                                            tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
-                                    ></app-switch>
+                                                (onChange)="changeConfig('showTasks', $event)"
+                                                tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
+                                        ></app-switch>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -658,12 +696,12 @@
                                  aria-labelledby="panelsStayOpen-headingInterfaceNetworkMenu">
                                 <div class="accordion-body">
                                     <app-dropdown
-                                        [items]="networkMenuPosList"
-                                        [model]="getConfig('showNetworkMenu')"
-                                        label="Network Menu Position"
-                                        tooltip="Set the side, where the network menu should be located."
-                                        (onChange)="changeConfig('showNetworkMenu', $event)"
-                                ></app-dropdown>
+                                            [items]="networkMenuPosList"
+                                            [model]="getConfig('showNetworkMenu')"
+                                            label="Network Menu Position"
+                                            tooltip="Set the side, where the network menu should be located."
+                                            (onChange)="changeConfig('showNetworkMenu', $event)"
+                                    ></app-dropdown>
                                     <div
                                             [hidden]="
                               getConfig('showNetworkMenu') != null && getConfig('showNetworkMenu') === false"
@@ -677,8 +715,8 @@
 
                                         <app-switch label="Show recenter button"
                                                     [model]="getConfig('showNetworkMenuButtonCenter') == null || getConfig('showNetworkMenuButtonCenter') === true"
-                                                (onChange)="changeConfig('showNetworkMenuButtonCenter', $event)"
-                                                tooltip="Adds or removes the recenter button from the side-mounted network menu."
+                                                    (onChange)="changeConfig('showNetworkMenuButtonCenter', $event)"
+                                                    tooltip="Adds or removes the recenter button from the side-mounted network menu."
                                         ></app-switch>
 
                                         <app-switch label="Show screenshot button"
@@ -726,30 +764,29 @@
 
 
                                         <app-textinput
-                                                label="Network Menu Adjacent Drugs"
+                                                label="Network Menu 'Adjacent Drugs' button label"
                                                 [model]="getConfig('networkMenuButtonAdjacentDrugsLabel')"
                                                 (onChange)="changeConfig('networkMenuButtonAdjacentDrugsLabel',$event != null && $event.length > 0 ? $event : 'Drugs')"
                                                 tooltip="Sets the label of the adjacent drugs button in the side-mounted network menu."
                                         ></app-textinput>
                                         <app-textinput
-                                                label="Network Menu Adjacent Disorders (protein)"
+                                                label="Network Menu 'Adjacent Disorders (protein)' button label"
                                                 [model]="getConfig('networkMenuButtonAdjacentDisordersProteinsLabel')"
                                                 (onChange)="changeConfig('networkMenuButtonAdjacentDisordersProteinsLabel',$event != null && $event.length > 0 ? $event : 'Disorders (protein)')"
                                                 tooltip="Sets the label of the adjacent disorders connecting proteins button in the side-mounted network menu."
                                         ></app-textinput>
                                         <app-textinput
-                                                label="Network Menu Adjacent Disorders (drug)"
+                                                label="Network Menu 'Adjacent Disorders (drug)' button label"
                                                 [model]="getConfig('networkMenuButtonAdjacentDisordersDrugsLabel')"
                                                 (onChange)="changeConfig('networkMenuButtonAdjacentDisordersDrugsLabel',$event != null && $event.length > 0 ? $event : 'Disorders (drug)')"
                                                 tooltip="Sets the label of the adjacent disorders connecting drugs button in the side-mounted network menu."
                                         ></app-textinput>
                                         <app-textinput
-                                                label="Network Menu Animation"
+                                                label="Network Menu 'Animation' button label"
                                                 [model]="getConfig('networkMenuButtonAnimationLabel')"
                                                 (onChange)="changeConfig('networkMenuButtonAnimationLabel',$event != null && $event.length > 0 ? $event : 'Animation')"
                                                 tooltip="Sets the label of the animation button in the side-mounted network menu."
                                         ></app-textinput>
-
 
 
                                     </div>
