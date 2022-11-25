@@ -1,33 +1,36 @@
-For now we depicted cases of information flow from the host page to the drugstone component
-(<code>{{"<"}}drugst-one{{">"}}</code>).<br>
-To communicate some information from Drugst.One to your host page, if requested, we emit
-events that can be listened to. This is generally achieved by adding an
-<i>EventListener</i> to the component:
-<app-code lang="js"
-          code='document.getElementById("drugstone-component-id").addEventListener("$eventName",(event)=>{console.log(event.detail)})'>
-</app-code>
-We select the component by its id (here 'drugstone-component-id') and add the necessary
-<i>EventListener</i> where "$eventName" has to be replaced with one of the events
-specified below. In this example we just want the received content to be printed into
-the browsers console, but this call may be replaced by any custom code, handling the
-event data.<br>
-In the following the specific events will be covered, including the necessary eventName
-to listen to, as well as how the result object is structured. Also some use-cases for
-the received object might be proposed here.
+<p>
+    For now we depicted cases of information flow from the host page to the drugstone component
+    (<code>{{"<"}}drugst-one{{">"}}</code>).<br>
+    To communicate some information from Drugst.One to your host page, if requested, we emit
+    events that can be listened to. This is generally achieved by adding an
+    <i>EventListener</i> to the component:
+    <app-code lang="js"
+              code='document.getElementById("drugstone-component-id").addEventListener("$eventName",(event)=>{console.log(event.detail)})'>
+    </app-code>
+    We select the component by its id (here 'drugstone-component-id') and add the necessary
+    <i>EventListener</i> where "$eventName" has to be replaced with one of the events
+    specified below. In this example we just want the received content to be printed into
+    the browsers console, but this call may be replaced by any custom code, handling the
+    event data.<br>
+    In the following the specific events will be covered, including the necessary eventName
+    to listen to, as well as how the result object is structured. Also some use-cases for
+    the received object might be proposed here.
+</p>
 <p-divider [style]="{marginLeft:'35%', marginRight:'35%', width:'30%'}"
            [align]="'center'"></p-divider>
 <div style="padding-left: 15px">
-    <div style="font-size: 15pt">Task creation ("taskEvent")</div>
-    Task IDs are emitted when algorithms are applied to subnetworks. This happens both
-    for module and drug analysis. These tasks are tracked internally but for general
-    result tracking reasons from a hosts perspective it can be necessary to acquire
-    them.
-    <app-code lang="js"
-              code='document.getElementById("drugstone-component-id").addEventListener("taskEvent,(event)=>{callback(event)})'>
-    </app-code>
-    The <i>event.detail</i> object, your callback function receives is structured like
-    follows:
-    <app-code [copy]="false" lang="json" code='{
+    <div style="font-size: 15pt"><b>Task creation ("taskEvent")</b></div>
+    <p>
+        Task IDs are emitted when algorithms are applied to subnetworks. This happens both
+        for module and drug analysis. These tasks are tracked internally but for general
+        result tracking reasons from a hosts perspective it can be necessary to acquire
+        them.
+        <app-code lang="js"
+                  code='document.getElementById("drugstone-component-id").addEventListener("taskEvent,(event)=>{callback(event)})'>
+        </app-code>
+        The <i>event.detail</i> object, your callback function receives is structured like
+        follows:
+        <app-code [copy]="false" lang="json" code='{
     "taskId": "GFpwPHkc6gsXGvIx1g83w0hO8i95przG",   // Unique taskID (token) assigned for this task, can be used to request the loading of this specific result
     "algorithm": "multisteiner",                    // The algorithm that was applied on the selected seed nodes
     "target": "drug-target",                        // The type of analysis this search had as goal
@@ -43,15 +46,15 @@ the received object might be proposed here.
         "hub_penalty": 0                            // Specific multisteiner algorithms parameters
     }
 }'></app-code>
-    The <b><i>taskId</i></b> can be used to tell drugstone programmatically to load a
-    specific result. For this similar to the <i>id</i>, <i>config</i> or <i>network</i>
-    attributes an additional one (<i>task-id</i>) can be set. It accepts the id of a
-    successfully finished task. Example where the taskId from the received object is
-    set is shown below:
-    <app-code lang="js"
-              code='document.getElementById("drugstone-component-id").setAttribute("task-id", "GFpwPHkc6gsXGvIx1g83w0hO8i95przG")'></app-code>
-    or
-    <app-code lang="html" code="
+        The <b><i>taskId</i></b> can be used to tell drugstone programmatically to load a
+        specific result. For this similar to the <i>id</i>, <i>config</i> or <i>network</i>
+        attributes an additional one (<i>task-id</i>) can be set. It accepts the id of a
+        successfully finished task. Example where the taskId from the received object is
+        set is shown below:
+        <app-code lang="js"
+                  code='document.getElementById("drugstone-component-id").setAttribute("task-id", "GFpwPHkc6gsXGvIx1g83w0hO8i95przG")'></app-code>
+        or
+        <app-code lang="html" code="
 <drugst-one
         id='drugstone-component-id'
         config='{...}'
@@ -60,6 +63,6 @@ the received object might be proposed here.
         >
 </drugst-one>"></app-code>
 
-    TODO: additional info on how to get status of task using the token with {{api}}
-
+        TODO: additional info on how to get status of task using the token with {{api}}
+    </p>
 </div>
