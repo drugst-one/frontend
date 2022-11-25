@@ -228,12 +228,9 @@ export class SidebarComponent implements OnInit {
 
     changeAdvAnalysisConfig(name: string, value: boolean) {
         let config = this.getConfig('showAdvAnalysisContent')
-        console.log(config)
         if (config == null) {
             config = ['drug-target-search', 'drug-search', 'enrichment-gprofiler', 'enrichment-digest']
         }
-        console.log(config)
-        console.log(config.includes(name))
         if (value) {
             if (!config.includes(name))
                 config.push(name)
@@ -242,7 +239,6 @@ export class SidebarComponent implements OnInit {
             if (idx > -1)
                 config.splice(idx, 1)
         }
-        console.log(config)
         this.changeConfig("showAdvAnalysisContent", config)
     }
 
