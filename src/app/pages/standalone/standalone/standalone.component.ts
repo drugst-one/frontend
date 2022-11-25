@@ -40,20 +40,20 @@ export class StandaloneComponent implements OnInit {
     public cysticFibrosisGenes = ['CFTR', 'TGFB1', 'TNFRSF1A', 'FCGR2A', 'ENG', 'DCTN4', 'CLCA4', 'STX1A',
         'SCNN1G', 'SCNN1A', 'SCNN1B']
 
-    public nameMap = {
-        nedrex: 'NeDRex',
-        biogrid: 'BioGRID',
-        iid: 'IID',
-        intact: 'IntAct',
-        string: 'STRING',
-        apid: 'APID',
-        drugcentral: 'DrugCentral',
-        chembl: 'ChEMBL',
-        dgidb: 'DGIdb',
-        disgenet: 'DisGeNET',
-        ctd: 'CTD',
-        drugbank: 'DrugBank',
-        omim: 'OMIM'
+    public nameMap: {[key: string]: string} = {
+        'nedrex': 'NeDRex',
+        'biogrid': 'BioGRID',
+        'iid': 'IID',
+        'intact': 'IntAct',
+        'string': 'STRING',
+        'apid': 'APID',
+        'drugcentral': 'DrugCentral',
+        'chembl': 'ChEMBL',
+        'dgidb': 'DGIdb',
+        'disgenet': 'DisGeNET',
+        'ctd': 'CTD',
+        'drugbank': 'DrugBank',
+        'omim': 'OMIM'
     }
 
 
@@ -142,20 +142,26 @@ export class StandaloneComponent implements OnInit {
         this.drugstone.getDatasources(this.api).then(response => {
             this.dataLists = {
                 identifierList: this.dataLists.identifierList,
-                drugProtInterList: response['protein-drug'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
-                }),
-                protProtInterList: response['protein-protein'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
-                }),
-                drugDisList: response['drug-disorder'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
-                }),
-                protDisList: response['protein-disorder'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label': source.name + (source.licenced ? '(licenced)' : ''), value: source}
-                })
+                drugProtInterList: this.sorted(response['protein-drug'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                })),
+                protProtInterList: this.sorted(response['protein-protein'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label':  this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                })),
+                drugDisList: this.sorted(response['drug-disorder'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label':  this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                })),
+                protDisList: this.sorted(response['protein-disorder'].map((source: { name: string; licenced: boolean; }) => {
+                    return {'label':  this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                }))
             }
+            this.dataLists.drugProtInterList
         })
+    }
+
+    sorted(list: any){
+        // @ts-ignore
+        return list.sort((a,b)=>(a.label < b.label ? -1 : 1))
     }
 
     async setParams(params: object): Promise<any> {
