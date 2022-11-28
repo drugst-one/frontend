@@ -27,6 +27,12 @@ export class StandaloneUrlComponent implements OnInit {
             description: "Can be one of the supported identifier types to map gene names. Options are: \"symbol\" (gene Symbol), \"uniprot\" (Uniprot accession number), \"ensg\" (Ensembl Gene ID), \"entrez\" (Entrez ID)."
         },
         {
+          name: "physicsOn",
+          type: "boolean",
+          default: "false",
+          description: "Enables the interactive physics of the network by default."
+        },
+        {
             name: "licensedDatasets",
             type: "boolean",
             default: "false",
