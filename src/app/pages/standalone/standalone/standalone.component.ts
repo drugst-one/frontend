@@ -40,7 +40,7 @@ export class StandaloneComponent implements OnInit {
     public cysticFibrosisGenes = ['CFTR', 'TGFB1', 'TNFRSF1A', 'FCGR2A', 'ENG', 'DCTN4', 'CLCA4', 'STX1A',
         'SCNN1G', 'SCNN1A', 'SCNN1B']
 
-    public nameMap: {[key: string]: string} = {
+    public nameMap: { [key: string]: string } = {
         'nedrex': 'NeDRex',
         'biogrid': 'BioGRID',
         'iid': 'IID',
@@ -56,28 +56,69 @@ export class StandaloneComponent implements OnInit {
         'omim': 'OMIM'
     }
 
+    public dataMaps = {
+        drugProtInterList: {
+            'NeDRex': {name: 'NeDRex', licenced: false},
+            'NeDRex (licensed)': {name: 'NeDRex', licenced: true},
+            'DrugBank (licensed)': {name: 'DrugBank', licenced: true},
+            'ChEMBL': {name: 'ChEMBL', licenced: false},
+            'ChEMBL (licensed)': {name: 'ChEMBL', licenced: true},
+            'DGIdb': {name: 'DGIdb', licenced: false},
+            'DGIdb (licensed)': {name: 'DGIdb', licenced: true}
+        }
+        , protProtInterList: {
+            'NeDRex': {name: 'NeDRex', licenced: false},
+            'NeDRex (licensed)': {name: 'NeDRex', licenced: true},
+            'STRING': {name: 'STRING', licenced: false},
+            'STRING (licensed)': {name: 'STRING', licenced: true},
+            'BioGRID': {name: 'BioGRID', licenced: false},
+            'BioGRID (licensed)': {name: 'BioGRID', licenced: true},
+            'APID': {name: 'APID', licenced: false},
+            'APID (licensed)': {name: 'APID', licenced: false}
+        },
+        drugDisList: {
+            'NeDRex': {name: 'NeDRex', licenced: false},
+            'NeDRex (licensed)': {name: 'NeDRex', licenced: true},
+            'OMIM': {name: 'OMIM', licenced: true}
+        },
+        protDisList: {
+            'NeDRex': {name: 'NeDRex', licenced: false},
+            'NeDRex (licensed)': {name: 'NeDRex', licenced: true}
+        }
+    }
 
     public dataLists = {
         identifierList: [{label: 'Symbol', value: 'symbol'}, {label: 'UniProt', value: 'uniprot'}, {
             label: 'Ensemble',
             value: 'ensg'
         }, {label: 'Entrez', value: 'entrez'}],
-        drugProtInterList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},{label: 'DrugBank', value: {name: 'DrugBank', licenced: true}}, {
-            label: 'ChEMBL',
-            value: {name: 'ChEMBL', licenced: true}
-        }, {
-            label: 'DGIdb',
-            value: {name: 'DGIdb', licenced: true}
-        }],
-        protProtInterList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},{label: 'STRING', value: {name: 'STRING', licenced: true}}, {
-            label: 'BioGRID',
-            value: {name: 'BioGRID', licenced: true}
-        }, {
-            label: 'APID',
-            value: {name: 'APID', licenced: true}
-        }],
-        drugDisList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}}],
-        protDisList: [{label: 'NeDRex', value: {name: 'NeDRex', licenced: false}}]
+        drugProtInterList: [
+            {label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},
+            {label: 'NeDRex (licensed)', value: {name: 'NeDRex', licenced: true}},
+            {label: 'DrugBank', value: {name: 'DrugBank', licenced: true}},
+            {label: 'ChEMBL', value: {name: 'ChEMBL', licenced: false }},
+            {label: 'ChEMBL (licensed)', value: {name: 'ChEMBL', licenced: true }},
+            {label: 'DGIdb', value: {name: 'DGIdb', licenced: false}},
+            {label: 'DGIdb (licensed)', value: {name: 'DGIdb', licenced: true}}
+        ],
+        protProtInterList: [
+            {label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},
+            {label: 'NeDRex (licensed)', value: {name: 'NeDRex', licenced: true}},
+            {label: 'STRING', value: {name: 'STRING', licenced: false}},
+            {label: 'STRING (licensed)', value: {name: 'STRING', licenced: true}},
+            {label: 'BioGRID', value: {name: 'BioGRID', licenced: false}},
+            {label: 'BioGRID (licensed)', value: {name: 'BioGRID', licenced: true}},
+            {label: 'APID', value: {name: 'APID', licenced: false}},
+            {label: 'APID (licensed)', value: {name: 'APID', licenced: true}}
+        ],
+        drugDisList: [
+            {label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},
+            {label: 'NeDRex (licensed)', value: {name: 'NeDRex', licenced: true}}
+        ],
+        protDisList: [
+            {label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},
+            {label: 'NeDRex (licensed)', value: {name: 'NeDRex', licenced: false}}
+        ]
     }
 
     constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService) {
@@ -124,8 +165,10 @@ export class StandaloneComponent implements OnInit {
         this.configLight = configLight
         this.configDark = configDark
         this.config = this.configLight
-        this.loadDatasets()
-        this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
+        this.loadDatasets().then(() => {
+            this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
+        })
+
 
     }
 
@@ -138,131 +181,181 @@ export class StandaloneComponent implements OnInit {
         window.location.replace("/doc#" + id)
     }
 
-    async loadDatasets() {
-        this.drugstone.getDatasources(this.api).then(response => {
+    loadDatasets() {
+        return this.drugstone.getDatasources(this.api).then(response => {
             this.dataLists = {
                 identifierList: this.dataLists.identifierList,
                 drugProtInterList: this.sorted(response['protein-drug'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                    return {
+                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
+                        value: source
+                    }
                 })),
                 protProtInterList: this.sorted(response['protein-protein'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label':  this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                    return {
+                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
+                        value: source
+                    }
                 })),
                 drugDisList: this.sorted(response['drug-disorder'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label':  this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                    return {
+                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
+                        value: source
+                    }
                 })),
                 protDisList: this.sorted(response['protein-disorder'].map((source: { name: string; licenced: boolean; }) => {
-                    return {'label':  this.nameMap[source.name.toLowerCase()] + (source.licenced ? '(licenced)' : ''), value: source}
+                    return {
+                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
+                        value: source
+                    }
                 }))
             }
-            this.dataLists.drugProtInterList
+            console.log(this.dataLists)
+            // @ts-ignore
+            this.dataMaps.drugProtInterList = {}
+            this.dataLists.drugProtInterList.forEach(d => {
+                // @ts-ignore
+                this.dataMaps.protProtInterList[d.label] = d.value
+            })
+            this.dataLists.drugDisList.forEach(d => {
+                // @ts-ignore
+                this.dataMaps.drugDisList[d.label] = d.value
+            })
+            this.dataLists.protDisList.forEach(d => {
+                // @ts-ignore
+                this.dataMaps.protDisList[d.label] = d.value
+            })
+            this.dataLists.drugProtInterList.forEach(d => {
+                // @ts-ignore
+                this.dataMaps.drugProtInterList[d.label] = d.value
+            })
         })
     }
 
-    sorted(list: any){
+    sorted(list: any) {
         // @ts-ignore
-        return list.sort((a,b)=>(a.label < b.label ? -1 : 1))
+        return list.sort((a, b) => (a.label < b.label ? -1 : 1))
     }
 
     async setParams(params: object): Promise<any> {
-        this.toggleTab(this.networkInput, false);
-        this.toggleTab(this.advancedSettings, false);
-        this.toggleTab(this.drugstoneApp, true);
-        if ("taskId" in params) {
-            // @ts-ignore
-            this.changeConfig("taskId", params["token"]);
-            return
-        }
-
-        let nodes: any[];
-        nodes = [];
-        let edges: any[];
-        edges = [];
-
-        if ("id" in params) {
-            // @ts-ignore
-            let response = await this.drugstone.getNetwork(this.api, params["id"]).then(response => {
-                return response
-            }).catch(console.error)
-            nodes = response.network.nodes
-            edges = response.network.edges
-            if (response.groups != null)
-                Object.keys(response.groups).forEach(key => this.changeGroups(key, response.groups[key]))
-            if (response.config != null)
-                Object.keys(response.config).forEach(key => this.changeConfig(key, response.config[key]))
-
-        } else {
-            if ("nodes" in params) { // @ts-ignore
-                nodes = this.getNodes(params["nodes"], ",");
-                this.rawNodes = nodes.map(o => o.label).join("\n")
-            }
-            if ("edges" in params) { // @ts-ignore
-                edges = this.getEdges(params["edges"], ",", "%20");
-                this.rawEdges = edges.map(o => o.from + " " + o.to).join("\n")
-            }
-            if ("identifier" in params) {
+        this.loadDatasets().then(async () => {
+            this.toggleTab(this.networkInput, false);
+            this.toggleTab(this.advancedSettings, false);
+            this.toggleTab(this.drugstoneApp, true);
+            if ("taskId" in params) {
                 // @ts-ignore
-                let ident = params["identifier"]
-                if (this.dataLists.identifierList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeConfig("identifier", ident)
-            }
-            if ("interactionProteinProtein" in params) {
-                // @ts-ignore
-                let ident = params["interactionProteinProtein"]
-                if (this.dataLists.protProtInterList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeDataset("interactionProteinProtein", ident)
-            }
-            if ("interactionDrugProtein" in params) {
-                // @ts-ignore
-                let ident = params["interactionDrugProtein"]
-                if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeDataset("interactionDrugProtein", ident)
-            }
-            if ("indicationDrugDisorder" in params) {
-                // @ts-ignore
-                let ident = params["indicationDrugDisorder"]
-                if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeDataset("indicationDrugDisorder", ident)
-            }
-            if ("associatedProteinDisorder" in params) {
-                // @ts-ignore
-                let ident = params["associatedProteinDisorder"]
-                if (this.dataLists.drugProtInterList.map(o => o.value).indexOf(ident) > -1)
-                    this.changeDataset("associatedProteinDisorder", ident)
-            }
-            if ("autofillEdges" in params) {
-                // @ts-ignore
-                let fill = params["autofillEdges"] === "true"
-                this.changeConfig("autofillEdges", fill)
-            }
-            if ("activateNetworkMenuButtonAdjacentDrugs" in params) {
-                // @ts-ignore
-                let activate = params["activateNetworkMenuButtonAdjacentDrugs"] === "true"
-                this.changeConfig("activateNetworkMenuButtonAdjacentDrugs", activate)
+                this.changeConfig("taskId", params["token"]);
+                return
             }
 
-            if ("activateNetworkMenuButtonAdjacentDisorders" in params) {
-                // @ts-ignore
-                let activate = params["activateNetworkMenuButtonAdjacentDisorders"] === "true"
-                this.changeConfig("activateNetworkMenuButtonAdjacentDisorders", activate)
-            }
+            let nodes: any[];
+            nodes = [];
+            let edges: any[];
+            edges = [];
 
-            if ("activateNetworkMenuButtonAdjacentDisorderDrugs" in params) {
+            if ("id" in params) {
                 // @ts-ignore
-                let activate = params["activateNetworkMenuButtonAdjacentDisorderDrugs"] === "true"
-                this.changeConfig("activateNetworkMenuButtonAdjacentDisorderDrugs", activate)
-            }
+                let response = await this.drugstone.getNetwork(this.api, params["id"]).then(response => {
+                    return response
+                }).catch(console.error)
+                nodes = response.network.nodes
+                edges = response.network.edges
+                if (response.groups != null)
+                    Object.keys(response.groups).forEach(key => this.changeGroups(key, response.groups[key]))
+                if (response.config != null)
+                    Object.keys(response.config).forEach(key => this.changeConfig(key, response.config[key]))
 
-            if ("licensedDatasets" in params) {
-                // @ts-ignore
-                let activate = params["licensedDatasets"] === "true"
-                this.changeConfig("licensedDatasets", activate)
-            }
+            } else {
+                let licensed = false;
+                if ("nodes" in params) { // @ts-ignore
+                    nodes = this.getNodes(params["nodes"], ",");
+                    this.rawNodes = nodes.map(o => o.label).join("\n")
+                }
+                if ("edges" in params) { // @ts-ignore
+                    edges = this.getEdges(params["edges"], ",", "%20");
+                    this.rawEdges = edges.map(o => o.from + " " + o.to).join("\n")
+                }
+                if ("physicsOn" in params) {
+                    // @ts-ignore
+                    let activate = params["physicsOn"] === "true"
+                    this.changeConfig("physicsOn", activate)
+                }
+                if ("identifier" in params) {
+                    // @ts-ignore
+                    let ident = params["identifier"]
+                    if (this.dataLists.identifierList.map(o => o.value).indexOf(ident) > -1)
+                        this.changeConfig("identifier", ident)
+                }
+                if ("licensedDatasets" in params) {
+                    // @ts-ignore
+                    licensed =params["licensedDatasets"] === "true"
+                    this.changeConfig("licensedDatasets", licensed)
+                }
+                if ("interactionProteinProtein" in params) {
+                    // @ts-ignore
+                    let ident = this.nameMap[params["interactionProteinProtein"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    // @ts-ignore
+                    let ds = this.dataMaps.protProtInterList[ident]
+                    if (ds) {
+                        this.changeDataset("interactionProteinProtein", ds)
+                    }
+                }
+                if ("interactionDrugProtein" in params) {
+                    // @ts-ignore
+                    let ident = this.nameMap[params["interactionDrugProtein"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    // @ts-ignore
+                    let ds = this.dataMaps.drugProtInterList[ident]
+                    if (ds) {
+                        this.changeDataset("interactionDrugProtein", ds)
+                    }
+                }
+                if ("indicationDrugDisorder" in params) {
+                    // @ts-ignore
+                    let ident = this.nameMap[params["indicationDrugDisorder"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    // @ts-ignore
+                    let ds = this.dataMaps.drugDisList[ident]
+                    if (ds) {
+                        this.changeDataset("indicationDrugDisorder", ds)
+                    }
+                }
+                if ("associatedProteinDisorder" in params) {
+                    // @ts-ignore
+                    let ident = this.nameMap[params["associatedProteinDisorder"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    // @ts-ignore
+                    let ds = this.dataMaps.protDisList[ident]
+                    if (ds) {
+                        this.changeDataset("associatedProteinDisorder", ds)
+                    }
+                }
+                if ("autofillEdges" in params) {
+                    // @ts-ignore
+                    let fill = params["autofillEdges"] === "true"
+                    this.changeConfig("autofillEdges", fill)
+                }
+                if ("activateNetworkMenuButtonAdjacentDrugs" in params) {
+                    // @ts-ignore
+                    let activate = params["activateNetworkMenuButtonAdjacentDrugs"] === "true"
+                    this.changeConfig("activateNetworkMenuButtonAdjacentDrugs", activate)
+                }
 
-        }
-        if (nodes.length > 0 || edges.length > 0) {
-            this.network = {nodes: nodes, edges: edges}
-        }
+                if ("activateNetworkMenuButtonAdjacentDisorders" in params) {
+                    // @ts-ignore
+                    let activate = params["activateNetworkMenuButtonAdjacentDisorders"] === "true"
+                    this.changeConfig("activateNetworkMenuButtonAdjacentDisorders", activate)
+                }
+
+                if ("activateNetworkMenuButtonAdjacentDisorderDrugs" in params) {
+                    // @ts-ignore
+                    let activate = params["activateNetworkMenuButtonAdjacentDisorderDrugs"] === "true"
+                    this.changeConfig("activateNetworkMenuButtonAdjacentDisorderDrugs", activate)
+                }
+
+
+            }
+            if (nodes.length > 0 || edges.length > 0) {
+                this.network = {nodes: nodes, edges: edges}
+            }
+        })
     }
 
     setNodes(): Object[] {
