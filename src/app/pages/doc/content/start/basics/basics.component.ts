@@ -18,9 +18,4 @@ export class BasicsComponent implements OnInit {
         "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
         "</head>'"
   }
-
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
-
 }

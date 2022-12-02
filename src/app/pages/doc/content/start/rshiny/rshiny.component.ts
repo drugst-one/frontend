@@ -8,9 +8,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class RshinyComponent implements OnInit {
 
   @Output() navigate = new EventEmitter<string>();
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
 
   constructor() { }
 

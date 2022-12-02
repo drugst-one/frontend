@@ -13,8 +13,5 @@ export class StandaloneDocComponent implements OnInit {
   }
 
   @Output() navigate = new EventEmitter<string>();
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
 
 }

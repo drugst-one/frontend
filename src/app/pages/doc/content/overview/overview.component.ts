@@ -12,8 +12,4 @@ export class OverviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
-
 }

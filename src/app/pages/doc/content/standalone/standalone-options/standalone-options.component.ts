@@ -12,9 +12,5 @@ export class StandaloneOptionsComponent implements OnInit {
   ngOnInit(): void {
   }
   @Output() navigate = new EventEmitter<string>();
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
-
 
 }

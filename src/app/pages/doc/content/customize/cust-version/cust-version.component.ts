@@ -30,8 +30,4 @@ export class CustVersionComponent implements OnInit {
         "</head>'"
   }
 
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
-
 }

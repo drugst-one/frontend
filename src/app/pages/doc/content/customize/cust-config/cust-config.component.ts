@@ -64,9 +64,4 @@ export class CustConfigComponent implements OnInit {
       {name: 'algorithms', type: 'object', default: 'see "Raw JSON"', description: 'List of algorithms which should be available for selection to the user.'},
     ]
   }
-
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
-
 }

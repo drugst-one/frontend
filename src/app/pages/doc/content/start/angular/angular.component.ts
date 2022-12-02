@@ -20,8 +20,4 @@ export class AngularComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  navigateTo(id:string): void{
-    this.navigate.emit(id)
-  }
-
 }
