@@ -30,7 +30,7 @@ export class DocNavbarComponent implements OnInit {
     {
       name: 'The Drugst.One UI', target: 'nav_drugstone_ui', elements: [
         { name: 'Network', anchor: 'drugstone_ui_network' },
-        { name: 'Panels', anchor: 'drugstone_ui_panels' },
+        { name: 'Sidebar Panels', anchor: 'drugstone_ui_panels' },
         { name: 'Network Menu', anchor: 'drugstone_ui_footer_bar' },
         { name: 'Task Execution', anchor: 'drugstone_ui_task_execution' },
         { name: 'Analysis Window', anchor: 'drugstone_ui_analysis_window' },

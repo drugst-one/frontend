@@ -1,6 +1,6 @@
 <app-doc-subsubheader text="Groups" id="config-groups"></app-doc-subsubheader>
 <p>
-Groups are templates for either edges ("edgeGroups") or nodes ("nodeGroups").
+Groups are templates for either edges ('edgeGroups') or nodes ('nodeGroups').
 Drugst.One comes with some predefined groups, but you can overwrite any styles
 and define your own groups as you please. As we use Vis.js in Drugst.One, most
 of the Vis.js features are supported. <br />
@@ -15,7 +15,7 @@ custom configuration.
 <p>
 Node groups define the style of the nodes assigned to them. You can define your
 own node groups with your custom styles. Later, you simply need to pass the
-group to the nodes in the "group" argument and the style will be applied. <br />
+group to the nodes in the 'group' argument and the style will be applied. <br />
 
 <br />
 A group can contain any of the
@@ -24,7 +24,7 @@ A group can contain any of the
   href="https://visjs.github.io/vis-network/docs/network/nodes.html"
 >
   vis.js node options</a
->, but must contain "groupName", "type", "shape" and "color".
+>, but must contain 'groupName', 'type', 'shape' and 'color'.
 
 <p-table [value]="requiredOptionsNodeGroup" responsiveLayout="scroll">
   <ng-template pTemplate="header">
@@ -62,10 +62,10 @@ nodeGroup1: {
   id="config-edge-groups"
 ></app-doc-subsubheader>
 <p>
-The edge groups define the styles of the network nodes. Similar to "nodeGroups",
+The edge groups define the styles of the network nodes. Similar to 'nodeGroups',
 you can define custom edge groups to design your edges. There is only one edge
-group predefined, the edge group "default". An edge group must have at least the
-attributes "groupName" and "color". Optionally, attributes like "dashes" can be
+group predefined, the edge group 'default'. An edge group must have at least the
+attributes 'groupName' and 'color'. Optionally, attributes like 'dashes' can be
 passed onto the group as they are defined in
 <a
   target="_blank"
@@ -108,8 +108,8 @@ edgeGroup1: {
 
 <p>
   Drugst.One requires some default groups like a group for the found nodes in
-  the target search ("foundNode") or a group for the found drugs in the drug
-  search ("foundDrug"), thus the styles for these groups are predefined. The
+  the target search ('foundNode') or a group for the found drugs in the drug
+  search ('foundDrug'), thus the styles for these groups are predefined. The
   default groups defines the style of all nodes without a group. However, these
   styles may be partially or completely overwritten by you.
 </p>
@@ -117,7 +117,7 @@ edgeGroup1: {
 <p-messages severity="info">
   <ng-template pTemplate>
     <div>
-      "default" groups should just be used as falllbacks and do therefore not
+      'default' groups should just be used as fallbacks and do therefore not
       appear in the custom legend.
     </div>
   </ng-template>
@@ -139,7 +139,7 @@ edgeGroup1: {
 </p-table>
 
 <p>
-  The full default configuration for the "nodeGroups" and "edgeGroups" can be
+  The full default configuration for the 'nodeGroups' and 'edgeGroups' can be
   found below:
 </p>
 

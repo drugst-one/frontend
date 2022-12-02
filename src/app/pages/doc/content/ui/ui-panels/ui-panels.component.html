@@ -1,117 +1,235 @@
 <p>
-  The Drugst.One sidebar consists of different panels which can be individually
-  integrated or excluded to fit your websites needs. If desired, the complete
-  sidebar can be deactivated by setting the parameter "showSidebar" to "false"
-  in the config. In the following, each panel and its functionality is
-  described.
+    The Drugst.One sidebar consists of different panels which can be individually
+    integrated or excluded to fit your websites needs. If desired, the complete
+    sidebar can be deactivated by setting the parameter 'showSidebar' to 'false'
+    in the config. In the following, each panel and its functionality is
+    described.
 </p>
-
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_sidebar.png"
+                class="rounded"
+                alt="Drugst.one sidepanel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One sidebar holds various panels providing different features. Panels can be retracted or
+            expanded.
+        </figcaption>
+    </figure>
+</div>
 <app-doc-subsubheader
-  text="Detail View"
-  id="panel_id_view"
+        text="Detail View"
+        id="panel_id_view"
 ></app-doc-subsubheader>
 <p>
-  The detail view shows the node information of the currently selecte node. The
-  name and the group of the gene will be displayed here. If a gene can be found
-  by Drugst.One in its database, the information will be complemented by
-  information from different databases. If a tissue is selected, the exact
-  measured expression value will be displayed here when the gene is selected. If
-  the gene cab be found in the Drugst.One database and thus is available for
-  selection, a button to toggle the selection status fo the gene will be
-  displayed.
+    The detail view shows the node information of the currently selected network component. The
+    name and the group of the gene will be displayed here. If a gene can be found
+    by Drugst.One in its database, the information will be complemented by
+    information from different databases. If a tissue is selected, the exact
+    measured expression value will be displayed here when the gene is selected. If
+    the gene cab be found in the Drugst.One database and thus is available for
+    selection, a button to toggle the selection status fo the gene will be
+    displayed.
 </p>
-
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_detail.png"
+                class="rounded"
+                alt="Drugst.one detail panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One detail panel with content for the TGF Beta-1 gene.
+        </figcaption>
+    </figure>
+</div>
 <app-doc-subsubheader
-  text="Network Overview"
-  id="panel_network_overview"
+        text="Network Overview"
+        id="panel_network_overview"
 ></app-doc-subsubheader>
 <p>
-  The overview panel shows a summary of the currently displayed network
-  consisting of the numbers of edges and nodes.
+    The overview panel shows a summary of the currently displayed network
+    consisting of the numbers of edges and nodes.
 </p>
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_network-overview.png"
+                class="rounded"
+                alt="Drugst.one overview panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One overview panel for a small network.
+        </figcaption>
+    </figure>
+</div>
 
 <app-doc-subsubheader
-  text="Query Node"
-  id="panel_query_node"
+        text="Query Node"
+        id="panel_query_node"
 ></app-doc-subsubheader>
 <p>
-  This panel allows searching nodes in the network. A search bar allows
-  filtering the nodes in the network and assists the user with an autocomplete
-  function. The query functionality is especially valuable for large and complex
-  networks.
+    This panel allows searching nodes in the network. A search bar allows
+    filtering the nodes in the network and assists the user with an autocomplete
+    function. The query functionality is especially valuable for large and complex
+    networks.
 </p>
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_query.png"
+                class="rounded"
+                alt="Drugst.one query panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One query panel with a search for 'cystic fibrosis' showing the CTFR gene.
+        </figcaption>
+    </figure>
+</div>
 
 <app-doc-subsubheader
-  text="Connect Genes"
-  id="panel_connect_genes"
+        text="Connect Genes"
+        id="panel_connect_genes"
 ></app-doc-subsubheader>
 <p>
-  The "Connect Genes" panel offers the option to connect the genes in the
-  network with one click. The buttons start a
-  <a href="/doc#multi_steiner_trees">Multi-Steiner</a> algorithm on all genes in
-  the network or the selected genes. The resulting network find connections
-  between the seed genes if any exist.
+    The 'Connect Genes' panel offers the option to connect the genes in the
+    network with one click. The buttons start a
+    <a href="/doc#multi_steiner_trees">Multi-Steiner</a> algorithm on all genes in
+    the network or the selected genes. The resulting network find connections
+    between the seed genes if any exist.
 </p>
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_connect-genes.png"
+                class="rounded"
+                alt="Drugst.one connect genes panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One connect genes panel as a shortcut for 'drug target search'.
+        </figcaption>
+    </figure>
+</div>
+<app-doc-subsubheader
+        text="Quick Drug Search"
+        id="panel_simple_analysis"
+></app-doc-subsubheader>
+<p>
+    The 'Quick Drug Search' panel allows to search for drug candidates with one
+    click. It starts a
+    <a href="/doc#multi_steiner_trees">Multi-Steiner</a> algorithm on all genes in
+    the network or the selected genes, similar to the 'Connect Genes' function. In
+    a second step, Drugst.One will execute a
+    <a href="/doc#closeness_centrality">Closeness Centrality</a> algorithm on the
+    resulting network, finding drug candidates that are related to the original
+    seed genes.
+</p>
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_quick-drugs.png"
+                class="rounded"
+                alt="Drugst.one quick drug search panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One quick drug search panel with shortcuts for a whole drug repurposing run.
+        </figcaption>
+    </figure>
+</div>
 
 <app-doc-subsubheader
-  text="Simple Analysis"
-  id="panel_simple_analysis"
+        text="Analysis"
+        id="panel_analysis"
 ></app-doc-subsubheader>
 <p>
-  The "Simple Analysis" panel allows to search for drug candidates with one
-  click. It starts a
-  <a href="/doc#multi_steiner_trees">Multi-Steiner</a> algorithm on all genes in
-  the network or the selected genes, similar to the "Connect Genes" function. In
-  a second step, Drugst.One will execute a
-  <a href="/doc#closeness_centrality">Closeness Centrality</a> algorithm on the
-  resulting network, finding drug candidates that are realted to the original
-  seed genes.
+    The analysis panel gives the user three ways to analyze the selected seed
+    genes. The <b>'drug target search'</b> allows to select algorithms that will
+    find genes related to the seed genes. It depends on the selected algorithm, if
+    the algorithm will try to find genes in between the seed genes or if the
+    algorithm searches for new genes in close proximity to the seed genes. These
+    genes can extend existing disease module or, if seen in the context of drug
+    repurposing, represent putative drug targets. The <b>'drug search'</b> works
+    similar, but the algorithms will return a list of putative drugs in the
+    network neighborhood of the seed genes. Lastly, the
+    <b>'enrichment analysis'</b> will export the list of selected genes either to
+    <a href="https://biit.cs.ut.ee/gprofiler/gost" target="_blank">g:Profiler</a> or <a href="https://digest-validation.net">DIGEST</a>
+    which offer different evaluation, enrichment, profiling and conversion methods.
+</p>
+<p>
+    For more information about the algorithm see the
+    <a href="/doc#implementation_algorithms">section about algorithms</a>.
 </p>
 
-<app-doc-subsubheader
-  text="Analysis"
-  id="panel_analysis"
-></app-doc-subsubheader>
-<p>
-  The analysis panel gives the user three ways to analyze the selected seed
-  genes. The <b>"drug target search"</b> allows to select algorithms that will
-  find genes related to the seed genes. It depends on the selected algorithm, if
-  the algorithm will try to find genes in between the seed genes or if the
-  algorithm searches for new genes in close proximity to the seed genes. These
-  genes can extend existing disease module or, if seen in the context of drug
-  repurposing, represent putative drug targets. The <b>"drug search"</b> works
-  similar, but the algorithms will return a list of putative drugs in the
-  network neighborhood of the seed genes. Lastly, the
-  <b>"enrichment analysis"</b> will export the list of selected genes to
-  <a href="https://biit.cs.ut.ee/gprofiler/gost" target="_blank">g:Profiler</a>
-  which offers different profiling and conversion mehtods.
-</p>
-<p>
-  For more information about the algorithm see the
-  <a href="/doc#implementation_algorithms">section about algorithms</a>.
-</p>
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_analysis.png"
+                class="rounded"
+                alt="Drugst.one analysis panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One analysis panel with full configuration option for 'drug target' and 'drug' searches and redirects to external resources.
+        </figcaption>
+    </figure>
+</div>
 
 <app-doc-subsubheader text="Tasks" id="panel_tasks"></app-doc-subsubheader>
 <p>
-  The task list offers an overview over the tasks and indicates the used
-  algorithm, the status of the Task ("running", "done", "failed") and a
-  timestamp. While the tasks should never fail, in the case of an error and the
-  task status "failed", a short error message will be displayed to inform the
-  user. In this case, please <a href="/doc#contact_us">reach out to us</a> with
-  the displayed message. In the task list, tasks will be listed chronologically
-  from newest to oldest. A click on a task in this list opens the
-  <a href="/doc#drugstone_ui_analysis_window">analysis window</a> for this task.
-  Lastly, tasks that are not needed anymore can be deleted by the user
-  individually or all together by clicking the button "Delete All" at the bottom
-  of the list.
+    The task list offers an overview over the tasks and indicates the used
+    algorithm, the status of the Task ('running', 'done', 'failed') and a
+    timestamp. While the tasks should never fail, in the case of an error and the
+    task status 'failed', a short error message will be displayed to inform the
+    user. In this case, please <a href="/doc#contact_us">reach out to us</a> with
+    the displayed message. In the task list, tasks will be listed chronologically
+    from newest to oldest. A click on a task in this list opens the
+    <a href="/doc#drugstone_ui_analysis_window">analysis window</a> for this task.
+    Lastly, tasks that are not needed anymore can be deleted by the user
+    individually or all together by clicking the button 'Delete All' at the bottom
+    of the list.
 </p>
 
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_tasks.png"
+                class="rounded"
+                alt="Drugst.one tasks panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One tasks panel from which previously ran analysis tasks can be loaded.
+        </figcaption>
+    </figure>
+</div>
+
 <app-doc-subsubheader
-  text="Selection"
-  id="panel_selection"
+        text="Selection"
+        id="panel_selection"
 ></app-doc-subsubheader>
 <p>
-  This panel shows a list of all selected genes. Labels and the group are
-  displayed for each genes to give the user an overview over their current
-  seletion. Individual genes or the complete selection can be removed here.
+    This panel shows a list of all selected genes. Labels and the group are
+    displayed for each genes to give the user an overview over their current
+    selection. Individual genes or the complete selection can be removed here.
 </p>
+
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_selection.png"
+                class="rounded"
+                alt="Drugst.one selection panel"
+        />
+        <figcaption class="figure-caption">
+            The Drugst.One selection panel after using the 'select by group' function.
+        </figcaption>
+    </figure>
+</div>

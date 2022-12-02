@@ -1,28 +1,63 @@
 <p>
   The analysis window can be opened by clicking on finished tasks in the task
   list in the sidebar. The analysis window consists of three different tabs: The
-  "table", the "network" and the "parameters".
+  'table', the 'network' and the 'parameters'.
 </p>
 <ul>
   <li>
-    The "table" contains all the data used for the analysis. Here are tables
+    The 'table' contains all the data used for the analysis. Here are tables
     displayed which show the genes/proteins of the search and which ones were
     found by the algorithm. If applicable, an additional table ranks the found
     drugs.
   </li>
   <li>
-    The "network" shows the resulting network in the analysis context. It
+    The 'network' shows the resulting network in the analysis context. It
     displays the complete input network such that the found nodes can be
     interpreted in its context. The network menu in the analysis view has the
     option to highlight the used seed nodes for the analysis task, hence the
     genes which the algorithm received as input. In addition to the initial
     network, the analysis network contains additional node groups for the found
-    nodes ("foundNodes") and for possible connectors ("connectorNode").
+    nodes ('foundNodes') and for possible connectors ('connectorNode').
   </li>
   <li>
-    The "parameters" tab contains all information needed to reproduce the
+    The 'parameters' tab contains all information needed to reproduce the
     results. Here you can find the name of the used algorithm, the version
     numbers of the used datasets and the additional parameters that were set by
     the user.
   </li>
 </ul>
+<div class="figure-frame">
+  <figure class="figure">
+    <img
+            height="200px"
+            src="/assets/doc/ui_analysis-table.png"
+            class="rounded"
+            alt="Drugst.one analysis table"
+    />
+    <figcaption class="figure-caption">
+      The Drugst.One analysis table, containing the ranked drugs and identified 'drug target' genes.
+    </figcaption>
+  </figure>
+  <figure class="figure">
+    <img
+            height="200px"
+            src="/assets/doc/ui_analysis-network.png"
+            class="rounded"
+            alt="Drugst.one analysis network"
+    />
+    <figcaption class="figure-caption">
+      The Drugst.One analysis network visualizing found drugs and 'drug targets' or here 'connector genes'.
+    </figcaption>
+  </figure>
+  <figure class="figure">
+    <img
+            height="200px"
+            src="/assets/doc/ui_analysis-parameters.png"
+            class="rounded"
+            alt="Drugst.one analysis parameters"
+    />
+    <figcaption class="figure-caption">
+      The Drugst.One analysis parameters lists executed algorithms and the used parametrization as well as database with the according version.
+    </figcaption>
+  </figure>
+</div>
