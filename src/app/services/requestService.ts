@@ -26,4 +26,8 @@ export class RequestService {
         return this.http.get(`${api}load_network?id=${id}`).toPromise()
     }
 
+    public async convertCompactNotation(api: string, payload:any): Promise<any> {
+        return this.http.post(`${api}convert_compact_node_list/`, payload).toPromise()
+    }
+
 }

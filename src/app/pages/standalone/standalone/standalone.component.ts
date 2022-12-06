@@ -267,8 +267,21 @@ export class StandaloneComponent implements OnInit {
 
             } else {
                 let licensed = false;
+                let identifier = "symbol"
+                if ("identifier" in params) {
+                    // @ts-ignore
+                    identifier = params["identifier"]
+                    if (this.dataLists.identifierList.map(o => o.value).indexOf(identifier) > -1)
+                        this.changeConfig("identifier", identifier)
+                }
                 if ("nodes" in params) { // @ts-ignore
-                    nodes = this.getNodes(params["nodes"], ",");
+                    let node_ids = this.getNodeNames(params["nodes"], ",");
+                    let converted = await this.drugstone.convertCompactNotation(this.api,{nodes:node_ids, identifier: identifier}).catch(error=>{
+                        converted = node_ids;
+                        console.error(error)
+                    })
+                    nodes = this.toNodes(converted)
+                    // @ts-ignore
                     this.rawNodes = nodes.map(o => o.label).join("\n")
                 }
                 if ("edges" in params) { // @ts-ignore
@@ -280,12 +293,7 @@ export class StandaloneComponent implements OnInit {
                     let activate = params["physicsOn"] === "true"
                     this.changeConfig("physicsOn", activate)
                 }
-                if ("identifier" in params) {
-                    // @ts-ignore
-                    let ident = params["identifier"]
-                    if (this.dataLists.identifierList.map(o => o.value).indexOf(ident) > -1)
-                        this.changeConfig("identifier", ident)
-                }
+
                 if ("licensedDatasets" in params) {
                     // @ts-ignore
                     licensed =params["licensedDatasets"] === "true"
@@ -372,6 +380,19 @@ export class StandaloneComponent implements OnInit {
         })
         // @ts-ignore
         return this.getNodes(this.rawNodes, delim)
+    }
+
+    getNodeNames(list: string, delim: string): string[]{
+        // @ts-ignore
+        return list.split(delim).map(entry => {
+            return entry.trim()
+        })
+    }
+
+    toNodes(list: string[]): Object[]{
+        return list.map(name => {
+            return {id: name, group: this.group, label: name}
+        })
     }
 
     getNodes(list: string, delim: string): Object[] {
