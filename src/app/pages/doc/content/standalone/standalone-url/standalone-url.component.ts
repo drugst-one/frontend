@@ -10,10 +10,12 @@ export class StandaloneUrlComponent implements OnInit {
     @Input() host: string = ""
     @Input() backend: string=""
     getRequest: string = ""
+
+    getRequestCompact: string=""
     postCreate: string = ""
     postLoad: string =""
     getConfig = [
-        {name: "nodes", type: "list", default: "[]", description: "Comma separated list of node ids"},
+        {name: "nodes", type: "list", default: "[]", description: "Comma separated list of node ids. Optionally compact IDs can be used (e.g. uniprot:H2EHT1 or ensembl:ENSG00000141510)"},
         {
             name: "edges",
             type: "list",
@@ -24,7 +26,7 @@ export class StandaloneUrlComponent implements OnInit {
             name: "identifier",
             type: "string",
             default: "symbol",
-            description: "Can be one of the supported identifier types to map gene names. Options are: 'symbol' (gene Symbol), 'uniprot' (Uniprot accession number), 'ensg' (Ensembl Gene ID), 'entrez' (Entrez ID)."
+            description: "Can be one of the supported identifier types to map gene names. Options are: 'symbol' (gene Symbol), 'uniprot' (Uniprot accession number), 'ensg' or 'ensembl' (Ensembl Gene ID), 'entrez' or 'ncbigene' (Entrez ID)."
         },
         {
           name: "physicsOn",
@@ -93,6 +95,7 @@ export class StandaloneUrlComponent implements OnInit {
 
     ngOnInit(): void {
         this.getRequest = this.host + "?nodes=PTEN,TP53&edges=PTEN%20TP53&autofillEdges=false"
+        this.getRequestCompact = this.host + "?nodes=PTEN,TP53,uniprot:P13569,ensembl:ENSG00000255346,ncbigene:6658"
         this.postCreate="" +
             "let networkID = post(\n" +
             "   '"+this.backend+"create_network',\n" +

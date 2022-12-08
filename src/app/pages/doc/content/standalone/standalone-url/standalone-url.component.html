@@ -1,84 +1,87 @@
 <p>
-  All the parameters described in the
-  <a href="/doc#standalone_options">Standalone Options</a> section can also be
-  defined through a simple <i>GET</i> request so a parametrized URL. With an
-  intermediate <i>POST</i> request the boundaries of this small standalone
-  interface can even be skipped and any
-  <a href="/doc#customize_network">network</a> and
-  <a href="/doc#customize_general">configuration</a> that is
-  applicable on the Drugst.One plugin itself, can be loaded.
-  <app-doc-subsubheader text="GET"></app-doc-subsubheader>
-  The following depicts an explicit <a [href]="getRequest">example</a>, how a
-  simple network can be loaded and configured through an URL:
-  <app-code lang="html" [code]="getRequest"></app-code>
+    All the parameters described in the
+    <a href="/doc#standalone_options">Standalone Options</a> section can also be
+    defined through a simple <i>GET</i> request so a parametrized URL. With an
+    intermediate <i>POST</i> request the boundaries of this small standalone
+    interface can even be skipped and any
+    <a href="/doc#customize_network">network</a> and
+    <a href="/doc#customize_general">configuration</a> that is
+    applicable on the Drugst.One plugin itself, can be loaded.
+    <app-doc-subsubheader text="GET"></app-doc-subsubheader>
+    The following depicts an explicit <a [href]="getRequest">example</a>, how a
+    simple network can be loaded and configured through an URL:
+    <app-code lang="html" [code]="getRequest"></app-code>
 
-  The available options are a limited selection of to those of the previous section and can
-  be targeted as follows:
-  <p-messages severity="info">
-    <ng-template pTemplate>
-      <div>
-        In case you are not familiar with the syntax of HTTP GET requests the
-        following ressources might be of additional help:
-        <a
-          href="https://en.wikipedia.org/wiki/Query_string#Structure"
-          target="_blank"
-          >en.wikipedia.org/wiki/Query_string#Structure</a
-        >
-      </div>
-    </ng-template>
-  </p-messages>
-  <p-table [value]="getConfig">
+    The available options are a limited selection of to those of the previous section and can
+    be targeted as follows:
+    <p-messages severity="info">
+        <ng-template pTemplate>
+<div>
+    In case you are not familiar with the syntax of HTTP GET requests the
+    following resources might be of additional help:
+    <a
+            href="https://en.wikipedia.org/wiki/Query_string#Structure"
+            target="_blank"
+    >en.wikipedia.org/wiki/Query_string#Structure</a
+    >
+</div>
+</ng-template>
+</p-messages>
+Compact ID notation can be used to generate URLs with mixed node ID spaces. All IDs will be transferred into the defined 'identifier' space (default: symbol) before visualization in Drugst.one.
+Example:
+<app-code lang="html" [code]="getRequestCompact"></app-code>
+<p-table [value]="getConfig">
     <ng-template pTemplate="header">
-      <tr>
-        <th>Parameter</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
+        <tr>
+            <th>Parameter</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
     </ng-template>
     <ng-template pTemplate="body" let-entry>
-      <tr>
-        <td>{{ entry.name }}</td>
-        <td>{{ entry.type }}</td>
-        <td>{{ entry.default }}</td>
-        <td>{{ entry.description }}</td>
-      </tr>
+        <tr>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.type }}</td>
+            <td>{{ entry.default }}</td>
+            <td>{{ entry.description }}</td>
+        </tr>
     </ng-template>
-  </p-table>
+</p-table>
 
-  <app-doc-subsubheader text="POST"></app-doc-subsubheader>
+<app-doc-subsubheader text="POST"></app-doc-subsubheader>
 
-  For configurations with more than 2,048 characters or additional network
-  parameters or own edge or node groups we also provide a way to load these
-  programatically in our Standalone Drugst.One application. This option consists
-  of two separate request: first a POST request to transmit all the necessary
-  network and configuration data to the backend service and receive an
-  associated ID and secondly then again a GET request to the Standalone
-  application with said received ID.
-  <br />
-  A skeleton of the first POST request call is shown below:
+For configurations with more than 2,048 characters or additional network
+parameters or own edge or node groups we also provide a way to load these
+programatically in our Standalone Drugst.One application. This option consists
+of two separate request: first a POST request to transmit all the necessary
+network and configuration data to the backend service and receive an
+associated ID and secondly then again a GET request to the Standalone
+application with said received ID.
+<br/>
+A skeleton of the first POST request call is shown below:
 
-  <app-code lang="js" [code]="postCreate"></app-code>
+<app-code lang="js" [code]="postCreate"></app-code>
 
-  <a href="/doc#customize_network">Network</a> and
-  <a href="/doc#customize_general">config</a> objects can be defined
-  exactly as the ones handed to the Drugst.One plugin, further defined in the
-  <a href="/doc#customize_general">customization</a> section. The call
-  returns a <i>networkID</i> that can be used to load this saved network in the
-  Standalone application. This UUID contains 32 random alphanumeric characters
-  (e.g. 'cbfa6a27ded04b20963c04376e212ca6'). It is then used to request the
-  loading of the referenced graph into the Drugst.One Standalone by a simple GET
-  request:
+<a href="/doc#customize_network">Network</a> and
+<a href="/doc#customize_general">config</a> objects can be defined
+exactly as the ones handed to the Drugst.One plugin, further defined in the
+<a href="/doc#customize_general">customization</a> section. The call
+returns a <i>networkID</i> that can be used to load this saved network in the
+Standalone application. This UUID contains 32 random alphanumeric characters
+(e.g. 'cbfa6a27ded04b20963c04376e212ca6'). It is then used to request the
+loading of the referenced graph into the Drugst.One Standalone by a simple GET
+request:
 
-  <app-code lang="html" [code]="postLoad"></app-code>
+<app-code lang="html" [code]="postLoad"></app-code>
 
-  <p-messages severity="info">
+<p-messages severity="info">
     <ng-template pTemplate>
-      <div>
-        Currently node and edge styles are still based on the design of the
-        Drugst.One website to ensure the readability of the network. This may be
-        changed in the future!
-      </div>
+        <div>
+            Currently node and edge styles are still based on the design of the
+            Drugst.One website to ensure the readability of the network. This may be
+            changed in the future!
+        </div>
     </ng-template>
-  </p-messages>
+</p-messages>
 </p>
