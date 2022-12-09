@@ -1,0 +1,75 @@
+{
+  "label": "Cystic Fibrosis (from article)",
+  "value": "cystic_fibrosis",
+  "config": {
+    "activateNetworkMenuButtonAdjacentDisorders": false,
+    "activateNetworkMenuButtonAdjacentDrugs": false,
+    "activateNetworkMenuButtonAdjacentDisordersDrugs": false,
+    "licensedDatasets": true
+  },
+  "groups": {
+    "nodeGroups": {
+      "protein": {
+        "type": "protein",
+        "color": "#00008b",
+        "font": { "color": "#f0f0f0" },
+        "groupName": "Protein",
+        "shape": "circle"
+      },
+      "foundDrug": {
+        "type": "drug",
+        "color": "#F12590",
+        "font": { "color": "#000000" },
+        "groupName": "Drug",
+        "shape": "diamond"
+      },
+      "connectorNode": {
+        "type": "protein",
+        "color": "#d29034",
+        "font": { "color": "#f0f0f0" },
+        "groupName": "Connector Proteins",
+        "shape": "circle"
+      }
+    },
+    "edgeGroups": {
+      "default": { "color": "#000000", "groupName": "default edge" }
+    }
+  },
+  "network": {
+    "nodes": [
+      { "id": "TGFB1", "group": "protein", "label": "TGFB1" },
+      { "id": "TNFRSF1A", "group": "protein", "label": "TNFRSF1A" },
+      { "id": "FCGR2A", "group": "protein", "label": "FCGR2A" },
+      { "id": "ENG", "group": "protein", "label": "ENG" },
+      { "id": "DCTN4", "group": "protein", "label": "DCTN4" },
+      { "id": "CLCA4", "group": "protein", "label": "CLCA4" },
+      { "id": "STX1A", "group": "protein", "label": "STX1A" },
+      { "id": "SCNN1G", "group": "protein", "label": "SCNN1G" },
+      { "id": "SCNN1A", "group": "protein", "label": "SCNN1A" },
+      { "id": "SCNN1B", "group": "protein", "label": "SCNN1B" }
+    ],
+    "edges": [
+      { "from": "DCTN4", "to": "CFTR", "weight": "5" },
+      { "from": "STX1A", "to": "SCNN1B", "group": "default" },
+      { "from": "SCNN1A", "to": "SCNN1G", "group": "default" },
+      { "from": "SCNN1B", "to": "SCNN1G", "group": "default" }
+    ]
+  },
+  "styles":{
+    "--drgstn-primary": "#4285F4",
+    "--drgstn-secondary": "#303030",
+    "--drgstn-success": "#48C774",
+    "--drgstn-warning": "#f5f5f5",
+    "--drgstn-danger": "#ff2744",
+    "--drgstn-background": "#ffffff",
+    "--drgstn-panel": "#ededed",
+    "--drgstn-info": "#61c43d",
+    "--drgstn-text-primary": "#151515",
+    "--drgstn-text-secondary": "#ebecf0",
+    "--drgstn-border": "rgba(0, 0, 0, 0.2)",
+    "--drgstn-tooltip": "rgba(74,74,74,0.9)",
+    "--drgstn-panel-secondary": "#f5f5f5",
+    "--drgstn-height": "600px",
+    "--drgstn-font-family":"Helvetica Neue, sans-serif"
+  }
+}

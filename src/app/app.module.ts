@@ -125,6 +125,7 @@ import { GitLinkComponent } from './pages/doc/elements/git-link/git-link.compone
 import { PythonPackageComponent } from './pages/doc/content/other/python-package/python-package.component';
 import { FromScratchComponent } from './pages/doc/content/start/from-scratch/from-scratch.component';
 import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy/privacy-policy.component';
+import { ExamplesComponent } from './components/playground/examples/examples/examples.component';
 
 
 @NgModule({
@@ -194,6 +195,7 @@ import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy
         PythonPackageComponent,
         FromScratchComponent,
         PrivacyPolicyComponent,
+        ExamplesComponent,
     ],
     imports: [
         BrowserModule,
