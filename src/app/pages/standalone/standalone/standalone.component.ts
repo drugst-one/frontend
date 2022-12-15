@@ -210,7 +210,6 @@ export class StandaloneComponent implements OnInit {
                     }
                 }))
             }
-            console.log(this.dataLists)
             // @ts-ignore
             this.dataMaps.drugProtInterList = {}
             this.dataLists.drugProtInterList.forEach(d => {
