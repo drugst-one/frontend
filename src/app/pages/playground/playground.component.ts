@@ -8,6 +8,7 @@ import network from '../../../exampleNetwork.json';
 
 // @ts-ignore
 import * as merge from 'lodash/fp/merge';
+import { ExampleConfig } from 'src/interfaces';
 
 
 @Component({
@@ -170,6 +171,19 @@ export class PlaygroundComponent implements OnInit {
         // @ts-ignore
         this.network.nodes = nodes
         this.updateCode()
+    }
+
+    public activateExamplePlayground(example: ExampleConfig) {
+        this.network.edges = [];
+        this.network.nodes = [];
+
+        this.groups = example.groups;
+        this.changeStyle(example.styles);
+
+        setTimeout(() => {
+            this.config = example.config;
+            this.network = example.network;
+        }, 500);
     }
 
 }

@@ -260,7 +260,7 @@ export class SidebarComponent implements OnInit {
     changeStyle(label: any, value: any) {
         let change = {}
         // @ts-ignore
-        change[label] = value
+        change[label] = value;
         this.styleChangeEvent.emit(change)
     }
 

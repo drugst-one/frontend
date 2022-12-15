@@ -17,6 +17,9 @@
         [nodeGroups]="groups.nodeGroups"
         (setNodesEvent)="setNodes($event)"
       ></app-datapanel>
+      <h2>Examples</h2>
+      <app-examples (activateExampleEvent)="activateExamplePlayground($event)"></app-examples>
+      <h2>Drugst.One Plugin</h2>
       <app-drugstonepanel
         class="p-1"
         [id]="id"
@@ -24,6 +27,7 @@
         [groups]="groups"
         [network]="network"
       ></app-drugstonepanel>
+      <h2>Settings</h2>
       <app-sidebar
         class="p-1"
         [config]="config"
@@ -37,6 +41,7 @@
         (styleChangeEvent)="changeStyle($event)"
         (editGroupEvent)="editGroup($event)"
       ></app-sidebar>
+      <h2>Code to Copy & Paste</h2>
       <app-codepanel class="p-1" [code]="code"></app-codepanel>
       <app-stylepanel class="p-1" [code]="style"></app-stylepanel>
     </div>

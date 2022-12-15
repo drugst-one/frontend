@@ -27,3 +27,12 @@ export interface Node {
     y?: number;
     expressionLevel?: number;
 }
+
+export interface ExampleConfig {
+    label: string,
+    value: string,
+    config: object,
+    groups: object,
+    network: object,
+    styles: object,
+}
