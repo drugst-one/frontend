@@ -96,8 +96,8 @@ export class StandaloneComponent implements OnInit {
             {label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},
             {label: 'NeDRex (licensed)', value: {name: 'NeDRex', licenced: true}},
             {label: 'DrugBank', value: {name: 'DrugBank', licenced: true}},
-            {label: 'ChEMBL', value: {name: 'ChEMBL', licenced: false }},
-            {label: 'ChEMBL (licensed)', value: {name: 'ChEMBL', licenced: true }},
+            {label: 'ChEMBL', value: {name: 'ChEMBL', licenced: false}},
+            {label: 'ChEMBL (licensed)', value: {name: 'ChEMBL', licenced: true}},
             {label: 'DGIdb', value: {name: 'DGIdb', licenced: false}},
             {label: 'DGIdb (licensed)', value: {name: 'DGIdb', licenced: true}}
         ],
@@ -120,6 +120,8 @@ export class StandaloneComponent implements OnInit {
             {label: 'NeDRex (licensed)', value: {name: 'NeDRex', licenced: false}}
         ]
     }
+
+    public selectedDatasets = {}
 
     constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService) {
         router.events.subscribe((val) => {
@@ -275,7 +277,10 @@ export class StandaloneComponent implements OnInit {
                 }
                 if ("nodes" in params) { // @ts-ignore
                     let node_ids = this.getNodeNames(params["nodes"], ",");
-                    let converted = await this.drugstone.convertCompactNotation(this.api,{nodes:node_ids, identifier: identifier}).catch(error=>{
+                    let converted = await this.drugstone.convertCompactNotation(this.api, {
+                        nodes: node_ids,
+                        identifier: identifier
+                    }).catch(error => {
                         converted = node_ids;
                         console.error(error)
                     })
@@ -295,12 +300,12 @@ export class StandaloneComponent implements OnInit {
 
                 if ("licensedDatasets" in params) {
                     // @ts-ignore
-                    licensed =params["licensedDatasets"] === "true"
+                    licensed = params["licensedDatasets"] === "true"
                     this.changeConfig("licensedDatasets", licensed)
                 }
                 if ("interactionProteinProtein" in params) {
                     // @ts-ignore
-                    let ident = this.nameMap[params["interactionProteinProtein"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    let ident = this.nameMap[params["interactionProteinProtein"].toLowerCase()] + (licensed ? ' (licensed)' : '')
                     // @ts-ignore
                     let ds = this.dataMaps.protProtInterList[ident]
                     if (ds) {
@@ -309,7 +314,7 @@ export class StandaloneComponent implements OnInit {
                 }
                 if ("interactionDrugProtein" in params) {
                     // @ts-ignore
-                    let ident = this.nameMap[params["interactionDrugProtein"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    let ident = this.nameMap[params["interactionDrugProtein"].toLowerCase()] + (licensed ? ' (licensed)' : '')
                     // @ts-ignore
                     let ds = this.dataMaps.drugProtInterList[ident]
                     if (ds) {
@@ -318,7 +323,7 @@ export class StandaloneComponent implements OnInit {
                 }
                 if ("indicationDrugDisorder" in params) {
                     // @ts-ignore
-                    let ident = this.nameMap[params["indicationDrugDisorder"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    let ident = this.nameMap[params["indicationDrugDisorder"].toLowerCase()] + (licensed ? ' (licensed)' : '')
                     // @ts-ignore
                     let ds = this.dataMaps.drugDisList[ident]
                     if (ds) {
@@ -327,7 +332,7 @@ export class StandaloneComponent implements OnInit {
                 }
                 if ("associatedProteinDisorder" in params) {
                     // @ts-ignore
-                    let ident = this.nameMap[params["associatedProteinDisorder"].toLowerCase()]+ (licensed ? ' (licensed)':'')
+                    let ident = this.nameMap[params["associatedProteinDisorder"].toLowerCase()] + (licensed ? ' (licensed)' : '')
                     // @ts-ignore
                     let ds = this.dataMaps.protDisList[ident]
                     if (ds) {
@@ -381,14 +386,14 @@ export class StandaloneComponent implements OnInit {
         return this.getNodes(this.rawNodes, delim)
     }
 
-    getNodeNames(list: string, delim: string): string[]{
+    getNodeNames(list: string, delim: string): string[] {
         // @ts-ignore
         return list.split(delim).map(entry => {
             return entry.trim()
         })
     }
 
-    toNodes(list: string[]): Object[]{
+    toNodes(list: string[]): Object[] {
         return list.map(name => {
             return {id: name, group: this.group, label: name}
         })
@@ -431,8 +436,15 @@ export class StandaloneComponent implements OnInit {
         return this.config[param]
     }
 
+    isLicensed(): boolean {
+        // @ts-ignore
+        return Object.values(this.selectedDatasets).reduce((a,b) => a || b)
+    }
+
     changeDataset(name: string, value: any) {
-        this.changeConfig('licensedDatasets', value.licenced)
+        // @ts-ignore
+        this.selectedDatasets[name] = value.licenced
+        this.changeConfig('licensedDatasets', this.isLicensed())
         this.changeConfig(name, value.name)
     }
 
