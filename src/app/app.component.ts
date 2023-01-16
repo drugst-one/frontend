@@ -10,8 +10,8 @@ import { ThemeService } from 'src/app/services/theme.service';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    public version = "1.1.6"
-    public cdnVersion = "prod/v1.1.6"
+    public version = "1.1.7"
+    public cdnVersion = "prod/v1.1.7"
     public host = "https://drugst.one"
     public cdn = "https://cdn.drugst.one"
     public backendPath = "https://api.drugst.one/"
