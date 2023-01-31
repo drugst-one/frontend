@@ -135,8 +135,8 @@
                         </app-switch>
                         <app-switch label="Adjacent disorders (drug)"
                                     tooltip="Toggles initial loading of adjacent disorders (drug)"
-                                    (onChange)="changeConfig('activateNetworkMenuButtonAdjacentDisordersDrugs',$event)"
-                                    [model]="getConfig('activateNetworkMenuButtonAdjacentDisordersDrugs')!=null && getConfig('activateNetworkMenuButtonAdjacentDisordersDrugs')">
+                                    (onChange)="changeConfig('activateNetworkMenuButtonAdjacentDisorderDrugs',$event)"
+                                    [model]="getConfig('activateNetworkMenuButtonAdjacentDisorderDrugs')!=null && getConfig('activateNetworkMenuButtonAdjacentDisorderDrugs')">
                         </app-switch>
                         <div class="accordion-item" [ngClass]="{
                         'text-light bg-dark': themeService.theme === 'theme-dark',
