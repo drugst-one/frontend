@@ -401,7 +401,7 @@ export class StandaloneComponent implements OnInit {
 
     getNodes(list: string, delim: string): Object[] {
         // @ts-ignore
-        return list.split(delim).map(entry => {
+        return list.split(delim).filter(entry=>entry != null && entry.length > 0).map(entry => {
             let name = entry.trim()
             return {id: name, group: this.group, label: name}
         })
