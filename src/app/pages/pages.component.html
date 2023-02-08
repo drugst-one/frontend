@@ -3,6 +3,6 @@
                 (tabChangeEvent)="switchTab($event); tabChange($event)"></app-motivation>
 <app-standalone #standalone  *ngIf="currentTabId==2" [api]="backendPath" [hidden]="currentTabId!==2"></app-standalone>
 <app-playground #playground *ngIf="currentTabId===3" [theme]="theme" [hidden]="currentTabId!==3" [api]="backendPath"></app-playground>
-<app-doc [hidden]="currentTabId!==4" [api]="backendPath" [version]="cdnVersion" [cdn]="cdn"
+<app-doc [hidden]="currentTabId!==4" [api]="backendPath" [version]="'v'+version" [cdn]="cdn"
          [host]="host"></app-doc>
 

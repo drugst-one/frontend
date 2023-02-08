@@ -16,7 +16,7 @@
             <app-pages
                 #pages
                 [version]="version" [theme]="theme" [host]="host" [backendPath]="backendPath" [cdn]="cdn"
-                [currentTabId]="currentTabId" [cdnVersion]="cdnVersion"
+                [currentTabId]="currentTabId"
                 (tabChangeEvent)="headerEl.tabChange($event)"
                 (tabIdChangeEvent)="switchTab($event)"
             ></app-pages>
