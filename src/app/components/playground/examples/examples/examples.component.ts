@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ExampleConfig } from 'src/interfaces';
 // @ts-ignore
-import cystic_fibrosis_example from './examples/cystic_fibrosis.json'
+import cystic_fibrosis_example from './examples/cystic_fibrosis.json';
+// @ts-ignore
+import ibd_example from './examples/inflammatory_bowel_disease.json';
 
 @Component({
   selector: 'app-examples',
@@ -19,7 +21,8 @@ export class ExamplesComponent implements OnInit {
 
   public drugstOneExamples: ExampleConfig[] = [
     {label: 'None', value: 'none', config: {}, groups: {}, network: {}, styles: {}},
-    cystic_fibrosis_example
+    cystic_fibrosis_example,
+    ibd_example
   ];
 
   public changeDrugstOneExample($event: string) {
