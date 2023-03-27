@@ -11,7 +11,9 @@ RUN rm -rf nginx
 
 RUN npm run build -- --base-href=/
 
-FROM nginx:1.23.2-alpine
+FROM nginx:1.23.3-alpine
+
+RUN apk update
 
 COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
 
