@@ -21,6 +21,7 @@
       <app-examples (activateExampleEvent)="activateExamplePlayground($event)"></app-examples>
       <h2>Drugst.One Plugin</h2>
       <app-drugstonepanel
+        *ngIf="config && groups && network"
         class="p-1"
         [id]="id"
         [config]="config"

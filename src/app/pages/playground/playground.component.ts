@@ -174,16 +174,21 @@ export class PlaygroundComponent implements OnInit {
     }
 
     public activateExamplePlayground(example: ExampleConfig) {
-        this.network.edges = [];
-        this.network.nodes = [];
+        // this.network.edges = [];
+        // this.network.nodes = [];
+        this.network = undefined;
 
-        this.groups = example.groups;
+        this.changeGroup(example.groups);
+        this.changeConfig(example.config);
+        // this.groups = example.groups;
         this.changeStyle(example.styles);
 
+        // drugstone is removed with *ngIf until network is set
+        // start in next cycle to avoid race conditions
         setTimeout(() => {
-            this.config = example.config;
             this.network = example.network;
-        }, 500);
+            this.updateCode()
+        });
     }
 
 }

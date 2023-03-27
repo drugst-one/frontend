@@ -69,7 +69,11 @@ export class DatapanelComponent implements OnInit {
         this.setNodesEvent.emit(this.jsonData)
     }
 
-    public updateNodeImport(genes: any) {
+    public loadExample(genes: any) {
+        this._updateNodeImport(genes);
+    }
+
+    private _updateNodeImport(genes: any) {
         this.rawData = genes.join(',');
     }
 }

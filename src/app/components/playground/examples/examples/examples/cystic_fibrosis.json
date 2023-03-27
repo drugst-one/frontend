@@ -1,11 +1,12 @@
 {
-  "label": "Cystic Fibrosis (from article)",
+  "label": "Cystic Fibrosis",
   "value": "cystic_fibrosis",
   "config": {
     "activateNetworkMenuButtonAdjacentDisorders": false,
     "activateNetworkMenuButtonAdjacentDrugs": false,
     "activateNetworkMenuButtonAdjacentDisorderDrugs": false,
-    "licensedDatasets": true
+    "licensedDatasets": true,
+    "physicsOn": true
   },
   "groups": {
     "nodeGroups": {
