@@ -6,7 +6,7 @@
     "activateNetworkMenuButtonAdjacentDrugs": false,
     "activateNetworkMenuButtonAdjacentDisorderDrugs": false,
     "licensedDatasets": true,
-    "physicsOn": true,
+    "physicsOn": false,
     "autofillEdges": true,
     "interactionProteinProtein": "NeDRex",
     "interactionDrugProtein": "NeDRex"
