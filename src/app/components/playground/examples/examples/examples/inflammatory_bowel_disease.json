@@ -9,7 +9,8 @@
     "physicsOn": true,
     "autofillEdges": true,
     "interactionProteinProtein": "NeDRex",
-    "interactionDrugProtein": "NeDRex"
+    "interactionDrugProtein": "NeDRex",
+    "title": "Inflammatory Bowel Disease"
   },
   "groups": {
     "nodeGroups": {

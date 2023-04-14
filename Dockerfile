@@ -11,7 +11,7 @@ RUN rm -rf nginx
 
 RUN npm run build -- --base-href=/
 
-FROM nginx:1.23.3-alpine
+FROM nginx:1.23.4-alpine
 
 RUN apk update
 

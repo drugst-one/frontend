@@ -6,7 +6,8 @@
     "activateNetworkMenuButtonAdjacentDrugs": false,
     "activateNetworkMenuButtonAdjacentDisorderDrugs": false,
     "licensedDatasets": true,
-    "physicsOn": true
+    "physicsOn": true,
+    "title": "Cystic Fibrosis"
   },
   "groups": {
     "nodeGroups": {
