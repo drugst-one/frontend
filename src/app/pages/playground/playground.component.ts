@@ -5,7 +5,8 @@ import config from '../../../exampleConfig.json';
 import groups from '../../../exampleGroups.json';
 // @ts-ignore
 import network from '../../../exampleNetwork.json';
-
+// @ts-ignore
+import default_example from '../../components/playground/examples/config/default.json';
 // @ts-ignore
 import * as merge from 'lodash/fp/merge';
 import { ExampleConfig } from 'src/interfaces';
@@ -39,6 +40,7 @@ export class PlaygroundComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.activateExamplePlayground(default_example)
         this.updateCode();
     }
 

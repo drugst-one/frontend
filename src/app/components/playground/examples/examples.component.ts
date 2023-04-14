@@ -1,9 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ExampleConfig } from 'src/interfaces';
 // @ts-ignore
-import cystic_fibrosis_example from './examples/cystic_fibrosis.json';
+import cystic_fibrosis_example from './config/cystic_fibrosis.json';
 // @ts-ignore
-import ibd_example from './examples/inflammatory_bowel_disease.json';
+import ibd_example from './config/inflammatory_bowel_disease.json';
+// @ts-ignore
+import default_example from './config/default.json';
 
 @Component({
   selector: 'app-examples',
@@ -20,13 +22,12 @@ export class ExamplesComponent implements OnInit {
   @Output() activateExampleEvent = new EventEmitter<ExampleConfig>();
 
   public drugstOneExamples: ExampleConfig[] = [
-    {label: 'None', value: 'none', config: {}, groups: {}, network: {}, styles: {}},
+    default_example,
     cystic_fibrosis_example,
     ibd_example
   ];
 
   public changeDrugstOneExample($event: string) {
-    if ($event === 'none') return
     for (const example of this.drugstOneExamples) {
       if (example.value === $event) {
         this.activateExample(example);

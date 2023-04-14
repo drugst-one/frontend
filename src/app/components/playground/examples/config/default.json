@@ -1,0 +1,74 @@
+{
+  "label": "Default",
+  "value": "default",
+  "config": {
+    "identifier": "symbol",
+    "title": "Breast cancer example network",
+    "nodeShadow": true,
+    "edgeShadow": false,
+    "autofillEdges": false
+  },
+  "groups": {
+  "nodeGroups": {
+    "important": {
+      "type": "gene",
+      "color": "#ff881f",
+      "font": {
+        "color": "#000000"
+      },
+      "groupName": "Important Gene",
+      "shape": "star"
+    },
+    "gene": {
+      "type": "gene",
+      "color": "#4da300",
+      "font": {
+        "color": "#f0f0f0"
+      },
+      "groupName": "Gene",
+      "shape": "circle"
+    },
+    "foundDrug": {
+      "type": "drug",
+      "color": "#F12590",
+      "font": {
+        "color": "#000000"
+      },
+      "groupName": "Drug",
+      "shape": "diamond"
+    }
+  },
+  "edgeGroups": {
+    "default": {
+      "color": "#000000",
+      "groupName": "default edge"
+    }
+  }
+},
+  "network": {
+    "nodes": [{"id":"CFTR","group":"gene","label":"CFTR"},{"id":"TGFB1","group":"gene","label":"TGFB1"},{"id":"TNFRSF1A","group":"gene","label":"TNFRSF1A"},{"id":"FCGR2A","group":"gene","label":"FCGR2A"},{"id":"ENG","group":"gene","label":"ENG"},{"id":"DCTN4","group":"gene","label":"DCTN4"},{"id":"CLCA4","group":"gene","label":"CLCA4"},{"id":"STX1A","group":"gene","label":"STX1A"},{"id":"SCNN1G","group":"gene","label":"SCNN1G"},{"id":"SCNN1A","group":"gene","label":"SCNN1A"},{"id":"SCNN1B","group":"gene","label":"SCNN1B"}],
+    "edges": [{"from": "DCTN4", "to": "CFTR"},
+      {"from": "STX1A", "to": "SCNN1B", "group": "default"},
+      {"from": "SCNN1A", "to": "SCNN1G", "group": "default"},
+      {"from": "SCNN1B", "to": "SCNN1G", "group": "default"}
+    ]
+  }
+,
+  "styles":{
+    "--drgstn-primary": "#347eee",
+    "--drgstn-secondary": "#2e42f2",
+    "--drgstn-success": "#48C774",
+    "--drgstn-warning": "#ffdd00",
+    "--drgstn-danger": "#ff2744",
+    "--drgstn-background": "#f8f9fa",
+    "--drgstn-panel": "#ffffff",
+    "--drgstn-info": "#61c43d",
+    "--drgstn-text-primary": "#151515",
+    "--drgstn-text-secondary": "#eeeeee",
+    "--drgstn-border": "rgba(0, 0, 0, 0.2)",
+    "--drgstn-tooltip": "rgba(74,74,74,0.9)",
+    "--drgstn-panel-secondary": "#FFFFFF",
+    "--drgstn-height": "600px",
+    "--drgstn-font-family":"Helvetica Neue, sans-serif"
+  }
+}
