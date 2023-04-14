@@ -42,7 +42,7 @@
                 alt="Drugst.one detail panel"
         />
         <figcaption class="figure-caption">
-            The Drugst.One detail panel with content for the TGF Beta-1 gene.
+            The Drugst.One detail panel with content for the CFTR gene.
         </figcaption>
     </figure>
 </div>
@@ -159,8 +159,11 @@
     similar, but the algorithms will return a list of putative drugs in the
     network neighborhood of the seed genes. Lastly, the
     <b>'enrichment analysis'</b> will export the list of selected genes either to
-    <a href="https://biit.cs.ut.ee/gprofiler/gost" target="_blank">g:Profiler</a> or <a href="https://digest-validation.net">DIGEST</a>
-    which offer different evaluation, enrichment, profiling and conversion methods.
+    <a href="https://biit.cs.ut.ee/gprofiler/gost" target="_blank">g:Profiler</a> or <a
+        href="https://digest-validation.net" target="_blank">DIGEST</a>
+    which offer different evaluation, enrichment, profiling and conversion methods. Another option is to search for
+    selected proteins in NDEx integrated Query (<a href="https://www.ndexbio.org/iquery/" target="_blank">iQuery</a>) to
+    show curated pathways with the same participants.
 </p>
 <p>
     For more information about the algorithm see the
@@ -176,7 +179,8 @@
                 alt="Drugst.one analysis panel"
         />
         <figcaption class="figure-caption">
-            The Drugst.One analysis panel with full configuration option for 'drug target' and 'drug' searches and redirects to external resources.
+            The Drugst.One analysis panel with full configuration option for 'drug target' and 'drug' searches and
+            redirects to external resources.
         </figcaption>
     </figure>
 </div>
@@ -217,7 +221,11 @@
 <p>
     This panel shows a list of all selected genes. Labels and the group are
     displayed for each genes to give the user an overview over their current
-    selection. Individual genes or the complete selection can be removed here.
+    selection. Individual genes or the complete selection can be removed here. Genes can be manually selected by
+    double-clicking nodes in the network, checking boxes in the according tabular view, or by using the 'rectangular
+    select' function, which can be used by pressing <kbd>shift</kbd> and then holding the left mouse button down while
+    dragging the cursor over the network. Options for selection expansion are provided though the 'Add First neighbors'
+    and 'Add Connected Components' buttons, that use the current selection list as input.
 </p>
 
 <div class="figure-frame">
@@ -229,7 +237,35 @@
                 alt="Drugst.one selection panel"
         />
         <figcaption class="figure-caption">
-            The Drugst.One selection panel after using the 'select by group' function.
+            The Drugst.One selection panel after using the 'rectangle select' function to manually select a group of
+            genes.
+        </figcaption>
+    </figure>
+</div>
+
+<app-doc-subsubheader
+        text="Views"
+        id="views"
+></app-doc-subsubheader>
+<p>
+    The views panel shows a list of all created views. A view is a subnetwork
+    based on a selection of other networks. The user can create a view by
+    selecting a network and a selection of genes in the network. The view will
+    then be created and displayed in the network panel. The user can also delete
+    views from the list. The view list is saved in the browser's local storage
+    and will be restored when the user returns to the page.
+</p>
+
+<div class="figure-frame">
+    <figure class="figure">
+        <img
+                height="200px"
+                src="/assets/doc/ui_view.png"
+                class="rounded"
+                alt="Drugst.one selection panel"
+        />
+        <figcaption class="figure-caption">
+            The list of created views, so subnetworks based on selections of other networks.
         </figcaption>
     </figure>
 </div>
