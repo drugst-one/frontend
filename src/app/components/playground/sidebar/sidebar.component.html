@@ -62,7 +62,7 @@
                                             [items]="filterDatasets(dataLists.drugProtInterList, getConfig('licensedDatasets'))"
                                             [model]="getConfigOrDefault('interactionDrugProtein', 'NeDRex')"
                                             tooltip="Select the dataset of drug-protein information that is later used in functions like 'Drug Search' and 'Quick Drug Search'."
-                                            (onChange)="changeConfig('interactionProteinProtein', $event)"
+                                            (onChange)="changeConfig('interactionDrugProtein', $event)"
                                     ></app-dropdown>
                                     <app-dropdown
                                             label="Protein-Disease Association DB"
