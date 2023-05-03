@@ -13,7 +13,7 @@ RUN npm run build -- --base-href=/
 
 FROM nginx:1.23.4-alpine
 
-RUN apk update
+RUN apk update && apk add --upgrade apk-tools && apk upgrade --available
 
 COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
 
