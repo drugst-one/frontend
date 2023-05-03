@@ -16,6 +16,6 @@ export class BasicsComponent implements OnInit {
     this.basicCode="<head>\n" +
         "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
         "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
-        "</head>'"
+        "</head>"
   }
 }
