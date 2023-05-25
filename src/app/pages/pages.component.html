@@ -5,4 +5,4 @@
 <app-playground #playground *ngIf="currentTabId===3" [theme]="theme" [hidden]="currentTabId!==3" [api]="backendPath"></app-playground>
 <app-doc [hidden]="currentTabId!==4" [api]="backendPath" [version]="'v'+version" [cdn]="cdn"
          [host]="host"></app-doc>
-
+<app-call-landing #call *ngIf="currentTabId===5" [theme]="theme" [hidden]="currentTabId!==5" [api]="backendPath"></app-call-landing>

@@ -126,6 +126,7 @@ import { PythonPackageComponent } from './pages/doc/content/other/python-package
 import { FromScratchComponent } from './pages/doc/content/start/from-scratch/from-scratch.component';
 import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy/privacy-policy.component';
 import { ExamplesComponent } from './components/playground/examples/examples.component';
+import { CallLandingComponent } from './pages/call-landing/call-landing.component';
 
 
 @NgModule({
@@ -196,6 +197,7 @@ import { ExamplesComponent } from './components/playground/examples/examples.com
         FromScratchComponent,
         PrivacyPolicyComponent,
         ExamplesComponent,
+        CallLandingComponent,
     ],
     imports: [
         BrowserModule,
