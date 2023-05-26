@@ -127,6 +127,8 @@ import { FromScratchComponent } from './pages/doc/content/start/from-scratch/fro
 import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy/privacy-policy.component';
 import { ExamplesComponent } from './components/playground/examples/examples.component';
 import { CallLandingComponent } from './pages/call-landing/call-landing.component';
+import { ToolsBannerComponent } from './components/other/tools-banner/tools-banner.component';
+import { ToolPanelComponent } from './components/other/tools-banner/tool-panel/tool-panel.component';
 
 
 @NgModule({
@@ -198,6 +200,8 @@ import { CallLandingComponent } from './pages/call-landing/call-landing.componen
         PrivacyPolicyComponent,
         ExamplesComponent,
         CallLandingComponent,
+        ToolsBannerComponent,
+        ToolPanelComponent,
     ],
     imports: [
         BrowserModule,
