@@ -28,8 +28,9 @@ export class HeaderComponent implements OnInit {
                 routerLink: 'playground',
                 command: () => this.tabChange(3)
             },
-            {label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', routerLink: 'doc', command: () => this.tabChange(4)},
-            { label: 'COLLABORATION', icon: 'pi pi-fw pi-phone', routerLink: 'call', command: () => this.tabChange(5) }]
+            { label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', routerLink: 'doc', command: () => this.tabChange(4) },
+            { label: 'CITE', icon: 'pi pi-fw pi-pencil', routerLink: 'cite', command: () => this.tabChange(5)},
+            { label: 'COLLABORATION', icon: 'pi pi-fw pi-phone', routerLink: 'call', command: () => this.tabChange(6) }]
         this.activeTab = this.tabsModel[0];
     }
 

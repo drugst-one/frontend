@@ -9,7 +9,8 @@ const routes: Routes = [
     { path: "idea", component: PagesComponent },
     { path: "standalone", component: StandaloneComponent },
     { path: "playground", component: PagesComponent },
-    { path: "call", component: CallLandingComponent },
+    { path: "cite", component: PagesComponent },
+    { path: "call", component: PagesComponent },
     {
         path: "doc", component: PagesComponent, children: [
             { path: 'home', component: PagesComponent },

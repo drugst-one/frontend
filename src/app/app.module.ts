@@ -127,6 +127,7 @@ import { FromScratchComponent } from './pages/doc/content/start/from-scratch/fro
 import { PrivacyPolicyComponent } from './pages/doc/content/other/privacy-policy/privacy-policy.component';
 import { ExamplesComponent } from './components/playground/examples/examples.component';
 import { CallLandingComponent } from './pages/call-landing/call-landing.component';
+import { CiteComponent } from './pages/cite/cite.component';
 
 
 @NgModule({
@@ -198,6 +199,7 @@ import { CallLandingComponent } from './pages/call-landing/call-landing.componen
         PrivacyPolicyComponent,
         ExamplesComponent,
         CallLandingComponent,
+        CiteComponent,
     ],
     imports: [
         BrowserModule,
