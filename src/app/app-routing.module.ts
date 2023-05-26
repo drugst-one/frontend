@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StandaloneComponent } from "./pages/standalone/standalone/standalone.component";
+import { CallLandingComponent } from "./pages/call-landing/call-landing.component";
 import { PagesComponent } from "./pages/pages.component";
 
 const routes: Routes = [
@@ -8,6 +9,8 @@ const routes: Routes = [
     { path: "idea", component: PagesComponent },
     { path: "standalone", component: StandaloneComponent },
     { path: "playground", component: PagesComponent },
+    { path: "cite", component: PagesComponent },
+    { path: "call", component: PagesComponent },
     {
         path: "doc", component: PagesComponent, children: [
             { path: 'home', component: PagesComponent },

@@ -21,14 +21,16 @@ export class HeaderComponent implements OnInit {
         this.tabsModel = [
             {label: 'HOME', icon: 'pi pi-fw pi-home', routerLink: 'home', command: () => this.tabChange(0)},
             {label: 'IDEA', icon: 'pi pi-fw pi-question-circle', routerLink: 'idea', command: () => this.tabChange(1)},
-            {label: 'STANDALONE', icon: 'pi pi-fw pi-send', routerLink: 'standalone', command: () => this.tabChange(2)},
+            { label: 'STANDALONE', icon: 'pi pi-fw pi-send', routerLink: 'standalone', command: () => this.tabChange(2) },
             {
                 label: 'PLAYGROUND',
                 icon: 'pi pi-fw pi-sliders-v',
                 routerLink: 'playground',
                 command: () => this.tabChange(3)
             },
-            {label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', routerLink: 'doc', command: () => this.tabChange(4)}]
+            { label: 'DOCUMENTATION', icon: 'pi pi-fw pi-book', routerLink: 'doc', command: () => this.tabChange(4) },
+            { label: 'CITE', icon: 'pi pi-fw pi-pencil', routerLink: 'cite', command: () => this.tabChange(5)},
+            { label: 'COLLABORATION', icon: 'pi pi-fw pi-phone', routerLink: 'call', command: () => this.tabChange(6) }]
         this.activeTab = this.tabsModel[0];
     }
 

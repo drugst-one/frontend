@@ -1,0 +1,9 @@
+<p-card class="d-flex">
+    <div class="tool-banner">
+        <div class=" flex-wrap tool-panel">
+            <a *ngIf="!icon" [href]="link" class="tool-link" target="_blank"
+               [style]="{'font-size': font_size ? font_size : '25pt'}">{{label}}</a>
+            <a *ngIf="icon" [href]="link" target="_blank"><img [src]="icon" [width]="width ? width : 200"></a>
+        </div>
+    </div>
+</p-card>
