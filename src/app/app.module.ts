@@ -129,6 +129,7 @@ import { ExamplesComponent } from './components/playground/examples/examples.com
 import { CallLandingComponent } from './pages/call-landing/call-landing.component';
 import { ToolsBannerComponent } from './components/other/tools-banner/tools-banner.component';
 import { ToolPanelComponent } from './components/other/tools-banner/tool-panel/tool-panel.component';
+import { CiteComponent } from './pages/cite/cite.component';
 
 
 @NgModule({
@@ -200,6 +201,7 @@ import { ToolPanelComponent } from './components/other/tools-banner/tool-panel/t
         PrivacyPolicyComponent,
         ExamplesComponent,
         CallLandingComponent,
+        CiteComponent,
         ToolsBannerComponent,
         ToolPanelComponent,
     ],

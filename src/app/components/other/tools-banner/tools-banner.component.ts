@@ -16,7 +16,7 @@ export class ToolsBannerComponent implements OnInit {
     public tool_list = [
         {label: "BiCoN", link: "https://exbio.wzw.tum.de/bicon/"},
         {label: "BioCypher", link: "https://biocypher.org/", icon:"assets/tools/biocypher.png"},
-        // {label: "DOMINO", link: "http://domino.cs.tau.ac.il/", icon: "assets/tools/domino.png"},
+        {label: "DOMINO", link: "http://domino.cs.tau.ac.il/", icon: "assets/tools/domino.png"},
         {label: "G-Browser", link: "https://exbio.wzw.tum.de/genome-browser/"},
         {label: "GraphFusion", link: "https://github.com/CarlosJesusGH/GraphFusion"},
         {label: "GraphSimViz", link: "https://graphsimviz.net/", icon: "assets/tools/graphsimviz.png"},
