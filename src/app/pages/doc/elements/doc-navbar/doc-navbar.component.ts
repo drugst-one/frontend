@@ -56,6 +56,7 @@ export class DocNavbarComponent implements OnInit {
     },
     {
       name: 'Implementation', target: 'nav_implementation', elements: [
+        {name: 'GitHub', anchor: 'implementation_git'},
         { name: 'Datasources', anchor: 'implementation_datasources' },
         { name: 'Network', anchor: 'implementation_visjs' },
         { name: 'Algorithms', anchor: 'implementation_algorithms' },

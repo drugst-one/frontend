@@ -130,6 +130,7 @@ import { CallLandingComponent } from './pages/call-landing/call-landing.componen
 import { ToolsBannerComponent } from './components/other/tools-banner/tools-banner.component';
 import { ToolPanelComponent } from './components/other/tools-banner/tool-panel/tool-panel.component';
 import { CiteComponent } from './pages/cite/cite.component';
+import { ImplGitComponent } from './pages/doc/content/implementation/impl-git/impl-git.component';
 
 
 @NgModule({
@@ -204,6 +205,7 @@ import { CiteComponent } from './pages/cite/cite.component';
         CiteComponent,
         ToolsBannerComponent,
         ToolPanelComponent,
+        ImplGitComponent,
     ],
     imports: [
         BrowserModule,
