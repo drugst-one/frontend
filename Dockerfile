@@ -11,7 +11,7 @@ RUN rm -rf nginx
 
 RUN npm run build -- --base-href=/
 
-FROM nginx:1.23.4-alpine
+FROM nginx:mainline-alpine
 
 RUN apk update && apk add --upgrade apk-tools && apk upgrade --available
 
