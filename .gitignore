@@ -5,3 +5,6 @@ dist/
 .prettierrc
 
 .DS_Store
+
+# no videos
+*.mp4
