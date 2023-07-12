@@ -9,7 +9,7 @@ RUN npm install
 COPY ./ .
 RUN rm -rf nginx
 
-RUN npm run build -- --base-href=/
+RUN npm run build -- --base-href=./
 
 FROM nginx:mainline-alpine
 
