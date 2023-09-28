@@ -13,7 +13,7 @@ RUN npm run build -- --base-href=./
 
 FROM nginx
 
-RUN apt-get update && apt-get upgrade
+#RUN apt-get update && apt-get upgrade
 
 COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
 
