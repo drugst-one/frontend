@@ -1,4 +1,4 @@
-FROM node:16.17 as build-stage
+FROM node as build-stage
 
 WORKDIR /app
 
@@ -11,9 +11,9 @@ RUN rm -rf nginx
 
 RUN npm run build -- --base-href=./
 
-FROM nginx:mainline-alpine
+FROM nginx
 
-RUN apk update && apk add --upgrade apk-tools && apk upgrade --available
+RUN apt-get update && apt-get upgrade
 
 COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
 
