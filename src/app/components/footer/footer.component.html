@@ -1,5 +1,9 @@
-<div class="container">
+<div class="container" [ngClass]="{
+        'text-light bg-dark': themeService.theme === 'theme-dark',
+        'text-dark bg-light': themeService.theme === 'theme-light'
+      }">
   <footer class="row row-cols-5 py-5 mt-5 border-top">
+
     <div class="col">
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
         <img src="{{themeService.theme === 'theme-dark' ? '/assets/logo_white.png' : '/assets/logo_black.png'}}" alt="drugst.one project logo" height="20px">
@@ -14,7 +18,7 @@
 
     <div class="col">
       <h5>Content</h5>
-      <ul class="nav flex-column">
+      <ul class="nav flex-column" >
         <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
         <li class="nav-item mb-2"><a href="/idea" class="nav-link p-0 text-muted">Idea</a></li>
         <li class="nav-item mb-2"><a href="/standalone" class="nav-link p-0 text-muted">Standalone</a></li>
@@ -32,6 +36,12 @@
         <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" href= "/cite">Cite us</a></li>
         <li class="nav-item mb-2"><a class="nav-link p-0 text-muted" href= "mailto:contact@drugst.one">Contact us</a></li>
       </ul>
+    </div>
+
+    <div class="col-12 mt-4">
+      <div class="alert alert-dark" role="alert">
+        The Drugst.One website is free and open to all users, and there is no login requirement.
+      </div>
     </div>
     
   </footer>
