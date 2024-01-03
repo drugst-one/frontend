@@ -6,8 +6,18 @@
                 Use Drugst.One as if it was integrated on your one website! Below you have the Drugst.One app based on
                 the configuration below. This page can be the target of URL based requests to visualize specific genes.
                 You can read more about how to create such URLs <a class="link-primary"
-                                                                   (click)="switchToDoc('standalone')">here</a>.
+                                                                   (click)="switchToDoc('standalone')">here</a>.<br>
+                To find <span class="fw-bold">disease-specific examples</span> and try out <span class="fw-bold">different configuration options</span>, please visit the <a class="link-primary"
+                                                                   (click)="switchToPlayground()">Drugst.One Playground</a>.
+
             </p>
+            <div class="d-flex justify-content-center mb-3">
+            <p-button
+                label="See network input"
+                icon="pi pi-fw pi-arrow-circle-down"
+                (onClick)="scrollToNetworkInput()"
+                ></p-button>
+            </div>
         </div>
     </div>
     <div class="accordion" id="accordionPanelsStandalone">

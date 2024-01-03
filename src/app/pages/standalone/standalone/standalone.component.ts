@@ -149,9 +149,9 @@ export class StandaloneComponent implements OnInit {
             if (this.rawNodes === '') {
                 this.updateNodeImport(this.cysticFibrosisGenes);
                 this.setNetwork();
-                setTimeout(() => {
-                    this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
-                }, 1000)
+                // setTimeout(() => {
+                //     this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+                // }, 1000)
             }
         }
     }
@@ -181,6 +181,10 @@ export class StandaloneComponent implements OnInit {
 
     switchToDoc(id: string) {
         window.location.replace("/doc#" + id)
+    }
+
+    switchToPlayground() {
+        this.router.navigate(['/playground']);
     }
 
     loadDatasets() {
@@ -534,6 +538,10 @@ export class StandaloneComponent implements OnInit {
 
     public updateNodeImport(genes: any) {
         this.rawNodes = genes.join(',');
+    }
+    
+    public scrollToNetworkInput() {
+        this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
 
 }
