@@ -3,6 +3,8 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import theme from '../exampleTheme.json'
 import {NavigationEnd, Router} from "@angular/router";
 import { ThemeService } from 'src/app/services/theme.service';
+// @ts-ignore
+import CONFIG from './configs/default.js'
 
 @Component({
     selector: 'app-root',
@@ -10,11 +12,10 @@ import { ThemeService } from 'src/app/services/theme.service';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    public version = "1.1.20"
-    public host = "https://drugst.one"
-    public cdn = "https://cdn.drugst.one"
-    public backendPath = "https://api.drugst.one/"
-    // public backendPath = "localhost:8001/"
+    public version = CONFIG.version
+    public host = CONFIG.host
+    public cdn = CONFIG.cdn
+    public backendPath = CONFIG.backendPath
 
     public theme = theme;
     public currentTabId: number;
