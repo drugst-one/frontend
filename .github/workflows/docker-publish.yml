@@ -31,7 +31,7 @@ jobs:
         include:
           - dockerfile: ./Dockerfile
             image: drugst-one/frontend:production
-          - dockerfile: ./Dockerfile.stable
+          - dockerfile: ./Dockerfile_stable
             image: drugst-one/frontend:stable
     permissions:
       contents: read
