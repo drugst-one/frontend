@@ -9,11 +9,11 @@ on:
   schedule:
     - cron: '36 23 * * *'
   push:
-    branches: [ "production", "development"]
+    branches: [ "production"]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ "production", "development"]
+    branches: [ "production"]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -31,8 +31,10 @@ jobs:
         include:
           - dockerfile: ./Dockerfile
             image: drugst-one/frontend
+            tag: production
           - dockerfile: ./Dockerfile_stable
-            image: drugst-one/frontend/stable
+            image: drugst-one/frontend
+            tag: stable
     permissions:
       contents: read
       packages: write
@@ -84,7 +86,7 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ matrix.tag }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
