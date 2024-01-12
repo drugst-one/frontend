@@ -9,11 +9,11 @@ on:
   schedule:
     - cron: '36 23 * * *'
   push:
-    branches: [ "production", "development" ]
+    branches: [ "production"]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ "production", "development" ]
+    branches: [ "production"]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -24,8 +24,15 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: ./Dockerfile
+            image: drugst-one/frontend:production
+          - dockerfile: ./Dockerfile.stable
+            image: drugst-one/frontend:stable
     permissions:
       contents: read
       packages: write
