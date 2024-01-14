@@ -31,10 +31,10 @@ jobs:
         include:
           - dockerfile: ./Dockerfile
             image: drugst-one/frontend
-            tag: production
+            tag: [production]
           - dockerfile: ./Dockerfile_stable
             image: drugst-one/frontend
-            tag: stable
+            tag: [stable]
     permissions:
       contents: read
       packages: write
