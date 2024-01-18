@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ThemeService} from 'src/app/services/theme.service';
 import {RequestService} from "src/app/services/requestService";
+// @ts-ignore
+import CONFIG from "../../../../../configs/default.js"
 
 @Component({
     selector: 'app-impl-data',
@@ -209,7 +211,19 @@ export class ImplDataComponent implements OnInit {
                 }
             })
 
-        })
-    }
+            this.dataSourcesLicenced.forEach(source => {
+                if (source.name === 'DrugBank (via NeDRex)') {
+                    if (!CONFIG.is_stable)
+                        source.version = '5.1.10'
+                    else
+                        source.version = '5.1.7'
+                }})
+                this.dataSourcesUnlicenced.forEach(source => {
+                    if (source.name === 'DisGeNET (via NeDRex)') {
+                        source.version = '7.1'
+                    }
+                })
+            })
+        }
 
-}
+    }
