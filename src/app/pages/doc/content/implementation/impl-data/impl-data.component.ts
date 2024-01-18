@@ -220,7 +220,7 @@ export class ImplDataComponent implements OnInit {
                 }})
                 this.dataSourcesUnlicenced.forEach(source => {
                     if (source.name === 'DisGeNET (via NeDRex)') {
-                        source.version = '7.1'
+                        source.version = '7.0'
                     }
                 })
             })
