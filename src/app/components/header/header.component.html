@@ -8,8 +8,9 @@
   }"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="/home">
+    <a class="navbar-brand" href="/home" style="display: flex; align-items: flex-end;">
       <img src="{{themeService.theme === 'theme-dark' ? '/assets/logo_white.png' : '/assets/logo_black.png'}}" alt="drugst.one project logo" height="40px">
+      <span style="height: 100%" *ngIf="is_stable"><b  style="margin-left: 8px;">Stable</b></span>
     </a>
     <button
       class="navbar-toggler"

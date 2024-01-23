@@ -8,7 +8,7 @@
       <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
         <img src="{{themeService.theme === 'theme-dark' ? '/assets/logo_white.png' : '/assets/logo_black.png'}}" alt="drugst.one project logo" height="20px">
       </a>
-      <p class="text-muted">drugst.one@v{{ version }}</p>
+      <p class="text-muted">drugst.one@{{ get_version_string() }}</p>
       <p class="text-muted">© 2023</p>
     </div>
 

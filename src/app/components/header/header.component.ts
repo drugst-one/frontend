@@ -2,6 +2,8 @@ import { EventEmitter, Input } from '@angular/core';
 import { Component, OnInit, Output } from '@angular/core';
 import { MenuItem } from "primeng/api";
 import { ThemeService } from "../../services/theme.service";
+// @ts-ignore
+import CONFIG from '../../configs/default.js'
 
 
 @Component({
@@ -16,6 +18,9 @@ export class HeaderComponent implements OnInit {
     @Input() host: string = ""
     tabsModel: MenuItem[];
     activeTab: MenuItem;
+
+    is_stable = CONFIG.is_stable
+
 
     constructor(public themeService: ThemeService) {
         this.tabsModel = [

@@ -13,24 +13,17 @@
 
   Like introduced in the <a href="basic_integration">basic setup</a> section
   best practice is to always include the newest minor version release:
-  <app-code lang="html" [code]="basicCode"></app-code>
-  Apart from this another option for the latest development and thus newest
-  release candidate version would be:
-  <app-code lang="html" [code]="versionCode"></app-code>
-  Here <code>{{ version }}</code> refers to the specific version. To load the latest
-  committed version of drugst.one, the 'nightly' tag can be used:
+  <app-code lang="html" [code]="is_stable ? versionCode : basicCode"></app-code>
   <p-messages severity="warn">
     <ng-template pTemplate>
       <div>
-        Be aware that nightly versions are not guaranteed to be stable because they are
-        in the middle of developing the next version!
+        Be aware, that <code>latest</code> or <code>nightly</code> does not use the stable endpoint of Drugst.One.
       </div>
     </ng-template>
   </p-messages>
-  <app-code lang="html" [code]="nightlyCode"></app-code>
-
+<!--<div *ngIf="!is_stable">-->
+  <app-specific-version *ngIf="!is_stable" [nightlyCode]="nightlyCode" [versionCode]="versionCode" [version]="version"></app-specific-version>
+<!--</div>-->
   The available versions can be checked here:
-  <a href="https://cdn.drugst.one" target="_blank"
-    >Version index.html</a
-  >
+  <a href="https://cdn.drugst.one" target="_blank">Version index.html</a>
 </p>

@@ -131,6 +131,7 @@ import { ToolsBannerComponent } from './components/other/tools-banner/tools-bann
 import { ToolPanelComponent } from './components/other/tools-banner/tool-panel/tool-panel.component';
 import { CiteComponent } from './pages/cite/cite.component';
 import { ImplGitComponent } from './pages/doc/content/implementation/impl-git/impl-git.component';
+import { SpecificVersionComponent } from './pages/doc/content/customize/cust-version/specific-version/specific-version.component';
 
 
 @NgModule({
@@ -206,6 +207,7 @@ import { ImplGitComponent } from './pages/doc/content/implementation/impl-git/im
         ToolsBannerComponent,
         ToolPanelComponent,
         ImplGitComponent,
+        SpecificVersionComponent,
     ],
     imports: [
         BrowserModule,
