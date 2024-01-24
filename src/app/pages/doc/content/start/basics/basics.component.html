@@ -1,4 +1,11 @@
 <p>
+    <p-messages severity="warn" *ngIf="is_stable">
+    <ng-template pTemplate>
+      <div>
+        Be aware, that example code in the GitHub repositories is not using the stable Drugst.One plugin. To change that, just import the stable version as detailed below.
+      </div>
+    </ng-template>
+  </p-messages>
   For the integration of Drugst.One into a simple html project, the Drugst.One
   plugin has to be imported. For this, only two lines of code have to be added in
   the <code>{{"<"}}head{{">"}}</code> section of your html file:

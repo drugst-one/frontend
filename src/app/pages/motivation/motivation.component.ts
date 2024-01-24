@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RequestService} from "../../services/requestService";
 import {Node} from "../../../interfaces"
+
+// @ts-ignore
+import CONFIG from "../../configs/default.js"
 @Component({
   selector: 'app-motivation ',
   templateUrl: './motivation.component.html',
@@ -17,6 +20,8 @@ export class MotivationComponent implements OnInit {
   sourceDB = 'symbol'
   availability:object = {}
 
+  is_stable = CONFIG.is_stable
+
   public general = {
     plugin: "",
     body: ""
@@ -29,11 +34,19 @@ export class MotivationComponent implements OnInit {
     // @ts-ignore
     // document.scrollTop(0);
     window.scroll({top:document.body.offsetTop})
-    this.general.plugin = "" +
-        "<head>\n" +
-        "   <script src=\""+this.cdn+"/latest/drugstone.js\"></script>\n" +
-        "   <link rel=\"stylesheet\" href=\""+this.cdn+"/latest/styles.css\">\n" +
-        "</head>\n\n";
+    if(!this.is_stable) {
+      this.general.plugin = "" +
+          "<head>\n" +
+          "   <script src=\"" + this.cdn + "/latest/drugstone.js\"></script>\n" +
+          "   <link rel=\"stylesheet\" href=\"" + this.cdn + "/latest/styles.css\">\n" +
+          "</head>\n\n";
+    }else{
+      this.general.plugin = "" +
+          "<head>\n" +
+          "   <script src=\"" + this.cdn + "/stable/drugstone.js\"></script>\n" +
+          "   <link rel=\"stylesheet\" href=\"" + this.cdn + "/stable/styles.css\">\n" +
+          "</head>\n\n";
+    }
     this.general.body = "" +
         "<body>\n" +
         "   <drugst-one></drugst-one>\n" +

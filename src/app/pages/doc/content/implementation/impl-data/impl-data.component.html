@@ -1,83 +1,92 @@
 <p>
-  Drugst.One includes a variaty of different data types and data sources. It is
-  up to you, which data sources for e.g. protein-protein interactions you want
-  to integrate in your app. Below, all possible options are listed. Please not,
-  that some data resources require a licence agreement by the end user. If such
-  a datasource is integrated in your app, users will have to agree to the
-  licence in pop-up window in the Drugst.one app.
+    Drugst.One includes a variaty of different data types and data sources. It is
+    up to you, which data sources for e.g. protein-protein interactions you want
+    to integrate in your app. Below, all possible options are listed. Please note,
+    that some data resources require a licence agreement by the end user. If such
+    a datasource is integrated in your app, users will have to agree to the
+    licence in pop-up window in the Drugst.one app.
 </p>
 
 
 <p-messages severity="warn">
     <ng-template pTemplate>
-      <div>
-        Some datasets require a licence agreement by the end user.
-      </div>
+        <div>
+            Some datasets require a licence agreement by the end user.
+        </div>
     </ng-template>
-  </p-messages>
+</p-messages>
+
+<p-messages severity="info">
+    <ng-template pTemplate>
+        <div>
+            In the the main Drugst.One database is updated automatically weekly. For more stable version that is only
+            updated <code>stable</code> version <a href="https://stable.drugst.one">here</a>.
+        </div>
+    </ng-template>
+</p-messages>
 
 <app-doc-subsubheader
-  text="Unlicenced Sources"
-  id="licenced_sources"
+        text="Unlicenced Sources"
+        id="licenced_sources"
 ></app-doc-subsubheader>
 <table
-  class="table"
-  [ngClass]="{
+        class="table"
+        [ngClass]="{
     'table-dark': themeService.theme === 'theme-dark',
     'table-light': themeService.theme === 'theme-light'
   }"
 >
-  <thead>
+    <thead>
     <tr>
-      <th>Source</th>
-      <th>Version</th>
-      <th>Type</th>
-      <th>Description</th>
+        <th>Source</th>
+        <th>Version</th>
+        <th>Type</th>
+        <th>Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let dataSource of dataSourcesUnlicenced">
-      <td>
-        <a href="{{ dataSource.link }}" target="_blank">{{
-          dataSource.name
-        }}</a>
-      </td>
-      <td>{{ dataSource.version }}</td>
-      <td><span *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></span></td>
-      <td>{{ dataSource.description }}</td>
+        <td>
+            <a href="{{ dataSource.link }}" target="_blank">{{
+                dataSource.name
+                }}</a>
+        </td>
+        <td>{{ dataSource.version }}</td>
+        <td><span *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></span></td>
+        <td>{{ dataSource.description }}</td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
 
 <app-doc-subsubheader
-  text="Licenced Sources"
-  id="licenced_sources"
+        text="Licenced Sources"
+        id="licenced_sources"
 ></app-doc-subsubheader>
 <table
-  class="table"
-  [ngClass]="{
+        class="table"
+        [ngClass]="{
     'table-dark': themeService.theme === 'theme-dark',
     'table-light': themeService.theme === 'theme-light'
   }"
 >
-  <thead>
+    <thead>
     <tr>
-      <th>Source</th>
-      <th>Version</th>
-      <th>Type</th>
-      <th>Description</th>
+        <th>Source</th>
+        <th>Version</th>
+        <th>Type</th>
+        <th>Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let dataSource of dataSourcesLicenced">
-      <td>
-        <a href="{{ dataSource.link }}" target="_blank">{{
-          dataSource.name
-        }}</a>
-      </td>
-      <td>{{ dataSource.version }}</td>
-      <td><span *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></span></td>
-      <td>{{ dataSource.description }}</td>
+        <td>
+            <a href="{{ dataSource.link }}" target="_blank">{{
+                dataSource.name
+                }}</a>
+        </td>
+        <td>{{ dataSource.version }}</td>
+        <td><span *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></span></td>
+        <td>{{ dataSource.description }}</td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
