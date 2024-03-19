@@ -64,6 +64,33 @@
 </table>
 
 <app-doc-subsubheader
+  text="Runtime analysis"
+  id="runtime_analysis"
+></app-doc-subsubheader>
+
+<p>To estimate the runtime of the Drugst.One algorithms, the algorthms were executed for each scenario (drug-target & drug search) 
+  on multiple diseases from NeDRexDB with varying input sizes. For the sake of this runtime analysis, the diseases were grouped 
+  based on the number of known disease genes (inputs of sizes 10, 25, 50, and 100). If necessary, the disease-associated genes were 
+  randomly subsampled. The code as well as the results can be found here: 
+  <a target="_blank" href="https://github.com/drugst-one/algo-running-times">https://github.com/drugst-one/algo-running-times</a>.
+</p>
+
+<figure class="figure text-center">
+  <img
+          src="/assets/doc/drugstone_runtime_scaling_drug-target.png"
+          class="rounded w-75"
+          alt="Drugst.one analysis table"
+  />
+</figure>
+<figure class="figure text-center">
+  <img
+          src="/assets/doc/drugstone_runtime_scaling_drug.png"
+          class="rounded w-75"
+          alt="Drugst.one analysis table"
+  />
+</figure>
+
+<app-doc-subsubheader
   text="Multi-Level Steiner Trees"
   id="multi_steiner_trees"
 ></app-doc-subsubheader>
