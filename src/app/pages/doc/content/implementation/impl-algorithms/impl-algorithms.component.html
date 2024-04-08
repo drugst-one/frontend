@@ -254,15 +254,23 @@
   id="network_proximity"
 ></app-doc-subsubheader>
 <p>
-  Network Proximity, as introduced by
-  <a href="https://www.nature.com/articles/ncomms10331" target="_blank"
+  As introduced in <a href="https://www.nature.com/articles/s41467-020-17189-2" target="_blank"
+    >Sadegh et al.</a
+  > we adopted the modified version of the originally proposed network-based proximity metric proposed by <a href="https://www.nature.com/articles/ncomms10331" target="_blank"
     >Guney et al.</a
-  >, is the average length of shortest paths from drug target nodes to all of
-  the user-selected seed nodes. The algorithm then computes a statistical
-  significance score comparing against random expectation. This algorithm was
-  adopted in Drugst.One so that best-scored drugs are returned to the user as
-  candidate drugs.
-</p>
+  >,.
+Network proximity is defined as the average length of shortest paths from target protein nodes of a drug to a set of disease nodes, called seeds. A background distribution is computed by creating a specified number (default 32) of random drug target sets and a specified number of random seed sets (default 32). Drug target set sizes are chosen to represent the observed drug degrees in the drug-target network, differing from the original bin-based degree-preserving set randomization. The average shortest path between each observed drug-target set and the input seed set is compared to the background distribution to compute a statistical significance score (z-core) using mean and standard deviation of the background. 
+This algorithm was adopted in Drugst.One such that highest-scoring drugs are returned to the user as candidate drugs.
+
+<ul>
+  <li>
+    <i>Number Random Seed Sets:</i>  Default 32. Sets the number of random seed sets generate to establish the background distribution.
+  </li>
+  <li>
+    <i>Number Random Drug Target Sets:</i>  Default 32. Sets the number of random drug target sets generated to establish the background distribution.
+  </li>
+</ul>
+
 
 <app-doc-subsubheader
   text="General Parameters"
