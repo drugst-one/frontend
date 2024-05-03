@@ -10,7 +10,7 @@ const routes: Routes = [
     { path: "standalone", component: StandaloneComponent },
     { path: "playground", component: PagesComponent },
     { path: "cite", component: PagesComponent },
-    { path: "call", component: PagesComponent },
+    // { path: "call", component: PagesComponent },
     {
         path: "doc", component: PagesComponent, children: [
             { path: 'home', component: PagesComponent },
