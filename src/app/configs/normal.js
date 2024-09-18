@@ -1,8 +1,8 @@
 const CONFIG = {
-    version: "1.2.2",
+    version: "2.0.0-rc1",
     host: "https://drugst.one",
     cdn: "https://cdn.drugst.one",
-    backendPath: "https://api.drugst.one/",
+    backendPath: "https://dev.api.drugst.one/",
     is_stable: false
 }
 export default CONFIG
