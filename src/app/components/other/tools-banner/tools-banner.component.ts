@@ -28,7 +28,7 @@ export class ToolsBannerComponent implements OnInit {
         {label: "Epistasis Disease Atlas", link: "https://epistasis-disease-atlas.com", font_size: "20pt"},
         {label: "NDEx", link: "https://ndexbio.org/#/home", icon: "assets/tools/ndex.png"},
         {label: "NeEDL - R Shiny App", link: "https://hub.docker.com/r/bigdatainbiomedicine/needl", font_size: "20pt"},
-        {label: "NephroDIP", link:"https://ophid.utoronto.ca/NephroDIP/"},
+        {label: "NephroDIP", link:"https://ophid.utoronto.ca/NephroDIP/", icon: "assets/tools/nephrodip.png", width: 100},
         {label: "openPIP", link: "https://github.com/BaderLab/openPIP", icon: "assets/tools/openpip.png"},
         {label: "pathDIP", link: "https://ophid.utoronto.ca/pathDIP", icon: "assets/tools/pathdip.jpg"},
         {label: "Pathway Figure OCR ", link: "https://pfocr.wikipathways.org", icon: "assets/tools/pfocr.png", width: 100},
