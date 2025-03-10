@@ -1,5 +1,5 @@
 const CONFIG = {
-    version: "2.0.0-rc4",
+    version: "2.1.0-rc6",
     host: "https://drugst.one",
     cdn: "https://cdn.drugst.one",
     backendPath: "https://dev.api.drugst.one/",

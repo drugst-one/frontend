@@ -53,7 +53,8 @@ export class StandaloneComponent implements OnInit {
         'disgenet': 'DisGeNET',
         'ctd': 'CTD',
         'drugbank': 'DrugBank',
-        'omim': 'OMIM'
+        'omim': 'OMIM',
+        'omnipath': 'OmniPath',
     }
 
     public dataMaps = {
@@ -109,7 +110,9 @@ export class StandaloneComponent implements OnInit {
             {label: 'BioGRID', value: {name: 'BioGRID', licenced: false}},
             {label: 'BioGRID (licensed)', value: {name: 'BioGRID', licenced: true}},
             {label: 'APID', value: {name: 'APID', licenced: false}},
-            {label: 'APID (licensed)', value: {name: 'APID', licenced: true}}
+            {label: 'APID (licensed)', value: {name: 'APID', licenced: true}},
+            { label: 'OmniPath', value: { name: 'OmniPath', licenced: false } },
+            { label: 'OmniPath (licensed)', value: { name: 'OmniPath', licenced: true } },
         ],
         drugDisList: [
             {label: 'NeDRex', value: {name: 'NeDRex', licenced: false}},
