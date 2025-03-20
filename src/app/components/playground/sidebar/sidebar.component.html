@@ -679,7 +679,7 @@
                                                                                     getConfig('showPruning') == null ||
                                                                                     getConfig('showPruning') === true
                                                                                 "
-                                            (onChange)="changeConfig('showPruning', $event)"
+                                            (onChange)="changeConfig('showPruning', $event); changeConfig('calculateProperties', $event)"
                                             tooltip="Adds or removes the Properties-based Pruning card to/from the left/right sidepanel."></app-switch>
                                         <app-switch
                                                 label="Show Task Card"

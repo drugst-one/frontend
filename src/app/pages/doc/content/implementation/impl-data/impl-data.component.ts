@@ -27,7 +27,8 @@ export class ImplDataComponent implements OnInit {
         disgenet: 'DisGeNET',
         ctd: 'CTD',
         drugbank: 'DrugBank',
-        omim: 'OMIM'
+        omim: 'OMIM',
+        omnipath: 'OmniPath'
     }
 
     public descriptionMap = {
@@ -49,7 +50,8 @@ export class ImplDataComponent implements OnInit {
         DisGeNET: 'DisGeNET is a discovery platform containing one of the largest publicly available collections of genes and variants associated to human diseases.',
         CTD: 'CTD is an database that stores manually curated information about chemical-protein interactions.',
         DrugBank: 'DrugBank is a bioinformatics and chemoinformatics resource, combining detailed drug data with drug target information.',
-        OMIM: 'OMIM (Online Mendelian Inheritance in Man) is a comprehensive compendium of human genes and genetic phenotypes.'
+        OMIM: 'OMIM (Online Mendelian Inheritance in Man) is a comprehensive compendium of human genes and genetic phenotypes.',
+        OmniPath: 'OmniPath offers directed protein-protein interactions.'
     }
 
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
@@ -115,6 +117,13 @@ export class ImplDataComponent implements OnInit {
             description: 'APID unifies PPIs from primary databases of molecular interactions (BIND, BioGRID, DIP, HPRD, IntAct, MINT) and also from experimentally resolved 3D structures (PDB).'
         },
         {
+            link: 'https://omnipathdb.org',
+            name: 'OmniPath',
+            version: '1.0',
+            type: ['Protein-Protein'],
+            description: 'OmniPath offers directed protein-protein interactions.'
+        },
+        {
             link: 'https://www.disgenet.org/',
             name: 'DisGeNET',
             version: 'tbi',
@@ -138,6 +147,13 @@ export class ImplDataComponent implements OnInit {
             type: ['Protein-Drug', 'Protein-Protein', 'Drug-Disorder', 'Protein-Disorder'],
             description: 'NeDRex is a network medicine platform for disease module identification and drug repurposing.'
         },
+        {
+            link: 'https://omnipathdb.org',
+            name: 'OmniPath',
+            version: '1.0',
+            type: ['Protein-Protein'],
+            description: 'OmniPath offers directed protein-protein interactions.'
+        }
     ]
 
     ngOnInit(): void {

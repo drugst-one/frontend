@@ -202,7 +202,7 @@
                             tooltip="If enabled, adds automatically gene-gene interaction edges."
                     ></app-switch>
                     <app-switch label="Only reviewed proteins" [model]="
-                                  getConfig('reviewed') == null || getConfig('reviewed')
+                                  !(getConfig('reviewed') == null) || getConfig('reviewed')
                                 " (onChange)="changeConfig('reviewed', $event)"
                         tooltip="If enabled, only reviewed proteins are considered for the analysis."></app-switch>
                 </div>

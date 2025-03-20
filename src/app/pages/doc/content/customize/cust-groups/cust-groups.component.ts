@@ -31,8 +31,14 @@ export class CustGroupsComponent implements OnInit {
     this.defaultNodeGroups = [
       {name: 'default', function: 'Fallback option for all nodes without any group assigned.'},
       {name: 'foundNode', function: 'Node group for all nodes found by Drugst.One that are not drugs (either drug target nodes or nodes that connect drugs to the network).'},
+      { name: 'overlap', function: "Node group for visualizing pathway enrichment results. Those nodes are present in the displayed pathway and the initial network." },
+      { name: 'onlyNetwork', function: "Node group for visualizing pathway enrichment results. Those nodes are present only in the initial network." },
+      { name: 'onlyPathway', function: "Node group for visualizing pathway enrichment results. Those nodes are present only in the displayed pathway." },
+      { name: 'addedNode', function: "Node group for visualizing added nodes. Nodes can be added during the pathway enrichment analysis while inspecting multiple pathways or with the 'Edit Network' panel." },
       {name: 'foundDrug', function: "Node group for all drug nodes found by Drugst.One. Drugs can either be found via the drug search or via the 'Drugs' button in the footer of the network."},
+      { name: 'defaultDisorder', function: 'Default styling for disorders.' },
       {name: 'seedNode', function: 'Style to highlight seed nodes in the task result used as input for the particular task.'},
+      { name: 'firstNeighbor', function: 'Style to display the first neighbor nodes when the First Neighbors task is run.' },
       {name: 'selectedNode', function: 'Style for the nodes that are selected by the user as seeds nodes.'},
     ]
 

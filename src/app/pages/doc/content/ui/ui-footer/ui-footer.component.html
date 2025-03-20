@@ -37,6 +37,10 @@
         expression (TPM) values. For the pie chart representation, values are scaled based on the highest expression
         observed in the selected tissue.
     </li>
+    <li>
+        Label ID space chooser: Choose the ID space for the labels of the proteins. The usual ID spaces
+        are available: UniProt, Ensembl, Entrez Gene, Symbol.
+    </li>
     <li>Drugs: Display first neighbor drugs for the genes in the network.</li>
     <li>
         Disorders (Protein): Display first neighbor disorders for the genes in the
@@ -47,6 +51,25 @@
         network.
     </li>
     <li>Animation: Toggle the network physic (on/off).</li>
+    <li>
+        Upload: Upload network as .csv, .sif, .gt (id as node property 'name') or .graphml. The properties of 
+        .gt and .graphml files are extracted and can be used for pruning. The .sif file can also be a gene/protein list 
+        with one gene/protein per line. In the upload window, the ID space of the network needs to be specified. This button
+        is hidden when viewing task results.
+    </li>
+    <li>
+        Layout: The nodes are arranged in a hierarchical layout based on the
+        layer property which maps the cellular components (cc) of the genes to the higher level compartments: Cytoplasm, 
+        Nucleus, Extracellular, Cell surface, Plasma membrane. The layout is based on the Cerebral layout.
+        Additional layers are undefined for drugs and disorders, Unknown for genes without (cc) information, Multiple for 
+        genes/proteins present in more than one of the higher level cc and Other for when the specific cc couldn't be mapped to
+        one of the top level compartments.
+    </li>
+    <li>
+        Overlay Directions: The currently displayed interactions can be overlayed with the directions of the interactions sourced
+        from OmniPath. OmniPath is available as a licensed and unlicensed version. The licensed version provides more interactions.
+        This button is hidden if OmniPath is chosen as overall background graph as source for protein-protein interactions.
+    </li>
 </ul>
 
 <p>
