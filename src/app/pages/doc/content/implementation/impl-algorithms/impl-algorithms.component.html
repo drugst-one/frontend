@@ -302,3 +302,60 @@ This algorithm was adopted in Drugst.One such that highest-scoring drugs are ret
     Otherwise, all found pathways will be shown.
   </li>
 </ul>
+
+<app-doc-subsubheader text="Pathway Enrichment" id="pathway_enrichment"></app-doc-subsubheader>
+<p>
+  Pathway Enrichment is calculated using the <a href="https://gseapy.readthedocs.io/en/latest/introduction.html" target="_blank">gseapy</a> package with genesets from <a href="https://www.kegg.jp" target="_blank">KEGG</a>, 
+  <a href="https://reactome.org/" target="_blank">Reactome</a>
+  and <a href="https://www.wikipathways.org/" target="_blank">WikiPathways</a>. 
+</p>
+<ul>
+  <li>
+    <i>Cutoff for adjusted p-value:</i> Default 0.05. Sets the cutoff for the adjusted p-value of the enriched pathways.
+  </li>
+  <li>
+    <i>Genesets to consider in pathway enrichment:</i> Default Reactome, KEGG, WikiPathways. Sets the gene sets to consider for
+    pathway enrichment.
+  </li>
+</ul>
+
+<app-doc-subsubheader text="First Neighbor" id="first_neighbor"></app-doc-subsubheader>
+<p>
+  All first neighbors of the seed genes are displayed in the network. The first neighbors are the genes that are directly connected to the 
+  seed genes within the chosen background protein-protein interaction graph.
+</p>
+
+<app-doc-subsubheader text="Louvain Clustering" id="louvain_clustering"></app-doc-subsubheader>
+<p>
+  Louvain clustering is a method to detect communities in large networks. The algorithm maximizes the modularity of the network by iteratively
+  moving nodes between communities. Louvain clustering is calculated with the <a href="https://python-louvain.readthedocs.io/en/latest/api.html" target="_blank">python-louvain</a> package.
+</p>
+<ul>
+  <li>
+    <i>Ignore isolated nodes:</i> Default True. Determines whether isolated nodes should be considered for clustering 
+    since they form their own cluster anyways.
+  </li>
+  <li>
+    <i>Seed:</i> The seed is used to initialize the random number generator. The seed is used to make the results reproducible.
+    It can be set by the user or a random seed is generated and reported.
+  </li>
+</ul>
+
+<app-doc-subsubheader text="Leiden Clustering" id="leiden_clustering"></app-doc-subsubheader>
+<p>
+  Leiden clustering is a another method to detect communities in large networks. The algorithm maximizes the modularity of the
+  network. It is an improved version of Louvain Clustering.
+   Leiden clustering is calculated with the <a href="https://pypi.org/project/leidenalg/" target="_blank">leidenalg</a> package.
+</p>
+<ul>
+  <li>
+    <i>Ignore isolated nodes:</i> Default True. Determines whether isolated nodes should be considered for clustering
+    since they form their own cluster anyways.
+  </li>
+  <li>
+    <i>Seed:</i> The seed is used to initialize the random number generator. The seed is used to make the results
+    reproducible.
+    It can be set by the user or a random seed is generated and reported.
+  </li>
+</ul>
+

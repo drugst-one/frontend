@@ -103,6 +103,18 @@ network = {
 >
 </app-code>
 
+<p>
+  Optionally, properties can be defined for each node which can be used for pruning when showPruning is set 
+  to true.
+</p>
+
+<app-code [copy]="true" lang="html" code='
+network = {
+  "nodes": [{"id":"PTEN" "group": "gene"}, {"id":"custom123", "group": "customNodes", "properties": {"p-value": 0.02, "type": "protein"}}]
+}
+'>
+</app-code>
+
 <app-doc-subsubheader
   text="Edges"
   id="cust_network_edges"

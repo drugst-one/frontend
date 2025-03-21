@@ -50,5 +50,10 @@
   "identifier": "symbol",
   "title": "Standalone drugst.one plugin",
   "nodeShadow": true,
-  "edgeShadow": true
+  "edgeShadow": true,
+  "showEditNetwork": true,
+  "showPruning": true,
+  "showLogger": true,
+  "showNetworkMenuButtonUpload": true,
+  "calculateProperties": true
 }

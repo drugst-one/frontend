@@ -143,104 +143,285 @@ edgeGroup1: {
   found below:
 </p>
 
-<app-code
-  [copy]="true"
-  lang="json"
-  code='groups: {
-    nodeGroups: {
-        default: {
-          groupName: "Default Node Group",
-          color: {
-            border: "#FFFF00",
-            background: "#FFFF00",
-            highlight: {
-              border: "#FF0000",
-              background: "#FF0000"
-            },
-          },
-          shape: "triangle",
-          type: "default type",
-          detailShowLabel: false,
-          font: {
-            color: "#000000",
-            size: 14,
-            face: "arial",
-            background: undefined,
-            strokeWidth: 0,
-            strokeColor: "#ffffff",
-            align: "center",
-            bold: false,
-            ital: false,
-            boldital: false,
-            mono: false,
-          },
-          borderWidth: 1,
-          borderWidthSelected: 2
-        },
-        foundNode: {
-          groupName: "Found Nodes",
-          color: {
-            border: "#F12590",
-            background: "#F12590",
-            highlight: {
-              border: "#F12590",
-              background: "#F12590"
-            },
-          },
-          shape: "circle",
-          type: "default node type",
-        },
-        foundDrug: {
-          groupName: "Drugs",
-          color: {
-            border: "#F12590",
-            background: "#F12590",
-            highlight: {
-              border: "#F12590",
-              background: "#F12590"
-            },
-          },
-          shape: "diamond",
-          type: "default drug type",
-        },
-        seedNode: {
-          groupName: "Seed Nodes",
-          shape: "triangle",
-          type: "seed",
-          color: {
-            border: "#F1111D",
-            background: "#F1111D",
-            highlight: {
-              border: "#F1111D",
-              background: "#F1111D"
-            },
-          },
-          font: {
-            color: "#F1111D",
-            size: 14
+<app-code [copy]="true" lang="json" code='{
+  "groups": {
+    "nodeGroups": {
+      "default": {
+        "groupName": "Default Node Group",
+        "color": {
+          "border": "#FFFF00",
+          "background": "#FFFF00",
+          "highlight": {
+            "border": "#FF0000",
+            "background": "#FF0000"
           }
         },
-        selectedNode: {
-          borderWidth: 3,
-          borderWidthSelected: 4,
-          color: {
-            border: "#F8981D",
-            highlight: {
-              border: "#F8981D",
-            },
-          },
-          font: {
-            color: "#F8981D",
-            size: 14
+        "shape": "triangle",
+        "type": "default type",
+        "detailShowLabel": false,
+        "font": {
+          "color": "#000000",
+          "size": 14,
+          "face": "arial",
+          "background": null,
+          "strokeWidth": 0,
+          "strokeColor": "#ffffff",
+          "align": "center",
+          "bold": false,
+          "ital": false,
+          "boldital": false,
+          "mono": false
+        },
+        "borderWidth": 1,
+        "borderWidthSelected": 2
+      },
+      "foundNode": {
+        "groupName": "Found Nodes",
+        "color": {
+          "border": "#F12590",
+          "background": "#F12590",
+          "highlight": {
+            "border": "#F12590",
+            "background": "#F12590"
+          }
+        },
+        "shape": "circle",
+        "type": "default node type"
+      },
+      "overlap": {
+        "groupName": "overlap",
+        "color": {
+          "border": "#F12590",
+          "background": "#F12590",
+          "highlight": {
+            "border": "#F12590",
+            "background": "#F12590"
+          }
+        },
+        "shape": "circle",
+        "type": "gene",
+        "borderWidth": 0,
+        "borderWidthSelected": 0,
+        "font": {
+          "color": "#000000",
+          "size": 14,
+          "face": "arial",
+          "stroke_width": 0,
+          "stroke_color": "#ffffff",
+          "align": "center",
+          "bold": false,
+          "ital": false,
+          "boldital": false,
+          "mono": false
+        },
+        "shadow": true,
+        "groupID": "overlap"
+      },
+      "onlyNetwork": {
+        "groupName": "only in network",
+        "color": {
+          "border": "#FFFF00",
+          "background": "#FFFF00",
+          "highlight": {
+            "border": "#FFFF00",
+            "background": "#FFFF00"
+          }
+        },
+        "shape": "circle",
+        "type": "gene",
+        "font": {
+          "color": "#000000",
+          "size": 14,
+          "face": "arial",
+          "stroke_width": 0,
+          "stroke_color": "#ffffff",
+          "align": "center",
+          "bold": false,
+          "ital": false,
+          "boldital": false,
+          "mono": false
+        },
+        "borderWidth": 1,
+        "borderWidthSelected": 2,
+        "shadow": true,
+        "groupID": "only_network"
+      },
+      "onlyPathway": {
+        "groupName": "only in pathway",
+        "color": {
+          "border": "#FFFF00",
+          "background": "#FFCC09",
+          "highlight": {
+            "border": "#FFFF00",
+            "background": "#FFCC09"
+          }
+        },
+        "shape": "circle",
+        "type": "gene",
+        "font": {
+          "color": "#000000",
+          "size": 14,
+          "face": "arial",
+          "stroke_width": 0,
+          "stroke_color": "#ffffff",
+          "align": "center",
+          "bold": false,
+          "ital": false,
+          "boldital": false,
+          "mono": false
+        },
+        "borderWidth": 1,
+        "borderWidthSelected": 2,
+        "shadow": true,
+        "groupID": "only_pathway"
+      },
+       "addedNode": {
+        "groupName": "added node",
+        "color": {
+          "border": "#FFB6C1",
+          "background": "#FFB6C1",
+          "highlight": {
+            "border": "#FFB6C1",
+            "background": "#FFB6C1"
+          }
+        },
+        "shape": "circle",
+        "type": "gene",
+        "font": {
+          "color": "#000000",
+          "size": 14,
+          "face": "arial",
+          "stroke_width": 0,
+          "stroke_color": "#ffffff",
+          "align": "center",
+          "bold": false,
+          "ital": false,
+          "boldital": false,
+          "mono": false
+        },
+        "borderWidth": 1,
+        "borderWidthSelected": 2,
+        "shadow": true,
+        "groupID": "added_node"
+      },
+      "foundDrug": {
+        "groupName": "Drugs",
+        "color": {
+          "border": "#F12590",
+          "background": "#F12590",
+          "highlight": {
+            "border": "#F12590",
+            "background": "#F12590"
+          }
+        },
+        "shape": "diamond",
+        "type": "default drug type"
+      },
+      "defaultDisorder": {
+        "groupName": "Disorders",
+        "color": {
+          "border": "#ffa62f",
+          "background": "#ffa62f",
+          "highlight": {
+            "border": "#ffa62f",
+            "background": "#ffa62f"
+          }
+        },
+        "shape": "triangle",
+        "type": "default disorder type"
+      },
+      "seedNode": {
+        "groupName": "Seed Nodes",
+        "shape": "triangle",
+        "type": "seed",
+        "color": {
+          "border": "#F1111D",
+          "background": "#F1111D",
+          "highlight": {
+            "border": "#F1111D",
+            "background": "#F1111D"
+          }
+        },
+        "font": {
+          "color": "#F1111D",
+          "size": 14
+        }
+      },
+      "firstNeighbor": {
+        "groupName": "First Neighbors",
+        "shape": "triangle",
+        "type": "gene",
+        "color": {
+          "border": "#000000",
+          "background": "#A8D8FF",
+          "highlight": {
+            "border": "#000000",
+            "background": "#A8D8FF"
+          }
+        },
+        "font": {
+          "color": "#000000",
+          "size": 14
+        }
+      },
+      "selectedNode": {
+        "borderWidth": 3,
+        "borderWidthSelected": 4,
+        "color": {
+          "border": "#F8981D",
+          "highlight": {
+            "border": "#F8981D"
+          }
+        },
+        "font": {
+          "color": "#F8981D",
+          "size": 14
+        }
+      }
+    },
+    "edgeGroups": {
+      "default": {
+        "groupName": "Default Edge Group",
+        "color": "black",
+        "dashes": false
+      },
+      "stimulation": {
+        "groupName": "Stimulation",
+        "color": "red",
+        "highlight": "lightcoral",
+        "arrows": {
+          "to": {
+            "type": "arrow",
+            "enabled": true,
+            "scaleFactor": 1
           }
         }
       },
-      edgeGroups: {
-        default: {
-          groupName: "Default Edge Group",
-          color: "black",
-          dashes: false
+      "inhibition": {
+        "groupName": "Inhibition",
+        "color": "blue",
+        "highlight": "lightblue",
+        "arrows": {
+          "to": {
+            "type": "bar",
+            "enabled": true,
+            "scaleFactor": 1
+          }
+        }
+      },
+      "neutral": {
+        "groupName": "Neutral",
+        "color": "black",
+        "highlight": "lightgray",
+        "arrows": {
+          "to": {
+            "type": "arrow",
+            "enabled": true,
+            "scaleFactor": 1
+          }
         }
       }
-  }'
-></app-code>
+    }
+  }
+}'></app-code>
+

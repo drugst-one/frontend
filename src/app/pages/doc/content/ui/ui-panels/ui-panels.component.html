@@ -29,9 +29,12 @@
     by Drugst.One in its database, the information will be complemented by
     information from different databases. If a tissue is selected, the exact
     measured expression value will be displayed here when the gene is selected. If
-    the gene cab be found in the Drugst.One database and thus is available for
+    the gene can be found in the Drugst.One database and thus is available for
     selection, a button to toggle the selection status fo the gene will be
-    displayed.
+    displayed. The properties are displayed if the config variable calculateProperties is 
+    set to true. If the network was uploaded, additional properties can be extracted for .graphml 
+    and .gt files that will be displayed here. The node can be deleted from the network by clicking the 
+    trashcan button.
 </p>
 <div class="figure-frame">
     <figure class="figure">
@@ -163,7 +166,9 @@
         href="https://digest-validation.net" target="_blank">DIGEST</a>
     which offer different evaluation, enrichment, profiling and conversion methods. Another option is to search for
     selected proteins in NDEx integrated Query (<a href="https://www.ndexbio.org/iquery/" target="_blank">iQuery</a>) to
-    show curated pathways with the same participants.
+    show curated pathways with the same participants. Moreover, pathway enrichment based on
+    KEGG, Reactome and WikiPathways gene sets can be performed directly within Drugst.One. The results will be 
+    displayed in the analysis window.
 </p>
 <p>
     For more information about the algorithm see the
@@ -179,7 +184,7 @@
                 alt="Drugst.one analysis panel"
         />
         <figcaption class="figure-caption">
-            The Drugst.One analysis panel with full configuration option for 'drug target' and 'drug' searches and
+            The Drugst.One analysis panel with full configuration option for 'drug target' and 'drug' searches and 'pathway enrichment' and
             redirects to external resources.
         </figcaption>
     </figure>
@@ -269,3 +274,59 @@
         </figcaption>
     </figure>
 </div>
+
+<app-doc-subsubheader text="Edit Network" id="edit_network"></app-doc-subsubheader>
+<p>
+    The Edit Network panel enables network modification by adding or removing nodes. The user can add a node by
+    searching for it in the search bar with autocomplete and selecting it. The search is performed for all ID spaces.
+     The nodes will be added to the network when clicking "Add Protein". The user can also delete a node by searching for it
+     in the delete bar with autocomplete and selecting it. The node will be removed from the network when clicking "Delete Protein".
+</p>
+
+<div class="figure-frame">
+    <figure class="figure">
+        <img height="200px" src="/assets/doc/ui_edit_network_panel.png" class="rounded" alt="Drugst.one edit network panel" />
+        <figcaption class="figure-caption">
+            The Edit Network panel for network modification.
+        </figcaption>
+    </figure>
+</div>
+
+<app-doc-subsubheader text="Properties-based Pruning" id="prune_network"></app-doc-subsubheader>
+<p>
+    The Properties-based Pruning panel offers live pruning the network based on properties. 
+    The user can select an available property from the menu and set a threshold value or a selection for categorical values.
+    The nodes that are target for deletion will be grey in the network. The user can then decide to delete the nodes
+    that are not connected to any other nodes (orphan nodes). And once the user clicks on "Prune Network", the nodes in grey will be deleted.
+    All properties that can be checked in the node detail panel can be used for pruning. The SPD (Subnetwork Participation Degree) value, degree within
+    the background graph and the displayed network and the local clustering coefficient are automatically calculated when 'calculateProperties' is set to 'true'.
+    In the screenshot, the scores from a pathway enrichment task are visualized by using the pruning panel. 
+</p>
+
+<div class="figure-frame">
+    <figure class="figure">
+        <img height="200px" src="/assets/doc/ui_prune_panel.png" class="rounded"
+            alt="Drugst.one properties-based pruning panel" />
+        <figcaption class="figure-caption">
+            The Properties-based Pruning panel for pruning based on properties including visualization of the nodes to be deleted.
+        </figcaption>
+    </figure>
+</div>
+<app-doc-subsubheader text="Logger" id="logger"></app-doc-subsubheader>
+<p>
+    The logger window below the network panel tracks any modifications of the network and logs tasks. The logs
+    can be downloaded or cleared. The logger is especially useful for tracking the steps taken to enhance reproducibility.
+</p>
+
+<div class="figure-frame">
+    <figure class="figure">
+        <img height="200px" src="/assets/doc/ui_logger.png" class="rounded"
+            alt="Drugst.one logger" />
+        <figcaption class="figure-caption">
+            The logger window below the network panel tracks any modifications and tasks to enhance reproducibility.
+        </figcaption>
+    </figure>
+</div>
+
+
+
