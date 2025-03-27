@@ -9,6 +9,9 @@ export class PagesComponent implements OnInit {
 
   @ViewChild("playground", {static: false}) playgroundEl: ElementRef | undefined;
   @ViewChild("standalone", {static: false}) standaloneEl: ElementRef | undefined;
+  @ViewChild("documentation", {static: false}) documentationEl: ElementRef | undefined;
+  @ViewChild("getstarted", {static: false}) getStartedEl: ElementRef | undefined;
+  @ViewChild("cite", {static: false}) getCiteEl: ElementRef | undefined;
   @Input() public version : string = ""
   @Input() public cdn : string = ""
   @Input() public backendPath :string = ""
