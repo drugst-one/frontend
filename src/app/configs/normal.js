@@ -1,6 +1,6 @@
 const CONFIG = {
-    version: "2.1.0-rc9",
-    host: "https://drugst.one",
+    version: "2.1.1-rc4",
+    host: "https://dev.drugst.one",
     cdn: "https://cdn.drugst.one",
     backendPath: "https://dev.api.drugst.one/",
     is_stable: false
