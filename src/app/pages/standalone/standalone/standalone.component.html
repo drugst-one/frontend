@@ -205,6 +205,10 @@
                                   !(getConfig('reviewed') == null) || getConfig('reviewed')
                                 " (onChange)="changeConfig('reviewed', $event)"
                         tooltip="If enabled, only reviewed proteins are considered for the analysis."></app-switch>
+                    <app-switch label="Only approved drugs" [model]="
+                                            !(getConfig('approvedDrugs') == null) || getConfig('approvedDrugs')
+                                            " (onChange)="changeConfig('approvedDrugs', $event)"
+                        tooltip="If enabled, only approved drugs will be displayed for the adjacent drugs."></app-switch>
                 </div>
             </div>
         </div>
