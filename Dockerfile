@@ -7,7 +7,6 @@ RUN npm install -g n
 RUN n 16.17.1
 RUN npm install
 COPY ./ .
-RUN mv src/app/configs/normal.js src/app/configs/default.js
 RUN rm -rf nginx
 
 RUN npm run build -- --base-href=./
