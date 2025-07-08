@@ -24,6 +24,7 @@ export class DocNavbarComponent implements OnInit {
         { name: 'Vue.JS', anchor: 'vuejs_setup' },
         { name: 'R-Shiny', anchor: 'rshiny_setup' },
         { name: 'Other Frameworks', anchor: 'other_frameworks' },
+        { name: 'Browser Compatibility', anchor: 'browser_compatibility' },
         { name: 'From Scratch', anchor: 'from_scratch' },
       ]
     },
