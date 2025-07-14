@@ -57,6 +57,32 @@ export class ImplDataComponent implements OnInit {
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
     }
 
+    public getDownloadUrl(dataSource: any, type: string) {
+        let base = this.api + "/download_network?"
+        // let base = "https://dev.api.drugst.one" + "/download_network?"
+        console.log(dataSource.name.toLowerCase())
+        let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
+        url += "&dataset_type=" + this.translate_type(type)
+        url += "&fmt=graphml"
+        return url
+    }
+
+    public translate_type(type: string) {
+        switch (type) {
+            case 'Protein-Drug':
+                return 'pdi'
+            case 'Protein-Protein':
+                return 'ppi'
+            case 'Protein-Disorder':
+                return 'pdis'
+            case 'Drug-Disorder':
+                return 'drdis'
+            default:
+                return null
+        }
+    }
+
+
     public typeFormatter(type: string): string {
         switch (type) {
             case 'Protein-Drug':
@@ -233,13 +259,14 @@ export class ImplDataComponent implements OnInit {
                         source.version = '5.1.10'
                     else
                         source.version = '5.1.7'
-                }})
-                this.dataSourcesUnlicenced.forEach(source => {
-                    if (source.name === 'DisGeNET (via NeDRex)') {
-                        source.version = '7.0'
-                    }
-                })
+                }
             })
-        }
-
+            this.dataSourcesUnlicenced.forEach(source => {
+                if (source.name === 'DisGeNET (via NeDRex)') {
+                    source.version = '7.0'
+                }
+            })
+        })
     }
+
+}
