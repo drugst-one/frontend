@@ -57,10 +57,15 @@ export class ImplDataComponent implements OnInit {
 
     public getDownloadUrl(dataSource: any, type: string) {
         let base = this.api + "/download_network?"
-        let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
-        url += "&dataset_type=" + this.translate_type(type)
-        url += "&fmt=graphml"
-        return url
+        if (dataSource.name) {
+            let url = base + "dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
+            url += "&dataset_type=" + this.translate_type(type)
+            url += "&fmt=graphml"
+            return url
+        }else{
+            return base
+        }
+
     }
 
     public translate_type(type: string) {
@@ -240,13 +245,14 @@ export class ImplDataComponent implements OnInit {
                         source.version = '5.1.10'
                     else
                         source.version = '5.1.7'
-                }})
-                this.dataSourcesUnlicenced.forEach(source => {
-                    if (source.name === 'DisGeNET (via NeDRex)') {
-                        source.version = '7.0'
-                    }
-                })
+                }
             })
-        }
-
+            this.dataSourcesUnlicenced.forEach(source => {
+                if (source.name === 'DisGeNET (via NeDRex)') {
+                    source.version = '7.0'
+                }
+            })
+        })
     }
+
+}

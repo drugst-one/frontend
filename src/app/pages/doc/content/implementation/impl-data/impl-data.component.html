@@ -52,7 +52,7 @@
                 }}</a>
         </td>
         <td>{{ dataSource.version }}</td>
-        <td><a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)" [href]="getDownloadUrl(dataSource,type)" target="_blank"></a></td>
+        <td><a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"  [href]="getDownloadUrl(dataSource,type)" target="_blank"></a></td>
         <td>{{ dataSource.description }}</td>
     </tr>
     </tbody>
