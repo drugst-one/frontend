@@ -63,7 +63,7 @@ export class ImplDataComponent implements OnInit {
         console.log(dataSource.name.toLowerCase())
         let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
         url += "&dataset_type=" + this.translate_type(type)
-        url += "&fmt=graphml"
+        url += "&fmt=graphml&reviewed=false"
         return url
     }
 
