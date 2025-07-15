@@ -40,7 +40,7 @@
     <tr>
         <th>Source</th>
         <th>Version</th>
-        <th>Type</th>
+        <th>Type (and Download)</th>
         <th>Description</th>
     </tr>
     </thead>
@@ -52,7 +52,7 @@
                 }}</a>
         </td>
         <td>{{ dataSource.version }}</td>
-        <td><span *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></span></td>
+        <td><a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)" [href]="getDownloadUrl(dataSource,type)" target="_blank"></a></td>
         <td>{{ dataSource.description }}</td>
     </tr>
     </tbody>
