@@ -398,7 +398,6 @@ export class SidebarComponent implements OnInit {
     }
 
     applyFont(font: string | any) {
-        console.log(font)
         if (font === 'custom') {
             this.useCustomFont = true
         } else {

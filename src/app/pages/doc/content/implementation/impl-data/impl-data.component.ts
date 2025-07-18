@@ -59,8 +59,6 @@ export class ImplDataComponent implements OnInit {
 
     public getDownloadUrl(dataSource: any, type: string) {
         let base = this.api + "/download_network?"
-        // let base = "https://dev.api.drugst.one" + "/download_network?"
-        console.log(dataSource.name.toLowerCase())
         let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
         url += "&dataset_type=" + this.translate_type(type)
         url += "&fmt=graphml&reviewed=false"
