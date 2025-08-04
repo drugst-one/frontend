@@ -13,6 +13,7 @@ export class ImplDataComponent implements OnInit {
 
 
     @Input() api: string = ''
+    accepted_eula: boolean = false
 
     public nameMap = {
         nedrex: 'NeDRex',
@@ -57,11 +58,13 @@ export class ImplDataComponent implements OnInit {
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
     }
 
-    public getDownloadUrl(dataSource: any, type: string) {
-        let base = this.api + "/download_network?"
+    public getDownloadUrl(dataSource: any, licensed: boolean, type: string) {
+        let base = this.api + "download_network?"
         let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
         url += "&dataset_type=" + this.translate_type(type)
         url += "&fmt=graphml&reviewed=false"
+        url +="&licensed="+licensed
+        url +="&accept_eula="+this.accepted_eula
         return url
     }
 
