@@ -54,7 +54,7 @@
                                             label="Protein-Protein Interaction DB"
                                             [items]="filterDatasets(dataLists.protProtInterList, getConfig('licensedDatasets'))"
                                             [model]="getConfigOrDefault('interactionProteinProtein', 'NeDRex')"
-                                            tooltip="Select the dataset of protein-protein information that is later used in functions like 'Drug Target Search' and 'Connect Genes'."
+                                            tooltip="Select the dataset of protein-protein information that is later used in functions like 'Target identification' and 'Connect Genes'."
                                             (onChange)="changeConfig('interactionProteinProtein', $event)"
                                     ></app-dropdown>
                                     <app-dropdown
@@ -88,6 +88,13 @@
                             (onChange)="changeConfig('autofillEdges', $event)"
                             tooltip="If enabled, adds automatically gene-gene interaction edges."
                     ></app-switch>
+                    <app-switch label="Only reviewed proteins" [model]="getConfig('reviewed')"
+                        (onChange)="changeConfig('reviewed', $event)"
+                        tooltip="If enabled, only reviewed proteins are considered for the analysis."></app-switch>
+                    <app-switch label="Only approved drugs" [model]="
+                                            getConfig('approvedDrugs')
+                                            " (onChange)="changeConfig('approvedDrugs', $event)"
+                        tooltip="If enabled, only approved drugs will be displayed for the adjacent drugs."></app-switch>
                     <app-switch
                             label="Edge loops"
                             [model]="getConfig('selfReferences')"
@@ -630,7 +637,7 @@
                                         <div [hidden]="getConfig('showAdvAnalysis') != null &&
                               getConfig('showAdvAnalysis') === false" style="padding-left: 12px">
                                             <app-switch
-                                                    label="Drug Target Search"
+                                                    label="Target identification"
                                                     [model]="getConfig('showAdvAnalysisContent') == null || getConfig('showAdvAnalysisContent').includes('drug-target-search')"
                                                     (onChange)="changeAdvAnalysisConfig('drug-target-search', $event)"
                                                     tooltip="Adds or removes the button for drug target algorithm execution from Analysis panel."
@@ -641,6 +648,14 @@
                                                     (onChange)="changeAdvAnalysisConfig('drug-search', $event)"
                                                     tooltip="Adds or removes the button for drug search algorithm execution from Analysis panel."
                                             ></app-switch>
+                                            <app-switch label="Pathway Enrichment"
+                                                [model]="getConfig('showAdvAnalysisContent') == null ||getConfig('showAdvAnalysisContent').includes('pathway-enrichment')"
+                                                (onChange)="changeAdvAnalysisConfig('pathway-enrichment', $event)"
+                                                tooltip="Adds or removes the button pathway enrichment for gene enrichment analysis from the analysis panel."></app-switch>
+                                            <app-switch label="Clustering"
+                                                [model]="getConfig('showAdvAnalysisContent') == null ||getConfig('showAdvAnalysisContent').includes('clustering')"
+                                                (onChange)="changeAdvAnalysisConfig('clustering', $event)"
+                                                tooltip="Adds or removes the button clustering for community detection from the analysis panel."></app-switch>
                                             <app-switch
                                                     label="Enrichment: g:Profiler"
                                                     [model]="getConfig('showAdvAnalysisContent') == null ||getConfig('showAdvAnalysisContent').includes('enrichment-gprofiler')"
@@ -663,6 +678,17 @@
                                                 (onChange)="changeConfig('showSelection', $event)"
                                                 tooltip="Adds or removes the selection card with a list of all selected nodes to/from the right sidepanel."
                                         ></app-switch>
+                                        <app-switch label="Show Edit Network" [model]="
+                                                                      getConfig('showEditNetwork') == null ||
+                                                                      getConfig('showEditNetwork') === true
+                                                                    " (onChange)="changeConfig('showEditNetwork', $event)"
+                                            tooltip="Adds or removes the Edit Network card to/from the left/right sidepanel."></app-switch>
+                                        <app-switch label="Show Pruning" [model]="
+                                                                                    getConfig('showPruning') == null ||
+                                                                                    getConfig('showPruning') === true
+                                                                                "
+                                            (onChange)="changeConfig('showPruning', $event); changeConfig('calculateProperties', $event)"
+                                            tooltip="Adds or removes the Properties-based Pruning card to/from the left/right sidepanel."></app-switch>
                                         <app-switch
                                                 label="Show Task Card"
                                                 [model]="
@@ -671,6 +697,10 @@
                                                 (onChange)="changeConfig('showTasks', $event)"
                                                 tooltip="Adds or removes the task card with a list of all finished and running tasks to/from the right sidepanel."
                                         ></app-switch>
+                                        <app-switch label="Show Logger" [model]="
+                                                                      getConfig('showLogger') == null || getConfig('showLogger') === true
+                                                                    " (onChange)="changeConfig('showLogger', $event)"
+                                            tooltip="Adds or removes the logger below the Drugst.One panel."></app-switch>
                                     </div>
                                 </div>
                             </div>
@@ -737,6 +767,12 @@
                                                     tooltip="Adds or removes the tissue expression dropdown-menu from the side-mounted network menu."
                                         ></app-switch>
 
+                                        <app-switch label="Show label idspace chooser"
+                                            [model]="getConfig('showNetworkMenuButtonLabelIdspace') == null || getConfig('showNetworkMenuButtonLabelIdspace') === true"
+                                            (onChange)="changeConfig('showNetworkMenuButtonLabelIdspace', $event)"
+                                            tooltip="Adds or removes the Label idspace chooser from the side-mounted network menu.">
+                                        </app-switch>
+
                                         <app-switch label="Show adjacent drugs button"
                                                     [model]="getConfig('showNetworkMenuButtonAdjacentDrugs') == null || getConfig('showNetworkMenuButtonAdjacentDrugs') === true"
                                                     (onChange)="changeConfig('showNetworkMenuButtonAdjacentDrugs', $event)"
@@ -762,6 +798,29 @@
                                                     tooltip="Adds or removes the animation button from the side-mounted network menu."
                                         ></app-switch>
 
+                                        <app-switch label="Show upload button"
+                                            [model]="getConfig('showNetworkMenuButtonUpload') == null || getConfig('showNetworkMenuButtonUpload') === true"
+                                            (onChange)="changeConfig('showNetworkMenuButtonUpload', $event)"
+                                            tooltip="Adds or removes the upload button from the side-mounted network menu.">
+                                        </app-switch>
+
+                                        <app-switch label="Show layout button"
+                                            [model]="getConfig('showNetworkMenuButtonLayout') == null || getConfig('showNetworkMenuButtonLayout') === true"
+                                            (onChange)="changeConfig('showNetworkMenuButtonLayout', $event)"
+                                            tooltip="Adds or removes the layout (based on the cellular components) button from the side-mounted network menu.">
+                                        </app-switch>
+
+                                        <app-switch label="Show multi-drag button"
+                                            [model]="getConfig('showNetworkMenuButtonSelectionMultiDrag') == null || getConfig('showNetworkMenuButtonSelectionMultiDrag') === true"
+                                            (onChange)="changeConfig('showNetworkMenuButtonSelectionMultiDrag', $event)"
+                                            tooltip="All selected nodes will be dragged together if enabled.">
+                                        </app-switch>
+
+                                        <app-switch label="Show overlay directions button"
+                                            [model]="getConfig('showNetworkMenuButtonOverlayDirectedEdges') == null || getConfig('showNetworkMenuButtonOverlayDirectedEdges') === true"
+                                            (onChange)="changeConfig('showNetworkMenuButtonOverlayDirectedEdges', $event)"
+                                            tooltip="Adds or removes the overlay directions button from the side-mounted network menu.">
+                                        </app-switch>
 
                                         <app-textinput
                                                 label="Network Menu 'Adjacent Drugs' button label"
@@ -787,8 +846,22 @@
                                                 (onChange)="changeConfig('networkMenuButtonAnimationLabel',$event != null && $event.length > 0 ? $event : 'Animation')"
                                                 tooltip="Sets the label of the animation button in the side-mounted network menu."
                                         ></app-textinput>
-
-
+                                        <app-textinput label="Network Menu 'Upload' button label" [model]="getConfig('networkMenuButtonUploadLabel')"
+                                            (onChange)="changeConfig('networkMenuButtonUploadLabel',$event != null && $event.length > 0 ? $event : 'Upload')"
+                                            tooltip="Sets the label of the upload button in the side-mounted network menu.">
+                                        </app-textinput>
+                                        <app-textinput label="Network Menu 'Layout' button label" [model]="getConfig('networkMenuButtonLayoutLabel')"
+                                            (onChange)="changeConfig('networkMenuButtonLayoutLabel',$event != null && $event.length > 0 ? $event : 'Layout')"
+                                            tooltip="Sets the label of the layout button in the side-mounted network menu.">
+                                        </app-textinput>
+                                        <app-textinput label="Network Menu 'Multi-drag' button label" [model]="getConfig('networkMenuButtonSelectionMultiDragLabel')"
+                                            (onChange)="changeConfig('networkMenuButtonSelectionMultiDragLabel',$event != null && $event.length > 0 ? $event : 'Multi-Drag')"
+                                            tooltip="Sets the label of the multi-drag button in the side-mounted network menu.">
+                                        </app-textinput>
+                                        <app-textinput label="Network Menu 'Overlay Directions' button label" [model]="getConfig('networkMenuButtonOverlayDirectedEdgesLabel')"
+                                            (onChange)="changeConfig('networkMenuButtonOverlayDirectedEdgesLabel',$event != null && $event.length > 0 ? $event : 'Overlay Directions')"
+                                            tooltip="Sets the label of the overlay directions button in the side-mounted network menu.">
+                                        </app-textinput>
                                     </div>
                                 </div>
                             </div>
@@ -942,6 +1015,23 @@
                                             (onChange)="changeConfig('networkMenuButtonAnimationLabel',$event != null && $event.length > 0 ? $event : 'Animation')"
                                             tooltip="Sets the label of the animation button in the side-mounted network menu."
                                     ></app-textinput>
+                                    <app-textinput label="Network Menu Upload" [model]="getConfig('networkMenuButtonUploadLabel')"
+                                        (onChange)="changeConfig('networkMenuButtonUploadLabel',$event != null && $event.length > 0 ? $event : 'Upload')"
+                                        tooltip="Sets the label of the upload button in the side-mounted network menu.">
+                                    </app-textinput>
+                                    <app-textinput label="Network Menu Layout" [model]="getConfig('networkMenuButtonLayoutLabel')"
+                                        (onChange)="changeConfig('networkMenuButtonLayoutLabel',$event != null && $event.length > 0 ? $event : 'Layout')"
+                                        tooltip="Sets the label of the layout button in the side-mounted network menu.">
+                                    </app-textinput>
+                                    <app-textinput label="Network Menu Multi-Drag" [model]="getConfig('networkMenuButtonSelectionMultiDragLabel')"
+                                        (onChange)="changeConfig('networkMenuButtonSelectionMultiDragLabel',$event != null && $event.length > 0 ? $event : 'Multi-Drag')"
+                                        tooltip="Sets the label of the multi-drag button in the side-mounted network menu.">
+                                    </app-textinput>
+                                    <app-textinput label="Network Menu Overlay Directions"
+                                        [model]="getConfig('networkMenuButtonOverlayDirectedEdgesLabel')"
+                                        (onChange)="changeConfig('networkMenuButtonOverlayDirectedEdgesLabel',$event != null && $event.length > 0 ? $event : 'Overlay Directions')"
+                                        tooltip="Sets the label of the overlay directions button in the side-mounted network menu.">
+                                    </app-textinput>
                                 </div>
                             </div>
                         </div>

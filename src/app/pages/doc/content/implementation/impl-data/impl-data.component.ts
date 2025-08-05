@@ -13,6 +13,7 @@ export class ImplDataComponent implements OnInit {
 
 
     @Input() api: string = ''
+    accepted_eula: boolean = false
 
     public nameMap = {
         nedrex: 'NeDRex',
@@ -27,7 +28,8 @@ export class ImplDataComponent implements OnInit {
         disgenet: 'DisGeNET',
         ctd: 'CTD',
         drugbank: 'DrugBank',
-        omim: 'OMIM'
+        omim: 'OMIM',
+        omnipath: 'OmniPath'
     }
 
     public descriptionMap = {
@@ -49,23 +51,22 @@ export class ImplDataComponent implements OnInit {
         DisGeNET: 'DisGeNET is a discovery platform containing one of the largest publicly available collections of genes and variants associated to human diseases.',
         CTD: 'CTD is an database that stores manually curated information about chemical-protein interactions.',
         DrugBank: 'DrugBank is a bioinformatics and chemoinformatics resource, combining detailed drug data with drug target information.',
-        OMIM: 'OMIM (Online Mendelian Inheritance in Man) is a comprehensive compendium of human genes and genetic phenotypes.'
+        OMIM: 'OMIM (Online Mendelian Inheritance in Man) is a comprehensive compendium of human genes and genetic phenotypes.',
+        OmniPath: 'OmniPath offers directed protein-protein interactions.'
     }
 
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
     }
 
-    public getDownloadUrl(dataSource: any, type: string) {
-        let base = this.api + "/download_network?"
-        if (dataSource.name) {
-            let url = base + "dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
-            url += "&dataset_type=" + this.translate_type(type)
-            url += "&fmt=graphml&reviewed=false"
-            return url
-        }else{
-            return base
-        }
 
+    public getDownloadUrl(dataSource: any, licensed: boolean, type: string) {
+        let base = this.api + "download_network?"
+        let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
+        url += "&dataset_type=" + this.translate_type(type)
+        url += "&fmt=graphml&reviewed=false"
+        url +="&licensed="+licensed
+        url +="&accept_eula="+this.accepted_eula
+        return url
     }
 
     public translate_type(type: string) {
@@ -82,6 +83,7 @@ export class ImplDataComponent implements OnInit {
                 return null
         }
     }
+
 
     public typeFormatter(type: string): string {
         switch (type) {
@@ -143,6 +145,13 @@ export class ImplDataComponent implements OnInit {
             description: 'APID unifies PPIs from primary databases of molecular interactions (BIND, BioGRID, DIP, HPRD, IntAct, MINT) and also from experimentally resolved 3D structures (PDB).'
         },
         {
+            link: 'https://omnipathdb.org',
+            name: 'OmniPath',
+            version: '1.0',
+            type: ['Protein-Protein'],
+            description: 'OmniPath offers directed protein-protein interactions.'
+        },
+        {
             link: 'https://www.disgenet.org/',
             name: 'DisGeNET',
             version: 'tbi',
@@ -166,6 +175,13 @@ export class ImplDataComponent implements OnInit {
             type: ['Protein-Drug', 'Protein-Protein', 'Drug-Disorder', 'Protein-Disorder'],
             description: 'NeDRex is a network medicine platform for disease module identification and drug repurposing.'
         },
+        {
+            link: 'https://omnipathdb.org',
+            name: 'OmniPath',
+            version: '1.0',
+            type: ['Protein-Protein'],
+            description: 'OmniPath offers directed protein-protein interactions.'
+        }
     ]
 
     ngOnInit(): void {

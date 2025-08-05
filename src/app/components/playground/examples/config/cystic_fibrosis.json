@@ -7,7 +7,12 @@
     "activateNetworkMenuButtonAdjacentDisorderDrugs": false,
     "licensedDatasets": true,
     "physicsOn": true,
-    "title": "Cystic Fibrosis"
+    "title": "Cystic Fibrosis",
+    "showEditNetwork": false,
+    "showPruning": false,
+    "showLogger": false,
+    "showNetworkMenuButtonUpload": false,
+    "calculateProperties": false
   },
   "groups": {
     "nodeGroups": {

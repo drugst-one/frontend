@@ -11,7 +11,7 @@
 <p-messages severity="warn">
     <ng-template pTemplate>
         <div>
-            Some datasets require a licence agreement by the end user.
+            You can download the current state of the dataset by clicking at the "Type" tag in the third column.
         </div>
     </ng-template>
 </p-messages>
@@ -52,7 +52,7 @@
                 }}</a>
         </td>
         <td>{{ dataSource.version }}</td>
-        <td><a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"  [href]="getDownloadUrl(dataSource,type)" target="_blank"></a></td>
+        <td><a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)" [href]="getDownloadUrl(dataSource,false,type)" target="_blank"></a></td>
         <td>{{ dataSource.description }}</td>
     </tr>
     </tbody>
@@ -62,6 +62,14 @@
         text="Licenced Sources"
         id="licenced_sources"
 ></app-doc-subsubheader>
+<p-messages severity="warn">
+    <ng-template pTemplate>
+        <div>
+            You can download the current state of the dataset by clicking at the "Type" tag in the third column. <br><br>But you have to accept the <a href="/doc#eula">EULA</a>:
+            <p-checkbox [(ngModel)]="accepted_eula" [binary]="true"></p-checkbox>
+        </div>
+    </ng-template>
+</p-messages>
 <table
         class="table"
         [ngClass]="{
@@ -73,7 +81,7 @@
     <tr>
         <th>Source</th>
         <th>Version</th>
-        <th>Type</th>
+        <th>Type {{accepted_eula ? " (and Download)": ""}}</th>
         <th>Description</th>
     </tr>
     </thead>
@@ -85,7 +93,12 @@
                 }}</a>
         </td>
         <td>{{ dataSource.version }}</td>
-        <td><span *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></span></td>
+        <td *ngIf="accepted_eula">
+            <a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)" [href]="getDownloadUrl(dataSource,true,type)" target="_blank"></a>
+        </td>
+        <td *ngIf="!accepted_eula">
+            <a *ngFor="let type of dataSource.type" [innerHTML]="typeFormatter(type)"></a>
+        </td>
         <td>{{ dataSource.description }}</td>
     </tr>
     </tbody>
