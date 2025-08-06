@@ -32,11 +32,11 @@ export class ToolsBannerComponent implements OnInit {
         {label: "openPIP", link: "https://github.com/BaderLab/openPIP", icon: "assets/tools/openpip.png"},
         {label: "pathDIP", link: "https://ophid.utoronto.ca/pathDIP", icon: "assets/tools/pathdip.jpg"},
         {label: "Pathway Figure OCR ", link: "https://pfocr.wikipathways.org", icon: "assets/tools/pfocr.png", width: 100},
-        {label: "ProHarMeD", link: "https://proharmed.zbh.uni-hamburg.de/", icon: "assets/tools/proharmed.png"},
+        {label: "ProHarMeD", link: "https://apps.cosy.bio/proharmed", icon: "assets/tools/proharmed.png"},
         {label: "ROBUST-Web", link: "https://robust-web.net/"},
         {label: "SCANet", link: "https://pypi.org/project/scanet/"},
         {label: "Seed Connector Algorithm", link: "https://github.com/bwh784/SCA", font_size: "20pt"},
-        {label: "UnPaSt", link: "https://unpast.zbh.uni-hamburg.de", icon: "assets/tools/unpast.png", width: 120},
+        {label: "UnPaSt", link: "https://apps.cosy.bio/unpast", icon: "assets/tools/unpast.png", width: 120},
         {label: "WikiPathways", link: "https://wikipathways.org", icon: "assets/tools/wikipathways.svg"},
 
     ]
