@@ -58,6 +58,7 @@ export class ImplDataComponent implements OnInit {
     constructor(public themeService: ThemeService, public drugstone: RequestService) {
     }
 
+
     public getDownloadUrl(dataSource: any, licensed: boolean, type: string) {
         let base = this.api + "download_network?"
         let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
