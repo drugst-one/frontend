@@ -229,7 +229,7 @@ export class SidebarComponent implements OnInit {
     changeAdvAnalysisConfig(name: string, value: boolean) {
         let config = this.getConfig('showAdvAnalysisContent')
         if (config == null) {
-            config = ['drug-target-search', 'drug-search', 'enrichment-gprofiler', 'enrichment-digest']
+            config = ['drug-target-search', 'drug-search', 'enrichment-gprofiler', 'enrichment-digest', 'pathway-enrichment']
         }
         if (value) {
             if (!config.includes(name))
@@ -398,7 +398,6 @@ export class SidebarComponent implements OnInit {
     }
 
     applyFont(font: string | any) {
-        console.log(font)
         if (font === 'custom') {
             this.useCustomFont = true
         } else {

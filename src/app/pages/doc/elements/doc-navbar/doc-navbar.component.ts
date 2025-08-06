@@ -24,6 +24,7 @@ export class DocNavbarComponent implements OnInit {
         { name: 'Vue.JS', anchor: 'vuejs_setup' },
         { name: 'R-Shiny', anchor: 'rshiny_setup' },
         { name: 'Other Frameworks', anchor: 'other_frameworks' },
+        { name: 'Browser Compatibility', anchor: 'browser_compatibility' },
         { name: 'From Scratch', anchor: 'from_scratch' },
       ]
     },
@@ -65,6 +66,7 @@ export class DocNavbarComponent implements OnInit {
     {
       name: 'Other', target: 'nav_other', elements: [
         {name: 'Python Package', anchor: 'python_package'},
+        {name: 'Datset EULA', anchor: 'eula'},
         { name: 'Contact', anchor: 'contact_us' },
         { name: 'Privacy Policy', anchor: 'privacy_policy' },
         { name: 'FAQ', anchor: 'faq' },

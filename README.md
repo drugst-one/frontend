@@ -2,7 +2,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
 
-
 # Setup
 
 Run `sh download_cloud_data.sh` to download the videos into the respective folder.
