@@ -118,8 +118,10 @@
             Drugst.One Updates</h1>
         <div class="col-lg-4 col-md-6 col-sm-12 mt-5 px-3">
             <div class="d-flex justify-content-center">
-                <a href="/doc#standalone_api">
-                    <p-button label="Try out Drugst.One DREAM" icon="pi pi-fw pi-send"></p-button>
+                <a>
+                    <p-button label="Try out Drugst.One DREAM" icon="pi pi-fw pi-send"
+                        (onClick)="switchTab('standalone')" >
+                    </p-button>
                 </a>
             </div>
             <div class="d-flex justify-content-center">
