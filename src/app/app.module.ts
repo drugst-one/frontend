@@ -133,6 +133,7 @@ import { CiteComponent } from './pages/cite/cite.component';
 import { ImplGitComponent } from './pages/doc/content/implementation/impl-git/impl-git.component';
 import { SpecificVersionComponent } from './pages/doc/content/customize/cust-version/specific-version/specific-version.component';
 import { BrowserCompatibilitiesComponent } from './pages/doc/content/start/browser-compatibilities/browser-compatibilities.component';
+import { DrugstoneDreamFeaturesComponent } from './pages/doc/content/drugstone-dream/drugstone-dream-features/drugstone-dream-features.component';
 
 
 @NgModule({
@@ -210,6 +211,7 @@ import { BrowserCompatibilitiesComponent } from './pages/doc/content/start/brows
         ImplGitComponent,
         SpecificVersionComponent,
         BrowserCompatibilitiesComponent,
+        DrugstoneDreamFeaturesComponent,
     ],
     imports: [
         BrowserModule,

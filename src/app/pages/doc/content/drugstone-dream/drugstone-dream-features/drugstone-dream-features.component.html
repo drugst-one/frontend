@@ -1,0 +1,90 @@
+<p>
+    Drugst.One DREAM introduces several new features available in version 2 that enhance the functionality of the plugin to offer disease module refinement. 
+    Below is an overview of these features and how to enable them in your configuration.
+</p>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+    <thead>
+        <tr style="background-color: #f5f5f5;">
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left; width: 20%;">Feature</th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left; width: 50%;">Description</th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left; width: 30%;">Configuration</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">File Upload</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Upload network files directly into Drugst.One as .sif, .csv, .graphml or .gt file.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showNetworkMenuButtonUpload: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Community Detection</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Identify communities within the network using clustering algorithms i.e. Leiden and Louvain clustering.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Add 'clustering' to 'showAdvAnalysisContent' array. Add 'clustering' key with ['louvain-clustering', 'leiden-clustering'] to 'algorithms' object.</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Pathway Enrichment</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Perform pathway enrichment analysis to explore potential biological pathways associated with selected genes. Nodes from the pathways can be added to the newtork.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Add 'pathway-enrichment' to 'showAdvAnalysisContent' array. Add 'gene' key with ['pathway-enrichment'] to 'algorithms' object.</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">First Neighbors</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Add all directly connected nodes to the input network based on the PPI.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Add 'first-neighbor' to 'drug-target' array in 'algorithms' object.</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Network Modification</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Allow real-time modification of the network by deleting/adding nodes.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showEditNetwork: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Pruning</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Filter the network based on properties as e.g. the SPD value.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showPruning: true, calculateProperties: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">SVG Export</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Export network as a .svg file.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showNetworkMenuButtonExportGraphml: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Cellular Components Layout</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Visualize the cellular components of the network in a hierarchical network layout.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showNetworkMenuButtonLayout: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Logger</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Enable logging to track network modification and analysis. The downloaded logs can be used for reproducing results later.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showLogger: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Reviewed Proteins</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Filter to show only reviewed proteins.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">reviewed: true/false</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Approved Drugs</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Filter to show only approved drugs.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">approvedDrugs: true/false</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">ID Space Chooser</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Allow users to choose the display Id space for the proteins/genes.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showNetworkMenuButtonLabelIdspace: true, label: symbol/entrez/uniprot/ensembl</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Overlay Directed Edges</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Show directed edges overlay from OmniPath on the network.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showNetworkMenuButtonOverlayDirectedEdges: true</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Selection Multi Drag</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Enable multi-drag of all selected nodes: e.g. drag a cluster for clearer layout.</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">showNetworkMenuButtonSelectionMultiDrag: true</td>
+        </tr>
+    </tbody>
+</table>
+
+<p style="margin-top: 2rem;">
+You can try out these configuration options in the <a href="/playground">playground</a> tab to update your config object to enable Drugst.One DREAM.</p>
+
