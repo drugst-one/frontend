@@ -134,6 +134,7 @@ import { ImplGitComponent } from './pages/doc/content/implementation/impl-git/im
 import { SpecificVersionComponent } from './pages/doc/content/customize/cust-version/specific-version/specific-version.component';
 import { BrowserCompatibilitiesComponent } from './pages/doc/content/start/browser-compatibilities/browser-compatibilities.component';
 import { DrugstoneDreamFeaturesComponent } from './pages/doc/content/drugstone-dream/drugstone-dream-features/drugstone-dream-features.component';
+import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
 
 
 @NgModule({
@@ -212,6 +213,7 @@ import { DrugstoneDreamFeaturesComponent } from './pages/doc/content/drugstone-d
         SpecificVersionComponent,
         BrowserCompatibilitiesComponent,
         DrugstoneDreamFeaturesComponent,
+        EulaComponent,
     ],
     imports: [
         BrowserModule,

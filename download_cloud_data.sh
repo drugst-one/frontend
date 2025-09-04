@@ -5,3 +5,4 @@ wget https://cloud.uni-hamburg.de/s/eSxqLtrZbdnorxp/download/drugstone_overview.
 wget https://cloud.uni-hamburg.de/s/t2jLT9Fwqc4geeJ/download/tutorial1.mp4 -O ./src/assets/videos/tutorial1.mp4
 wget https://cloud.uni-hamburg.de/s/BrmQXDE9CfLmtGf/download/tutorial2.mp4 -O ./src/assets/videos/tutorial2.mp4
 wget https://cloud.uni-hamburg.de/s/qG97rQq8AKdJdWs/download/tutorial3.mp4 -O ./src/assets/videos/tutorial3.mp4
+wget https://cloud.uni-hamburg.de/s/S8WgRNXYeFrrrkL/download/drugst_one_dream.mp4 -O ./src/assets/videos/dream.mp4

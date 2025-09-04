@@ -30,4 +30,8 @@ export class RequestService {
         return this.http.post(`${api}convert_compact_node_list/`, payload).toPromise()
     }
 
+    public async getEULA(api: string): Promise<any>{
+        return this.http.get(`${api}get_license`).toPromise()
+    }
+
 }
