@@ -38,6 +38,11 @@ export class DocNavbarComponent implements OnInit {
       ]
     },
     {
+      name: 'Drugst.One DREAM', target: 'nav_drugstone_dream', elements: [
+        { name: 'Feature Overview', anchor: 'drugstone_dream_features' },
+      ]
+    },
+    {
       name: 'Customize', target: 'nav_customize_drugstone', elements: [
         { name: 'General', anchor: 'customize_general' },
         { name: 'Config Object', anchor: 'customize_config' },
