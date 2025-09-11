@@ -18,10 +18,13 @@ export class ImplDataComponent implements OnInit {
     public nameMap = {
         nedrex: 'NeDRex',
         biogrid: 'BioGRID',
+        cosmic: "COSMIC",
         iid: 'IID',
         intact: 'IntAct',
+        intogen: "IntOGen",
         string: 'STRING',
         apid: 'APID',
+        ncg: "NCG",
         drugcentral: 'DrugCentral',
         chembl: 'ChEMBL',
         dgidb: 'DGIdb',
@@ -61,12 +64,15 @@ export class ImplDataComponent implements OnInit {
 
     public getDownloadUrl(dataSource: any, licensed: boolean, type: string) {
         let base = this.api + "download_network?"
-        let url = base +"dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
-        url += "&dataset_type=" + this.translate_type(type)
-        url += "&fmt=graphml&reviewed=false"
-        url +="&licensed="+licensed
-        url +="&accept_eula="+this.accepted_eula
-        return url
+        if (dataSource && dataSource.name) {
+            let url = base + "dataset=" + dataSource.name.toLowerCase().replace(" (via nedrex)", "")
+            url += "&dataset_type=" + this.translate_type(type)
+            url += "&fmt=graphml&reviewed=false"
+            url += "&licensed=" + licensed
+            url += "&accept_eula=" + this.accepted_eula
+            return url
+        }else
+            return ""
     }
 
     public translate_type(type: string) {
@@ -207,7 +213,8 @@ export class ImplDataComponent implements OnInit {
             Object.keys(response).forEach(type => {
                 // @ts-ignore
                 response[type].forEach(source => {
-                    if (source.name.toLowerCase() === 'nedrex') {
+                    console.log(source)
+                    if (source.name && source.name.toLowerCase() === 'nedrex') {
                         if (source.licenced)
                             nedrexLockedUrl = source.link
                         else
@@ -222,10 +229,13 @@ export class ImplDataComponent implements OnInit {
                     if (source.name === 'DrugBank' && type === 'drug-disorder')
                         source.licenced = true
 
+
+                    if(source.name) {
+                        // @ts-ignore
+                        source.name = this.nameMap[source.name.toLowerCase()]
+                    }
                     // @ts-ignore
-                    source.name = this.nameMap[source.name.toLowerCase()]
-                    // @ts-ignore
-                    if ((source.link === nedrexLockedUrl || source.link === nedrexFreeUrl) && source.name.toLowerCase() !== 'nedrex')
+                    if ((source.link === nedrexLockedUrl || source.link === nedrexFreeUrl) && source.name && source.name.toLowerCase() !== 'nedrex')
                         source.name = source.name + " (via NeDRex)"
                     let key = source.name + "_" + source.licenced
                     // @ts-ignore
@@ -248,7 +258,7 @@ export class ImplDataComponent implements OnInit {
                     this.dataSourcesUnlicenced.push(source)
                 else {
                     // @ts-ignore
-                    if (sources[source.name + "_false"] && (sources[source.name + "_false"].link === nedrexFreeUrl && source.link === nedrexLockedUrl) && source.name.toLowerCase() !== 'nedrex') {
+                    if (sources[source.name + "_false"] && (sources[source.name + "_false"].link === nedrexFreeUrl && source.link === nedrexLockedUrl) && source.name && source.name.toLowerCase() !== 'nedrex') {
                         return
                     } else
                         this.dataSourcesLicenced.push(source)
