@@ -213,7 +213,6 @@ export class ImplDataComponent implements OnInit {
             Object.keys(response).forEach(type => {
                 // @ts-ignore
                 response[type].forEach(source => {
-                    console.log(source)
                     if (source.name && source.name.toLowerCase() === 'nedrex') {
                         if (source.licenced)
                             nedrexLockedUrl = source.link
