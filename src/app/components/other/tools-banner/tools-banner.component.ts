@@ -22,6 +22,7 @@ export class ToolsBannerComponent implements OnInit {
         {label: "GraphSimViz", link: "https://graphsimviz.net/", icon: "assets/tools/graphsimviz.png"},
         {label: "HitSeekR", link: "https://exbio.wzw.tum.de/hitseekr/", icon: "assets/tools/hitseekr.png"},
         {label: "Interactive Enrichment Analysis", link: "https://github.com/gladstone-institutes/Interactive-Enrichment-Analysis/", font_size: "20pt"},
+        {label: "IID - Molecular Docking", link:"https://iid25.ophid.utoronto.ca/", font_size: "20pt"},
         {label: "mirDIP", link: "https://ophid.utoronto.ca/mirDIP/"},
         {label: "NAViGaTOR", link: "https://ophid.utoronto.ca/navigator/", icon: "assets/tools/navigator.png"},
         {label: "NDEx IQuery", link: "https://www.ndexbio.org/iquery/", icon: "assets/tools/iquery.png"},
