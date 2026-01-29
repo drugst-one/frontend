@@ -11,12 +11,12 @@ RUN rm -rf nginx
 
 RUN npm run build -- --base-href=./
 
-FROM nginx
+FROM nginx:alpine
 
-#RUN apt-get update && apt-get upgrade
+RUN apk add --upgrade apk-tools
+RUN apk upgrade --available
 
 COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
-
 COPY nginx/default.conf /etc/nginx/conf.d/
 
 EXPOSE 80
