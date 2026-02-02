@@ -10,7 +10,7 @@ export class ColorpickerComponent implements OnInit {
     @Input() public label = "";
     @Input() public model:any = "#000000";
     @Input() public tooltip = "";
-    @Input() public format = "hex";
+    @Input() public format: "hex" | "rgb" | "hsb" = "hex";
     @Input() public textinput = true;
     @Output() public onChange = new EventEmitter<string>();
 
