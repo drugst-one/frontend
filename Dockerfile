@@ -2,9 +2,9 @@ FROM node as build-stage
 
 WORKDIR /app
 
-COPY package*.json ./
 RUN npm install -g n
 RUN n 20.14.0
+COPY package*.json ./
 RUN npm install
 COPY ./ .
 RUN rm -rf nginx
