@@ -45,6 +45,7 @@ export class PlaygroundComponent implements OnInit {
     }
 
     fit(): void {
+        // @ts-ignore
         this.changeConfig({"showLegend": this.config["showLegend"] || this.config["showLegend"] == null})
     }
 
@@ -178,6 +179,7 @@ export class PlaygroundComponent implements OnInit {
     public activateExamplePlayground(example: ExampleConfig) {
         // this.network.edges = [];
         // this.network.nodes = [];
+        // @ts-ignore
         this.network = undefined;
 
         this.changeGroup(example.groups);
@@ -188,6 +190,7 @@ export class PlaygroundComponent implements OnInit {
         // drugstone is removed with *ngIf until network is set
         // start in next cycle to avoid race conditions
         setTimeout(() => {
+            // @ts-ignore
             this.network = example.network;
             this.updateCode()
         });

@@ -1,5 +1,5 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {bootstrapApplication, BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from './app.component';
 import {DocComponent} from './pages/doc/doc.component';
@@ -38,8 +38,7 @@ import {DropdownModule} from "primeng/dropdown";
 import {CheckboxModule} from "primeng/checkbox";
 import {SliderModule} from "primeng/slider";
 import {RangeComponent} from './components/playground/sidebar/range/range.component';
-import {HttpClientModule} from "@angular/common/http";
-import {InputTextareaModule} from "primeng/inputtextarea";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {TableModule} from "primeng/table";
 import {TabViewModule} from 'primeng/tabview';
 
@@ -137,9 +136,7 @@ import { DrugstoneDreamFeaturesComponent } from './pages/doc/content/drugstone-d
 import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
 
 
-@NgModule({
-    declarations: [
-        AppComponent,
+@NgModule({ declarations: [
         DocComponent,
         HomeComponent,
         PlaygroundComponent,
@@ -147,8 +144,6 @@ import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
         DatapanelComponent,
         DrugstonepanelComponent,
         CodepanelComponent,
-        HeaderComponent,
-        FooterComponent,
         CodeComponent,
         PanelComponent,
         NiyInfoComponent,
@@ -189,7 +184,6 @@ import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
         ImplAlgorithmsComponent,
         DocSubsubheaderComponent,
         DjangoComponent,
-        PagesComponent,
         StandaloneOptionsComponent,
         StandaloneUrlComponent,
         StandaloneDocComponent,
@@ -215,9 +209,7 @@ import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
         DrugstoneDreamFeaturesComponent,
         EulaComponent,
     ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], imports: [BrowserModule,
         TabMenuModule,
         PanelModule,
         BrowserAnimationsModule,
@@ -237,7 +229,6 @@ import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
         DropdownModule,
         CheckboxModule,
         SliderModule,
-        InputTextareaModule,
         TableModule,
         FontAwesomeModule,
         SidebarModule,
@@ -247,11 +238,7 @@ import { EulaComponent } from './pages/doc/content/other/eula/eula.component';
         TabViewModule,
         MessagesModule,
         AppRoutingModule,
-        NgbModule
-    ],
-    bootstrap: [AppComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-})
+        NgbModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
     constructor() {
         // @ts-ignore

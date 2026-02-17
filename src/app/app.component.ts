@@ -1,15 +1,23 @@
+import {CommonModule} from '@angular/common';
 import {Component, ElementRef, ViewChild} from '@angular/core';
 // @ts-ignore
 import theme from '../exampleTheme.json'
 import {NavigationEnd, Router} from "@angular/router";
 import { ThemeService } from 'src/app/services/theme.service';
+import {HeaderComponent} from './components/header/header.component';
 // @ts-ignore
 import CONFIG from './configs/default.js'
+import {PagesComponent} from "./pages/pages.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports:[
+        CommonModule, HeaderComponent, PagesComponent, FooterComponent
+    ]
 })
 export class AppComponent {
     public version = CONFIG.version

@@ -3,7 +3,8 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} f
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
+  styleUrls: ['./pages.component.scss'],
+  standalone: true
 })
 export class PagesComponent implements OnInit {
 

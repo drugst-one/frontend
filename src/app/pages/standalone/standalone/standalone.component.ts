@@ -9,10 +9,15 @@ import {NavigationEnd, Router} from "@angular/router";
 import {RequestService} from "../../../services/requestService";
 import {ThemeService} from 'src/app/services/theme.service';
 
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+
 @Component({
     selector: 'app-standalone',
     templateUrl: './standalone.component.html',
-    styleUrls: ['./standalone.component.scss']
+    styleUrls: ['./standalone.component.scss'],
+    standalone: true,
+    imports:[InputTextareaModule]
 })
 export class StandaloneComponent implements OnInit {
 
