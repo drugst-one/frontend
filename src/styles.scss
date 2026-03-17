@@ -91,6 +91,25 @@ legend.p-fieldset-legend {
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap.scss';
 
+// Reset global ul padding and list margins introduced by Bootstrap 5 reboot
+ul {
+  padding-left: 0;
+}
+
+ol, ul, dl {
+  margin-bottom: 0;
+}
+
+// Keep padding for actual lists in documentation
+#doc-page ul, .doc-entries ul {
+  padding-left: 2rem;
+}
+
+// Navbar should not have this padding either
+.navbar-nav {
+  padding-left: 0;
+}
+
 
 .text-muted {
   color: #6c757d !important;
