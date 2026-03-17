@@ -6,8 +6,8 @@
     </label>
     <div style="display:flex">
         <div style="justify-self: flex-start; width: 90%">
-            <p-dropdown [style]="{width: fill?'100%':'auto'}" [options]="items" [(ngModel)]="model" optionLabel="label"
-                        optionValue="value" (onChange)="emitChange()" [placeholder]="model"></p-dropdown>
+            <p-select [style]="{width: fill?'100%':'auto'}" [options]="items" [(ngModel)]="model" optionLabel="label"
+                        optionValue="value" (onChange)="emitChange()" [placeholder]="model"></p-select>
         </div>
     </div>
 </div>

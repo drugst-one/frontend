@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { CodeComponent } from "../../../../../components/code/code.component";
 import { Component, OnInit } from '@angular/core';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, CodeComponent, MessagesModule],
+  imports: [CommonModule, CodeComponent, MessageModule],
   selector: 'app-cust-style',
   templateUrl: './cust-style.component.html',
   styleUrls: ['./cust-style.component.scss']

@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CodeComponent } from '../../../../../../components/code/code.component';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-specific-version',
   templateUrl: './specific-version.component.html',
   styleUrls: ['./specific-version.component.scss'],
   standalone: true,
-  imports: [CommonModule, CodeComponent, MessagesModule]
+  imports: [CommonModule, CodeComponent, MessageModule]
 })
 export class SpecificVersionComponent implements OnInit {
 

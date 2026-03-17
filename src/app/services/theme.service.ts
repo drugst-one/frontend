@@ -13,8 +13,10 @@ export class ThemeService {
 
     switchTheme(theme: 'theme-dark' | 'theme-light'){
         this.theme = theme;
-        let themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
-        if(themeLink)
-            themeLink.href=theme+".css";
+        if (theme === 'theme-dark') {
+            this.document.documentElement.classList.add('theme-dark');
+        } else {
+            this.document.documentElement.classList.remove('theme-dark');
+        }
     }
 }

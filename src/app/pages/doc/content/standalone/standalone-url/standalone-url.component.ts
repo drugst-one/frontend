@@ -3,11 +3,11 @@ import { CommonModule } from "@angular/common";
 import { CodeComponent } from "../../../../../components/code/code.component";
 import { DocSubsubheaderComponent } from "../../../../../components/documentation/doc-subsubheader/doc-subsubheader.component";
 import { TableModule } from "primeng/table";
-import { MessagesModule } from "primeng/messages";
+import { MessageModule } from "primeng/message";
 
 @Component({
   standalone: true,
-  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, TableModule, MessagesModule],
+  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, TableModule, MessageModule],
     selector: 'app-standalone-url',
     templateUrl: './standalone-url.component.html',
     styleUrls: ['./standalone-url.component.scss']

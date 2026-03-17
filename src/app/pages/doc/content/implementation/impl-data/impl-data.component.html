@@ -8,22 +8,22 @@
 </p>
 
 
-<p-messages severity="warn">
+<p-message severity="warn">
     <ng-template pTemplate>
         <div>
             You can download the current state of the dataset by clicking at the "Type" tag in the third column.
         </div>
     </ng-template>
-</p-messages>
+</p-message>
 
-<p-messages severity="info">
+<p-message severity="info">
     <ng-template pTemplate>
         <div>
             The default Drugst.One database undergoes automatic updates on a weekly basis. For a more stable version that is only
             updated once a year, please refer to the <code>stable</code> version <a href="https://stable.drugst.one">here</a>.
         </div>
     </ng-template>
-</p-messages>
+</p-message>
 
 <app-doc-subsubheader
         text="Unlicenced Sources"
@@ -62,14 +62,14 @@
         text="Licenced Sources"
         id="licenced_sources"
 ></app-doc-subsubheader>
-<p-messages severity="warn">
+<p-message severity="warn">
     <ng-template pTemplate>
         <div>
             You can download the current state of the dataset by clicking at the "Type" tag in the third column. <br><br>But you have to accept the <a href="/doc#eula">EULA</a>:
             <p-checkbox [(ngModel)]="accepted_eula" [binary]="true"></p-checkbox>
         </div>
     </ng-template>
-</p-messages>
+</p-message>
 <table
         class="table"
         [ngClass]="{

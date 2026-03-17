@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectorRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatapanelComponent } from '../../components/playground/datapanel/datapanel.component';
 import { ExamplesComponent } from '../../components/playground/examples/examples.component';
@@ -30,6 +30,7 @@ import { ExampleConfig } from 'src/interfaces';
 export class PlaygroundComponent implements OnInit {
     @Input() public theme = {}
     @Input() public api: string = ''
+    public networkReady = false;
     public config = config;
     public groups = groups;
     public blankNodeGroup = {
@@ -45,12 +46,14 @@ export class PlaygroundComponent implements OnInit {
     public code: string = "";
     public style: string = "";
 
-    constructor() {
+    constructor(private cd: ChangeDetectorRef) {
         this.updateCode();
     }
 
     ngOnInit(): void {
         this.activateExamplePlayground(default_example)
+        this.networkReady = true;
+        this.cd.detectChanges();
         this.updateCode();
     }
 
@@ -97,6 +100,7 @@ export class PlaygroundComponent implements OnInit {
         })
 
         this.updateCode()
+        this.cd.detectChanges();
     }
 
     changeGroup(change: object) {
@@ -111,6 +115,7 @@ export class PlaygroundComponent implements OnInit {
         })
 
         this.updateCode()
+        this.cd.detectChanges();
     }
 
 
@@ -122,6 +127,7 @@ export class PlaygroundComponent implements OnInit {
             document.documentElement.style.setProperty(key, change[key])
         })
         this.updateCode()
+        this.cd.detectChanges();
     }
 
     changeStyle(change: object) {
@@ -132,6 +138,7 @@ export class PlaygroundComponent implements OnInit {
             document.documentElement.style.setProperty(key, change[key])
         })
         this.updateCode()
+        this.cd.detectChanges();
     }
 
     editGroup(event: object) {
@@ -145,6 +152,7 @@ export class PlaygroundComponent implements OnInit {
             }
         })
         this.updateCode()
+        this.cd.detectChanges();
     }
 
     deleteGroup(params: object) {
@@ -184,9 +192,11 @@ export class PlaygroundComponent implements OnInit {
         // @ts-ignore
         this.network.nodes = nodes
         this.updateCode()
+        this.cd.detectChanges();
     }
 
     public activateExamplePlayground(example: ExampleConfig) {
+        this.networkReady = false;
         // this.network.edges = [];
         // this.network.nodes = [];
         // @ts-ignore
@@ -202,6 +212,8 @@ export class PlaygroundComponent implements OnInit {
         setTimeout(() => {
             // @ts-ignore
             this.network = example.network;
+            this.networkReady = true;
+            this.cd.detectChanges();
             this.updateCode()
         });
     }

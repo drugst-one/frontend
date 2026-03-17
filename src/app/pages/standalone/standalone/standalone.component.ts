@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 // @ts-ignore
 import themes from '../../../../themes.json'
 // @ts-ignore
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { DrugstonepanelComponent } from '../../../components/playground/drugstonepanel/drugstonepanel.component';
 import { DropdownComponent } from '../../../components/playground/sidebar/dropdown/dropdown.component';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { SwitchComponent } from '../../../components/playground/sidebar/switch/switch.component';
 
@@ -22,7 +22,7 @@ import { SwitchComponent } from '../../../components/playground/sidebar/switch/s
     templateUrl: './standalone.component.html',
     styleUrls: ['./standalone.component.scss'],
     standalone: true,
-    imports:[CommonModule, ButtonModule, DrugstonepanelComponent, DropdownComponent, InputTextareaModule, FormsModule, SwitchComponent]
+    imports:[CommonModule, ButtonModule, DrugstonepanelComponent, DropdownComponent, TextareaModule, FormsModule, SwitchComponent]
 })
 export class StandaloneComponent implements OnInit {
 
@@ -34,6 +34,8 @@ export class StandaloneComponent implements OnInit {
 
     @Input() api = ""
     network: Object = {nodes: [], edges: []}
+    networkReady = false;
+    dataLoaded = false;
     themeLight: Object = {}
     themeDark: Object = {}
     theme: Object = {}
@@ -136,7 +138,7 @@ export class StandaloneComponent implements OnInit {
 
     public selectedDatasets = {}
 
-    constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService) {
+    constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService, private cd: ChangeDetectorRef) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -160,11 +162,10 @@ export class StandaloneComponent implements OnInit {
             history.replaceState('', '', "/standalone" + location.search)
         } else {
             if (this.rawNodes === '') {
-                this.updateNodeImport(this.cysticFibrosisGenes);
-                this.setNetwork();
-                // setTimeout(() => {
-                //     this.networkInput?.nativeElement.scrollIntoView({behavior: 'smooth', block: 'start'});
-                // }, 1000)
+                setTimeout(() => {
+                    this.updateNodeImport(this.cysticFibrosisGenes);
+                    this.setNetwork();
+                })
             }
         }
     }
@@ -247,6 +248,8 @@ export class StandaloneComponent implements OnInit {
                 // @ts-ignore
                 this.dataMaps.drugProtInterList[d.label] = d.value
             })
+            this.dataLoaded = true;
+            this.cd.detectChanges();
         })
     }
 
@@ -383,6 +386,10 @@ export class StandaloneComponent implements OnInit {
             }
             if (nodes.length > 0 || edges.length > 0) {
                 this.network = {nodes: nodes, edges: edges}
+                this.networkReady = true;
+                this.cd.detectChanges();
+            } else {
+                this.networkReady = false;
             }
         })
     }
@@ -506,9 +513,11 @@ export class StandaloneComponent implements OnInit {
         let nodes = this.setNodes()
         let edges = this.setEdges()
         this.network = {nodes: nodes, edges: edges}
+        this.networkReady = nodes.length > 0;
 
         this.toggleTab(this.networkInput, false);
         this.toggleTab(this.drugstoneApp, true);
+        this.cd.detectChanges();
     }
 
     setObject(dest: Object, src: Object) {
@@ -535,6 +544,7 @@ export class StandaloneComponent implements OnInit {
             })
         } else
             this.config = conf
+        this.cd.detectChanges();
     }
 
     public toggleTab(tab: ElementRef<HTMLElement> | undefined, open: boolean) {

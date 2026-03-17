@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '../sidebar/dropdown/dropdown.component';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 
@@ -12,7 +12,7 @@ import { ButtonModule } from 'primeng/button';
     templateUrl: './datapanel.component.html',
     styleUrls: ['./datapanel.component.scss'],
     standalone: true,
-    imports: [CommonModule, DropdownComponent, InputTextareaModule, FormsModule, ButtonModule]
+    imports: [CommonModule, DropdownComponent, TextareaModule, FormsModule, ButtonModule]
 })
 export class DatapanelComponent implements OnInit {
 

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InputSwitchModule } from 'primeng/inputswitch';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { TooltipModule } from 'primeng/tooltip';
 import { FormsModule } from '@angular/forms';
 
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './switch.component.html',
     styleUrls: ['./switch.component.scss'],
     standalone: true,
-    imports: [CommonModule, InputSwitchModule, TooltipModule, FormsModule]
+    imports: [CommonModule, ToggleSwitchModule, TooltipModule, FormsModule]
 })
 export class SwitchComponent implements OnInit {
 

@@ -2,11 +2,11 @@ import { DocSubsubheaderComponent } from "../../../../../components/documentatio
 import { CommonModule } from "@angular/common";
 import { CodeComponent } from "../../../../../components/code/code.component";
 import { Component, OnInit } from '@angular/core';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, MessagesModule],
+  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, MessageModule],
   selector: 'app-cust-network',
   templateUrl: './cust-network.component.html',
   styleUrls: ['./cust-network.component.scss']

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '../theme.css';
-@import "primeng/resources/primeng.min.css";
+
 @import "primeicons/primeicons.css";
 @import './scaffold.scss';
 html {
@@ -113,4 +113,54 @@ ol, ul, dl {
 
 .text-muted {
   color: #6c757d !important;
+}
+
+// PrimeNG 21 overrides
+:root {
+    --p-primary-50: #e3f2fd;
+    --p-primary-100: #bbdefb;
+    --p-primary-200: #90caf9;
+    --p-primary-300: #64b5f6;
+    --p-primary-400: #42a5f5;
+    --p-primary-500: #2196f3;
+    --p-primary-600: #1e88e5;
+    --p-primary-700: #1976d2;
+    --p-primary-800: #1565c0;
+    --p-primary-900: #0d47a1;
+    --p-primary-950: #0a2f6b;
+    --p-primary-color: var(--p-primary-500);
+    --p-primary-contrast-color: #ffffff;
+    --p-primary-hover-color: var(--p-primary-600);
+    --p-primary-active-color: var(--p-primary-700);
+}
+
+.theme-switch {
+    margin: 0 0.5rem;
+}
+
+.p-button.p-button-icon-only {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+// Fix for cards text visibility
+.tool-link {
+    color: #212529 !important;
+    text-decoration: none !important;
+    &:hover {
+        text-decoration: underline !important;
+    }
+}
+
+.p-toggleswitch-handle {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+}
+
+// Additional fix for ToggleSwitch vertical alignment in flex containers
+.p-toggleswitch {
+    display: inline-flex !important;
+    vertical-align: middle;
 }

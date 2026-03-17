@@ -4,11 +4,11 @@ import { CommonModule } from "@angular/common";
 import { CodeComponent } from "../../../../../components/code/code.component";
 import { Component, OnInit } from '@angular/core';
 import { NodeGroup, Option } from 'src/interfaces';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, TableModule, MessagesModule],
+  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, TableModule, MessageModule],
   selector: 'app-cust-groups',
   templateUrl: './cust-groups.component.html',
   styleUrls: ['./cust-groups.component.scss']

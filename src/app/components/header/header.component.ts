@@ -6,7 +6,7 @@ import { ThemeService } from "../../services/theme.service";
 import CONFIG from '../../configs/default.js'
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { InputSwitchModule, InputSwitchChangeEvent } from 'primeng/inputswitch';
+import { ToggleSwitchModule, ToggleSwitchChangeEvent } from 'primeng/toggleswitch';
 import { FormsModule } from '@angular/forms';
 
 
@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     standalone: true,
-    imports: [CommonModule, RouterModule, InputSwitchModule, FormsModule]
+    imports: [CommonModule, RouterModule, ToggleSwitchModule, FormsModule]
 })
 export class HeaderComponent implements OnInit {
 
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
         this.tabChangeEvent.emit(id)
     }
 
-    switchThemeStyle(dark: boolean | InputSwitchChangeEvent) {
+    switchThemeStyle(dark: boolean | ToggleSwitchChangeEvent) {
         const isDark = typeof dark === 'boolean' ? dark : dark.checked;
         this.themeService.switchTheme(isDark ? 'theme-dark' : 'theme-light')
         this.switchThemeEvent.emit(isDark)

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { CodeComponent } from '../../../../../components/code/code.component';
 
 // @ts-ignore
@@ -11,7 +11,7 @@ import CONFIG from '../../../../../configs/default.js'
   templateUrl: './basics.component.html',
   styleUrls: ['./basics.component.scss'],
   standalone: true,
-  imports: [CommonModule, MessagesModule, CodeComponent]
+  imports: [CommonModule, MessageModule, CodeComponent]
 })
 export class BasicsComponent implements OnInit {
 

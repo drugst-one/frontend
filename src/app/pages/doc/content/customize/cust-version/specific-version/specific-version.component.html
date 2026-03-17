@@ -3,12 +3,12 @@
   <app-code lang="html" [code]="versionCode"></app-code>
   Here <code>{{ version }}</code> refers to the specific version. To load the latest
   committed version of drugst.one, the 'nightly' tag can be used:
-  <p-messages severity="warn">
+  <p-message severity="warn">
     <ng-template pTemplate>
       <div>
         Be aware that nightly versions are not guaranteed to be stable because they are
         in the middle of developing the next version!
       </div>
     </ng-template>
-  </p-messages>
+  </p-message>
   <app-code lang="html" [code]="nightlyCode"></app-code>

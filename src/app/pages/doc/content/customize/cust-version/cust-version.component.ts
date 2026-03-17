@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { CodeComponent } from '../../../../../components/code/code.component';
 import { SpecificVersionComponent } from './specific-version/specific-version.component';
 
@@ -11,7 +11,7 @@ import CONFIG from '../../../../../configs/default.js'
   templateUrl: './cust-version.component.html',
   styleUrls: ['./cust-version.component.scss'],
   standalone: true,
-  imports: [CommonModule, MessagesModule, CodeComponent, SpecificVersionComponent]
+  imports: [CommonModule, MessageModule, CodeComponent, SpecificVersionComponent]
 })
 export class CustVersionComponent implements OnInit {
   @Output() navigate = new EventEmitter<string>();

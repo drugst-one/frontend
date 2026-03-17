@@ -1,10 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { CodeComponent } from "../../../../../components/code/code.component";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, CodeComponent],
+  imports: [CommonModule],
   selector: 'app-from-scratch',
   templateUrl: './from-scratch.component.html',
   styleUrls: ['./from-scratch.component.scss']

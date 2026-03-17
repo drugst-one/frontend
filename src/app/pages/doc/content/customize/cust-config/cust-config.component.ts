@@ -1,4 +1,4 @@
-import { TabViewModule } from "primeng/tabview";
+import { TabsModule } from "primeng/tabs";
 import { TableModule } from "primeng/table";
 import { CommonModule } from "@angular/common";
 import { CodeComponent } from "../../../../../components/code/code.component";
@@ -7,7 +7,7 @@ import { NodeGroup, Option } from 'src/interfaces';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, CodeComponent, TabViewModule, TableModule],
+  imports: [CommonModule, CodeComponent, TabsModule, TableModule],
   selector: 'app-cust-config',
   templateUrl: './cust-config.component.html',
   styleUrls: ['./cust-config.component.scss']
