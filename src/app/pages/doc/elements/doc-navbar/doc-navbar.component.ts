@@ -1,12 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from "primeng/api";
 import { ThemeService } from "../../../../services/theme.service";
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-doc-navbar',
   templateUrl: './doc-navbar.component.html',
-  styleUrls: ['./doc-navbar.component.scss']
+  styleUrls: ['./doc-navbar.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class DocNavbarComponent implements OnInit {
 

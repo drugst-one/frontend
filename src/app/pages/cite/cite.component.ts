@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cite',
   templateUrl: './cite.component.html',
-  styleUrls: ['./cite.component.scss']
+  styleUrls: ['./cite.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class CiteComponent implements OnInit {
+
+  @Input() theme = {};
+  @Input() api = "";
 
   constructor() { }
 

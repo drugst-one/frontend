@@ -1,4 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DatapanelComponent } from '../../components/playground/datapanel/datapanel.component';
+import { ExamplesComponent } from '../../components/playground/examples/examples.component';
+import { DrugstonepanelComponent } from '../../components/playground/drugstonepanel/drugstonepanel.component';
+import { SidebarComponent } from '../../components/playground/sidebar/sidebar.component';
+import { CodepanelComponent } from '../../components/playground/codepanel/codepanel.component';
+import { StylepanelComponent } from '../../components/playground/stylepanel/stylepanel.component';
+
 // @ts-ignore
 import config from '../../../exampleConfig.json';
 // @ts-ignore
@@ -15,7 +23,9 @@ import { ExampleConfig } from 'src/interfaces';
 @Component({
     selector: 'app-playground',
     templateUrl: './playground.component.html',
-    styleUrls: ['./playground.component.scss']
+    styleUrls: ['./playground.component.scss'],
+    standalone: true,
+    imports: [CommonModule, DatapanelComponent, ExamplesComponent, DrugstonepanelComponent, SidebarComponent, CodepanelComponent, StylepanelComponent]
 })
 export class PlaygroundComponent implements OnInit {
     @Input() public theme = {}

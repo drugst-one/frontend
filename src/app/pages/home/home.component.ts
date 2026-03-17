@@ -1,5 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
+import { ToolsBannerComponent } from '../../components/other/tools-banner/tools-banner.component';
 
 
 // @ts-ignore
@@ -8,7 +12,9 @@ import CONFIG from '../../configs/default.js'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ButtonModule, DividerModule, ToolsBannerComponent]
 })
 export class HomeComponent implements OnInit {
 

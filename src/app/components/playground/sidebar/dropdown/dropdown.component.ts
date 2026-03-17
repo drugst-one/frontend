@@ -1,10 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
+  standalone: true,
+  imports: [CommonModule, DropdownModule, TooltipModule, FormsModule]
 })
 
 export class DropdownComponent implements OnInit {

@@ -53,6 +53,7 @@ export class AppComponent {
         else
             darkTheme = cookieDark;
         localStorage.setItem("darkTheme", darkTheme + "");
+        this.themeService.switchTheme(darkTheme ? 'theme-dark' : 'theme-light')
     }
 
     switchTab(tabId: number) {

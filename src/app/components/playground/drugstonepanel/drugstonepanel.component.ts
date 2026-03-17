@@ -1,9 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-drugstonepanel',
   templateUrl: './drugstonepanel.component.html',
-  styleUrls: ['./drugstonepanel.component.scss']
+  styleUrls: ['./drugstonepanel.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DrugstonepanelComponent implements OnInit {
 

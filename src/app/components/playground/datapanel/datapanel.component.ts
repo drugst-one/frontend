@@ -1,11 +1,18 @@
 import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme.service';
+import { CommonModule } from '@angular/common';
+import { DropdownComponent } from '../sidebar/dropdown/dropdown.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-datapanel',
     templateUrl: './datapanel.component.html',
-    styleUrls: ['./datapanel.component.scss']
+    styleUrls: ['./datapanel.component.scss'],
+    standalone: true,
+    imports: [CommonModule, DropdownComponent, InputTextareaModule, FormsModule, ButtonModule]
 })
 export class DatapanelComponent implements OnInit {
 

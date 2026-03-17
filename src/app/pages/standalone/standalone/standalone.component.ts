@@ -8,8 +8,13 @@ import configLight from '../../../../standaloneConfigLight.json'
 import {NavigationEnd, Router} from "@angular/router";
 import {RequestService} from "../../../services/requestService";
 import {ThemeService} from 'src/app/services/theme.service';
-
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { DrugstonepanelComponent } from '../../../components/playground/drugstonepanel/drugstonepanel.component';
+import { DropdownComponent } from '../../../components/playground/sidebar/dropdown/dropdown.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
+import { SwitchComponent } from '../../../components/playground/sidebar/switch/switch.component';
 
 
 @Component({
@@ -17,7 +22,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     templateUrl: './standalone.component.html',
     styleUrls: ['./standalone.component.scss'],
     standalone: true,
-    imports:[InputTextareaModule]
+    imports:[CommonModule, ButtonModule, DrugstonepanelComponent, DropdownComponent, InputTextareaModule, FormsModule, SwitchComponent]
 })
 export class StandaloneComponent implements OnInit {
 

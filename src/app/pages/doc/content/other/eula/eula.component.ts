@@ -1,7 +1,11 @@
+import { MessagesModule } from "primeng/messages";
+import { CommonModule } from "@angular/common";
 import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from "../../../../../services/requestService";
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, MessagesModule],
   selector: 'app-eula',
   templateUrl: './eula.component.html',
   styleUrls: ['./eula.component.scss']

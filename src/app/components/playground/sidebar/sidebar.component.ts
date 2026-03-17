@@ -3,11 +3,22 @@ import {ThemeService} from 'src/app/services/theme.service';
 // @ts-ignore
 import themes from "../../../../themes.json"
 import {RequestService} from "../../../services/requestService";
+import { CommonModule } from '@angular/common';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { SwitchComponent } from './switch/switch.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { TextinputComponent } from './textinput/textinput.component';
+import { ColorpickerComponent } from './colorpicker/colorpicker.component';
+import { RangeComponent } from './range/range.component';
+import { DividerModule } from 'primeng/divider';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss']
+    styleUrls: ['./sidebar.component.scss'],
+    standalone: true,
+    imports: [CommonModule, ScrollPanelModule, SwitchComponent, DropdownComponent, TextinputComponent, ColorpickerComponent, RangeComponent, DividerModule, ButtonModule]
 })
 
 
@@ -94,6 +105,7 @@ export class SidebarComponent implements OnInit {
 
     readThemes(): void {
         Object.keys(themes).forEach(label => {
+            // @ts-ignore
             this.themeList.push({label: label, value: themes[label]})
         })
     }

@@ -4,6 +4,10 @@ import { MenuItem } from "primeng/api";
 import { ThemeService } from "../../services/theme.service";
 // @ts-ignore
 import CONFIG from '../../configs/default.js'
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { InputSwitchModule, InputSwitchChangeEvent } from 'primeng/inputswitch';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +15,7 @@ import CONFIG from '../../configs/default.js'
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     standalone: true,
+    imports: [CommonModule, RouterModule, InputSwitchModule, FormsModule]
 })
 export class HeaderComponent implements OnInit {
 
@@ -42,10 +47,6 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        let dark = Boolean(localStorage.getItem("darkTheme") === 'true')
-        if (dark) {
-            this.switchThemeStyle(dark)
-        }
     }
 
     switchTabByName(name: string) {
@@ -60,9 +61,10 @@ export class HeaderComponent implements OnInit {
         this.tabChangeEvent.emit(id)
     }
 
-    switchThemeStyle(dark: boolean) {
-        this.themeService.switchTheme(dark ? 'theme-dark' : 'theme-light')
-        this.switchThemeEvent.emit(dark)
-        localStorage.setItem("darkTheme", dark + "")
+    switchThemeStyle(dark: boolean | InputSwitchChangeEvent) {
+        const isDark = typeof dark === 'boolean' ? dark : dark.checked;
+        this.themeService.switchTheme(isDark ? 'theme-dark' : 'theme-light')
+        this.switchThemeEvent.emit(isDark)
+        localStorage.setItem("darkTheme", isDark + "")
     }
 }

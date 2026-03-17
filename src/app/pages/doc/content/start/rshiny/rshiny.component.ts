@@ -1,7 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-rshiny',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './rshiny.component.html',
   styleUrls: ['./rshiny.component.scss']
 })
