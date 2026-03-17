@@ -10,6 +10,34 @@ import CONFIG from './configs/default.js'
 import {PagesComponent} from "./pages/pages.component";
 import {FooterComponent} from "./components/footer/footer.component";
 
+import fontawesome from '@fortawesome/fontawesome';
+import {
+    faAngleRight,
+    faChevronDown,
+    faChevronUp,
+    faCode,
+    faExclamationTriangle,
+    faLongArrowAltRight,
+    faCogs,
+    faProjectDiagram,
+    faToolbox,
+    faColumns,
+    faShoePrints,
+    faCodeBranch,
+    faPalette,
+    faBullhorn,
+    faMagic,
+    faDatabase,
+    faGlobe,
+    faCapsules,
+    faSun,
+    faMoon,
+    faHashtag,
+    faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import {faClipboard, faEnvelope, faListAlt, faQuestionCircle} from '@fortawesome/free-regular-svg-icons';
+import {faAngular, faReact, faVuejs, faRProject, faHtml5, faPython, faGithub} from '@fortawesome/free-brands-svg-icons';
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -30,6 +58,11 @@ export class AppComponent {
     @ViewChild("headerEl", {static: false}) headerEl: ElementRef | undefined;
 
     constructor(private router: Router, public themeService: ThemeService) {
+        // @ts-ignore
+        fontawesome.library.add(faCodeBranch,
+            faPalette,faMagic,faDatabase, faGlobe,faCapsules,faSun, faMoon,faHashtag,faGithub, faTrash,
+            faBullhorn, faColumns, faShoePrints, faPython, faHtml5, faToolbox, faRProject, faProjectDiagram, faCogs, faClipboard, faExclamationTriangle, faChevronDown, faChevronUp, faCode, faLongArrowAltRight, faAngleRight, faListAlt, faQuestionCircle, faEnvelope, faAngular, faVuejs, faReact)
+
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
