@@ -1,4 +1,4 @@
-@import '/src/scaffold.scss';
+@use 'src/scaffold.scss' as *;
 
 .navbar {
     min-height: $navbar-height;

@@ -1,4 +1,4 @@
-@import '/src/scaffold.scss';
+@use 'src/scaffold.scss' as *;
 
 .footer {
     height: $footer-height;

@@ -1,4 +1,4 @@
-@import "/src/scaffold.scss";
+@use "src/scaffold.scss" as *;
 
 .main-container {
     min-height: calc(100vh - #{$footer-height + $navbar-height});

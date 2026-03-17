@@ -1,4 +1,4 @@
-@import "../../../../../scaffold.scss";
+@use "../../../../../scaffold.scss" as *;
 
 .bd-links .btn {
   &:before {
