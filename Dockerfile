@@ -13,7 +13,7 @@ FROM nginx:alpine
 RUN apk add --upgrade apk-tools
 RUN apk upgrade --available
 
-COPY --from=build-stage /app/dist/website/ /usr/share/nginx/html/
+COPY --from=build-stage /app/dist/website/browser/ /usr/share/nginx/html/
 COPY nginx/default.conf /etc/nginx/conf.d/
 
 EXPOSE 80
