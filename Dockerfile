@@ -1,9 +1,6 @@
-FROM node as build-stage
+FROM node:22.12.0-alpine as build-stage
 
 WORKDIR /app
-
-RUN npm install -g n
-RUN n 20.14.0
 COPY package*.json ./
 RUN npm install
 COPY ./ .
