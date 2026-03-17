@@ -1,9 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-tool-panel',
   templateUrl: './tool-panel.component.html',
-  styleUrls: ['./tool-panel.component.scss']
+  styleUrls: ['./tool-panel.component.scss'],
+  standalone: true,
+  imports: [CommonModule, CardModule]
 })
 export class ToolPanelComponent implements OnInit {
 

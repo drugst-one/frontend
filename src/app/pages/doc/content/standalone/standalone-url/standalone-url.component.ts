@@ -1,6 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { CodeComponent } from "../../../../../components/code/code.component";
+import { DocSubsubheaderComponent } from "../../../../../components/documentation/doc-subsubheader/doc-subsubheader.component";
+import { TableModule } from "primeng/table";
+import { MessagesModule } from "primeng/messages";
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, TableModule, MessagesModule],
     selector: 'app-standalone-url',
     templateUrl: './standalone-url.component.html',
     styleUrls: ['./standalone-url.component.scss']

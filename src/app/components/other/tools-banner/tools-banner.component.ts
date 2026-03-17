@@ -1,9 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ToolPanelComponent } from './tool-panel/tool-panel.component';
 
 @Component({
     selector: 'app-tools-banner',
     templateUrl: './tools-banner.component.html',
-    styleUrls: ['./tools-banner.component.scss']
+    styleUrls: ['./tools-banner.component.scss'],
+    standalone: true,
+    imports: [CommonModule, ToolPanelComponent]
 })
 export class ToolsBannerComponent implements OnInit {
 

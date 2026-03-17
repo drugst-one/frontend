@@ -25,11 +25,8 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul
-        class="navbar-nav ml-auto"
-        *ngFor="let tab of tabsModel; let i = index"
-      >
-        <li class="nav-item">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" *ngFor="let tab of tabsModel; let i = index">
           <a
             class="nav-link"
             [routerLink]="tab.routerLink"
@@ -40,7 +37,7 @@
           >
             <i class="{{ tab.icon }}"></i>
             {{ tab.label }}
-            <span *ngIf="this.activeTab.label === tab.label" class="sr-only"
+            <span *ngIf="this.activeTab.label === tab.label" class="visually-hidden"
               >(current)</span
             >
           </a>

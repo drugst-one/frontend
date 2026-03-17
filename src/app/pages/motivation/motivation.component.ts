@@ -1,13 +1,23 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RequestService} from "../../services/requestService";
 import {Node} from "../../../interfaces"
+import { CommonModule } from '@angular/common';
+import { CardModule } from 'primeng/card';
+import { DropdownComponent } from '../../components/playground/sidebar/dropdown/dropdown.component';
+import { TextinputComponent } from '../../components/playground/sidebar/textinput/textinput.component';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { CodeComponent } from '../../components/code/code.component';
+
 
 // @ts-ignore
 import CONFIG from "../../configs/default.js"
 @Component({
   selector: 'app-motivation ',
   templateUrl: './motivation.component.html',
-  styleUrls: ['./motivation.component.scss']
+  styleUrls: ['./motivation.component.scss'],
+  standalone: true,
+  imports: [CommonModule, CardModule, DropdownComponent, TextinputComponent, TableModule, ButtonModule, CodeComponent]
 })
 export class MotivationComponent implements OnInit {
   @Output() tabChangeEvent = new EventEmitter<number>();

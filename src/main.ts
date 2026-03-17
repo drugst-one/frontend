@@ -1,12 +1,31 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { bootstrapApplication } from "@angular/platform-browser";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { provideRouter } from "@angular/router";
+import { IMAGE_CONFIG } from '@angular/common';
 
-import { AppModule } from './app/app.module';
+import { AppComponent } from "./app/app.component";
 import { environment } from './environments/environment';
+import { routes } from './app/app.routes'; // I'll need to create this or export it from AppRoutingModule
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    provideAnimations(),
+    provideRouter(routes),
+    importProvidersFrom(NgbModule),
+    {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true, 
+        disableImageLazyLoadWarning: true
+      }
+    }
+  ]
+}).catch(err => console.error(err));

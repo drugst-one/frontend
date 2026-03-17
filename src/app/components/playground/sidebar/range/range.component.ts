@@ -1,10 +1,17 @@
 import { EventEmitter } from '@angular/core';
 import {Component, Input, OnInit, Output} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
+import { TooltipModule } from 'primeng/tooltip';
+import { FormsModule } from '@angular/forms';
+import { SliderModule } from 'primeng/slider';
 
 @Component({
   selector: 'app-range',
   templateUrl: './range.component.html',
-  styleUrls: ['./range.component.scss']
+  styleUrls: ['./range.component.scss'],
+  standalone: true,
+  imports: [CommonModule, InputTextModule, TooltipModule, FormsModule, SliderModule]
 })
 export class RangeComponent implements OnInit {
 

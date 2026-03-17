@@ -1,13 +1,22 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ThemeService} from 'src/app/services/theme.service';
 import {RequestService} from "src/app/services/requestService";
+import { CommonModule } from "@angular/common";
+import { CodeComponent } from "../../../../../components/code/code.component";
+import { DocSubsubheaderComponent } from "../../../../../components/documentation/doc-subsubheader/doc-subsubheader.component";
+import { MessagesModule } from "primeng/messages";
+import { CheckboxModule } from "primeng/checkbox";
+import { FormsModule } from "@angular/forms";
+
 // @ts-ignore
 import CONFIG from "../../../../../configs/default.js"
 
 @Component({
     selector: 'app-impl-data',
     templateUrl: './impl-data.component.html',
-    styleUrls: ['./impl-data.component.scss']
+    styleUrls: ['./impl-data.component.scss'],
+    standalone: true,
+    imports: [CommonModule, CodeComponent, DocSubsubheaderComponent, MessagesModule, CheckboxModule, FormsModule]
 })
 export class ImplDataComponent implements OnInit {
 

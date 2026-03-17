@@ -1,6 +1,11 @@
+import { DocSubsubheaderComponent } from "../../../../../components/documentation/doc-subsubheader/doc-subsubheader.component";
+import { CommonModule } from "@angular/common";
+import { CodeComponent } from "../../../../../components/code/code.component";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, CodeComponent, DocSubsubheaderComponent],
   selector: 'app-standalone-buttons',
   templateUrl: './standalone-buttons.component.html',
   styleUrls: ['./standalone-buttons.component.scss']

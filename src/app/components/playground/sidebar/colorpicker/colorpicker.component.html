@@ -1,11 +1,11 @@
 <div>
-    <label class="side-label" style="padding: 5px 6px 5px 12px; font-size: small">{{label}}
+    <label class="side-label" style="padding: 5px 0px; font-size: small">{{label}}
         <span [pTooltip]="tooltip">
             <i class="far fa-question-circle" style="margin-left: 3px; padding-left:1px"></i>
         </span>
     </label>
     <div style="display: flex">
-        <div style="padding: 3px 10px 5px 24px; justify-content: flex-start">
+        <div style="padding: 3px 10px 5px 0px; justify-content: flex-start">
             <p-colorPicker [(ngModel)]="model" (onHide)="emitChange()" [format]="format"></p-colorPicker>
         </div>
         <div *ngIf="textinput" style="display: flex">

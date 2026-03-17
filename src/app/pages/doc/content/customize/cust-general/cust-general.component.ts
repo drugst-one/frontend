@@ -1,6 +1,10 @@
+import { CommonModule } from "@angular/common";
+import { CodeComponent } from "../../../../../components/code/code.component";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, CodeComponent],
   selector: 'app-cust-general',
   templateUrl: './cust-general.component.html',
   styleUrls: ['./cust-general.component.scss']

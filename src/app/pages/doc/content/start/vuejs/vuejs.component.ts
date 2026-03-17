@@ -1,7 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CodeComponent } from '../../../../../components/code/code.component';
 
 @Component({
   selector: 'app-vuejs',
+  standalone: true,
+  imports: [CommonModule, CodeComponent],
   templateUrl: './vuejs.component.html',
   styleUrls: ['./vuejs.component.scss']
 })

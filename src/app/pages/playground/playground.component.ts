@@ -1,4 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DatapanelComponent } from '../../components/playground/datapanel/datapanel.component';
+import { ExamplesComponent } from '../../components/playground/examples/examples.component';
+import { DrugstonepanelComponent } from '../../components/playground/drugstonepanel/drugstonepanel.component';
+import { SidebarComponent } from '../../components/playground/sidebar/sidebar.component';
+import { CodepanelComponent } from '../../components/playground/codepanel/codepanel.component';
+import { StylepanelComponent } from '../../components/playground/stylepanel/stylepanel.component';
+
 // @ts-ignore
 import config from '../../../exampleConfig.json';
 // @ts-ignore
@@ -15,7 +23,9 @@ import { ExampleConfig } from 'src/interfaces';
 @Component({
     selector: 'app-playground',
     templateUrl: './playground.component.html',
-    styleUrls: ['./playground.component.scss']
+    styleUrls: ['./playground.component.scss'],
+    standalone: true,
+    imports: [CommonModule, DatapanelComponent, ExamplesComponent, DrugstonepanelComponent, SidebarComponent, CodepanelComponent, StylepanelComponent]
 })
 export class PlaygroundComponent implements OnInit {
     @Input() public theme = {}
@@ -45,6 +55,7 @@ export class PlaygroundComponent implements OnInit {
     }
 
     fit(): void {
+        // @ts-ignore
         this.changeConfig({"showLegend": this.config["showLegend"] || this.config["showLegend"] == null})
     }
 
@@ -178,6 +189,7 @@ export class PlaygroundComponent implements OnInit {
     public activateExamplePlayground(example: ExampleConfig) {
         // this.network.edges = [];
         // this.network.nodes = [];
+        // @ts-ignore
         this.network = undefined;
 
         this.changeGroup(example.groups);
@@ -188,6 +200,7 @@ export class PlaygroundComponent implements OnInit {
         // drugstone is removed with *ngIf until network is set
         // start in next cycle to avoid race conditions
         setTimeout(() => {
+            // @ts-ignore
             this.network = example.network;
             this.updateCode()
         });

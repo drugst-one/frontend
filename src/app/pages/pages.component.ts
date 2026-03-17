@@ -1,9 +1,19 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home/home.component';
+import { MotivationComponent } from './motivation/motivation.component';
+import { StandaloneComponent } from './standalone/standalone/standalone.component';
+import { PlaygroundComponent } from './playground/playground.component';
+import { DocComponent } from './doc/doc.component';
+import { CiteComponent } from './cite/cite.component';
+import { CallLandingComponent } from './call-landing/call-landing.component';
 
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.scss']
+  styleUrls: ['./pages.component.scss'],
+  standalone: true,
+  imports: [CommonModule, HomeComponent, MotivationComponent, StandaloneComponent, PlaygroundComponent, DocComponent, CiteComponent, CallLandingComponent]
 })
 export class PagesComponent implements OnInit {
 

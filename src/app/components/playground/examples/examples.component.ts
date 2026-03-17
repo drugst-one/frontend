@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ExampleConfig } from 'src/interfaces';
+import { CommonModule } from '@angular/common';
+import { DropdownComponent } from '../sidebar/dropdown/dropdown.component';
 // @ts-ignore
 import cystic_fibrosis_example from './config/cystic_fibrosis.json';
 // @ts-ignore
@@ -10,7 +12,9 @@ import default_example from './config/default.json';
 @Component({
   selector: 'app-examples',
   templateUrl: './examples.component.html',
-  styleUrls: ['./examples.component.scss']
+  styleUrls: ['./examples.component.scss'],
+  standalone: true,
+  imports: [CommonModule, DropdownComponent]
 })
 export class ExamplesComponent implements OnInit {
 

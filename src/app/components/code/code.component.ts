@@ -1,10 +1,17 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Clipboard} from "@angular/cdk/clipboard";
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { TooltipModule } from 'primeng/tooltip';
+import { HighlightJsModule } from 'ngx-highlight-js';
 
 @Component({
     selector: 'app-code',
     templateUrl: './code.component.html',
-    styleUrls: ['./code.component.scss']
+    styleUrls: ['./code.component.scss'],
+    standalone: true,
+    imports: [CommonModule, ButtonModule, RippleModule, TooltipModule, HighlightJsModule]
 })
 export class CodeComponent implements OnInit {
 
