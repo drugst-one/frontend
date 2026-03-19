@@ -40,6 +40,7 @@ import { EulaComponent } from './content/other/eula/eula.component';
 import { ContactComponent } from './content/other/contact/contact.component';
 import { PrivacyPolicyComponent } from './content/other/privacy-policy/privacy-policy.component';
 import { FaqComponent } from './content/other/faq/faq.component';
+import {AngularNewComponent} from "./content/start/angular-new/angular-new.component";
 
 @Component({
     selector: 'app-doc',
@@ -53,6 +54,7 @@ import { FaqComponent } from './content/other/faq/faq.component';
         DocSubheaderComponent,
         BasicsComponent,
         AngularComponent,
+        AngularNewComponent,
         DjangoComponent,
         VuejsComponent,
         RshinyComponent,

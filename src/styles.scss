@@ -98,11 +98,6 @@ ol, ul, dl {
   margin-bottom: 0;
 }
 
-// Keep padding for actual lists in documentation
-#doc-page ul, .doc-entries ul {
-  padding-left: 2rem;
-}
-
 // Navbar should not have this padding either
 .navbar-nav {
   padding-left: 0;
