@@ -1,0 +1,10 @@
+services:
+  frontend:
+    container_name: drugstone_dev_frontend
+    image: ghcr.io/drugst-one/frontend:development
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.development
+    restart: always
+    ports:
+      - 8080:80

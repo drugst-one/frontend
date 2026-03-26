@@ -67,6 +67,10 @@ export class StandaloneComponent implements OnInit {
         'drugbank': 'DrugBank',
         'omim': 'OMIM',
         'omnipath': 'OmniPath',
+        'cosmic':"COSMIC",
+        'ncg':'NCG',
+        'intogen':'IntOGen',
+        'orphanet': 'Orphanet',
     }
 
     public dataMaps = {
