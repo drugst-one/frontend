@@ -186,6 +186,7 @@ export class StandaloneComponent implements OnInit {
         this.configDark = configDark
         this.config = this.configLight
         this.loadDatasets().then(() => {
+            this.setDefaultDatasets()
             this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
         })
 
@@ -203,6 +204,21 @@ export class StandaloneComponent implements OnInit {
 
     switchToPlayground() {
         this.router.navigate(['/playground']);
+    }
+
+    setDefaultDatasets(){
+        if(this.dataLists.protProtInterList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
+            this.config["interactionProteinProtein"] = "NeDRex"
+        }
+        if(this.dataLists.drugProtInterList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
+            this.config["interactionDrugProtein"] = "NeDRex"
+        }
+        if(this.dataLists.protDisList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
+            this.config["associatedProteinDisorder"] = "NeDRex"
+        }
+        if(this.dataLists.drugDisList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
+            this.config["indicationDrugDisorder"] = "NeDRex"
+        }
     }
 
     loadDatasets() {
