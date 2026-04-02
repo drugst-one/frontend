@@ -23,7 +23,16 @@ export class DrugstonepanelComponent implements OnInit {
   }
 
   getConfig(): string{
-    return JSON.stringify(this.config)
+    let clean = {...this.config};
+    const datasets = ['interactionProteinProtein', 'interactionDrugProtein', 'associatedProteinDisorder', 'indicationDrugDisorder'];
+    datasets.forEach(key => {
+        // @ts-ignore
+        if (clean[key] && typeof clean[key] === 'string') {
+            // @ts-ignore
+            clean[key] = clean[key].split('|')[0];
+        }
+    });
+    return JSON.stringify(clean)
   }
 
   getNetwork(): string{

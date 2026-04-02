@@ -170,28 +170,28 @@
                     <app-dropdown
                             label="Protein-Protein Interaction DB"
                             [items]="dataLists.protProtInterList"
-                            [model]="getConfig('interactionProteinProtein')"
+                            [model]="getConfigOrDefault('interactionProteinProtein', 'NeDRex|open')"
                             tooltip="Select the dataset of protein-protein information that is later used in functions like 'Find Drug Targets' and 'Run Task X'."
                             (onChange)="changeDataset('interactionProteinProtein', $event)"
                     ></app-dropdown>
                     <app-dropdown
                             label="Drug-Protein Interaction DB"
                             [items]="dataLists.drugProtInterList"
-                            [model]="getConfig('interactionDrugProtein')"
+                            [model]="getConfigOrDefault('interactionDrugProtein', 'NeDRex|open')"
                             tooltip="Select the dataset of drug-protein information that is later used in functions like 'Find Drug Targets'."
                             (onChange)="changeDataset('interactionDrugProtein', $event)"
                     ></app-dropdown>
                     <app-dropdown
                             label="Protein-Disease Association DB"
                             [items]="dataLists.protDisList"
-                            [model]="getConfig('associatedProteinDisorder')"
+                            [model]="getConfigOrDefault('associatedProteinDisorder', 'NeDRex|open')"
                             tooltip="Select the dataset of protein-disease information that is later used in functions like 'Show disorders adjacent to displayed proteins'."
                             (onChange)="changeDataset('associatedProteinDisorder', $event)"
                     ></app-dropdown>
                     <app-dropdown
                             label="Drug-Disease Indication DB"
                             [items]="dataLists.drugDisList"
-                            [model]="getConfig('indicationDrugDisorder')"
+                            [model]="getConfigOrDefault('indicationDrugDisorder', 'NeDRex|open')"
                             tooltip="Select the dataset of drug-disease information that is later used in functions like 'Show disorders adjacent to displayed drugs'."
                             (onChange)="changeDataset('indicationDrugDisorder', $event)"
                     ></app-dropdown>

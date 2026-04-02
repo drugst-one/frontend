@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from 'primeng/select';
 import { TooltipModule } from 'primeng/tooltip';
@@ -13,10 +13,10 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, SelectModule, TooltipModule, FormsModule]
 })
 
-export class DropdownComponent implements OnInit {
+export class DropdownComponent implements OnInit, OnChanges {
 
-  @Input() public items:object[]=[]
-  @Input() public model:any = ""
+  @Input() public items: any[] = []
+  @Input() public model: any = ""
   @Input() public label = ""
   @Input() public tooltip = ""
   @Output() public onChange = new EventEmitter<string>();
@@ -25,14 +25,29 @@ export class DropdownComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // @ts-ignore
-    if(!this.model && this.items && this.items[0] && this.items[0].label){
-      // @ts-ignore
-      this.model=this.items[0].label
+    this.setDefaultIfEmpty();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['items']) {
+      this.setDefaultIfEmpty();
     }
   }
 
-    emitChange() {
-        this.onChange.emit(this.model)
+  private setDefaultIfEmpty(): void {
+    if ((this.model === "" || this.model === null || this.model === undefined) && 
+        this.items && this.items.length > 0) {
+      const firstItem = this.items[0];
+      const defaultValue = firstItem.hasOwnProperty('value') ? firstItem.value : (firstItem.hasOwnProperty('label') ? firstItem.label : firstItem);
+      this.model = defaultValue;
+      // Emit the change so the parent component is aware of the default selection
+      setTimeout(() => {
+        this.onChange.emit(this.model);
+      });
     }
+  }
+
+  emitChange() {
+    this.onChange.emit(this.model)
+  }
 }

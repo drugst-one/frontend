@@ -73,7 +73,7 @@ export class StandaloneComponent implements OnInit {
         'orphanet': 'Orphanet',
     }
 
-    public dataMaps = {
+    public dataMaps: any = {
         drugProtInterList: {
             'NeDRex': {name: 'NeDRex', licenced: false},
             'NeDRex (licensed)': {name: 'NeDRex', licenced: true},
@@ -186,7 +186,6 @@ export class StandaloneComponent implements OnInit {
         this.configDark = configDark
         this.config = this.configLight
         this.loadDatasets().then(() => {
-            this.setDefaultDatasets()
             this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
         })
 
@@ -207,70 +206,83 @@ export class StandaloneComponent implements OnInit {
     }
 
     setDefaultDatasets(){
-        if(this.dataLists.protProtInterList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
-            this.config["interactionProteinProtein"] = "NeDRex"
+        const getDefault = (list: any[]) => {
+            const nedrex = list.find(e => e.label === "NeDRex");
+            return nedrex ? nedrex.value : (list.length > 0 ? list[0].value : null);
+        };
+
+        if (!this.getConfig("interactionProteinProtein")) {
+            this.changeDataset("interactionProteinProtein", getDefault(this.dataLists.protProtInterList));
         }
-        if(this.dataLists.drugProtInterList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
-            this.config["interactionDrugProtein"] = "NeDRex"
+        if (!this.getConfig("interactionDrugProtein")) {
+            this.changeDataset("interactionDrugProtein", getDefault(this.dataLists.drugProtInterList));
         }
-        if(this.dataLists.protDisList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
-            this.config["associatedProteinDisorder"] = "NeDRex"
+        if (!this.getConfig("associatedProteinDisorder")) {
+            this.changeDataset("associatedProteinDisorder", getDefault(this.dataLists.protDisList));
         }
-        if(this.dataLists.drugDisList.map(e=>e.label).indexOf("NeDRex") != -1) { // @ts-ignore
-            this.config["indicationDrugDisorder"] = "NeDRex"
+        if (!this.getConfig("indicationDrugDisorder")) {
+            this.changeDataset("indicationDrugDisorder", getDefault(this.dataLists.drugDisList));
         }
     }
 
     loadDatasets() {
         return this.drugstone.getDatasources(this.api).then(response => {
-            this.dataLists = {
-                identifierList: this.dataLists.identifierList,
-                drugProtInterList: this.sorted(response['protein-drug'].map((source: { name: string; licenced: boolean; }) => {
+            const processSources = (sources: any[]) => {
+                return this.sorted(sources.map(source => {
+                    let name = source.name.toLowerCase()
+                    let label = (this.nameMap[name] ? this.nameMap[name] : source.name) + (source.licenced ? ' (licensed)' : '')
+                    let value = source.name + (source.licenced ? '|licensed' : '|open')
                     return {
-                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
-                        value: source
-                    }
-                })),
-                protProtInterList: this.sorted(response['protein-protein'].map((source: { name: string; licenced: boolean; }) => {
-                    return {
-                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
-                        value: source
-                    }
-                })),
-                drugDisList: this.sorted(response['drug-disorder'].map((source: { name: string; licenced: boolean; }) => {
-                    return {
-                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
-                        value: source
-                    }
-                })),
-                protDisList: this.sorted(response['protein-disorder'].map((source: { name: string; licenced: boolean; }) => {
-                    return {
-                        'label': this.nameMap[source.name.toLowerCase()] + (source.licenced ? ' (licensed)' : ''),
-                        value: source
+                        label: label,
+                        value: value
                     }
                 }))
             }
-            // @ts-ignore
+
+            this.dataLists = {
+                identifierList: this.dataLists.identifierList,
+                drugProtInterList: processSources(response['protein-drug']),
+                protProtInterList: processSources(response['protein-protein']),
+                drugDisList: processSources(response['drug-disorder']),
+                protDisList: processSources(response['protein-disorder'])
+            }
+            
             this.dataMaps.drugProtInterList = {}
-            this.dataLists.drugProtInterList.forEach(d => {
-                // @ts-ignore
-                this.dataMaps.protProtInterList[d.label] = d.value
+            response['protein-drug'].forEach((source: any) => {
+                const key = source.name + (source.licenced ? '|licensed' : '|open');
+                this.dataMaps.drugProtInterList[key] = source;
             })
-            this.dataLists.drugDisList.forEach(d => {
-                // @ts-ignore
-                this.dataMaps.drugDisList[d.label] = d.value
+
+            this.dataMaps.protProtInterList = {}
+            response['protein-protein'].forEach((source: any) => {
+                const key = source.name + (source.licenced ? '|licensed' : '|open');
+                this.dataMaps.protProtInterList[key] = source;
             })
-            this.dataLists.protDisList.forEach(d => {
-                // @ts-ignore
-                this.dataMaps.protDisList[d.label] = d.value
+
+            this.dataMaps.drugDisList = {}
+            response['drug-disorder'].forEach((source: any) => {
+                const key = source.name + (source.licenced ? '|licensed' : '|open');
+                this.dataMaps.drugDisList[key] = source;
             })
-            this.dataLists.drugProtInterList.forEach(d => {
-                // @ts-ignore
-                this.dataMaps.drugProtInterList[d.label] = d.value
+
+            this.dataMaps.protDisList = {}
+            response['protein-disorder'].forEach((source: any) => {
+                const key = source.name + (source.licenced ? '|licensed' : '|open');
+                this.dataMaps.protDisList[key] = source;
             })
+
+            this.setDefaultDatasets()
             this.dataLoaded = true;
             this.cd.detectChanges();
         })
+    }
+
+    // @ts-ignore
+    filterDatasets(datasets, licensed) {
+        if (licensed)
+            return datasets
+        // @ts-ignore
+        return datasets.filter(o => o.open)
     }
 
     sorted(list: any) {
@@ -480,16 +492,33 @@ export class StandaloneComponent implements OnInit {
         return this.config[param]
     }
 
+    getConfigOrDefault(param: string, def: any) {
+        let config = this.getConfig(param)
+        if (config == null)
+            return def
+        return config
+    }
+
     isLicensed(): boolean {
         // @ts-ignore
         return Object.values(this.selectedDatasets).reduce((a,b) => a || b)
     }
 
-    changeDataset(name: string, value: any) {
-        // @ts-ignore
-        this.selectedDatasets[name] = value.licenced
-        this.changeConfig('licensedDatasets', this.isLicensed())
-        this.changeConfig(name, value.name)
+    changeDataset(name: string, value: string) {
+        let source: any = null;
+        if (name === 'interactionProteinProtein') source = this.dataMaps.protProtInterList[value];
+        if (name === 'interactionDrugProtein') source = this.dataMaps.drugProtInterList[value];
+        if (name === 'indicationDrugDisorder') source = this.dataMaps.drugDisList[value];
+        if (name === 'associatedProteinDisorder') source = this.dataMaps.protDisList[value];
+
+        if (source) {
+            // @ts-ignore
+            this.selectedDatasets[name] = source.licenced;
+            this.changeConfig('licensedDatasets', this.isLicensed());
+            this.changeConfig(name, value);
+        } else {
+            this.changeConfig(name, value);
+        }
     }
 
     changeGroups(name: string, value: any) {

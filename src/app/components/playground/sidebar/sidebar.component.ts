@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
         protDisList: []
     }
 
-    public nameMap = {
+    public nameMap: any = {
         nedrex: 'NeDRex',
         biogrid: 'BioGRID',
         iid: 'IID',
@@ -113,82 +113,27 @@ export class SidebarComponent implements OnInit {
 
     async loadDatasets() {
         this.drugstone.getDatasources(this.api).then(response => {
+            const processSources = (sources: any[]) => {
+                return this.sorted(sources.map(source => {
+                    let name = source.name.toLowerCase()
+                    let label = (this.nameMap[name] ? this.nameMap[name] : source.name) + (source.licenced ? ' (licensed)' : '')
+                    let value = source.name + (source.licenced ? '|licensed' : '|open')
+                    return {
+                        label: label,
+                        value: value,
+                        licensed: source.licenced,
+                        open: !source.licenced
+                    }
+                }))
+            }
+
             this.dataLists = {
                 identifierList: this.dataLists.identifierList,
-                drugProtInterList: [],
-                protProtInterList: [],
-                drugDisList: [],
-                protDisList: []
+                drugProtInterList: processSources(response['protein-drug']),
+                protProtInterList: processSources(response['protein-protein']),
+                drugDisList: processSources(response['drug-disorder']),
+                protDisList: processSources(response['protein-disorder'])
             }
-            let uniqMap = {}
-            response['protein-drug'].forEach((source: { name: string; licenced: boolean }) => {
-                let name = source.name.toLowerCase()
-                // @ts-ignore
-                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
-                if (source.licenced) {
-                    // @ts-ignore
-                    s['licensed'] = true
-                } else {
-                    // @ts-ignore
-                    s['open'] = true
-                }
-                // @ts-ignore
-                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
-            })
-            // @ts-ignore
-            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.drugProtInterList.push(o))
-            uniqMap = {}
-            response['protein-protein'].forEach((source: { name: string; licenced: boolean }) => {
-                let name = source.name.toLowerCase()
-                // @ts-ignore
-                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
-                if (source.licenced) {
-                    // @ts-ignore
-                    s['licensed'] = true
-                } else {
-                    // @ts-ignore
-                    s['open'] = true
-                }
-                // @ts-ignore
-                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
-            })
-            // @ts-ignore
-            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.protProtInterList.push(o))
-
-            uniqMap = []
-            response['protein-disorder'].forEach((source: { name: string; licenced: boolean }) => {
-                let name = source.name.toLowerCase()
-                // @ts-ignore
-                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
-                if (source.licenced) {
-                    // @ts-ignore
-                    s['licensed'] = true
-                } else {
-                    // @ts-ignore
-                    s['open'] = true
-                }
-                // @ts-ignore
-                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
-            })
-            // @ts-ignore
-            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.protDisList.push(o))
-            uniqMap = []
-            response['drug-disorder'].forEach((source: { name: string; licenced: boolean }) => {
-                let name = source.name.toLowerCase()
-                // @ts-ignore
-                let s = {label: (this.nameMap[name] ? this.nameMap[name] : source.name), value: source.name}
-                if (source.licenced) {
-                    // @ts-ignore
-                    s['licensed'] = true
-                } else {
-                    // @ts-ignore
-                    s['open'] = true
-                }
-                // @ts-ignore
-                uniqMap[name] = uniqMap[name] ? {...uniqMap[name], ...s} : s
-            })
-            // @ts-ignore
-            this.sorted(Object.values(uniqMap)).forEach(o => this.dataLists.drugDisList.push(o))
         })
     }
 
