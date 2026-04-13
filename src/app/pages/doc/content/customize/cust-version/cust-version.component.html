@@ -2,12 +2,10 @@
   You have the possibility to select any tagged version of Drugst.One in your
   project.
   <p-message severity="warn">
-    <ng-template pTemplate>
       <div>
         Be aware that older versions might not be supported at some point
         regarding the according backend endpoints!
       </div>
-    </ng-template>
   </p-message>
 
 
@@ -15,11 +13,9 @@
   best practice is to always include the newest minor version release:
   <app-code lang="html" [code]="is_stable ? versionCode : basicCode"></app-code>
   <p-message severity="warn">
-    <ng-template pTemplate>
       <div>
         Be aware, that <code>latest</code> or <code>nightly</code> does not use the stable endpoint of Drugst.One.
       </div>
-    </ng-template>
   </p-message>
 <!--<div *ngIf="!is_stable">-->
   <app-specific-version *ngIf="!is_stable" [nightlyCode]="nightlyCode" [versionCode]="versionCode" [version]="version"></app-specific-version>

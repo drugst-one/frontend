@@ -23,21 +23,36 @@ export class EulaComponent implements OnInit {
     this.getEULA()
   }
 
-  async getEULA(){
-    this.drugstone.getEULA(this.api).then(response=>{
-      if(response.license)
-        return response.license
-    }).then(license=>{
-      this.license = this.format_license_string(license)
-    })
+  async getEULA() {
+    try {
+      const response = await this.drugstone.getEULA(this.api);
+      // The backend returns an object with a "license" property.
+      // If it returns just the string, we handle that as well.
+      const licenseRaw = (response && response.license) ? response.license : response;
+      if (typeof licenseRaw === 'string') {
+        this.license = this.format_license_string(licenseRaw);
+      }
+    } catch (error) {
+      console.error('Error fetching EULA:', error);
+    }
   }
 
   format_license_string(license: string) {
+    if (!license) {
+      return '';
+    }
     const license_array = [];
     let header_started = false;
     let after_header = false;
-    license = license.replace('\n', ' <br> ')
+    // Fix: replace ALL newlines with <br> and ensure spaces around them for easier splitting
+    license = license.split('\n').join(' <br> ')
+
     for (let e of license.split(' ')) {
+      // Ignore empty tokens from consecutive spaces
+      if (e === '') {
+        continue;
+      }
+
       switch (e) {
         case '====':
           if (!header_started) {
@@ -56,8 +71,6 @@ export class EulaComponent implements OnInit {
             continue;
           }
           break;
-        case '':
-          continue;
         default:
           // as soon as any text appears, integrate linebreaks again
           after_header = false;
