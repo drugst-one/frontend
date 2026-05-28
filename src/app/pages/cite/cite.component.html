@@ -1,59 +1,70 @@
-<div class="container px-4 px-lg-5 text-center">
+<div class="container">
 
-    <div class="col-lg-12 mt-3">
+    <div class="col-lg-12 mt-4 text-center">
         <h1 class="display-5 mb-2">How to cite</h1>
+        <p class="mb-4 text-muted">
+            <i>If you use Drugst.One functionalities in your work, please consider citing it as follows!</i>
+        </p>
     </div>
-    <p class="mb-4">
-        <i>If you use Drugst.One functionalities in your work, please consider citing it as follows!</i>
-    </p>
 
     <!-- Drugst.One Core Section -->
-    <div class="text-start mb-4">
-        <h3 class="mb-1">Drugst.One core functionalities</h3>
-        <div class="mb-3 ps-lg-2">
-            DOI URL: <a href="https://doi.org/10.1093/nar/gkae388" target="_blank">
-            https://doi.org/10.1093/nar/gkae388</a>
+    <p-card class="dt-card card mb-4">
+
+        <!-- Custom Header inside the card body -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-3 pb-2 border-bottom">
+            <h4 class="mb-0 fw-bold" style="color: var(--p-card-color);">Drugst.One Core Features</h4>
+            <span class="fs-6 fw-normal mt-2 mt-md-0">
+                <span class="text-muted me-2">DOI URL:</span>
+                <a href="https://doi.org/10.1093/nar/gkae388" target="_blank" class="link-primary text-decoration-none fw-bold">
+                    <i class="pi pi-external-link" style="font-size: 0.85rem"></i> https://doi.org/10.1093/nar/gkae388
+                </a>
+            </span>
         </div>
 
         <!-- Side-by-Side Code Blocks -->
-        <div class="row px-lg-2">
-            <!-- Plain Text Column (Slightly narrower) -->
-            <div class="col-lg-5 mb-2 mb-lg-0">
-                <label for="plain_core" class="form-label mb-0 fw-bold">Plain</label>
-                <pre class="mb-0" style="max-height: 180px; overflow-y: auto;"><app-code lang="plaintext" [code]="plain"></app-code></pre>
-            </div>
-            <!-- BibTeX Column (Slightly wider) -->
-            <div class="col-lg-7">
-                <label for="bibtex_core" class="form-label mb-0 fw-bold">BibTeX</label>
-                <pre class="mb-0" style="max-height: 180px; overflow-y: auto;"><app-code lang="plaintext" [code]="bibtex"></app-code></pre>
-            </div>
-        </div>
-    </div>
-
-    <!-- Subtle divider -->
-    <hr class="text-muted my-4" style="opacity: 0.2;">
-
-    <!-- Drugst.One DREAM Section -->
-    <div class="text-start mb-2">
-        <h3 class="mb-1">Drugst.One DREAM functionalities</h3>
-        <div class="mb-3 ps-lg-2">
-            DOI URL: <a href="https://doi.org/10.1111/bph.70495" target="_blank">
-            https://doi.org/10.1111/bph.70495</a>
-        </div>
-
-        <!-- Side-by-Side Code Blocks -->
-        <div class="row px-lg-2">
+        <div class="row">
             <!-- Plain Text Column -->
-            <div class="col-lg-5 mb-2 mb-lg-0">
-                <label for="plain_dream" class="form-label mb-0 fw-bold">Plain</label>
-                <pre class="mb-0" style="max-height: 180px; overflow-y: auto;"><app-code lang="plaintext" [code]="dream_plain"></app-code></pre>
+            <div class="col-lg-5 mb-3 mb-lg-0">
+                <label for="plain_core" class="form-label mb-1 fw-bold">Plain</label>
+                <pre class="mb-0" style="height: 170px; overflow-y: auto;"><app-code lang="plaintext" [code]="plain"></app-code></pre>
             </div>
             <!-- BibTeX Column -->
             <div class="col-lg-7">
-                <label for="bibtex_dream" class="form-label mb-0 fw-bold">BibTeX</label>
-                <pre class="mb-0" style="max-height: 180px; overflow-y: auto;"><app-code lang="plaintext" [code]="dream_bibtex"></app-code></pre>
+                <label for="bibtex_core" class="form-label mb-1 fw-bold">BibTeX</label>
+                <pre class="mb-0" style="height: 170px; overflow-y: auto;"><app-code lang="plaintext" [code]="bibtex"></app-code></pre>
             </div>
         </div>
-    </div>
+
+    </p-card>
+
+    <!-- Drugst.One DREAM Section -->
+    <p-card class="dt-card card mb-4">
+
+        <!-- Custom Header inside the card body -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-3 pb-2 border-bottom">
+            <h4 class="mb-0 fw-bold" style="color: var(--p-card-color);">Drugst.One DREAM Expansion</h4>
+            <span class="fs-6 fw-normal mt-2 mt-md-0">
+                <span class="text-muted me-2">DOI URL:</span>
+                <a href="https://doi.org/10.1111/bph.70495" target="_blank" class="link-primary text-decoration-none fw-bold">
+                    <i class="pi pi-external-link" style="font-size: 0.85rem"></i> https://doi.org/10.1111/bph.70495
+                </a>
+            </span>
+        </div>
+
+        <!-- Side-by-Side Code Blocks -->
+        <div class="row">
+            <!-- Plain Text Column -->
+            <div class="col-lg-5 mb-3 mb-lg-0">
+                <label for="plain_dream" class="form-label mb-1 fw-bold">Plain</label>
+                <pre class="mb-0" style="height: 170px; overflow-y: auto;"><app-code lang="plaintext" [code]="dream_plain"></app-code></pre>
+            </div>
+            <!-- BibTeX Column -->
+            <div class="col-lg-7">
+                <label for="bibtex_dream" class="form-label mb-1 fw-bold">BibTeX</label>
+                <pre class="mb-0" style="height: 170px; overflow-y: auto;"><app-code lang="plaintext" [code]="dream_bibtex"></app-code></pre>
+            </div>
+        </div>
+
+    </p-card>
 
 </div>

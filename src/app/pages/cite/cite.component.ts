@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CodeComponent} from "../../components/code/code.component";
+import {Card} from "primeng/card";
 
 @Component({
   selector: 'app-cite',
   templateUrl: './cite.component.html',
   styleUrls: ['./cite.component.scss'],
   standalone: true,
-  imports: [CommonModule, CodeComponent]
+  imports: [CommonModule, CodeComponent, Card]
 })
 export class CiteComponent implements OnInit {
 
