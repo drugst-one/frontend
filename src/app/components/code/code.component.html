@@ -2,7 +2,7 @@
     <div *ngIf="copy" style="display: flex; justify-content: flex-end">
         <button pButton pRipple class="p-button clipboard-btn" icon="far fa-clipboard" pTooltip="Copy the code to clipboard!" tooltipPosition="left" style="margin-top:-35px;top: +55px; left:-8px; width: 2rem; height: 2rem" (click)="toClipboard()"></button>
     </div>
-    <textarea #codeArea highlight-js [lang]="lang">
-        {{code}}
-    </textarea>
+
+    <!-- Use 'css' to prevent '//' in URLs from breaking the string -->
+    <code highlight-js [lang]="lang">{{code}}</code>
 </div>

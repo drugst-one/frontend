@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {CodeComponent} from "../../components/code/code.component";
 
 @Component({
   selector: 'app-cite',
   templateUrl: './cite.component.html',
   styleUrls: ['./cite.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, CodeComponent]
 })
 export class CiteComponent implements OnInit {
 
@@ -29,6 +30,22 @@ export class CiteComponent implements OnInit {
     doi = {10.1093/nar/gkae388},
     url = {https://doi.org/10.1093/nar/gkae388},
     eprint = {https://academic.oup.com/nar/advance-article-pdf/doi/10.1093/nar/gkae388/57850045/gkae388.pdf},
+}`
+
+  public dream_plain = `Spindler, L. M., Kersting, J., Manz, Q., Hartung, M., Maier, A., Mamdouh, Z. M., Casas, A. I., Baumbach, J., & List, M. (2026). Drugst.One DREAM—Drug repurposing through expert annotation and modification. British Journal of Pharmacology, 1–14. https://doi.org/10.1111/bph.70495`
+
+  public dream_bibtex = `@article{10.1111/bph.70495,
+    author = {Spindler, Lisa M. and Kersting, Johannes and Manz, Quirin and Hartung, Michael and Maier, Andreas and Mamdouh, Zeinab M. and Casas, Ana I. and Baumbach, Jan and List, Markus},
+    title = "{Drugst.One DREAM—Drug repurposing through expert annotation and modification}",
+    journal = "{British Journal of Pharmacology}",
+    volume = {n/a},
+    number = {n/a},
+    pages = {},
+    keywords = "{bioinformatics, computational pharmacology, intracellular signalling, repurposing, systems pharmacology}",
+    doi = {https://doi.org/10.1111/bph.70495},
+    url = {https://bpspubs.onlinelibrary.wiley.com/doi/abs/10.1111/bph.70495},
+    eprint = {https://bpspubs.onlinelibrary.wiley.com/doi/pdf/10.1111/bph.70495},
+    abstract = "{Background and Purpose Complex diseases often lack an actionable understanding of their underlying causal biological mechanisms, which leads to treating symptoms rather than causes. Network and systems medicine define disease mechanisms through disease-associated genes, their encoded proteins and their protein–protein interactions (PPIs), thus forming disease modules. Complex diseases can be subdivided into actionable causal mechanisms for potential precision and curative therapy by repurposing small-molecule drugs for new indications. However, current computational methods for disease module construction overlook pathway annotations, cellular compartments and directed PPIs. Consequently, disease modules require contextual refinement to identify dysregulations, select appropriate drug classes and eliminate promiscuous proteins. Experimental Approach Here, we present Drugst.One DREAM, which equips biomedical experts with a user-friendly toolbox for disease module refinement that does not require bioinformatics expertise. This extension of the web tool Drugst.One introduces network editing features. Users can refine PPI modules supported by pathway enrichment analysis and network clustering. Dedicated graph layouts highlight subcellular localisation and causal relationships queried from OmniPath. Key Results We demonstrate our tool by reproducing a previously described NOX5-containing module and refining an algorithmically inferred candidate module for Crohn’s disease, showcasing its effectiveness in refining disease modules for a broad user group in pharmacology and biomedical research. Conclusion and Implications The Drugst.One DREAM extension closes an important gap in the network medicine tool landscape by offering experts a user-friendly option for refining disease modules.}"
 }`
 
   ngOnInit(): void {
