@@ -1,8 +1,16 @@
-<div style="margin:20px; margin-top: 0">
-    <div *ngIf="copy" style="display: flex; justify-content: flex-end">
-        <button pButton pRipple class="p-button clipboard-btn" icon="far fa-clipboard" pTooltip="Copy the code to clipboard!" tooltipPosition="left" style="margin-top:-35px;top: +55px; left:-8px; width: 2rem; height: 2rem" (click)="toClipboard()"></button>
-    </div>
+<div style="position: relative;">
 
-    <!-- Use 'css' to prevent '//' in URLs from breaking the string -->
+    <!-- Subtle, rounded, gray icon button anchored to the top right -->
+    <button *ngIf="copy"
+            pButton pRipple
+            class="p-button-rounded p-button-text p-button-secondary clipboard-btn"
+            icon="far fa-clipboard"
+            pTooltip="Copy code"
+            tooltipPosition="left"
+            style="position: absolute; top: 0; right: 0; width: 2.2rem; height: 2.2rem; z-index: 10; background-color: rgba(248, 249, 250, 0.9);"
+            (click)="toClipboard()">
+    </button>
+
     <code highlight-js [lang]="lang">{{code}}</code>
+
 </div>
