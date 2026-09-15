@@ -15,6 +15,7 @@ import { DropdownComponent } from '../../../components/playground/sidebar/dropdo
 import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { SwitchComponent } from '../../../components/playground/sidebar/switch/switch.component';
+import {StandaloneDatasourceDefaultsService} from '../../../services/standalone-datasource-defaults.service';
 
 
 @Component({
@@ -25,6 +26,18 @@ import { SwitchComponent } from '../../../components/playground/sidebar/switch/s
     imports:[CommonModule, ButtonModule, DrugstonepanelComponent, DropdownComponent, TextareaModule, FormsModule, SwitchComponent]
 })
 export class StandaloneComponent implements OnInit {
+
+    private readonly datasourceConfigKeys = [
+        'interactionProteinProtein',
+        'interactionDrugProtein',
+        'associatedProteinDisorder',
+        'indicationDrugDisorder'
+    ];
+    private readonly toggleConfigKeys = [
+        'autofillEdges',
+        'reviewed',
+        'approvedDrugs'
+    ];
 
     @ViewChild("standalonePlugin", {static: false}) standalonePluginEl: ElementRef | undefined;
 
@@ -142,7 +155,8 @@ export class StandaloneComponent implements OnInit {
 
     public selectedDatasets = {}
 
-    constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService, private cd: ChangeDetectorRef) {
+    constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService,
+                private cd: ChangeDetectorRef, private datasourceDefaults: StandaloneDatasourceDefaultsService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -186,6 +200,7 @@ export class StandaloneComponent implements OnInit {
         this.configDark = configDark
         this.config = this.configLight
         this.loadDatasets().then(() => {
+            this.applyStoredDatasourceDefaultsForEmptyStandalone();
             this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
         })
 
@@ -212,16 +227,16 @@ export class StandaloneComponent implements OnInit {
         };
 
         if (!this.getConfig("interactionProteinProtein")) {
-            this.changeDataset("interactionProteinProtein", getDefault(this.dataLists.protProtInterList));
+            this.changeDataset("interactionProteinProtein", getDefault(this.dataLists.protProtInterList), false);
         }
         if (!this.getConfig("interactionDrugProtein")) {
-            this.changeDataset("interactionDrugProtein", getDefault(this.dataLists.drugProtInterList));
+            this.changeDataset("interactionDrugProtein", getDefault(this.dataLists.drugProtInterList), false);
         }
         if (!this.getConfig("associatedProteinDisorder")) {
-            this.changeDataset("associatedProteinDisorder", getDefault(this.dataLists.protDisList));
+            this.changeDataset("associatedProteinDisorder", getDefault(this.dataLists.protDisList), false);
         }
         if (!this.getConfig("indicationDrugDisorder")) {
-            this.changeDataset("indicationDrugDisorder", getDefault(this.dataLists.drugDisList));
+            this.changeDataset("indicationDrugDisorder", getDefault(this.dataLists.drugDisList), false);
         }
     }
 
@@ -361,7 +376,7 @@ export class StandaloneComponent implements OnInit {
                     // @ts-ignore
                     let ds = this.dataMaps.protProtInterList[ident]
                     if (ds) {
-                        this.changeDataset("interactionProteinProtein", ds)
+                        this.changeDataset("interactionProteinProtein", ds, false)
                     }
                 }
                 if ("interactionDrugProtein" in params) {
@@ -370,7 +385,7 @@ export class StandaloneComponent implements OnInit {
                     // @ts-ignore
                     let ds = this.dataMaps.drugProtInterList[ident]
                     if (ds) {
-                        this.changeDataset("interactionDrugProtein", ds)
+                        this.changeDataset("interactionDrugProtein", ds, false)
                     }
                 }
                 if ("indicationDrugDisorder" in params) {
@@ -379,7 +394,7 @@ export class StandaloneComponent implements OnInit {
                     // @ts-ignore
                     let ds = this.dataMaps.drugDisList[ident]
                     if (ds) {
-                        this.changeDataset("indicationDrugDisorder", ds)
+                        this.changeDataset("indicationDrugDisorder", ds, false)
                     }
                 }
                 if ("associatedProteinDisorder" in params) {
@@ -388,7 +403,7 @@ export class StandaloneComponent implements OnInit {
                     // @ts-ignore
                     let ds = this.dataMaps.protDisList[ident]
                     if (ds) {
-                        this.changeDataset("associatedProteinDisorder", ds)
+                        this.changeDataset("associatedProteinDisorder", ds, false)
                     }
                 }
                 if ("autofillEdges" in params) {
@@ -504,7 +519,7 @@ export class StandaloneComponent implements OnInit {
         return Object.values(this.selectedDatasets).reduce((a,b) => a || b)
     }
 
-    changeDataset(name: string, value: string) {
+    changeDataset(name: string, value: string, persistAsDefault = true) {
         let source: any = null;
         if (name === 'interactionProteinProtein') source = this.dataMaps.protProtInterList[value];
         if (name === 'interactionDrugProtein') source = this.dataMaps.drugProtInterList[value];
@@ -519,6 +534,64 @@ export class StandaloneComponent implements OnInit {
         } else {
             this.changeConfig(name, value);
         }
+
+        if (persistAsDefault) {
+            this.saveDatasourceDefaults();
+        }
+    }
+
+    private applyStoredDatasourceDefaultsForEmptyStandalone(): void {
+        if (window.location.search.length > 0) {
+            return;
+        }
+
+        const defaults = this.datasourceDefaults.load();
+        if (!defaults) {
+            return;
+        }
+
+        this.datasourceConfigKeys.forEach(key => {
+            const value = defaults[key];
+            if (typeof value === 'string' && this.datasourceIsAvailable(key, value)) {
+                this.changeDataset(key, value, false);
+            }
+        });
+
+        this.toggleConfigKeys.forEach(key => {
+            if (typeof defaults[key] === 'boolean') {
+                this.changeConfig(key, defaults[key]);
+            }
+        });
+    }
+
+    private saveDatasourceDefaults(): void {
+        const defaults: Record<string, string | boolean> = {};
+        this.datasourceConfigKeys.forEach(key => {
+            const value = this.getConfig(key);
+            if (typeof value === 'string') {
+                defaults[key] = value;
+            }
+        });
+        this.toggleConfigKeys.forEach(key => {
+            const value = this.getConfig(key);
+            if (typeof value === 'boolean') {
+                defaults[key] = value;
+            }
+        });
+        this.datasourceDefaults.save(defaults);
+    }
+
+    changeStandaloneDefault(name: string, value: boolean): void {
+        this.changeConfig(name, value);
+        this.saveDatasourceDefaults();
+    }
+
+    private datasourceIsAvailable(name: string, value: string): boolean {
+        if (name === 'interactionProteinProtein') return Boolean(this.dataMaps.protProtInterList[value]);
+        if (name === 'interactionDrugProtein') return Boolean(this.dataMaps.drugProtInterList[value]);
+        if (name === 'indicationDrugDisorder') return Boolean(this.dataMaps.drugDisList[value]);
+        if (name === 'associatedProteinDisorder') return Boolean(this.dataMaps.protDisList[value]);
+        return false;
     }
 
     changeGroups(name: string, value: any) {
