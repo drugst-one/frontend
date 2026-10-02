@@ -1,3 +1,9 @@
+<app-config-change-dialog
+        [visible]="configSync.pendingChange !== null"
+        [source]="configSync.pendingChange?.source"
+        (accepted)="acceptConfigChange()"
+        (dismissed)="dismissConfigChange()">
+</app-config-change-dialog>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -54,9 +60,12 @@
                 <div class="accordion-body" #standalonePlugin>
                     <app-drugstonepanel *ngIf="networkReady"
                             id="drugstone_standalone_plugin"
-                            [config]="config"
+                            [class.config-dialog-open]="configSync.pendingChange !== null"
+                            [config]="configSync.configForPlugin(config)"
+                            [configRevision]="configSync.configRevision"
                             [network]="network"
                             [groups]="groups"
+                            (analysisConfigChange)="configSync.receive($event, config, dataMaps)"
                     ></app-drugstonepanel>
                 </div>
             </div>
@@ -204,11 +213,11 @@
                             tooltip="If enabled, adds automatically gene-gene interaction edges."
                     ></app-switch>
                     <app-switch label="Only reviewed proteins" [model]="
-                                  !(getConfig('reviewed') == null) || getConfig('reviewed')
+                                  getConfigOrDefault('reviewed', false)
                                 " (onChange)="changeStandaloneDefault('reviewed', $event)"
                         tooltip="If enabled, only reviewed proteins are considered for the analysis."></app-switch>
                     <app-switch label="Only approved drugs" [model]="
-                                            !(getConfig('approvedDrugs') == null) || getConfig('approvedDrugs')
+                                            getConfigOrDefault('approvedDrugs', false)
                                 " (onChange)="changeStandaloneDefault('approvedDrugs', $event)"
                         tooltip="If enabled, only approved drugs will be displayed for the adjacent drugs."></app-switch>
                 </div>

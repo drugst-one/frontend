@@ -10,12 +10,15 @@ import {RequestService} from "../../../services/requestService";
 import {ThemeService} from 'src/app/services/theme.service';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { DrugstonepanelComponent } from '../../../components/playground/drugstonepanel/drugstonepanel.component';
+import {DrugstonepanelComponent} from '../../../components/playground/drugstonepanel/drugstonepanel.component';
+import {ConfigChangeDialogComponent} from '../../../components/config-change-dialog/config-change-dialog.component';
 import { DropdownComponent } from '../../../components/playground/sidebar/dropdown/dropdown.component';
 import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { SwitchComponent } from '../../../components/playground/sidebar/switch/switch.component';
 import {StandaloneDatasourceDefaultsService} from '../../../services/standalone-datasource-defaults.service';
+import {ConfigSyncEffect, StandaloneConfigSyncService, STANDALONE_TOGGLE_KEYS} from '../../../services/standalone-config-sync.service';
+import {DATASOURCE_CONFIG_KEYS, datasourceConfigValue, datasourceMap, datasourceOption, parseDatasource} from '../../../services/datasource-mapping';
 
 
 @Component({
@@ -23,21 +26,33 @@ import {StandaloneDatasourceDefaultsService} from '../../../services/standalone-
     templateUrl: './standalone.component.html',
     styleUrls: ['./standalone.component.scss'],
     standalone: true,
-    imports:[CommonModule, ButtonModule, DrugstonepanelComponent, DropdownComponent, TextareaModule, FormsModule, SwitchComponent]
+    providers: [StandaloneConfigSyncService],
+    imports:[CommonModule, ButtonModule, ConfigChangeDialogComponent, DrugstonepanelComponent, DropdownComponent, TextareaModule, FormsModule, SwitchComponent]
 })
 export class StandaloneComponent implements OnInit {
 
-    private readonly datasourceConfigKeys = [
-        'interactionProteinProtein',
-        'interactionDrugProtein',
-        'associatedProteinDisorder',
-        'indicationDrugDisorder'
-    ];
-    private readonly toggleConfigKeys = [
-        'autofillEdges',
-        'reviewed',
-        'approvedDrugs'
-    ];
+    acceptConfigChange(): void {
+        this.applyConfigSyncEffect(this.configSync.accept());
+    }
+
+    dismissConfigChange(): void {
+        this.applyConfigSyncEffect(this.configSync.dismiss());
+    }
+
+    private applyConfigSyncEffect(effect: ConfigSyncEffect): void {
+        const settings = effect.settings;
+        if (settings) {
+            this.config = {...this.config, ...settings};
+            this.selectedDatasets = {};
+            this.datasourceConfigKeys.forEach(key => {
+                this.selectedDatasets[key] = parseDatasource(settings[key]).licensed;
+            });
+        }
+        if (effect.savePreferences) this.saveDatasourceDefaults();
+    }
+
+    private readonly datasourceConfigKeys = DATASOURCE_CONFIG_KEYS;
+    private readonly toggleConfigKeys = STANDALONE_TOGGLE_KEYS;
 
     @ViewChild("standalonePlugin", {static: false}) standalonePluginEl: ElementRef | undefined;
 
@@ -64,27 +79,6 @@ export class StandaloneComponent implements OnInit {
 
     public cysticFibrosisGenes = ['CFTR', 'TGFB1', 'TNFRSF1A', 'FCGR2A', 'ENG', 'DCTN4', 'CLCA4', 'STX1A',
         'SCNN1G', 'SCNN1A', 'SCNN1B']
-
-    public nameMap: { [key: string]: string } = {
-        'nedrex': 'NeDRex',
-        'biogrid': 'BioGRID',
-        'iid': 'IID',
-        'intact': 'IntAct',
-        'string': 'STRING',
-        'apid': 'APID',
-        'drugcentral': 'DrugCentral',
-        'chembl': 'ChEMBL',
-        'dgidb': 'DGIdb',
-        'disgenet': 'DisGeNET',
-        'ctd': 'CTD',
-        'drugbank': 'DrugBank',
-        'omim': 'OMIM',
-        'omnipath': 'OmniPath',
-        'cosmic':"COSMIC",
-        'ncg':'NCG',
-        'intogen':'IntOGen',
-        'orphanet': 'Orphanet',
-    }
 
     public dataMaps: any = {
         drugProtInterList: {
@@ -153,10 +147,11 @@ export class StandaloneComponent implements OnInit {
         ]
     }
 
-    public selectedDatasets = {}
+    public selectedDatasets: Record<string, boolean> = {}
 
     constructor(private router: Router, public drugstone: RequestService, public themeService: ThemeService,
-                private cd: ChangeDetectorRef, private datasourceDefaults: StandaloneDatasourceDefaultsService) {
+                private cd: ChangeDetectorRef, private datasourceDefaults: StandaloneDatasourceDefaultsService,
+                public configSync: StandaloneConfigSyncService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
                 if (val.url != null) {
@@ -196,11 +191,10 @@ export class StandaloneComponent implements OnInit {
         // @ts-ignore
         this.themeDark['--drgstn-background'] = this.themeDark[['--drgstn-panel']]
         this.theme = this.themeLight;
-        this.configLight = configLight
-        this.configDark = configDark
-        this.config = this.configLight
+        this.configLight = structuredClone(configLight)
+        this.configDark = structuredClone(configDark)
+        this.config = structuredClone(this.configLight)
         this.loadDatasets().then(() => {
-            this.applyStoredDatasourceDefaultsForEmptyStandalone();
             this.readParamsFromURL(window.location.href.substring(window.location.origin.length))
         })
 
@@ -243,15 +237,7 @@ export class StandaloneComponent implements OnInit {
     loadDatasets() {
         return this.drugstone.getDatasources(this.api).then(response => {
             const processSources = (sources: any[]) => {
-                return this.sorted(sources.map(source => {
-                    let name = source.name.toLowerCase()
-                    let label = (this.nameMap[name] ? this.nameMap[name] : source.name) + (source.licenced ? ' (licensed)' : '')
-                    let value = source.name + (source.licenced ? '|licensed' : '|open')
-                    return {
-                        label: label,
-                        value: value
-                    }
-                }))
+                return this.sorted(sources.map(datasourceOption))
             }
 
             this.dataLists = {
@@ -262,31 +248,13 @@ export class StandaloneComponent implements OnInit {
                 protDisList: processSources(response['protein-disorder'])
             }
             
-            this.dataMaps.drugProtInterList = {}
-            response['protein-drug'].forEach((source: any) => {
-                const key = source.name + (source.licenced ? '|licensed' : '|open');
-                this.dataMaps.drugProtInterList[key] = source;
-            })
-
-            this.dataMaps.protProtInterList = {}
-            response['protein-protein'].forEach((source: any) => {
-                const key = source.name + (source.licenced ? '|licensed' : '|open');
-                this.dataMaps.protProtInterList[key] = source;
-            })
-
-            this.dataMaps.drugDisList = {}
-            response['drug-disorder'].forEach((source: any) => {
-                const key = source.name + (source.licenced ? '|licensed' : '|open');
-                this.dataMaps.drugDisList[key] = source;
-            })
-
-            this.dataMaps.protDisList = {}
-            response['protein-disorder'].forEach((source: any) => {
-                const key = source.name + (source.licenced ? '|licensed' : '|open');
-                this.dataMaps.protDisList[key] = source;
-            })
+            this.dataMaps.drugProtInterList = datasourceMap(response['protein-drug']);
+            this.dataMaps.protProtInterList = datasourceMap(response['protein-protein']);
+            this.dataMaps.drugDisList = datasourceMap(response['drug-disorder']);
+            this.dataMaps.protDisList = datasourceMap(response['protein-disorder']);
 
             this.setDefaultDatasets()
+            this.applyStoredDatasourceDefaultsForEmptyStandalone();
             this.dataLoaded = true;
             this.cd.detectChanges();
         })
@@ -330,8 +298,15 @@ export class StandaloneComponent implements OnInit {
                 edges = response.network.edges
                 if (response.groups != null)
                     Object.keys(response.groups).forEach(key => this.changeGroups(key, response.groups[key]))
-                if (response.config != null)
-                    Object.keys(response.config).forEach(key => this.changeConfig(key, response.config[key]))
+                if (response.config != null) {
+                    Object.keys(response.config).forEach(key => {
+                        if (this.datasourceConfigKeys.includes(key)) {
+                            this.changeDataset(key, datasourceConfigValue(key, response.config[key], response.config.licensedDatasets, this.dataMaps), false);
+                        } else {
+                            this.changeConfig(key, response.config[key]);
+                        }
+                    });
+                }
 
             } else {
                 let licensed = false;
@@ -370,42 +345,15 @@ export class StandaloneComponent implements OnInit {
                     licensed = params["licensedDatasets"] === "true"
                     this.changeConfig("licensedDatasets", licensed)
                 }
-                if ("interactionProteinProtein" in params) {
-                    // @ts-ignore
-                    let ident = this.nameMap[params["interactionProteinProtein"].toLowerCase()] + (licensed ? ' (licensed)' : '')
-                    // @ts-ignore
-                    let ds = this.dataMaps.protProtInterList[ident]
-                    if (ds) {
-                        this.changeDataset("interactionProteinProtein", ds, false)
+                this.datasourceConfigKeys.forEach(key => {
+                    const source = (params as Record<string, string>)[key];
+                    if (source) {
+                        const value = datasourceConfigValue(key, source, licensed, this.dataMaps);
+                        if (this.datasourceIsAvailable(key, value)) {
+                            this.changeDataset(key, value, false);
+                        }
                     }
-                }
-                if ("interactionDrugProtein" in params) {
-                    // @ts-ignore
-                    let ident = this.nameMap[params["interactionDrugProtein"].toLowerCase()] + (licensed ? ' (licensed)' : '')
-                    // @ts-ignore
-                    let ds = this.dataMaps.drugProtInterList[ident]
-                    if (ds) {
-                        this.changeDataset("interactionDrugProtein", ds, false)
-                    }
-                }
-                if ("indicationDrugDisorder" in params) {
-                    // @ts-ignore
-                    let ident = this.nameMap[params["indicationDrugDisorder"].toLowerCase()] + (licensed ? ' (licensed)' : '')
-                    // @ts-ignore
-                    let ds = this.dataMaps.drugDisList[ident]
-                    if (ds) {
-                        this.changeDataset("indicationDrugDisorder", ds, false)
-                    }
-                }
-                if ("associatedProteinDisorder" in params) {
-                    // @ts-ignore
-                    let ident = this.nameMap[params["associatedProteinDisorder"].toLowerCase()] + (licensed ? ' (licensed)' : '')
-                    // @ts-ignore
-                    let ds = this.dataMaps.protDisList[ident]
-                    if (ds) {
-                        this.changeDataset("associatedProteinDisorder", ds, false)
-                    }
-                }
+                });
                 if ("autofillEdges" in params) {
                     // @ts-ignore
                     let fill = params["autofillEdges"] === "true"
@@ -550,18 +498,31 @@ export class StandaloneComponent implements OnInit {
             return;
         }
 
+        let repaired = false;
         this.datasourceConfigKeys.forEach(key => {
             const value = defaults[key];
-            if (typeof value === 'string' && this.datasourceIsAvailable(key, value)) {
-                this.changeDataset(key, value, false);
+            if (typeof value === 'string') {
+                const resolved = datasourceConfigValue(key, value, false, this.dataMaps);
+                if (this.datasourceIsAvailable(key, resolved)) {
+                    this.changeDataset(key, resolved, false);
+                    if (resolved !== value) {
+                        defaults[key] = resolved;
+                        repaired = true;
+                    }
+                }
             }
         });
+        if (repaired) this.datasourceDefaults.save(defaults);
 
         this.toggleConfigKeys.forEach(key => {
             if (typeof defaults[key] === 'boolean') {
                 this.changeConfig(key, defaults[key]);
             }
         });
+        if (typeof defaults['identifier'] === 'string' &&
+            this.dataLists.identifierList.some(item => item.value === defaults['identifier'])) {
+            this.changeConfig('identifier', defaults['identifier']);
+        }
     }
 
     private saveDatasourceDefaults(): void {
@@ -578,6 +539,7 @@ export class StandaloneComponent implements OnInit {
                 defaults[key] = value;
             }
         });
+        defaults['identifier'] = this.getConfigOrDefault('identifier', 'symbol');
         this.datasourceDefaults.save(defaults);
     }
 
@@ -610,6 +572,7 @@ export class StandaloneComponent implements OnInit {
     }
 
     changeConfig(name: string, value: any) {
+        this.configSync.globalConfigUpdated();
         let change = {}
         // @ts-ignore
         change[name] = value;
@@ -632,6 +595,7 @@ export class StandaloneComponent implements OnInit {
 
 
     setNetwork() {
+        this.configSync.globalConfigUpdated();
         let nodes = this.setNodes()
         let edges = this.setEdges()
         this.network = {nodes: nodes, edges: edges}
@@ -650,6 +614,12 @@ export class StandaloneComponent implements OnInit {
     }
 
     switchTheme(dark: boolean) {
+        const preservedSettings = Object.fromEntries(
+            [...this.datasourceConfigKeys, ...this.toggleConfigKeys, 'identifier', 'licensedDatasets']
+                .filter(key => this.getConfig(key) != null)
+                .map(key => [key, this.getConfig(key)])
+        );
+        this.configSync.globalConfigUpdated();
         let theme = dark ? this.themeDark : this.themeLight
         Object.keys(theme).forEach(key => {
             // @ts-ignore
@@ -665,7 +635,8 @@ export class StandaloneComponent implements OnInit {
                 }
             })
         } else
-            this.config = conf
+            this.config = structuredClone(conf)
+        this.config = {...this.config, ...preservedSettings};
         this.cd.detectChanges();
     }
 

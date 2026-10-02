@@ -12,6 +12,7 @@ import { ColorpickerComponent } from './colorpicker/colorpicker.component';
 import { RangeComponent } from './range/range.component';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
+import {datasourceOption} from '../../../services/datasource-mapping';
 
 @Component({
     selector: 'app-sidebar',
@@ -70,21 +71,6 @@ export class SidebarComponent implements OnInit {
         protDisList: []
     }
 
-    public nameMap: any = {
-        nedrex: 'NeDRex',
-        biogrid: 'BioGRID',
-        iid: 'IID',
-        intact: 'IntAct',
-        string: 'STRING',
-        apid: 'APID',
-        drugcentral: 'DrugCentral',
-        chembl: 'ChEMBL',
-        dgidb: 'DGIdb',
-        disgenet: 'DisGeNET',
-        ctd: 'CTD',
-        drugbank: 'DrugBank',
-        omim: 'OMIM'
-    };
     public themeList: Object[] = [];
 
     public fontList: Object[] = [{
@@ -114,17 +100,7 @@ export class SidebarComponent implements OnInit {
     async loadDatasets() {
         this.drugstone.getDatasources(this.api).then(response => {
             const processSources = (sources: any[]) => {
-                return this.sorted(sources.map(source => {
-                    let name = source.name.toLowerCase()
-                    let label = (this.nameMap[name] ? this.nameMap[name] : source.name) + (source.licenced ? ' (licensed)' : '')
-                    let value = source.name + (source.licenced ? '|licensed' : '|open')
-                    return {
-                        label: label,
-                        value: value,
-                        licensed: source.licenced,
-                        open: !source.licenced
-                    }
-                }))
+                return this.sorted(sources.map(datasourceOption))
             }
 
             this.dataLists = {
