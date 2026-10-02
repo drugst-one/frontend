@@ -7,6 +7,26 @@
   for the specific parameters. Any of these parameters can be overwritten by
   passing it to the ‘config’ parameter.
 </p>
+<h4>Global configuration and snapshot settings</h4>
+<p>
+  The <code>config</code> passed by the host page is the global configuration of the main network.
+  When a saved task or view is opened, Drugst.One temporarily uses its stored settings instead.
+  Internally, this active snapshot configuration is called <code>analysisConfig</code>, even for views.
+  It is not a separate public input that the host page needs to set.
+</p>
+<p>
+  While a snapshot is active, the global configuration is retained. Closing the task or view removes
+  <code>analysisConfig</code> and makes the global configuration active again. Updating the external
+  <code>config</code> input also leaves the task or view and applies the new settings to the main network.
+  Merely updating the host page's settings form does not have to change the plugin configuration.
+</p>
+<p>
+  A snapshot records the settings of a task or view; it does not guarantee that rerunning an analysis
+  will produce identical results after the underlying databases have been updated.
+  Host pages can listen to <code>drugstone-analysis-config-change</code> to display the settings
+  currently used by the plugin, offer to adopt them, or restore their main-network settings afterwards.
+  See <a href="/doc#customize_events">Events</a> for the payload and an integration example.
+</p>
 <p-tabs value="0" class="tabView">
   <p-tablist>
     <p-tab value="0"><i class="pi pi-fw pi-list"></i> Options</p-tab>
