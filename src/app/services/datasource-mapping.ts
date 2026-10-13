@@ -28,7 +28,7 @@ export function datasourceName(name: string): string {
 
 export function parseDatasource(value: string, licensed = false): {name: string; licensed: boolean} {
   const [name, access] = value.split('|');
-  return {name: datasourceName(name), licensed: access ? access === 'licensed' : licensed};
+  return {name, licensed: access ? access === 'licensed' : licensed};
 }
 
 export function datasourceValue(value: string, licensed = false): string {
@@ -43,11 +43,19 @@ export function datasourceConfigValue(
   const sources = available[DATASOURCE_LIST_KEYS[key]];
   if (!sources || requested in sources) return requested;
 
+  // Resolve aliases against the actual backend options, never display labels.
+  // Preserve their exact spelling for case-sensitive graph filenames.
+  const source = parseDatasource(requested);
+  const matching = Object.keys(sources).filter(option =>
+    parseDatasource(option).name.toLowerCase() === source.name.toLowerCase()
+  );
+  const exactAccess = matching.find(option => parseDatasource(option).licensed === source.licensed);
+  if (exactAccess) return exactAccess;
+
   // Match the backend: a licensed request falls back to the open variant
   // of the same source if no licensed variant exists.
-  const source = parseDatasource(requested);
-  const open = datasourceValue(source.name, false);
-  return source.licensed && open in sources ? open : requested;
+  const open = matching.find(option => !parseDatasource(option).licensed);
+  return source.licensed && open ? open : requested;
 }
 
 export function datasourceOption(source: {name: string; licenced: boolean}) {
