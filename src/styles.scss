@@ -25,6 +25,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+app-drugstonepanel.config-dialog-open .drugstone-plugin-loading-screen {
+  z-index: 1000 !important;
+}
 
 pre {
   overflow: auto;

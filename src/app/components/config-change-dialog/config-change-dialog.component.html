@@ -1,0 +1,24 @@
+<p-dialog
+        header="Different network settings"
+        [visible]="visible"
+        [modal]="true"
+        appendTo="body"
+        [style]="{width: '32rem', maxWidth: '95vw'}"
+        (visibleChange)="!$event && dismissed.emit()">
+    @if (source === 'global') {
+        <p>
+            The analysis or view has been closed. The main network uses different settings.
+            Would you like to restore these settings in the frontend?
+        </p>
+    } @else {
+        <p>
+            This {{source === 'view' ? 'view' : 'analysis'}} uses different settings.
+            Would you like to use them in the frontend settings?
+        </p>
+    }
+    <p>Settings you choose to use will be remembered for future standalone visits.</p>
+    <ng-template #footer>
+        <p-button label="Keep current settings" severity="secondary" (onClick)="dismissed.emit()"></p-button>
+        <p-button label="Use these settings" (onClick)="accepted.emit()"></p-button>
+    </ng-template>
+</p-dialog>

@@ -1,5 +1,12 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, Input, OnInit} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {toPluginDatasourceConfig} from '../../../services/datasource-mapping';
+
+export interface DrugstoneAnalysisConfigChange {
+  version: number;
+  source: 'task' | 'view' | 'global';
+  config: Record<string, any>;
+}
 
 @Component({
   selector: 'app-drugstonepanel',
@@ -15,6 +22,18 @@ export class DrugstonepanelComponent implements OnInit {
   @Input() public network: object = {}
   @Input() public groups: object ={ nodeGroups:{}}
   @Input() public id: string = ""
+  @Input() public configRevision = 0;
+  @Output() public analysisConfigChange = new EventEmitter<DrugstoneAnalysisConfigChange>();
+  private lastConfig?: string;
+  private lastConfigRevision?: number;
+  private cachedConfig: Record<string, any> = {};
+
+  onAnalysisConfigChange(event: Event): void {
+    const detail = (event as CustomEvent<DrugstoneAnalysisConfigChange>).detail;
+    if (detail?.version === 1 && ['task', 'view', 'global'].includes(detail.source) && detail.config) {
+      this.analysisConfigChange.emit(detail);
+    }
+  }
 
   constructor() {
   }
@@ -22,17 +41,18 @@ export class DrugstonepanelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getConfig(): string{
-    let clean = {...this.config};
-    const datasets = ['interactionProteinProtein', 'interactionDrugProtein', 'associatedProteinDisorder', 'indicationDrugDisorder'];
-    datasets.forEach(key => {
-        // @ts-ignore
-        if (clean[key] && typeof clean[key] === 'string') {
-            // @ts-ignore
-            clean[key] = clean[key].split('|')[0];
-        }
-    });
-    return JSON.stringify(clean)
+  getConfig(): Record<string, any> {
+    const config = toPluginDatasourceConfig(this.config);
+    const serialized = JSON.stringify(config);
+    // Both Angular and Angular Elements skip identical input values. A new
+    // object reference makes an explicit manual update reach the plugin even
+    // when its values match the global config sent before opening a task/view.
+    if (serialized !== this.lastConfig || this.configRevision !== this.lastConfigRevision) {
+      this.cachedConfig = structuredClone(config);
+      this.lastConfig = serialized;
+      this.lastConfigRevision = this.configRevision;
+    }
+    return this.cachedConfig;
   }
 
   getNetwork(): string{

@@ -6,6 +6,7 @@ import { DocSubsubheaderComponent } from "../../../../../components/documentatio
 import { MessageModule } from "primeng/message";
 import { CheckboxModule } from "primeng/checkbox";
 import { FormsModule } from "@angular/forms";
+import {datasourceName} from 'src/app/services/datasource-mapping';
 
 // @ts-ignore
 import CONFIG from "../../../../../configs/default.js"
@@ -23,25 +24,6 @@ export class ImplDataComponent implements OnInit {
     @Input() api: string = ''
     accepted_eula: boolean = false
 
-    public nameMap = {
-        nedrex: 'NeDRex',
-        biogrid: 'BioGRID',
-        cosmic: "COSMIC",
-        iid: 'IID',
-        intact: 'IntAct',
-        intogen: "IntOGen",
-        string: 'STRING',
-        apid: 'APID',
-        ncg: "NCG",
-        drugcentral: 'DrugCentral',
-        chembl: 'ChEMBL',
-        dgidb: 'DGIdb',
-        disgenet: 'DisGeNET',
-        ctd: 'CTD',
-        drugbank: 'DrugBank',
-        omim: 'OMIM',
-        omnipath: 'OmniPath'
-    }
 
     public descriptionMap = {
         NeDRex: 'NeDRex is a network medicine platform for disease module identification and drug repurposing.'
@@ -159,7 +141,7 @@ export class ImplDataComponent implements OnInit {
 
                     if(source.name) {
                         // @ts-ignore
-                        source.name = this.nameMap[source.name.toLowerCase()]
+                        source.name = datasourceName(source.name)
                     }
                     // @ts-ignore
                     if ((source.link === nedrexLockedUrl || source.link === nedrexFreeUrl) && source.name && source.name.toLowerCase() !== 'nedrex')

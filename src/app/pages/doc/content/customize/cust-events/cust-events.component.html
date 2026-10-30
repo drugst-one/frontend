@@ -18,6 +18,60 @@
 </p>
 <p-divider [style]="{marginLeft:'35%', marginRight:'35%', width:'30%'}"
            [align]="'center'"></p-divider>
+<section style="padding-left: 15px" aria-labelledby="analysis-config-change-event">
+    <h4 id="analysis-config-change-event">Active settings ('drugstone-analysis-config-change')</h4>
+    <p>
+        Drugst.One emits this <code>CustomEvent</code> when a task or view activates or updates its
+        snapshot configuration, and when that configuration is removed on returning to the main network.
+        The host page's global settings may differ from those of the snapshot.
+        See <a href="/doc#customize_config">Global configuration and snapshot settings</a> for the distinction.
+    </p>
+    <app-code lang="js" [code]="configChangeListenerExample"></app-code>
+    <p>The <code>event.detail</code> payload contains:</p>
+    <ul>
+        <li><code>version</code>: the payload format version, currently <code>1</code>.</li>
+        <li><code>source</code>: <code>task</code>, <code>view</code>, or <code>global</code>.
+            <code>global</code> reports the return to the main-network configuration.</li>
+        <li><code>config</code>: a detached copy of the active configuration, not just the changed fields.
+            The example below shows only a selection of its properties.</li>
+    </ul>
+    <app-code lang="json" [code]="configChangePayloadExample"></app-code>
+    <p>
+        Database names use the plugin format, for example <code>APID</code> or <code>OmniPath</code>.
+        <code>licensedDatasets</code> is a shared flag, not a separate license choice for each database.
+        Normalize database names, defaults and available licensed/open variants before comparing the
+        event configuration with your host-page settings.
+    </p>
+    <h5>Using the event in a host page</h5>
+    <ul>
+        <li>Show which settings the active task or view uses, or make the host settings form read-only
+            while showing a saved snapshot.</li>
+        <li>If normalized settings differ, offer to adopt the snapshot settings in the host form.
+            Update the form without writing <code>config</code> back to the plugin while the snapshot
+            is open: an external config update closes the task or view.</li>
+        <li>On <code>source: 'global'</code>, compare again. If snapshot settings were adopted, offer
+            to restore the global settings or keep the adopted settings for the main network.
+            Only write them back to the plugin when the user chooses to keep them.</li>
+        <li>Remember settings as browser preferences after an explicit user choice, rather than
+            automatically saving every snapshot that is opened.</li>
+    </ul>
+    <p>
+        This event is a notification, not a command or a task-completion signal. It does not fire for
+        every global config assignment, and it does not replay earlier events. Register your listener
+        before opening a task or view. Repeated events can occur; compare settings instead of assuming
+        each event represents a different task.
+    </p>
+    <p>
+        The event bubbles and is composed, so it can also be observed by an ancestor such as
+        <code>document</code>. When embedding multiple plugins, listen directly on the intended
+        <code>drugst-one</code> element. The event is not cancelable, and changing its copied payload
+        does not change the plugin settings. Remove the listener with
+        <code>drugstone.removeEventListener('drugstone-analysis-config-change', onAnalysisConfigChange)</code>
+        when the host component is destroyed.
+    </p>
+</section>
+<p-divider [style]="{marginLeft:'35%', marginRight:'35%', width:'30%'}"
+           [align]="'center'"></p-divider>
 <div style="padding-left: 15px">
     <div style="font-size: 15pt"><b>Task creation ('taskEvent')</b></div>
     <p>
