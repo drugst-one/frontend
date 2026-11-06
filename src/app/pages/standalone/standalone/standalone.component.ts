@@ -63,6 +63,7 @@ export class StandaloneComponent implements OnInit {
     @Input() api = ""
     network: Object = {nodes: [], edges: []}
     networkReady = false;
+    taskId: string | null = null;
     dataLoaded = false;
     themeLight: Object = {}
     themeDark: Object = {}
@@ -165,12 +166,7 @@ export class StandaloneComponent implements OnInit {
     readParamsFromURL(url: string): void {
         var page = url.substr(1).split("/")[0].split('#')[0]
         if (page.indexOf("?") > -1) {
-            let params = {}
-            page.split("?")[1].split("&").forEach(pair => {
-                let p = pair.split("=");
-                // @ts-ignore
-                params[p[0]] = p[1];
-            })
+            const params = Object.fromEntries(new URLSearchParams(page.split("?")[1]));
             this.setParams(params).catch(console.error)
             history.replaceState('', '', "/standalone" + location.search)
         } else {
@@ -274,13 +270,15 @@ export class StandaloneComponent implements OnInit {
     }
 
     async setParams(params: object): Promise<any> {
-        this.loadDatasets().then(async () => {
+        return this.loadDatasets().then(async () => {
             this.toggleTab(this.networkInput, false);
             this.toggleTab(this.advancedSettings, false);
             this.toggleTab(this.drugstoneApp, true);
-            if ("taskId" in params) {
-                // @ts-ignore
-                this.changeConfig("taskId", params["token"]);
+            this.taskId = (params as Record<string, string>)["taskId"]?.trim() || null;
+            if (this.taskId) {
+                this.network = {nodes: [], edges: []};
+                this.networkReady = true;
+                this.cd.detectChanges();
                 return
             }
 
@@ -519,10 +517,6 @@ export class StandaloneComponent implements OnInit {
                 this.changeConfig(key, defaults[key]);
             }
         });
-        if (typeof defaults['identifier'] === 'string' &&
-            this.dataLists.identifierList.some(item => item.value === defaults['identifier'])) {
-            this.changeConfig('identifier', defaults['identifier']);
-        }
     }
 
     private saveDatasourceDefaults(): void {
@@ -539,7 +533,6 @@ export class StandaloneComponent implements OnInit {
                 defaults[key] = value;
             }
         });
-        defaults['identifier'] = this.getConfigOrDefault('identifier', 'symbol');
         this.datasourceDefaults.save(defaults);
     }
 

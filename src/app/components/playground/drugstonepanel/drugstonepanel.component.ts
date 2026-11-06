@@ -22,6 +22,7 @@ export class DrugstonepanelComponent implements OnInit {
   @Input() public network: object = {}
   @Input() public groups: object ={ nodeGroups:{}}
   @Input() public id: string = ""
+  @Input() public taskId: string | null = null;
   @Input() public configRevision = 0;
   @Output() public analysisConfigChange = new EventEmitter<DrugstoneAnalysisConfigChange>();
   private lastConfig?: string;
