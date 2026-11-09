@@ -42,3 +42,16 @@ describe('DrugstonepanelComponent manual config updates', () => {
     expect(component.getConfig().interactionProteinProtein).toBe('APID');
   });
 });
+
+// The custom element exposes taskId separately from its config input.
+describe('DrugstonepanelComponent task input', () => {
+  it('forwards taskId to the custom element', async () => {
+    const {TestBed} = await import('@angular/core/testing');
+    await TestBed.configureTestingModule({imports: [DrugstonepanelComponent]}).compileComponents();
+    const fixture = TestBed.createComponent(DrugstonepanelComponent);
+    fixture.componentInstance.taskId = 'task-token';
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('drugst-one').taskId).toBe('task-token');
+    fixture.destroy();
+  });
+});
